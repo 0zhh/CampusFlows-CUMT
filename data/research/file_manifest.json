@@ -1,44 +1,33 @@
 {
+  "generated_by": "data/research/make_manifest.py",
+  "root": ".",
+  "count": 142,
+  "total_bytes": 22055124,
   "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 341,
+      "sha256": "2088027fe074993cd6078d5815fa0e6241333a3aa5c9db2ec8ca4f0c329ad01a"
+    },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.2_南湖校区驿链演示版.md",
       "bytes": 20620,
       "sha256": "828576bde5e1d3bd092c3e3241e2a6ff55e5f70d6f534263a61f02d2a5e5bebd"
     },
     {
+      "path": "CampusFlow_总体开发计划与实施路线_v1.3_南湖校区全栈演示版.md",
+      "bytes": 26994,
+      "sha256": "0863fe5c6443fdbf8dfa5c661f060eab50e4ce834e53c9384d75b03d471952e9"
+    },
+    {
+      "path": "data/README.md",
+      "bytes": 6214,
+      "sha256": "ab3c5b8260706d37010e0ffc0da4f6c22fef60fd7a9e2f7a9b7aeda953a96036"
+    },
+    {
       "path": "data/assets_catalog.json",
       "bytes": 6810,
       "sha256": "45d4397100185278f05ab59d3d25cad97ca96fbbe88fe6a806c34759ea947de4"
-    },
-    {
-      "path": "data/baseline/CampusFlow_总体开发计划与实施路线_v1.1_软件工程规范版.md",
-      "bytes": 52077,
-      "sha256": "1d97ad3e55a4e870d5e0c2cf5d7d0910d5ab3db3b9816a7a1e0e5bcded8c4856"
-    },
-    {
-      "path": "data/demo/scenario_template.json",
-      "bytes": 1554,
-      "sha256": "d47872f0a232f7f9c6c728cc0eeba382fa517c0041a077607142b4e424fe5b95"
-    },
-    {
-      "path": "data/maps/cumt_official_campus_traffic_2025.png",
-      "bytes": 1258688,
-      "sha256": "14eb2f2f1c2a7324710d37f9fd01643ffff919d30992b0dec670a9b5a7217ba7"
-    },
-    {
-      "path": "data/maps/cumtlive_logistics_locations.png",
-      "bytes": 373223,
-      "sha256": "8c1f28ef979cce540400c926ddfdbafc5ae227f2392466961f883cebbe6237e3"
-    },
-    {
-      "path": "data/maps/logistics_markers.json",
-      "bytes": 1405,
-      "sha256": "b6133c4dc3ad824b1fdffb02c1914fe4d9a1a9cbd1161449ba50069ff3eab73f"
-    },
-    {
-      "path": "data/maps/map_manifest.json",
-      "bytes": 1530,
-      "sha256": "a5e1596a7a6d06315c5618097f91d71cdb9b9ef8bb519971f047f63f42602a89"
     },
     {
       "path": "data/nanhu_operating_rules.json",
@@ -71,9 +60,64 @@
       "sha256": "8284ddc386d00101dde2775a623352fcc65983b680fffd1e447cf42b80a51355"
     },
     {
-      "path": "data/README.md",
-      "bytes": 5668,
-      "sha256": "e7da39e8ec8292a6b22ce15019d856314c65638abca12b753677129a9856be41"
+      "path": "data/source_catalog.json",
+      "bytes": 11631,
+      "sha256": "027f9a7085ccc34cacbe83f095f033c400a60b43cd6d2d93766ed72229fe2b8d"
+    },
+    {
+      "path": "data/资料核验与缺口.md",
+      "bytes": 7185,
+      "sha256": "0909fbbb92af8d5ced92e999c774534a2d2a08466b99763a84ebe8266a941f71"
+    },
+    {
+      "path": "data/baseline/CampusFlow_总体开发计划与实施路线_v1.1_软件工程规范版.md",
+      "bytes": 52077,
+      "sha256": "1d97ad3e55a4e870d5e0c2cf5d7d0910d5ab3db3b9816a7a1e0e5bcded8c4856"
+    },
+    {
+      "path": "data/baseline/CampusFlow_总体开发计划与实施路线_v1.2_南湖校区驿链演示版.md",
+      "bytes": 20620,
+      "sha256": "828576bde5e1d3bd092c3e3241e2a6ff55e5f70d6f534263a61f02d2a5e5bebd"
+    },
+    {
+      "path": "data/demo/scenario_template.json",
+      "bytes": 1554,
+      "sha256": "d47872f0a232f7f9c6c728cc0eeba382fa517c0041a077607142b4e424fe5b95"
+    },
+    {
+      "path": "data/demo/scenarios.json",
+      "bytes": 138537,
+      "sha256": "352243f30e1aba2f6c9b6b0fea6124fcdd5c7ba55a5048e2380af255c5e08b51"
+    },
+    {
+      "path": "data/geo/cumt_nanhu_campus.geojson",
+      "bytes": 100210,
+      "sha256": "3f9e8b7de3d98c8771b2575f067a2a34c1804118f1fc3ee887c555dca24bda49"
+    },
+    {
+      "path": "data/geo/site_geolocation.json",
+      "bytes": 3169,
+      "sha256": "f0412c67a59bf278e7f0e5e02a4622711e2c515ce35aadd4b6bd33dff7715309"
+    },
+    {
+      "path": "data/maps/cumt_official_campus_traffic_2025.png",
+      "bytes": 1258688,
+      "sha256": "14eb2f2f1c2a7324710d37f9fd01643ffff919d30992b0dec670a9b5a7217ba7"
+    },
+    {
+      "path": "data/maps/cumtlive_logistics_locations.png",
+      "bytes": 373223,
+      "sha256": "8c1f28ef979cce540400c926ddfdbafc5ae227f2392466961f883cebbe6237e3"
+    },
+    {
+      "path": "data/maps/logistics_markers.json",
+      "bytes": 1405,
+      "sha256": "b6133c4dc3ad824b1fdffb02c1914fe4d9a1a9cbd1161449ba50069ff3eab73f"
+    },
+    {
+      "path": "data/maps/map_manifest.json",
+      "bytes": 1530,
+      "sha256": "a5e1596a7a6d06315c5618097f91d71cdb9b9ef8bb519971f047f63f42602a89"
     },
     {
       "path": "data/reference/cumt_2022_unmanned_station_photo.jpg",
@@ -151,9 +195,24 @@
       "sha256": "c3cb20f6aeb512278b39f7edaf04bc3a5ae55e142d6966c80f6c81aadd3672bd"
     },
     {
+      "path": "data/research/file_manifest.json",
+      "bytes": 13121,
+      "sha256": "0fc83ef4e35cfe786af9c32d01a7fc79f2ba98bea970f8af70fc287254e60904"
+    },
+    {
+      "path": "data/research/generate_demo_scenarios.py",
+      "bytes": 12933,
+      "sha256": "b14232fc1258bf5b57c98473c14da14e6f50e1f7fb04f64aff245796bd065b34"
+    },
+    {
       "path": "data/research/interior_downloads.json",
       "bytes": 15265,
       "sha256": "3014b8629411f797e10c90e1ce42614343493f827177571b44eadc57d3aae66e"
+    },
+    {
+      "path": "data/research/make_manifest.py",
+      "bytes": 1684,
+      "sha256": "01236711f61df03182c1d414cd45d043ef48f77242c08276052b0c7a67db3ac7"
     },
     {
       "path": "data/research/research_log.json",
@@ -162,8 +221,8 @@
     },
     {
       "path": "data/research/user_decisions.json",
-      "bytes": 1691,
-      "sha256": "0c35d9d9fe4dbae2e49d0d7551d01b27f493a26d0033ef26dce1b3b5d3749f6d"
+      "bytes": 3716,
+      "sha256": "a7f49cd21f6d96b365255e7665281b9e3bf7f256ce6a34ca14d26d245fd576b1"
     },
     {
       "path": "data/research/validate_bundle.py",
@@ -174,11 +233,6 @@
       "path": "data/research/validation_report.json",
       "bytes": 28147,
       "sha256": "ceeaf701b9ddd67c73e23152fa9b9a961452c0da16c91fce978e3d1bbfdd7965"
-    },
-    {
-      "path": "data/source_catalog.json",
-      "bytes": 11631,
-      "sha256": "027f9a7085ccc34cacbe83f095f033c400a60b43cd6d2d93766ed72229fe2b8d"
     },
     {
       "path": "data/sources/cumt_2022_upgrade.html",
@@ -361,9 +415,304 @@
       "sha256": "95d8caf2dc3f1bea91e497a3685de2c8beec57b109cd2428c191c220a367ff81"
     },
     {
-      "path": "data/资料核验与缺口.md",
-      "bytes": 7185,
-      "sha256": "0909fbbb92af8d5ced92e999c774534a2d2a08466b99763a84ebe8266a941f71"
+      "path": "docs/screenshots/P1-运营总览-dark.png",
+      "bytes": 335073,
+      "sha256": "3a0b18daf9e61a9f4fe8b24a5bddf64b2dbf458130c26e6afef7ddf0004b5aa5"
+    },
+    {
+      "path": "docs/screenshots/P1-运营总览-light.png",
+      "bytes": 333197,
+      "sha256": "a31a57450146b1bf8c915dc48e5a35974178796669cd5627e1742d572538b8bd"
+    },
+    {
+      "path": "docs/screenshots/P2-站点与服务-dark.png",
+      "bytes": 175674,
+      "sha256": "f491a72e8fa23428ea419fbf75e90cb7f4d25a1743e94ead43a00244d35bda97"
+    },
+    {
+      "path": "docs/screenshots/P2-站点与服务-light.png",
+      "bytes": 175810,
+      "sha256": "2280895bedeb8e93f7a9d278ed5d3ed28a866d64ff23a39dbea607f157499144"
+    },
+    {
+      "path": "docs/screenshots/P3-高峰与方案-dark.png",
+      "bytes": 180265,
+      "sha256": "13ff19f91425ae0db25e62551f56d32a4247d74db678d1c89d088ca8f6003391"
+    },
+    {
+      "path": "docs/screenshots/P3-高峰与方案-light.png",
+      "bytes": 179456,
+      "sha256": "2cf30cafa71b8e186e30e3e38d24a66ff54d432e8c09fad08074d80b5d23d602"
+    },
+    {
+      "path": "docs/screenshots/P4-异常协同-dark.png",
+      "bytes": 144335,
+      "sha256": "5ea1ed0bbb4d4827041d56ce367df42ea98560351772caba73d78d3615046dc7"
+    },
+    {
+      "path": "docs/screenshots/P4-异常协同-light.png",
+      "bytes": 144236,
+      "sha256": "371a2ee29f45571cb378bf04cda58966e11b0396be47c585a0c43ea35dd56fed"
+    },
+    {
+      "path": "docs/screenshots/P5-资料与说明-dark.png",
+      "bytes": 271740,
+      "sha256": "a265e46b545095cc919bc8c1fd0b7f92464b970de4bd804f35f1a2d23076b985"
+    },
+    {
+      "path": "docs/screenshots/P5-资料与说明-light.png",
+      "bytes": 270551,
+      "sha256": "129a27e718a9b3f23e1d054bc67f58c700e952142bd096e20465d2d16b142f95"
+    },
+    {
+      "path": "docs/screenshots/地图-矢量-浅色.png",
+      "bytes": 149878,
+      "sha256": "8b045fe69bc02f17d2666a5cd57b0d1390c66b9ca5fc11a01bfa69c9975109dc"
+    },
+    {
+      "path": "docs/screenshots/地图-矢量-深色.png",
+      "bytes": 150485,
+      "sha256": "1d6926d9f55efd80cd0225049ac3bf3fa32e5f4171b0c03f3951b66b23dd8324"
+    },
+    {
+      "path": "frontend/README.md",
+      "bytes": 3811,
+      "sha256": "0f691388576432a1dff36c584ef0c8ccaab8805a98a624c0576ba5c372c4f413"
+    },
+    {
+      "path": "frontend/index.html",
+      "bytes": 615,
+      "sha256": "d8c00adcbe40bbd686741b392cfe326ff7c1b54e81b98516058c6151658bdd5b"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "bytes": 57177,
+      "sha256": "f71d9fa755852b7413fb5f36e7d15123830309ec7ae25a500adb13e68b356dfd"
+    },
+    {
+      "path": "frontend/package.json",
+      "bytes": 657,
+      "sha256": "0d811b0cbfcb1c3d2005e5db8c9d80bd1bec0d24a38d544022634e2142d59af9"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "bytes": 655,
+      "sha256": "296a7a523c9242f626983386732797a2e6d9cfba95e26c428683055424cf7b2d"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "bytes": 984,
+      "sha256": "906dfffdd396b52da4805750e75a8a65eeb71298dbb69eda819ff8fcb6a71f61"
+    },
+    {
+      "path": "frontend/public/favicon.svg",
+      "bytes": 421,
+      "sha256": "c4b8dc941534c65c2ca08aacfafb1ddb89ea2c0a792d3c206ce2ac064c5aa4a1"
+    },
+    {
+      "path": "frontend/public/geo/cumt_nanhu_campus.geojson",
+      "bytes": 100210,
+      "sha256": "3f9e8b7de3d98c8771b2575f067a2a34c1804118f1fc3ee887c555dca24bda49"
+    },
+    {
+      "path": "frontend/public/maps/cumtlive_logistics_locations.png",
+      "bytes": 373223,
+      "sha256": "8c1f28ef979cce540400c926ddfdbafc5ae227f2392466961f883cebbe6237e3"
+    },
+    {
+      "path": "frontend/scripts/audit.mjs",
+      "bytes": 8766,
+      "sha256": "ff165430d0486f36a29f79c4f3a8bae3f18fc2195ae248edabbc7353a977752f"
+    },
+    {
+      "path": "frontend/scripts/interact.mjs",
+      "bytes": 9962,
+      "sha256": "48c670f3b813c47c23fc1b0f474c223ef077735bcd11cd3eb0d2b016c19f7f72"
+    },
+    {
+      "path": "frontend/scripts/mapcheck.mjs",
+      "bytes": 3450,
+      "sha256": "bf1693078cec0f38a008eb15e4b8b0c4c9ddd388f79dbfb9246fbd5e9faf3a0d"
+    },
+    {
+      "path": "frontend/scripts/mapshot.mjs",
+      "bytes": 3384,
+      "sha256": "2db16a5b72bceb6204f0c6f1ead1f42fb9f0d520789dfa5b3eb6afe8a8351813"
+    },
+    {
+      "path": "frontend/scripts/probe.mjs",
+      "bytes": 6497,
+      "sha256": "a69f99dd06bb95330255b18cd8fe5d480318855b3000891df8bcb3e02c4bce2f"
+    },
+    {
+      "path": "frontend/scripts/shot.mjs",
+      "bytes": 2734,
+      "sha256": "4277c8fbfc817dcaf0a02046cc64fa09fc0ad9e185abff4a1a07a41938695ee5"
+    },
+    {
+      "path": "frontend/scripts/text.mjs",
+      "bytes": 2576,
+      "sha256": "b0718893ad3f04017afcb117df2a37ae72f5701f61f4d5a9e0d6390744333026"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "bytes": 6298,
+      "sha256": "92f8f6720989db4f4b5e6c6649afe2ce07916952f956e425ed0137446adf5b55"
+    },
+    {
+      "path": "frontend/src/env.d.ts",
+      "bytes": 263,
+      "sha256": "d04cd25c7596329c2d33af9e1f0e64136751b04870a4ba6dc0ede122b89b64dc"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "bytes": 504,
+      "sha256": "6eefcb5dadfd340236181ec48462e048e4793d84049feb83d6cbf239ad1d227f"
+    },
+    {
+      "path": "frontend/src/components/CampusMap.vue",
+      "bytes": 14628,
+      "sha256": "7de13cc6c32c45efbd83aca7947f9da18990baa82a19ab159bfd2ecbee742a0d"
+    },
+    {
+      "path": "frontend/src/components/EChart.vue",
+      "bytes": 2454,
+      "sha256": "023497f92061b4d229a51681368658bab2ddc3635086f30d94ff7caebfadb34e"
+    },
+    {
+      "path": "frontend/src/components/KpiCard.vue",
+      "bytes": 2060,
+      "sha256": "668c771f40430484e65402d6894c48b944a607f80bba875dd98ae2d9cfae69d2"
+    },
+    {
+      "path": "frontend/src/components/ScenarioPicker.vue",
+      "bytes": 2128,
+      "sha256": "16cdcb64a965bdd93977e5f18db34f3020fdbe1ce24ed8f334e57912d0942d07"
+    },
+    {
+      "path": "frontend/src/components/SiteDrawer.vue",
+      "bytes": 9782,
+      "sha256": "972b61f0323a2beb7d976ac7128d2088df5f8dcd6b326bb3db677bcab224b7d3"
+    },
+    {
+      "path": "frontend/src/components/SiteFooter.vue",
+      "bytes": 965,
+      "sha256": "6dab9a02c4ef940996679938a1ac1c59fa3a72c4f4bda529a8de4e0cd0108f7c"
+    },
+    {
+      "path": "frontend/src/components/StatusDot.vue",
+      "bytes": 1097,
+      "sha256": "f96d3831f5f04b126e3ef63d1cebed59698d23ce607b1c10ec89e4ff13122a19"
+    },
+    {
+      "path": "frontend/src/composables/useChartTheme.ts",
+      "bytes": 1245,
+      "sha256": "06f6b46dddcc2e7b51e46a0f213080c3bb352d14ed21b4ab253ad74a124b45d6"
+    },
+    {
+      "path": "frontend/src/composables/useCountUp.ts",
+      "bytes": 891,
+      "sha256": "334d054720327316c65fe68dee97dd87e3e24fe5f03166777c6278c0f304ac11"
+    },
+    {
+      "path": "frontend/src/composables/useData.ts",
+      "bytes": 4256,
+      "sha256": "4b8b4e8b2fb009d5127d892fc5c5544fafb9488a068f8ea7a173ed011cebea5f"
+    },
+    {
+      "path": "frontend/src/composables/useDataSource.ts",
+      "bytes": 1037,
+      "sha256": "64150576247f620d4efe4bcf9eb492b95b3bcf88502a0bc46c89c61a09807e79"
+    },
+    {
+      "path": "frontend/src/composables/useReveal.ts",
+      "bytes": 1053,
+      "sha256": "67003627bad39c5a6b0ad557d68155af6ef4489119dff1acb3ca5b485e363b2e"
+    },
+    {
+      "path": "frontend/src/data/api.ts",
+      "bytes": 1489,
+      "sha256": "154f6491ef4750803126cedc9bab87ac8533ad15bcce26898d09e8faff1fd384"
+    },
+    {
+      "path": "frontend/src/data/incidents.ts",
+      "bytes": 7649,
+      "sha256": "61a4a06de89295df828bb548a7012d0fa505a4913b8151a169d445c9fa6150df"
+    },
+    {
+      "path": "frontend/src/data/scenarios.json",
+      "bytes": 138537,
+      "sha256": "352243f30e1aba2f6c9b6b0fea6124fcdd5c7ba55a5048e2380af255c5e08b51"
+    },
+    {
+      "path": "frontend/src/data/site_geolocation.json",
+      "bytes": 3169,
+      "sha256": "f0412c67a59bf278e7f0e5e02a4622711e2c515ce35aadd4b6bd33dff7715309"
+    },
+    {
+      "path": "frontend/src/data/sites.json",
+      "bytes": 11872,
+      "sha256": "05f0d00fcc223bdcee21bdeb09d6f0f46b5a1ba5653cd98feb5643672c9d0127"
+    },
+    {
+      "path": "frontend/src/data/sites.ts",
+      "bytes": 2861,
+      "sha256": "2cf02a230e63f90d6d4203b7cf1a6b82942c55d83da1374cf0fbfdb4ad0f0521"
+    },
+    {
+      "path": "frontend/src/data/statistics.json",
+      "bytes": 1606,
+      "sha256": "f4fdbca254369e95f3de2a73b083cdd40ea499bc1e5a2964d276be67def88968"
+    },
+    {
+      "path": "frontend/src/data/types.ts",
+      "bytes": 2286,
+      "sha256": "15b3f4bf031daa4ff40d7b2f6764cbaac835be106967bebb9998012d846ff7d1"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "bytes": 1308,
+      "sha256": "e2b14445dfd822dde21f117a29830c1e212e383b323777954009a9a2e1b0f22e"
+    },
+    {
+      "path": "frontend/src/stores/app.ts",
+      "bytes": 1330,
+      "sha256": "3bb40e27fa1d2a13f0836e9d3f47851219c081a394ded2e2fa47a701cae1c855"
+    },
+    {
+      "path": "frontend/src/styles/base.css",
+      "bytes": 3091,
+      "sha256": "54817a247a61730fa34141b71a7f2d6f6703a54c1113129f5f86e91a2c90fbea"
+    },
+    {
+      "path": "frontend/src/styles/tokens.css",
+      "bytes": 2341,
+      "sha256": "4ce33c7ea492ffe2a29a15a4258e1395d4b67e6e03438d3f982cac2a8a3470df"
+    },
+    {
+      "path": "frontend/src/views/AboutView.vue",
+      "bytes": 11113,
+      "sha256": "5eed37e5478e92098d3dbc96466ebb2a2bbb803a8b8e34d09fb0c475bc650a5f"
+    },
+    {
+      "path": "frontend/src/views/IncidentsView.vue",
+      "bytes": 12472,
+      "sha256": "294cb508a5abc65595e22643e104f9a62bf5bcd7245c21c96d72ecef560fdcd3"
+    },
+    {
+      "path": "frontend/src/views/OverviewView.vue",
+      "bytes": 15850,
+      "sha256": "4f9614389550e38486b7561a4a0f65c02365c21bf6f90c56a459944bf911a9dc"
+    },
+    {
+      "path": "frontend/src/views/PeakView.vue",
+      "bytes": 14113,
+      "sha256": "41e034d8dcb0cdaf177a0be4a17277133f5df7c665118c2c9c4466987034dd8b"
+    },
+    {
+      "path": "frontend/src/views/SitesView.vue",
+      "bytes": 12157,
+      "sha256": "4f692bd1a2cda6538951ad209c71c2c20287cdbe14892be4b796de142f491f5e"
     }
   ]
 }
