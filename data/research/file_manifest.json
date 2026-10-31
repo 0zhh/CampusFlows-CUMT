@@ -1,0 +1,369 @@
+{
+  "files": [
+    {
+      "path": "CampusFlow_总体开发计划与实施路线_v1.2_南湖校区驿链演示版.md",
+      "bytes": 20620,
+      "sha256": "828576bde5e1d3bd092c3e3241e2a6ff55e5f70d6f534263a61f02d2a5e5bebd"
+    },
+    {
+      "path": "data/assets_catalog.json",
+      "bytes": 6810,
+      "sha256": "45d4397100185278f05ab59d3d25cad97ca96fbbe88fe6a806c34759ea947de4"
+    },
+    {
+      "path": "data/baseline/CampusFlow_总体开发计划与实施路线_v1.1_软件工程规范版.md",
+      "bytes": 52077,
+      "sha256": "1d97ad3e55a4e870d5e0c2cf5d7d0910d5ab3db3b9816a7a1e0e5bcded8c4856"
+    },
+    {
+      "path": "data/demo/scenario_template.json",
+      "bytes": 1554,
+      "sha256": "d47872f0a232f7f9c6c728cc0eeba382fa517c0041a077607142b4e424fe5b95"
+    },
+    {
+      "path": "data/maps/cumt_official_campus_traffic_2025.png",
+      "bytes": 1258688,
+      "sha256": "14eb2f2f1c2a7324710d37f9fd01643ffff919d30992b0dec670a9b5a7217ba7"
+    },
+    {
+      "path": "data/maps/cumtlive_logistics_locations.png",
+      "bytes": 373223,
+      "sha256": "8c1f28ef979cce540400c926ddfdbafc5ae227f2392466961f883cebbe6237e3"
+    },
+    {
+      "path": "data/maps/logistics_markers.json",
+      "bytes": 1405,
+      "sha256": "b6133c4dc3ad824b1fdffb02c1914fe4d9a1a9cbd1161449ba50069ff3eab73f"
+    },
+    {
+      "path": "data/maps/map_manifest.json",
+      "bytes": 1530,
+      "sha256": "a5e1596a7a6d06315c5618097f91d71cdb9b9ef8bb519971f047f63f42602a89"
+    },
+    {
+      "path": "data/nanhu_operating_rules.json",
+      "bytes": 6206,
+      "sha256": "c325d77dc3ac4107653be0ac4d192283d840b7a270bc2450f434a61a8d357c22"
+    },
+    {
+      "path": "data/nanhu_public_statistics.json",
+      "bytes": 1606,
+      "sha256": "f4fdbca254369e95f3de2a73b083cdd40ea499bc1e5a2964d276be67def88968"
+    },
+    {
+      "path": "data/nanhu_sites.csv",
+      "bytes": 672,
+      "sha256": "d8796a51efe0fa8488c4a4a64f94d95089cb4b73b58f87651140bf2b1ffd3c6c"
+    },
+    {
+      "path": "data/nanhu_sites.json",
+      "bytes": 11872,
+      "sha256": "05f0d00fcc223bdcee21bdeb09d6f0f46b5a1ba5653cd98feb5643672c9d0127"
+    },
+    {
+      "path": "data/nanhu_visual_evidence.json",
+      "bytes": 5532,
+      "sha256": "7f11d2bfb8bad80563385ebcab00620601e17c943fc3ac4e7474a2bf2afd13a0"
+    },
+    {
+      "path": "data/nanhu_warehouse_evidence.json",
+      "bytes": 4963,
+      "sha256": "8284ddc386d00101dde2775a623352fcc65983b680fffd1e447cf42b80a51355"
+    },
+    {
+      "path": "data/README.md",
+      "bytes": 5668,
+      "sha256": "e7da39e8ec8292a6b22ce15019d856314c65638abca12b753677129a9856be41"
+    },
+    {
+      "path": "data/reference/cumt_2022_unmanned_station_photo.jpg",
+      "bytes": 281960,
+      "sha256": "e65893da904e275fd24a889b2502866e83da3468d27b8e2d390d48a5b432e956"
+    },
+    {
+      "path": "data/reference/cumt_2023_station_volunteers_01.jpg",
+      "bytes": 369951,
+      "sha256": "42af6748589052c5cbfe97848160d588a005d624373258c8cc46efcbad285e1c"
+    },
+    {
+      "path": "data/reference/cumt_2023_station_volunteers_02.jpg",
+      "bytes": 386301,
+      "sha256": "388b141174629c43efce57dd54fca98f86a2cfee4d8d33d4665c42de3b792ce2"
+    },
+    {
+      "path": "data/reference/cumt_2024_logistics_visit_interior.jpg",
+      "bytes": 167198,
+      "sha256": "33caa01bb3948e04030426171b8fe617ceff146aec2b4232a90cbe2bc368c626"
+    },
+    {
+      "path": "data/reference/cumt_2024_nanhu_logistics_inspection.jpg",
+      "bytes": 10480465,
+      "sha256": "70773f2e86a44f9049724534537a3567ea75136e1c50e3d33b5908bdb00f6b7a"
+    },
+    {
+      "path": "data/reference/cumt_2024_winter_logistics_photo.jpg",
+      "bytes": 228542,
+      "sha256": "52c4e719be8e5286ec755522126a51cc5f1619d15a4c742ebdc0c090938cf001"
+    },
+    {
+      "path": "data/reference/cumt_2025_logistics_photo_campus_unconfirmed.png",
+      "bytes": 957674,
+      "sha256": "b28f57d80fff3669883d9f346092f404d297c4858a1e67e07a83f2af45caf278"
+    },
+    {
+      "path": "data/reference/cumt_2025_winter_logistics_page4.png",
+      "bytes": 119799,
+      "sha256": "1b3cb4d0e48854ef4b638348e13ad14d7ce12b60ae04aecbe8b8a04b0b80ab84"
+    },
+    {
+      "path": "data/reference/cumt_2026_winter_logistics_page4.png",
+      "bytes": 314064,
+      "sha256": "1bc2e13f8007458c0c3ca5e0491c9eb6ebb48a0d2bf8d4fd250bb78c9f6a3518"
+    },
+    {
+      "path": "data/reference/cumtlive_mailroom_notice.jpg",
+      "bytes": 469495,
+      "sha256": "29fd3a3f9beabbd5d4585cb4484831be09ec4b1995b13bb0c272b9cc289680a6"
+    },
+    {
+      "path": "data/reference/cumtlive_pickup_guide.png",
+      "bytes": 1292681,
+      "sha256": "ddebf136d5d9f9a0f9a6330b1aa2e637a772b19b033adc5f2aa78e88a127c177"
+    },
+    {
+      "path": "data/reference/实景素材索引.md",
+      "bytes": 4706,
+      "sha256": "f59ae7c12acf920ffbabbfc28e0f3dbce08e5df6316f0934ceb24d7cfedc1274"
+    },
+    {
+      "path": "data/research/build_reference_data.py",
+      "bytes": 31368,
+      "sha256": "4cf8f09a0f67ac6aae2599f0a4a1fd4c92c5e8a7b56406e4c3e1319fe947f706"
+    },
+    {
+      "path": "data/research/collect_sources.py",
+      "bytes": 7792,
+      "sha256": "1f581558930495ba10cc48948685e4fe81c3d4a21b642f095973b2f46fdbf67f"
+    },
+    {
+      "path": "data/research/downloads.json",
+      "bytes": 28781,
+      "sha256": "c3cb20f6aeb512278b39f7edaf04bc3a5ae55e142d6966c80f6c81aadd3672bd"
+    },
+    {
+      "path": "data/research/interior_downloads.json",
+      "bytes": 15265,
+      "sha256": "3014b8629411f797e10c90e1ce42614343493f827177571b44eadc57d3aae66e"
+    },
+    {
+      "path": "data/research/research_log.json",
+      "bytes": 1689,
+      "sha256": "9d7261f4f8ca461509ad2f3a189e362430b45d04d36a9a45c352446bbb4074a1"
+    },
+    {
+      "path": "data/research/user_decisions.json",
+      "bytes": 1691,
+      "sha256": "0c35d9d9fe4dbae2e49d0d7551d01b27f493a26d0033ef26dce1b3b5d3749f6d"
+    },
+    {
+      "path": "data/research/validate_bundle.py",
+      "bytes": 8550,
+      "sha256": "d5fdd7974dd1d0fd590b6ebd6bda1c05912d2272c0fbd98cbe10e92ef7265e70"
+    },
+    {
+      "path": "data/research/validation_report.json",
+      "bytes": 28147,
+      "sha256": "ceeaf701b9ddd67c73e23152fa9b9a961452c0da16c91fce978e3d1bbfdd7965"
+    },
+    {
+      "path": "data/source_catalog.json",
+      "bytes": 11631,
+      "sha256": "027f9a7085ccc34cacbe83f095f033c400a60b43cd6d2d93766ed72229fe2b8d"
+    },
+    {
+      "path": "data/sources/cumt_2022_upgrade.html",
+      "bytes": 21300,
+      "sha256": "c2da41d388bf0ff1fda012c00173c6a6caebc127f266673675d62a4dca54ab1d"
+    },
+    {
+      "path": "data/sources/cumt_2022_upgrade.txt",
+      "bytes": 4460,
+      "sha256": "9ddedbde6c1fdda1f6f5e50bd5f33ed143be609ee7a71aa2330400b9a6957bf3"
+    },
+    {
+      "path": "data/sources/cumt_2023_station_volunteers.html",
+      "bytes": 21081,
+      "sha256": "9bb2132f7219416591a84766c5a03fe748cddccaaa5959ec41222ddb7f92c592"
+    },
+    {
+      "path": "data/sources/cumt_2023_station_volunteers.txt",
+      "bytes": 4976,
+      "sha256": "340db86c4a3b79a4093822e45be0533fddd586330ead09398c3f0b897f8ff4f7"
+    },
+    {
+      "path": "data/sources/cumt_2023_welcome_report.html",
+      "bytes": 41810,
+      "sha256": "184e64a6a2f3357c2e5adcd67c486a159777a576d7d74b8c49405d7a38312bfb"
+    },
+    {
+      "path": "data/sources/cumt_2023_welcome_report.txt",
+      "bytes": 9197,
+      "sha256": "f2ebc4d527e9a45bc814c10ee12c5d32a36456da4788b801f4aa46a542c3ea0a"
+    },
+    {
+      "path": "data/sources/cumt_2024_nju_visit.html",
+      "bytes": 20844,
+      "sha256": "c1dcf90650ee93ae5df7076eed7acad897cbd4b48a285d524cb2a4c3f4cafb1b"
+    },
+    {
+      "path": "data/sources/cumt_2024_nju_visit.txt",
+      "bytes": 3974,
+      "sha256": "22953b6184a888b3b5ec8ddf2873ebb79b5ae0a58242deae687d1f5f494a961b"
+    },
+    {
+      "path": "data/sources/cumt_2024_welcome_logistics.html",
+      "bytes": 28141,
+      "sha256": "e9705da7d221d8d01833f05c6a08e62bd4246451de3871ebe6346c839f77e493"
+    },
+    {
+      "path": "data/sources/cumt_2024_welcome_logistics.txt",
+      "bytes": 7055,
+      "sha256": "12474d68dffe5cd1119a215f821769b52e891aa1a5cc9cb356890cd855260d45"
+    },
+    {
+      "path": "data/sources/cumt_2024_winter_report.html",
+      "bytes": 49198,
+      "sha256": "a726f14cd1d349cf3ecab520c72635424ecf0fc7509aa4d264d6611520c6b715"
+    },
+    {
+      "path": "data/sources/cumt_2024_winter_report.txt",
+      "bytes": 12488,
+      "sha256": "cfa8ac2c811e5231debbd239f46828554c754e0ccf8f99e58264ae55991aa889"
+    },
+    {
+      "path": "data/sources/cumt_2025_exam_map_page.html",
+      "bytes": 60259,
+      "sha256": "450402446f20be362e4f704677b9cabba1b96ff29cdb11375d88ed2f30d36859"
+    },
+    {
+      "path": "data/sources/cumt_2025_exam_map_page.txt",
+      "bytes": 10053,
+      "sha256": "9075e8abcc02e32a108c264b2c797a706682348406454593518ce6af4cb491ea"
+    },
+    {
+      "path": "data/sources/cumt_2025_network.html",
+      "bytes": 18199,
+      "sha256": "65c292c013caf60480e65a48d688ec3a53b200b2ce7cf13e81d14da765b7a185"
+    },
+    {
+      "path": "data/sources/cumt_2025_network.txt",
+      "bytes": 3240,
+      "sha256": "ce4ff9af954528af6d32ee98f6a2dd118cea622f7a763f6c81450bdbafc43808"
+    },
+    {
+      "path": "data/sources/cumt_2025_summer_report.html",
+      "bytes": 39532,
+      "sha256": "a0fb6ebf0b8fda6fb1c222f1522ed162b91bf01db0dd5066a5c86d435386293e"
+    },
+    {
+      "path": "data/sources/cumt_2025_summer_report.txt",
+      "bytes": 7884,
+      "sha256": "efdfdcb68887c0305d4514fb1f39e136dd6b878162e8d0dccd16093f13912063"
+    },
+    {
+      "path": "data/sources/cumt_2025_winter.pdf",
+      "bytes": 360314,
+      "sha256": "f31a92632682091564e0c0ef0b8a06320a39aa32409ef11093a7022865fe9baa"
+    },
+    {
+      "path": "data/sources/cumt_2025_winter.txt",
+      "bytes": 7524,
+      "sha256": "458c61120f81c3a9bd4c8dc616f1dc2e4feff76fd36f2dc4cb4cc7e5aa110924"
+    },
+    {
+      "path": "data/sources/cumt_2026_welcome_report.html",
+      "bytes": 42335,
+      "sha256": "6b3e5128e650183ef15ee4f02db4cf57dbdae1e2e31174cf87713043295e23d6"
+    },
+    {
+      "path": "data/sources/cumt_2026_welcome_report.txt",
+      "bytes": 11155,
+      "sha256": "3c99cbdf064fdc903eca4f267bb2286202cb087a9fa92418942aa38b8da8d1ce"
+    },
+    {
+      "path": "data/sources/cumt_2026_winter.pdf",
+      "bytes": 256749,
+      "sha256": "1780fcb06d343845cf12e06bbd47798b75fc721345a1855eb9c9378aebcb195d"
+    },
+    {
+      "path": "data/sources/cumt_2026_winter.txt",
+      "bytes": 10166,
+      "sha256": "003b5e80a71a5ab7885907670098afb74da940dbce8053f46b34c5c9eea80e4d"
+    },
+    {
+      "path": "data/sources/cumt_jjc_home.html",
+      "bytes": 23543,
+      "sha256": "40c82b8509651950655b8eaac8da4da598efc56fe2710c862c1fb129e249af72"
+    },
+    {
+      "path": "data/sources/cumt_map_service.html",
+      "bytes": 19120,
+      "sha256": "c63613c07b0887cb41e98206a0450c684655b633f67c2b2b3577bbfefb6e7996"
+    },
+    {
+      "path": "data/sources/cumt_map_service.txt",
+      "bytes": 1634,
+      "sha256": "3dec0f2b0c24ba91221e9687dfa83df071a12ff5ead2fc60bee00e20c1c994ab"
+    },
+    {
+      "path": "data/sources/cumt_planning_map_page.html",
+      "bytes": 9415,
+      "sha256": "480cebc3d7ec381c01b33fce4f813e9d661aad915d072c1a3781bed560c5258b"
+    },
+    {
+      "path": "data/sources/cumt_planning_map_page.txt",
+      "bytes": 863,
+      "sha256": "96db6b04153f2a7bb8a59dcc4bb749975f0c1944dcde5816b5192542c423bfe3"
+    },
+    {
+      "path": "data/sources/cumtlive_home.html",
+      "bytes": 140212,
+      "sha256": "a3487a03bc6b814112218fc98199537653452e818b35ff63608e09ed8530a25a"
+    },
+    {
+      "path": "data/sources/cumtlive_logistics.html",
+      "bytes": 54218,
+      "sha256": "9fe3bf438dd7075f26cd9af5fca3736539f60aeafcd771b38d4ebecae80d5b19"
+    },
+    {
+      "path": "data/sources/cumtlive_logistics.txt",
+      "bytes": 6627,
+      "sha256": "e567f3ed32bbab38b7393cb2c9c21197b6aee967007b547299fd855ce2f55e8c"
+    },
+    {
+      "path": "data/sources/cumtlive_map.html",
+      "bytes": 41211,
+      "sha256": "511857abf96911990adeb070f0cef4daad6f834d8cb28d3463cac93541f9853a"
+    },
+    {
+      "path": "data/sources/cumtlive_map.txt",
+      "bytes": 5015,
+      "sha256": "607c14678cc3fb001bf005eb9756ed14213023d30e917ad7ab68529a5ba4b972"
+    },
+    {
+      "path": "data/sources/yangzi_2023_cumt_sohu.html",
+      "bytes": 28422,
+      "sha256": "2ab55634abcb94bd189b1655e0ee99a4cd03e7ea184b668e8bdc4d0b0d384c9e"
+    },
+    {
+      "path": "data/sources/yangzi_2023_cumt_sohu.txt",
+      "bytes": 7642,
+      "sha256": "95d8caf2dc3f1bea91e497a3685de2c8beec57b109cd2428c191c220a367ff81"
+    },
+    {
+      "path": "data/资料核验与缺口.md",
+      "bytes": 7185,
+      "sha256": "0909fbbb92af8d5ced92e999c774534a2d2a08466b99763a84ebe8266a941f71"
+    }
+  ]
+}

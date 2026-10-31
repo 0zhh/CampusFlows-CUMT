@@ -1,0 +1,159 @@
+{
+  "research_date": "2026-10-27",
+  "assets": [
+    {
+      "id": "A01",
+      "title": "四站标注生活区原图",
+      "url": "https://s2.loli.net/2024/08/29/5vHAIrF97Og2ynu.png",
+      "source_ids": [
+        "S01"
+      ],
+      "local_path": "maps/cumtlive_logistics_locations.png",
+      "width_px": 1821,
+      "height_px": 1123,
+      "sha256": "8c1f28ef979cce540400c926ddfdbafc5ae227f2392466961f883cebbe6237e3",
+      "use_restriction": "实际公开地图，红点为原图标注，无经纬度保证",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A02",
+      "title": "收货密令操作指引",
+      "url": "https://s2.loli.net/2025/09/25/NhSnq86P9GMfeB1.png",
+      "source_ids": [
+        "S01"
+      ],
+      "local_path": "reference/cumtlive_pickup_guide.png",
+      "width_px": 1279,
+      "height_px": 1810,
+      "sha256": "ddebf136d5d9f9a0f9a6330b1aa2e637a772b19b033adc5f2aa78e88a127c177",
+      "use_restriction": "通用流程辅助，不是本项目真实取件码或扫码入口",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A03",
+      "title": "南湖收发室门面",
+      "url": "https://s2.loli.net/2024/11/13/nZk79doNqsF8ybT.jpg",
+      "source_ids": [
+        "S01"
+      ],
+      "local_path": "reference/cumtlive_mailroom_notice.jpg",
+      "width_px": 4096,
+      "height_px": 3072,
+      "sha256": "29fd3a3f9beabbd5d4585cb4484831be09ec4b1995b13bb0c272b9cc289680a6",
+      "use_restriction": "仅说明外观，非营业告示",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A04",
+      "title": "2022无人超市照片拼图",
+      "url": "https://zwb.cumt.edu.cn/__local/F/BF/FF/29D00949D3AF7BA3302E57D196E_0762541C_44D68.jpg?e=.jpg",
+      "source_ids": [
+        "S04"
+      ],
+      "local_path": "reference/cumt_2022_unmanned_station_photo.jpg",
+      "width_px": 600,
+      "height_px": 600,
+      "sha256": "e65893da904e275fd24a889b2502866e83da3468d27b8e2d390d48a5b432e956",
+      "use_restriction": "历史松苑／兰苑入口与未逐张标站的设施局部，不作完整测绘",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A05",
+      "title": "官方校园全图及考试导引",
+      "url": "https://yz.cumt.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1754592961&wbfileid=17819843",
+      "source_ids": [
+        "S10"
+      ],
+      "local_path": "maps/cumt_official_campus_traffic_2025.png",
+      "width_px": 1262,
+      "height_px": 631,
+      "sha256": "14eb2f2f1c2a7324710d37f9fd01643ffff919d30992b0dec670a9b5a7217ba7",
+      "use_restriction": "只作校园空间背景，考试流线不作日常物流规章",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A06",
+      "title": "两校区综合报道的物流服务照片",
+      "url": "https://zwb.cumt.edu.cn/__local/3/D7/42/2080B305DB76CC934D4C4608F97_5F784DE0_E9CEA.png",
+      "source_ids": [
+        "S07"
+      ],
+      "local_path": "reference/cumt_2025_logistics_photo_campus_unconfirmed.png",
+      "width_px": 1040,
+      "height_px": 779,
+      "sha256": "b28f57d80fff3669883d9f346092f404d297c4858a1e67e07a83f2af45caf278",
+      "use_restriction": "校区未核实，禁止用作南湖任一站布局",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A07",
+      "title": "2024南湖物流园临时大件区巡查实拍",
+      "url": "https://zwb.cumt.edu.cn/__local/B/D8/E9/80FED613066165AAB892A31584D_84E76304_9FEB51.jpg",
+      "source_ids": [
+        "S12"
+      ],
+      "local_path": "reference/cumt_2024_nanhu_logistics_inspection.jpg",
+      "width_px": 4096,
+      "height_px": 3072,
+      "sha256": "70773f2e86a44f9049724534537a3567ea75136e1c50e3d33b5908bdb00f6b7a",
+      "use_restriction": "南湖与室外区域有明确图文依据；不能称为主站室内或常态固定布局",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A08",
+      "title": "2024参观物流园室内实拍",
+      "url": "https://zwb.cumt.edu.cn/__local/3/73/A3/705A0B9CD1F6339F080E115D9D0_96CEE635_28D1E.jpg?e=.jpg",
+      "source_ids": [
+        "S15"
+      ],
+      "local_path": "reference/cumt_2024_logistics_visit_interior.jpg",
+      "width_px": 600,
+      "height_px": 400,
+      "sha256": "33caa01bb3948e04030426171b8fe617ceff146aec2b4232a90cbe2bc368c626",
+      "use_restriction": "用户认为布局信息少；仅保留背景参考，不作平面布局依据，不再要求认站",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A09",
+      "title": "2023志愿者室外分拣实拍之一",
+      "url": "https://see.cumt.edu.cn/__local/3/C2/A7/DB93BB379331CABDBC4D4AD2CFA_5F6A5960_5A51F.jpg",
+      "source_ids": [
+        "S16"
+      ],
+      "local_path": "reference/cumt_2023_station_volunteers_01.jpg",
+      "width_px": 1269,
+      "height_px": 952,
+      "sha256": "42af6748589052c5cbfe97848160d588a005d624373258c8cc46efcbad285e1c",
+      "use_restriction": "画面可见桃苑柜体字样；仅支持室外柜旁区域，不是室内货架布局",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A10",
+      "title": "2023志愿者室外分拣实拍之二",
+      "url": "https://see.cumt.edu.cn/__local/9/FC/11/631B7F79AEBA218DFAF43D59D65_FE0FD248_5E4FD.jpg",
+      "source_ids": [
+        "S16"
+      ],
+      "local_path": "reference/cumt_2023_station_volunteers_02.jpg",
+      "width_px": 1269,
+      "height_px": 952,
+      "sha256": "388b141174629c43efce57dd54fca98f86a2cfee4d8d33d4665c42de3b792ce2",
+      "use_restriction": "与A09同场景；不能按人物或包裹数量推算运营能力",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A11",
+      "title": "2024寒假货架与通道内景",
+      "url": "https://zwb.cumt.edu.cn/__local/5/92/EE/72952E4A8066B3EEDA293999EE1_96890C12_37CBE.jpg?e=.jpg",
+      "source_ids": [
+        "S18"
+      ],
+      "local_path": "reference/cumt_2024_winter_logistics_photo.jpg",
+      "width_px": 600,
+      "height_px": 450,
+      "sha256": "52c4e719be8e5286ec755522126a51cc5f1619d15a4c742ebdc0c090938cf001",
+      "use_restriction": "具体站点与校区未逐图注明；不直接绑定桃苑或其他南湖站",
+      "rights": "original_rightsholder; open_reuse_license_not_verified"
+    }
+  ]
+}

@@ -1,0 +1,1028 @@
+{
+  "checked_at": "2026-10-27T06:59:29.682720+00:00",
+  "scope": "Research bundle integrity; not application tests or field validation",
+  "passed": true,
+  "check_count": 197,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "JSON parse assets_catalog.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse nanhu_operating_rules.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse nanhu_public_statistics.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse nanhu_sites.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse nanhu_visual_evidence.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse nanhu_warehouse_evidence.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse source_catalog.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse demo\\scenario_template.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse maps\\logistics_markers.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse maps\\map_manifest.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse research\\downloads.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse research\\interior_downloads.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse research\\research_log.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "JSON parse research\\user_decisions.json",
+      "passed": true,
+      "detail": "UTF-8 JSON parsed"
+    },
+    {
+      "name": "Unique source identifiers",
+      "passed": true,
+      "detail": "16"
+    },
+    {
+      "name": "Unique asset identifiers",
+      "passed": true,
+      "detail": "11"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/0",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/1",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/2",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/3",
+      "passed": true,
+      "detail": "['S04']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/4",
+      "passed": true,
+      "detail": "['S10']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/5",
+      "passed": true,
+      "detail": "['S07']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/6",
+      "passed": true,
+      "detail": "['S12']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/7",
+      "passed": true,
+      "detail": "['S15']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/8",
+      "passed": true,
+      "detail": "['S16']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/9",
+      "passed": true,
+      "detail": "['S16']"
+    },
+    {
+      "name": "Source references assets_catalog.json/assets/10",
+      "passed": true,
+      "detail": "['S18']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/0",
+      "passed": true,
+      "detail": "['S01', 'S03', 'S04', 'S05']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/1",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/2",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/3",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/4",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/5",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/6",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/7",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/8",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/rules/9",
+      "passed": true,
+      "detail": "['S01', 'S02', 'S04', 'S05']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/dated_overrides/0",
+      "passed": true,
+      "detail": "['S05']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/dated_overrides/1",
+      "passed": true,
+      "detail": "['S05']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/dated_overrides/2",
+      "passed": true,
+      "detail": "['S06']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/dated_overrides/3",
+      "passed": true,
+      "detail": "['S06']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/conflicts/0",
+      "passed": true,
+      "detail": "['S04', 'S01']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/conflicts/1",
+      "passed": true,
+      "detail": "['S01', 'S05', 'S06']"
+    },
+    {
+      "name": "Source references nanhu_operating_rules.json/conflicts/2",
+      "passed": true,
+      "detail": "['S07']"
+    },
+    {
+      "name": "Source references nanhu_public_statistics.json/records/0",
+      "passed": true,
+      "detail": "['S03']"
+    },
+    {
+      "name": "Source references nanhu_public_statistics.json/records/1",
+      "passed": true,
+      "detail": "['S03']"
+    },
+    {
+      "name": "Source references nanhu_public_statistics.json/records/2",
+      "passed": true,
+      "detail": "['S07']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/0/location/evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/0/existence_evidence",
+      "passed": true,
+      "detail": "['S01', 'S03', 'S04', 'S05']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/0/normal_service_hours/evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/0/service_evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/1/location/evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/1/existence_evidence",
+      "passed": true,
+      "detail": "['S01', 'S03', 'S04', 'S05']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/1/normal_service_hours/evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/1/service_evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/2/location/evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/2/existence_evidence",
+      "passed": true,
+      "detail": "['S01', 'S03', 'S04', 'S05']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/2/normal_service_hours/evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/2/service_evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/3/location/evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/3/existence_evidence",
+      "passed": true,
+      "detail": "['S01', 'S03', 'S04', 'S05']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/3/normal_service_hours/evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/sites/3/service_evidence",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/supplementary_service_points/0",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/supplementary_service_points/1",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Source references nanhu_sites.json/supplementary_service_points/2",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Asset reference nanhu_visual_evidence.json/records/0",
+      "passed": true,
+      "detail": "A04"
+    },
+    {
+      "name": "Source references nanhu_visual_evidence.json/records/0",
+      "passed": true,
+      "detail": "['S04']"
+    },
+    {
+      "name": "Asset reference nanhu_visual_evidence.json/records/1",
+      "passed": true,
+      "detail": "A07"
+    },
+    {
+      "name": "Source references nanhu_visual_evidence.json/records/1",
+      "passed": true,
+      "detail": "['S12']"
+    },
+    {
+      "name": "Asset reference nanhu_visual_evidence.json/records/2",
+      "passed": true,
+      "detail": "A08"
+    },
+    {
+      "name": "Source references nanhu_visual_evidence.json/records/2",
+      "passed": true,
+      "detail": "['S15']"
+    },
+    {
+      "name": "Asset reference nanhu_visual_evidence.json/records/3",
+      "passed": true,
+      "detail": "A09"
+    },
+    {
+      "name": "Source references nanhu_visual_evidence.json/records/3",
+      "passed": true,
+      "detail": "['S16']"
+    },
+    {
+      "name": "Asset reference nanhu_visual_evidence.json/records/4",
+      "passed": true,
+      "detail": "A10"
+    },
+    {
+      "name": "Source references nanhu_visual_evidence.json/records/4",
+      "passed": true,
+      "detail": "['S16']"
+    },
+    {
+      "name": "Asset reference nanhu_visual_evidence.json/records/5",
+      "passed": true,
+      "detail": "A11"
+    },
+    {
+      "name": "Source references nanhu_visual_evidence.json/records/5",
+      "passed": true,
+      "detail": "['S18']"
+    },
+    {
+      "name": "Source references nanhu_visual_evidence.json/unconfirmed_historical_claim",
+      "passed": true,
+      "detail": "['S17']"
+    },
+    {
+      "name": "Asset reference nanhu_visual_evidence.json/user_photo_review",
+      "passed": true,
+      "detail": "A08"
+    },
+    {
+      "name": "Source references nanhu_warehouse_evidence.json/records/0",
+      "passed": true,
+      "detail": "['S01', 'S04']"
+    },
+    {
+      "name": "Source references nanhu_warehouse_evidence.json/records/1",
+      "passed": true,
+      "detail": "['S01', 'S04']"
+    },
+    {
+      "name": "Source references nanhu_warehouse_evidence.json/records/2",
+      "passed": true,
+      "detail": "['S01', 'S04']"
+    },
+    {
+      "name": "Source references nanhu_warehouse_evidence.json/records/3",
+      "passed": true,
+      "detail": "['S01', 'S04']"
+    },
+    {
+      "name": "Source references logistics_markers.json/markers/0",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Asset reference logistics_markers.json/markers/0",
+      "passed": true,
+      "detail": "A01"
+    },
+    {
+      "name": "Source references logistics_markers.json/markers/1",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Asset reference logistics_markers.json/markers/1",
+      "passed": true,
+      "detail": "A01"
+    },
+    {
+      "name": "Source references logistics_markers.json/markers/2",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Asset reference logistics_markers.json/markers/2",
+      "passed": true,
+      "detail": "A01"
+    },
+    {
+      "name": "Source references logistics_markers.json/markers/3",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Asset reference logistics_markers.json/markers/3",
+      "passed": true,
+      "detail": "A01"
+    },
+    {
+      "name": "Asset reference map_manifest.json/maps/0",
+      "passed": true,
+      "detail": "A01"
+    },
+    {
+      "name": "Source references map_manifest.json/maps/0",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Asset reference map_manifest.json/maps/1",
+      "passed": true,
+      "detail": "A05"
+    },
+    {
+      "name": "Source references map_manifest.json/maps/1",
+      "passed": true,
+      "detail": "['S10']"
+    },
+    {
+      "name": "Source references user_decisions.json/decisions/0",
+      "passed": true,
+      "detail": "['S01']"
+    },
+    {
+      "name": "Downloaded file A01",
+      "passed": true,
+      "detail": "maps/cumtlive_logistics_locations.png"
+    },
+    {
+      "name": "Downloaded file A02",
+      "passed": true,
+      "detail": "reference/cumtlive_pickup_guide.png"
+    },
+    {
+      "name": "Downloaded file A03",
+      "passed": true,
+      "detail": "reference/cumtlive_mailroom_notice.jpg"
+    },
+    {
+      "name": "Downloaded file A04",
+      "passed": true,
+      "detail": "reference/cumt_2022_unmanned_station_photo.jpg"
+    },
+    {
+      "name": "Downloaded file A05",
+      "passed": true,
+      "detail": "maps/cumt_official_campus_traffic_2025.png"
+    },
+    {
+      "name": "Downloaded file A06",
+      "passed": true,
+      "detail": "reference/cumt_2025_logistics_photo_campus_unconfirmed.png"
+    },
+    {
+      "name": "Downloaded file A07",
+      "passed": true,
+      "detail": "reference/cumt_2024_nanhu_logistics_inspection.jpg"
+    },
+    {
+      "name": "Downloaded file A08",
+      "passed": true,
+      "detail": "reference/cumt_2024_logistics_visit_interior.jpg"
+    },
+    {
+      "name": "Downloaded file A09",
+      "passed": true,
+      "detail": "reference/cumt_2023_station_volunteers_01.jpg"
+    },
+    {
+      "name": "Downloaded file A10",
+      "passed": true,
+      "detail": "reference/cumt_2023_station_volunteers_02.jpg"
+    },
+    {
+      "name": "Downloaded file A11",
+      "passed": true,
+      "detail": "reference/cumt_2024_winter_logistics_photo.jpg"
+    },
+    {
+      "name": "Downloaded file S01",
+      "passed": true,
+      "detail": "sources/cumtlive_logistics.html"
+    },
+    {
+      "name": "Downloaded file S02",
+      "passed": true,
+      "detail": "sources/cumtlive_map.html"
+    },
+    {
+      "name": "Downloaded file S03",
+      "passed": true,
+      "detail": "sources/cumt_2025_network.html"
+    },
+    {
+      "name": "Downloaded file S04",
+      "passed": true,
+      "detail": "sources/cumt_2022_upgrade.html"
+    },
+    {
+      "name": "Downloaded file S05",
+      "passed": true,
+      "detail": "sources/cumt_2026_winter.pdf"
+    },
+    {
+      "name": "Downloaded file S06",
+      "passed": true,
+      "detail": "sources/cumt_2025_winter.pdf"
+    },
+    {
+      "name": "Downloaded file S07",
+      "passed": true,
+      "detail": "sources/cumt_2025_summer_report.html"
+    },
+    {
+      "name": "Unavailable source clearly marked S08",
+      "passed": true,
+      "detail": "URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)>"
+    },
+    {
+      "name": "Downloaded file S09",
+      "passed": true,
+      "detail": "sources/cumt_map_service.html"
+    },
+    {
+      "name": "Downloaded file S10",
+      "passed": true,
+      "detail": "sources/cumt_2025_exam_map_page.html"
+    },
+    {
+      "name": "Downloaded file S11",
+      "passed": true,
+      "detail": "sources/cumt_planning_map_page.html"
+    },
+    {
+      "name": "Downloaded file S12",
+      "passed": true,
+      "detail": "sources/cumt_2024_welcome_logistics.html"
+    },
+    {
+      "name": "Downloaded file S13",
+      "passed": true,
+      "detail": "sources/cumt_2023_welcome_report.html"
+    },
+    {
+      "name": "Downloaded file S14",
+      "passed": true,
+      "detail": "sources/cumt_2026_welcome_report.html"
+    },
+    {
+      "name": "Downloaded file S15",
+      "passed": true,
+      "detail": "sources/cumt_2024_nju_visit.html"
+    },
+    {
+      "name": "Downloaded file S16",
+      "passed": true,
+      "detail": "sources/cumt_2023_station_volunteers.html"
+    },
+    {
+      "name": "Downloaded file S17",
+      "passed": true,
+      "detail": "sources/yangzi_2023_cumt_sohu.html"
+    },
+    {
+      "name": "Downloaded file S18",
+      "passed": true,
+      "detail": "sources/cumt_2024_winter_report.html"
+    },
+    {
+      "name": "Exactly four physical Cainiao sites",
+      "passed": true,
+      "detail": [
+        "桃苑物流服务中心",
+        "松苑无人菜鸟驿站",
+        "梅苑无人菜鸟驿站",
+        "兰苑无人菜鸟驿站"
+      ]
+    },
+    {
+      "name": "Expected site IDs",
+      "passed": true,
+      "detail": "No invented station"
+    },
+    {
+      "name": "Unknown warehouse values NH-TAOYUAN",
+      "passed": true,
+      "detail": "No unverified numeric warehouse parameters"
+    },
+    {
+      "name": "User-selected hours NH-TAOYUAN",
+      "passed": true,
+      "detail": "('08:30', '18:30')"
+    },
+    {
+      "name": "No invented GPS NH-TAOYUAN",
+      "passed": true,
+      "detail": "Image pixels only"
+    },
+    {
+      "name": "Unknown warehouse values NH-SONGYUAN",
+      "passed": true,
+      "detail": "No unverified numeric warehouse parameters"
+    },
+    {
+      "name": "User-selected hours NH-SONGYUAN",
+      "passed": true,
+      "detail": "('07:00', '23:30')"
+    },
+    {
+      "name": "No invented GPS NH-SONGYUAN",
+      "passed": true,
+      "detail": "Image pixels only"
+    },
+    {
+      "name": "Unknown warehouse values NH-MEIYUAN",
+      "passed": true,
+      "detail": "No unverified numeric warehouse parameters"
+    },
+    {
+      "name": "User-selected hours NH-MEIYUAN",
+      "passed": true,
+      "detail": "('07:00', '23:30')"
+    },
+    {
+      "name": "No invented GPS NH-MEIYUAN",
+      "passed": true,
+      "detail": "Image pixels only"
+    },
+    {
+      "name": "Unknown warehouse values NH-LANYUAN",
+      "passed": true,
+      "detail": "No unverified numeric warehouse parameters"
+    },
+    {
+      "name": "User-selected hours NH-LANYUAN",
+      "passed": true,
+      "detail": "('07:00', '23:30')"
+    },
+    {
+      "name": "No invented GPS NH-LANYUAN",
+      "passed": true,
+      "detail": "Image pixels only"
+    },
+    {
+      "name": "SF JD are subservices",
+      "passed": true,
+      "detail": "No duplicate warehouse count"
+    },
+    {
+      "name": "Map dimensions and hash MAP-LOGISTICS",
+      "passed": true,
+      "detail": "(1821, 1123)"
+    },
+    {
+      "name": "Map dimensions and hash MAP-CAMPUS",
+      "passed": true,
+      "detail": "(1262, 631)"
+    },
+    {
+      "name": "Photo integrity A01",
+      "passed": true,
+      "detail": "maps/cumtlive_logistics_locations.png"
+    },
+    {
+      "name": "Photo integrity A02",
+      "passed": true,
+      "detail": "reference/cumtlive_pickup_guide.png"
+    },
+    {
+      "name": "Photo integrity A03",
+      "passed": true,
+      "detail": "reference/cumtlive_mailroom_notice.jpg"
+    },
+    {
+      "name": "Photo integrity A04",
+      "passed": true,
+      "detail": "reference/cumt_2022_unmanned_station_photo.jpg"
+    },
+    {
+      "name": "Photo integrity A05",
+      "passed": true,
+      "detail": "maps/cumt_official_campus_traffic_2025.png"
+    },
+    {
+      "name": "Photo integrity A06",
+      "passed": true,
+      "detail": "reference/cumt_2025_logistics_photo_campus_unconfirmed.png"
+    },
+    {
+      "name": "Photo integrity A07",
+      "passed": true,
+      "detail": "reference/cumt_2024_nanhu_logistics_inspection.jpg"
+    },
+    {
+      "name": "Photo integrity A08",
+      "passed": true,
+      "detail": "reference/cumt_2024_logistics_visit_interior.jpg"
+    },
+    {
+      "name": "Photo integrity A09",
+      "passed": true,
+      "detail": "reference/cumt_2023_station_volunteers_01.jpg"
+    },
+    {
+      "name": "Photo integrity A10",
+      "passed": true,
+      "detail": "reference/cumt_2023_station_volunteers_02.jpg"
+    },
+    {
+      "name": "Photo integrity A11",
+      "passed": true,
+      "detail": "reference/cumt_2024_winter_logistics_photo.jpg"
+    },
+    {
+      "name": "No layout inferred from low-information photos",
+      "passed": true,
+      "detail": "User requires identifiable functional zones and their relationships"
+    },
+    {
+      "name": "User photo feedback recorded",
+      "passed": true,
+      "detail": "A08 remains background only"
+    },
+    {
+      "name": "All four map markers in image bounds",
+      "passed": true,
+      "detail": "1821 x 1123 image coordinates"
+    },
+    {
+      "name": "Official PDF logistics table cumt_2026_winter.pdf",
+      "passed": true,
+      "detail": "Seven pages; page four contains all four stations"
+    },
+    {
+      "name": "Rendered PDF reference cumt_2026_winter.pdf",
+      "passed": true,
+      "detail": "Visual review artifact exists"
+    },
+    {
+      "name": "Official PDF logistics table cumt_2025_winter.pdf",
+      "passed": true,
+      "detail": "Seven pages; page four contains all four stations"
+    },
+    {
+      "name": "Rendered PDF reference cumt_2025_winter.pdf",
+      "passed": true,
+      "detail": "Visual review artifact exists"
+    },
+    {
+      "name": "CSV BOM and four unknown-capacity rows",
+      "passed": true,
+      "detail": "UTF-8 BOM; no 0 substituted for unknown"
+    },
+    {
+      "name": "Demo isolated and empty",
+      "passed": true,
+      "detail": "No fictitious traffic called real"
+    },
+    {
+      "name": "No replacement characters README.md",
+      "passed": true,
+      "detail": "UTF-8 text"
+    },
+    {
+      "name": "Local markdown link 资料核验与缺口.md",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link nanhu_sites.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link nanhu_sites.csv",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link nanhu_operating_rules.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link nanhu_warehouse_evidence.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link nanhu_visual_evidence.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link reference/实景素材索引.md",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link nanhu_public_statistics.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link source_catalog.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link assets_catalog.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link research/user_decisions.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link maps/cumtlive_logistics_locations.png",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link maps/cumt_official_campus_traffic_2025.png",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link maps/map_manifest.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link maps/logistics_markers.json",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link reference/cumt_2022_unmanned_station_photo.jpg",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link reference/cumtlive_pickup_guide.png",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link reference/cumtlive_mailroom_notice.jpg",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Local markdown link reference/实景素材索引.md",
+      "passed": true,
+      "detail": "README.md"
+    },
+    {
+      "name": "Markdown source references README.md",
+      "passed": true,
+      "detail": [
+        "S01"
+      ]
+    },
+    {
+      "name": "No replacement characters 资料核验与缺口.md",
+      "passed": true,
+      "detail": "UTF-8 text"
+    },
+    {
+      "name": "Markdown source references 资料核验与缺口.md",
+      "passed": true,
+      "detail": [
+        "S01",
+        "S03",
+        "S04",
+        "S05",
+        "S07",
+        "S10",
+        "S12",
+        "S15",
+        "S16",
+        "S18"
+      ]
+    },
+    {
+      "name": "No replacement characters 实景素材索引.md",
+      "passed": true,
+      "detail": "UTF-8 text"
+    },
+    {
+      "name": "Local markdown link cumt_2022_unmanned_station_photo.jpg",
+      "passed": true,
+      "detail": "实景素材索引.md"
+    },
+    {
+      "name": "Local markdown link cumt_2024_logistics_visit_interior.jpg",
+      "passed": true,
+      "detail": "实景素材索引.md"
+    },
+    {
+      "name": "Local markdown link cumt_2024_winter_logistics_photo.jpg",
+      "passed": true,
+      "detail": "实景素材索引.md"
+    },
+    {
+      "name": "Local markdown link cumt_2024_nanhu_logistics_inspection.jpg",
+      "passed": true,
+      "detail": "实景素材索引.md"
+    },
+    {
+      "name": "Local markdown link cumt_2023_station_volunteers_01.jpg",
+      "passed": true,
+      "detail": "实景素材索引.md"
+    },
+    {
+      "name": "Local markdown link cumt_2023_station_volunteers_02.jpg",
+      "passed": true,
+      "detail": "实景素材索引.md"
+    },
+    {
+      "name": "Markdown source references 实景素材索引.md",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "No replacement characters CampusFlow_总体开发计划与实施路线_v1.2_南湖校区驿链演示版.md",
+      "passed": true,
+      "detail": "UTF-8 text"
+    },
+    {
+      "name": "Markdown source references CampusFlow_总体开发计划与实施路线_v1.2_南湖校区驿链演示版.md",
+      "passed": true,
+      "detail": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07",
+        "S09",
+        "S10",
+        "S11"
+      ]
+    },
+    {
+      "name": "Original preserved exactly",
+      "passed": true,
+      "detail": "Downloads original equals project backup"
+    }
+  ],
+  "limitations": [
+    "No field survey",
+    "Warehouse numeric parameters still unknown",
+    "No frontend or Java application built in this task"
+  ]
+}

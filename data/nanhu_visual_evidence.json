@@ -1,0 +1,186 @@
+{
+  "research_date": "2026-10-27",
+  "floor_plans_obtained": [],
+  "current_live_images_obtained": false,
+  "layout_reconstruction_ready": false,
+  "high_information_layout_asset_ids": [],
+  "background_only_asset_ids": [
+    "A04",
+    "A07",
+    "A08",
+    "A09",
+    "A10",
+    "A11"
+  ],
+  "acceptance_criteria": [
+    "具体站点可确认",
+    "入口、出口、服务台、分拣区、待取区及主要货架的相互位置可识别",
+    "主要通道和盲区有覆盖",
+    "有拍摄日期／资料适用期",
+    "照片不足时不补造布局"
+  ],
+  "description": "公开历史实拍照片，不是实时监控、最新现场核验或测绘图。",
+  "records": [
+    {
+      "asset_id": "A04",
+      "source_ids": [
+        "S04"
+      ],
+      "published_date": "2022-07-30",
+      "kind": "exterior_and_interior_collage",
+      "site_attribution": "松苑／兰苑门面明确，室内子图未逐张标站",
+      "visible": [
+        "两个站点门面",
+        "自助设备",
+        "多排编号货架",
+        "货架间通道"
+      ],
+      "not_proven": [
+        "每张内景属于哪站",
+        "当前布局",
+        "完整尺寸",
+        "总容量"
+      ]
+    },
+    {
+      "asset_id": "A07",
+      "source_ids": [
+        "S12"
+      ],
+      "published_date": "2024-09-04",
+      "kind": "outdoor_temporary_storage_collage",
+      "site_attribution": "南湖物流园，桃苑4号楼南侧临时区有正文与图注支持",
+      "visible": [
+        "大件包裹地面分区",
+        "临时帐篷",
+        "通道",
+        "消防器材",
+        "快递品牌标识"
+      ],
+      "not_proven": [
+        "室内布局",
+        "常态长期分区",
+        "实际面积"
+      ]
+    },
+    {
+      "asset_id": "A08",
+      "source_ids": [
+        "S15"
+      ],
+      "published_date": "2024-01-06",
+      "kind": "interior_photo",
+      "site_attribution": "中国矿业大学物流园，具体站点待确认",
+      "visible": [
+        "编号货架",
+        "通道",
+        "梁柱",
+        "灭火器与指示牌"
+      ],
+      "not_proven": [
+        "具体桃／松／梅／兰归属",
+        "完整平面",
+        "当前仍一致"
+      ]
+    },
+    {
+      "asset_id": "A09",
+      "source_ids": [
+        "S16"
+      ],
+      "published_date": "2023-03-09",
+      "kind": "outdoor_sorting_photo",
+      "site_attribution": "画面柜体可辨桃苑字样，支持桃苑区域；非室内",
+      "visible": [
+        "快递柜",
+        "分拣筐",
+        "临时遮棚",
+        "包裹分拣作业"
+      ],
+      "not_proven": [
+        "主站室内结构",
+        "柜体当年与当前位置一致"
+      ]
+    },
+    {
+      "asset_id": "A10",
+      "source_ids": [
+        "S16"
+      ],
+      "published_date": "2023-03-09",
+      "kind": "outdoor_sorting_photo",
+      "site_attribution": "A09同场景",
+      "visible": [
+        "快递柜",
+        "分拣筐",
+        "临时遮棚"
+      ],
+      "not_proven": [
+        "室内结构",
+        "完整库存"
+      ]
+    },
+    {
+      "asset_id": "A11",
+      "source_ids": [
+        "S18"
+      ],
+      "published_date": "2024-02-13",
+      "reported_period": "2024寒假",
+      "kind": "interior_collage",
+      "site_attribution": "学校物流服务照片，具体校区／站点未标",
+      "visible": [
+        "两侧货架",
+        "狭长通道",
+        "货架编号",
+        "操作终端"
+      ],
+      "not_proven": [
+        "南湖或文昌归属",
+        "具体站点",
+        "货架总数"
+      ]
+    }
+  ],
+  "station_coverage": {
+    "NH-TAOYUAN": "室外区域实拍已取得，独立明确标名的室内图待补",
+    "NH-SONGYUAN": "门面明确；相关官方拼图内景未逐张标站",
+    "NH-LANYUAN": "门面明确；相关官方拼图内景未逐张标站",
+    "NH-MEIYUAN": "未取得能独立明确归属本站的室内实拍或平面图"
+  },
+  "unconfirmed_historical_claim": {
+    "source_ids": [
+      "S17"
+    ],
+    "claim": "2023媒体文字称桃苑可容纳上百个货架",
+    "handling": "保留为历史定性线索，不填实测rack_count，不据此换算面积或件数容量"
+  },
+  "search_limits": [
+    "未找到可核验完整平面图／CAD",
+    "公开视频与社交图片搜索未获得可独立确认四站归属的新增内景素材",
+    "协会刊物PDF下载未在合理时间完成，已主动中止，未作为已取得证据"
+  ],
+  "user_photo_review": {
+    "asset_id": "A08",
+    "status": "answered_insufficient_layout_information",
+    "decision_id": "USER-003",
+    "followup": "不继续要求辨认低信息照片，保留作背景资料"
+  },
+  "focused_layout_search": {
+    "channels": [
+      "学校总务部公开新闻",
+      "学院活动原文",
+      "学校采购招标与改建附件索引",
+      "公开图片搜索",
+      "公开视频及社交页面搜索"
+    ],
+    "queries": [
+      "中国矿业大学 物流园 改造 招标",
+      "中国矿业大学 无人快递超市 图纸",
+      "南湖 桃苑4号楼 平面图",
+      "中国矿业大学 驿站 平面布置",
+      "中国矿业大学 无人快递超市 全景"
+    ],
+    "result": "本轮公开检索未取得达到用户分区布局标准的图纸、全景或连续视频，不以局部实拍替代。"
+  }
+}

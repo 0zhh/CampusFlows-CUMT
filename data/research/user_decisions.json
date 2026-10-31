@@ -1,0 +1,81 @@
+{
+ "date": "2026-10-27",
+ "decisions": [
+  {
+   "id": "USER-001",
+   "topic": "常态营业时间",
+   "user_statement": "这个就按手册的来",
+   "decision": "采用桃苑08:30—18:30、三个无人站07:00—23:30作为常态演示基线",
+   "source_ids": [
+    "S01"
+   ],
+   "classification": "user_selected_demo_baseline",
+   "not_a_field_measurement": true
+  },
+  {
+   "id": "USER-002",
+   "topic": "项目定位",
+   "decision": "固定矿大南湖校区，课程演示优先，不建设跨高校接入平台，不要求投入真实运营",
+   "classification": "user_scope_instruction"
+  },
+  {
+   "id": "USER-003",
+   "topic": "内部布局素材的有效性",
+   "user_statement": "这种图片里面没有多少关于货架、分拣区、待取区、服务台和出入口的具体分布，有效信息少，可以不用看",
+   "decision": "人物遮挡或仅露局部货架的照片不作为布局依据；优先完整平面图、清晰分区图或覆盖动线的连续全景资料",
+   "classification": "user_evidence_quality_requirement"
+  },
+  {
+   "id": "USER-004",
+   "topic": "系统形态",
+   "user_statement": "后端要有，数据库我觉得也有必要，就按照 Spring Boot + H2/MySQL 全栈来，开发时间充裕不用管",
+   "decision": "按 Spring Boot 3.2.3 + H2(开发默认)/MySQL 8(可选) 实现完整全栈，前端 Vue3+TS+Vite",
+   "classification": "user_scope_instruction",
+   "supersedes": "v1.2 轻量前端路线"
+  },
+  {
+   "id": "USER-005",
+   "topic": "交付顺序与优先级",
+   "user_statement": "前端比后端更重要！需要你先把前端做出来，我确认前端可以后，再真正的开发后端实现真正的功能",
+   "decision": "硬性顺序：第1段前端 F1-F6 → 用户验收门 → 第2段后端 B1-B4 → 第3段联调 D1-D3；验收未过不得写 Java 业务代码",
+   "classification": "user_delivery_order_instruction"
+  },
+  {
+   "id": "USER-006",
+   "topic": "后端未完成时的演示降级",
+   "user_statement": "在后端没有开发完全时，你完全可以拿一部分数据或者几个例子拿来演示就可以了",
+   "decision": "前端在 /api 不可用时自动回落 data/demo 内置样例，顶部提示演示数据模式；此回落为硬要求",
+   "classification": "user_authorization"
+  },
+  {
+   "id": "USER-007",
+   "topic": "地图呈现参考",
+   "user_statement": "可以借鉴 Huaihai-Battlefield-Collab 下的 HB Web，它生成的淮海战役网页地图挺好，并且要找清楚它的地图数据来源，想照同样渠道去找南湖校区的数据",
+   "decision": "采用 Leaflet + 本地 OSM GeoJSON 矢量层（默认）+ Esri World_Imagery 卫星层 + 手册原图对照层 三层可切换；不采用 Cesium 三维",
+   "classification": "user_technical_direction"
+  },
+  {
+   "id": "USER-008",
+   "topic": "场景裁剪",
+   "user_statement": "寒暑假以及法定节假日等特殊情况不用管",
+   "decision": "不实现寒假/暑假/法定节假日场景与 dated_overrides 回放；假日规则保留为资料，不进演示",
+   "classification": "user_scope_instruction"
+  }
+ ],
+ "pending_questions": [
+  {
+   "id": "PENDING-001",
+   "topic": "假期无人站是否能取已有包裹",
+   "status": "closed_by_user_scope",
+   "current_safe_handling": "具体年份回放按对应官方通知，其他情况标待核实",
+   "resolution": "USER-008 假日场景整体裁剪，此问题不再阻塞"
+  },
+  {
+   "id": "PENDING-002",
+   "topic": "四站及桃苑内顺丰／京东有无最新搬迁或新增",
+   "status": "awaiting_user_reply",
+   "current_safe_handling": "按公开资料显示，保留未现场核实标签"
+  }
+ ],
+ "date_updated": "2026-10-31"
+}

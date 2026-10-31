@@ -1,0 +1,40 @@
+{
+  "research_date": "2026-10-27",
+  "maps": [
+    {
+      "id": "MAP-LOGISTICS",
+      "asset_id": "A01",
+      "source_ids": [
+        "S01"
+      ],
+      "local_path": "maps/cumtlive_logistics_locations.png",
+      "description": "学生手册四站标注生活区底图",
+      "width_px": 1821,
+      "height_px": 1123,
+      "sha256": "8c1f28ef979cce540400c926ddfdbafc5ae227f2392466961f883cebbe6237e3",
+      "coordinate_system": "image_pixels_top_left_origin",
+      "georeferenced": false,
+      "map_survey_date": null,
+      "allowed_use": "站点分布展示与图像坐标标记；不作精确导航、测距或地理坐标换算。",
+      "license": "rights_retained_by_original_owner; no open reuse license verified"
+    },
+    {
+      "id": "MAP-CAMPUS",
+      "asset_id": "A05",
+      "source_ids": [
+        "S10"
+      ],
+      "local_path": "maps/cumt_official_campus_traffic_2025.png",
+      "description": "学校发布的南湖校区校园全图及考试交通导引",
+      "width_px": 1262,
+      "height_px": 631,
+      "sha256": "14eb2f2f1c2a7324710d37f9fd01643ffff919d30992b0dec670a9b5a7217ba7",
+      "coordinate_system": "image_pixels_top_left_origin",
+      "georeferenced": false,
+      "map_survey_date": null,
+      "allowed_use": "校园整体空间背景；考试箭头不可当作日常物流车辆通行规则。",
+      "license": "rights_retained_by_original_owner; no open reuse license verified"
+    }
+  ],
+  "historical_map_page_source": "S11"
+}

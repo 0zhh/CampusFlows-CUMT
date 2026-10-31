@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "purpose": "四站在两种底图上的定位数据；像素坐标来自学生手册原图红点读取，经纬度为按公开方位描述在 OSM 底图上的近似落点",
+  "truth_levels": {
+    "image_pixels": {
+      "classification": "derived_from_public_image",
+      "accuracy": "与原图红点中心误差 <= 1px",
+      "source_ids": [
+        "S01",
+        "A01"
+      ]
+    },
+    "approximate_wgs84": {
+      "classification": "demo_approximation",
+      "accuracy": "约 ±150 m，非实测、非测绘",
+      "method": "osm_neighborhood_anchor",
+      "note": "按学生手册方位描述（如桃苑4号楼楼下南侧）结合 OSM 同名场地/食堂 POI 圈定苑区范围后取落点；不得作为测绘成果引用"
+    }
+  },
+  "campus_boundary_reference": {
+    "osm_way_id": 273639857,
+    "name": "中国矿业大学(南湖校区)",
+    "vertices": 25,
+    "bbox": {
+      "south": 34.20692,
+      "west": 117.13015,
+      "north": 34.22281,
+      "east": 117.1501
+    }
+  },
+  "sites": [
+    {
+      "id": "NH-TAOYUAN",
+      "name": "桃苑物流服务中心",
+      "image_pixels": {
+        "map_id": "MAP-LOGISTICS",
+        "x_px": 1396,
+        "y_px": 518
+      },
+      "approximate_wgs84": {
+        "lng": 117.1379,
+        "lat": 34.2181
+      },
+      "anchor_pois": [
+        "桃一宿舍楼 34.21866,117.13793",
+        "桃苑网球场 34.21928,117.13891"
+      ]
+    },
+    {
+      "id": "NH-SONGYUAN",
+      "name": "松苑无人菜鸟驿站",
+      "image_pixels": {
+        "map_id": "MAP-LOGISTICS",
+        "x_px": 839,
+        "y_px": 298
+      },
+      "approximate_wgs84": {
+        "lng": 117.1344,
+        "lat": 34.2156
+      },
+      "anchor_pois": [
+        "二食堂 34.21483,117.13345",
+        "一食堂 34.21673,117.13545"
+      ]
+    },
+    {
+      "id": "NH-MEIYUAN",
+      "name": "梅苑无人菜鸟驿站",
+      "image_pixels": {
+        "map_id": "MAP-LOGISTICS",
+        "x_px": 378,
+        "y_px": 577
+      },
+      "approximate_wgs84": {
+        "lng": 117.1322,
+        "lat": 34.2117
+      },
+      "anchor_pois": [
+        "梅苑篮球场 34.21238,117.13188",
+        "梅苑小篮球场 34.21075,117.13232"
+      ]
+    },
+    {
+      "id": "NH-LANYUAN",
+      "name": "兰苑无人菜鸟驿站",
+      "image_pixels": {
+        "map_id": "MAP-LOGISTICS",
+        "x_px": 229,
+        "y_px": 978
+      },
+      "approximate_wgs84": {
+        "lng": 117.131,
+        "lat": 34.2082
+      },
+      "anchor_pois": [
+        "矿大南大门 34.20866,117.13412"
+      ]
+    }
+  ],
+  "supplementary_points": [
+    {
+      "id": "NH-SF-JD",
+      "name": "顺丰驿收发 / 京东小蜜蜂（桃苑主站内西侧）",
+      "parent_site": "NH-TAOYUAN",
+      "separate_warehouse": false
+    },
+    {
+      "id": "NH-MAILROOM",
+      "name": "南湖收发室（竹苑3号楼一层南侧）",
+      "separate_warehouse": false,
+      "approximate_wgs84": null
+    }
+  ],
+  "not_to_build": [
+    "竹苑菜鸟驿站",
+    "杏苑菜鸟驿站"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "map_id": "MAP-LOGISTICS",
+  "image_width": 1821,
+  "image_height": 1123,
+  "coordinate_system": "image_pixels_top_left_origin",
+  "method": "从原图已有红色站点标记读取的近似像素位置，非经纬度或现场GPS采样",
+  "markers": [
+    {
+      "site_id": "NH-TAOYUAN",
+      "name": "桃苑物流服务中心",
+      "x": 1396,
+      "y": 518,
+      "x_ratio": 0.766612,
+      "y_ratio": 0.461264,
+      "source_ids": [
+        "S01"
+      ],
+      "asset_id": "A01"
+    },
+    {
+      "site_id": "NH-SONGYUAN",
+      "name": "松苑无人菜鸟驿站",
+      "x": 839,
+      "y": 298,
+      "x_ratio": 0.460736,
+      "y_ratio": 0.265361,
+      "source_ids": [
+        "S01"
+      ],
+      "asset_id": "A01"
+    },
+    {
+      "site_id": "NH-MEIYUAN",
+      "name": "梅苑无人菜鸟驿站",
+      "x": 378,
+      "y": 577,
+      "x_ratio": 0.207578,
+      "y_ratio": 0.513802,
+      "source_ids": [
+        "S01"
+      ],
+      "asset_id": "A01"
+    },
+    {
+      "site_id": "NH-LANYUAN",
+      "name": "兰苑无人菜鸟驿站",
+      "x": 229,
+      "y": 978,
+      "x_ratio": 0.125755,
+      "y_ratio": 0.870882,
+      "source_ids": [
+        "S01"
+      ],
+      "asset_id": "A01"
+    }
+  ],
+  "note": "保留原图朝向，不凭视觉假定正北方向；这些点不能直接叠加到另一张校园图。"
+}

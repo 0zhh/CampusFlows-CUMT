@@ -1,0 +1,128 @@
+{
+  "research_date": "2026-10-27",
+  "status": "public_structure_partial_numeric_capacity_unknown",
+  "records": [
+    {
+      "site_id": "NH-TAOYUAN",
+      "site_name": "桃苑物流服务中心",
+      "publicly_supported_structure": "主站内有人工服务及快递品牌服务分区",
+      "source_ids": [
+        "S01",
+        "S04"
+      ],
+      "historical_photo_evidence": [],
+      "measured_fields": {
+        "area_m2": null,
+        "rack_count": null,
+        "storage_capacity_parcels": null,
+        "handling_capacity_per_hour": null,
+        "worker_count": null,
+        "floor_plan": null
+      },
+      "unverified_details": [
+        "精确室内平面与尺寸",
+        "总货架数、层数与储位编号体系",
+        "处理区与待取区真实容量",
+        "实际人员数与处理吞吐",
+        "当前库存和逐时段进出库流水"
+      ],
+      "use_boundary": "照片及服务描述不构成可复建的室内测绘图；不得按照片可见货架推算总容量。"
+    },
+    {
+      "site_id": "NH-SONGYUAN",
+      "site_name": "松苑无人菜鸟驿站",
+      "publicly_supported_structure": "无人快递超市形式，面向中小件自助领取",
+      "source_ids": [
+        "S01",
+        "S04"
+      ],
+      "historical_photo_evidence": [
+        "A04"
+      ],
+      "measured_fields": {
+        "area_m2": null,
+        "rack_count": null,
+        "storage_capacity_parcels": null,
+        "handling_capacity_per_hour": null,
+        "worker_count": null,
+        "floor_plan": null
+      },
+      "unverified_details": [
+        "精确室内平面与尺寸",
+        "总货架数、层数与储位编号体系",
+        "处理区与待取区真实容量",
+        "实际人员数与处理吞吐",
+        "当前库存和逐时段进出库流水"
+      ],
+      "use_boundary": "照片及服务描述不构成可复建的室内测绘图；不得按照片可见货架推算总容量。"
+    },
+    {
+      "site_id": "NH-MEIYUAN",
+      "site_name": "梅苑无人菜鸟驿站",
+      "publicly_supported_structure": "无人快递超市形式，面向中小件自助领取",
+      "source_ids": [
+        "S01",
+        "S04"
+      ],
+      "historical_photo_evidence": [],
+      "measured_fields": {
+        "area_m2": null,
+        "rack_count": null,
+        "storage_capacity_parcels": null,
+        "handling_capacity_per_hour": null,
+        "worker_count": null,
+        "floor_plan": null
+      },
+      "unverified_details": [
+        "精确室内平面与尺寸",
+        "总货架数、层数与储位编号体系",
+        "处理区与待取区真实容量",
+        "实际人员数与处理吞吐",
+        "当前库存和逐时段进出库流水"
+      ],
+      "use_boundary": "照片及服务描述不构成可复建的室内测绘图；不得按照片可见货架推算总容量。"
+    },
+    {
+      "site_id": "NH-LANYUAN",
+      "site_name": "兰苑无人菜鸟驿站",
+      "publicly_supported_structure": "无人快递超市形式，面向中小件自助领取",
+      "source_ids": [
+        "S01",
+        "S04"
+      ],
+      "historical_photo_evidence": [
+        "A04"
+      ],
+      "measured_fields": {
+        "area_m2": null,
+        "rack_count": null,
+        "storage_capacity_parcels": null,
+        "handling_capacity_per_hour": null,
+        "worker_count": null,
+        "floor_plan": null
+      },
+      "unverified_details": [
+        "精确室内平面与尺寸",
+        "总货架数、层数与储位编号体系",
+        "处理区与待取区真实容量",
+        "实际人员数与处理吞吐",
+        "当前库存和逐时段进出库流水"
+      ],
+      "use_boundary": "照片及服务描述不构成可复建的室内测绘图；不得按照片可见货架推算总容量。"
+    }
+  ],
+  "visual_evidence_index": "nanhu_visual_evidence.json",
+  "photo_notes": {
+    "A04": "2022官方拼图上部标有松苑站和兰苑站，下部货架／设备局部未逐张标明站点；只能说明当时存在相应设施。",
+    "A06": "2025两校区综合报道照片，校区与站点归属未核实，不用于南湖站点布局。",
+    "A07": "2024南湖物流园室外高峰临时大件区，不是室内平面图。",
+    "A08": "2024官方参观物流园内景；用户认为布局信息过少，降为背景参考，不继续要求认站。",
+    "A09/A10": "2023室外快递柜旁的分拣实景，非室内货架布局。",
+    "A11": "2024寒假报道货架通道内景，具体校区／站点未在图注中明确。"
+  },
+  "next_evidence_needed": [
+    "用户现场确认各站位置与最新营业告示",
+    "经允许拍摄的非个人敏感信息场景照片",
+    "运营方愿意提供的面积、货架和容量汇总；没有则继续使用独立标注的演示假设"
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "research_date": "2026-10-27",
+  "timezone": "Asia/Shanghai",
+  "rules": [
+    {
+      "id": "RULE-001",
+      "subject": "常态服务结构",
+      "description": "桃苑为主站，松苑、梅苑、兰苑为辅站。",
+      "source_ids": [
+        "S01",
+        "S03",
+        "S04",
+        "S05"
+      ],
+      "type": "publicly_cross_checked"
+    },
+    {
+      "id": "RULE-002",
+      "subject": "菜鸟自助取件",
+      "description": "按取件通知找件，在自助设备扫描快递条码与取件码；可依指南向人工服务处求助。",
+      "source_ids": [
+        "S01"
+      ],
+      "type": "student_reported"
+    },
+    {
+      "id": "RULE-003",
+      "subject": "顺丰／京东",
+      "description": "在桃苑主站内部西侧服务区领取，不按四个菜鸟站任意分配。",
+      "source_ids": [
+        "S01"
+      ],
+      "type": "student_reported"
+    },
+    {
+      "id": "RULE-004",
+      "subject": "包裹类型",
+      "description": "主站接收部分大件与异形件；三辅站主要处理中小件。超大件是否入校需实际协调。",
+      "source_ids": [
+        "S01"
+      ],
+      "type": "student_reported"
+    },
+    {
+      "id": "RULE-005",
+      "subject": "高峰分流",
+      "description": "指南称开学、618、双十一时实际取件站可能与所填地址不同；演示可据此呈现分流设想，不能宣称掌握现行调度算法。",
+      "source_ids": [
+        "S01"
+      ],
+      "type": "student_reported"
+    },
+    {
+      "id": "RULE-006",
+      "subject": "普通寄件",
+      "description": "可在菜鸟下单选择服务点自寄或上门取件；服务点自寄前往桃苑前台。",
+      "source_ids": [
+        "S01"
+      ],
+      "type": "student_reported"
+    },
+    {
+      "id": "RULE-007",
+      "subject": "顺丰／京东寄件",
+      "description": "可提前在相应小程序／APP下单，选择到服务点或上门；课程演示不提交真实订单。",
+      "source_ids": [
+        "S01"
+      ],
+      "type": "student_reported"
+    },
+    {
+      "id": "RULE-008",
+      "subject": "邮政业务",
+      "description": "收发室承担邮件领取；指南所列部分邮寄业务需到校外邮政网点办理，EMS寄件另列上门方式。",
+      "source_ids": [
+        "S01"
+      ],
+      "type": "student_reported"
+    },
+    {
+      "id": "RULE-009",
+      "subject": "停留时限",
+      "description": "未核得正式免费存放天数与超期退回政策；不得将学生经验描述固化为承诺。",
+      "source_ids": [
+        "S01"
+      ],
+      "type": "unverified_policy"
+    },
+    {
+      "id": "RULE-010",
+      "subject": "竹苑与杏苑",
+      "description": "指南明确竹苑无独立菜鸟驿站；本轮未核得杏苑独立快递站。不得按每苑一站自动补造站点。",
+      "source_ids": [
+        "S01",
+        "S02",
+        "S04",
+        "S05"
+      ],
+      "type": "bounded_research_conclusion"
+    }
+  ],
+  "dated_overrides": [
+    {
+      "id": "HOURS-2026-WINTER-MAIN",
+      "site_ids": [
+        "NH-TAOYUAN"
+      ],
+      "start_date": "2026-01-15",
+      "end_date": "2026-02-25",
+      "status": "open",
+      "hours": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "source_ids": [
+        "S05"
+      ],
+      "page": 4,
+      "note": "通知未在该行另列春节停业日期，不从2025通知迁移停业日期。"
+    },
+    {
+      "id": "HOURS-2026-WINTER-SATELLITES",
+      "site_ids": [
+        "NH-SONGYUAN",
+        "NH-MEIYUAN",
+        "NH-LANYUAN"
+      ],
+      "start_date": "2026-01-15",
+      "end_date": "2026-02-25",
+      "status": "closed",
+      "hours": [],
+      "reopen_date": "2026-02-26",
+      "source_ids": [
+        "S05"
+      ],
+      "page": 4,
+      "note": "官方写暂停营业，不能自动解释成仍可取件。"
+    },
+    {
+      "id": "HOURS-2025-WINTER-MAIN",
+      "site_ids": [
+        "NH-TAOYUAN"
+      ],
+      "start_date": "2025-01-20",
+      "end_date": "2025-02-23",
+      "status": "open_with_exception",
+      "hours": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "closed_dates": [
+        [
+          "2025-01-28",
+          "2025-02-04"
+        ]
+      ],
+      "source_ids": [
+        "S06"
+      ],
+      "page": 4
+    },
+    {
+      "id": "HOURS-2025-WINTER-SATELLITES",
+      "site_ids": [
+        "NH-SONGYUAN",
+        "NH-MEIYUAN",
+        "NH-LANYUAN"
+      ],
+      "start_date": "2025-01-20",
+      "end_date": "2025-02-23",
+      "status": "closed",
+      "hours": [],
+      "source_ids": [
+        "S06"
+      ],
+      "page": 4
+    }
+  ],
+  "precedence": [
+    "同一时段的明确官方通知",
+    "常态学生指南资料值",
+    "历史资料仅供背景"
+  ],
+  "conflicts": [
+    {
+      "id": "CONFLICT-001",
+      "topic": "无人站开放时间",
+      "source_ids": [
+        "S04",
+        "S01"
+      ],
+      "observations": [
+        "2022报道提到24小时自助取件",
+        "学生指南列07:00至23:30"
+      ],
+      "decision": "演示常态采用较新指南值并展示来源，不宣传当前24小时开放。"
+    },
+    {
+      "id": "CONFLICT-002",
+      "topic": "假期无人站取件",
+      "source_ids": [
+        "S01",
+        "S05",
+        "S06"
+      ],
+      "observations": [
+        "学生指南概述假期不收件但可取件",
+        "2025／2026具体寒假通知写暂停营业"
+      ],
+      "decision": "具体官方假期场景按对应年份通知；其他假期状态保持未核实，不推出全年规则。"
+    },
+    {
+      "id": "CONFLICT-003",
+      "topic": "2025暑期报道物流照片归属",
+      "source_ids": [
+        "S07"
+      ],
+      "observations": [
+        "报道同时涉及两校区，物流照片显示近邻宝品牌"
+      ],
+      "decision": "该照片校区未核实，禁止标注为桃苑或南湖任一站内部布局。"
+    }
+  ]
+}

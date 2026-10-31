@@ -1,0 +1,385 @@
+{
+  "schema_version": "1.0",
+  "research_date": "2026-10-27",
+  "campus_scope": "CUMT_NANHU_ONLY",
+  "physical_cainiao_site_count": 4,
+  "sites": [
+    {
+      "id": "NH-TAOYUAN",
+      "name": "桃苑物流服务中心",
+      "aliases": [
+        "桃苑菜鸟驿站",
+        "南湖物流园主站"
+      ],
+      "campus": "中国矿业大学南湖校区",
+      "physical_site": true,
+      "network_role": "main_hub",
+      "dormitory_area": "桃苑",
+      "location": {
+        "description": "桃苑4号楼楼下南侧",
+        "longitude": null,
+        "latitude": null,
+        "evidence": {
+          "source_ids": [
+            "S01"
+          ],
+          "classification": "student_reported",
+          "note": "楼栋方位有公开指南依据，尚未现场核验或测绘。"
+        }
+      },
+      "existence_evidence": {
+        "source_ids": [
+          "S01",
+          "S03",
+          "S04",
+          "S05"
+        ],
+        "classification": "cross_checked_public_sources",
+        "note": null
+      },
+      "normal_service_hours": {
+        "open": "08:30",
+        "close": "18:30",
+        "timezone": "Asia/Shanghai",
+        "days": "指南未单列工作日／周末差异",
+        "valid_from": null,
+        "valid_until": null,
+        "demo_baseline_decision_id": "USER-001",
+        "evidence": {
+          "source_ids": [
+            "S01"
+          ],
+          "classification": "student_reported",
+          "note": "作为演示常态资料值；不保证调查日现场实际营业状态。"
+        }
+      },
+      "confirmed_service_descriptions": [
+        "普通快递代收与领取",
+        "部分大件／异形件接收",
+        "人工查件",
+        "普通快递服务点寄件"
+      ],
+      "service_evidence": {
+        "source_ids": [
+          "S01"
+        ],
+        "classification": "student_reported",
+        "note": null
+      },
+      "warehouse_measured": {
+        "area_m2": null,
+        "rack_count": null,
+        "storage_capacity_parcels": null,
+        "handling_capacity_per_hour": null,
+        "worker_count": null,
+        "floor_plan": null
+      },
+      "warehouse_data_status": "not_publicly_verified",
+      "note": "顺丰与京东的服务柜台位于主站内部西侧；不再计作两个独立仓储站点。",
+      "map_marker": {
+        "map_id": "MAP-LOGISTICS",
+        "x_px": 1396,
+        "y_px": 518,
+        "coordinate_system": "image_pixels_top_left_origin",
+        "accuracy": "approximate_source_red_dot"
+      }
+    },
+    {
+      "id": "NH-SONGYUAN",
+      "name": "松苑无人菜鸟驿站",
+      "aliases": [
+        "松苑无人快递超市"
+      ],
+      "campus": "中国矿业大学南湖校区",
+      "physical_site": true,
+      "network_role": "unmanned_satellite",
+      "dormitory_area": "松苑",
+      "location": {
+        "description": "松苑1号楼南侧，面向二食堂",
+        "longitude": null,
+        "latitude": null,
+        "evidence": {
+          "source_ids": [
+            "S01"
+          ],
+          "classification": "student_reported",
+          "note": "楼栋方位有公开指南依据，尚未现场核验或测绘。"
+        }
+      },
+      "existence_evidence": {
+        "source_ids": [
+          "S01",
+          "S03",
+          "S04",
+          "S05"
+        ],
+        "classification": "cross_checked_public_sources",
+        "note": null
+      },
+      "normal_service_hours": {
+        "open": "07:00",
+        "close": "23:30",
+        "timezone": "Asia/Shanghai",
+        "days": "指南未单列工作日／周末差异",
+        "valid_from": null,
+        "valid_until": null,
+        "demo_baseline_decision_id": "USER-001",
+        "evidence": {
+          "source_ids": [
+            "S01"
+          ],
+          "classification": "student_reported",
+          "note": "作为演示常态资料值；不保证调查日现场实际营业状态。"
+        }
+      },
+      "confirmed_service_descriptions": [
+        "部分中小件代收",
+        "自助取件"
+      ],
+      "service_evidence": {
+        "source_ids": [
+          "S01"
+        ],
+        "classification": "student_reported",
+        "note": null
+      },
+      "warehouse_measured": {
+        "area_m2": null,
+        "rack_count": null,
+        "storage_capacity_parcels": null,
+        "handling_capacity_per_hour": null,
+        "worker_count": null,
+        "floor_plan": null
+      },
+      "warehouse_data_status": "not_publicly_verified",
+      "note": "不将主站的人工寄件服务复制成本站已核实服务。",
+      "map_marker": {
+        "map_id": "MAP-LOGISTICS",
+        "x_px": 839,
+        "y_px": 298,
+        "coordinate_system": "image_pixels_top_left_origin",
+        "accuracy": "approximate_source_red_dot"
+      }
+    },
+    {
+      "id": "NH-MEIYUAN",
+      "name": "梅苑无人菜鸟驿站",
+      "aliases": [
+        "梅苑无人快递超市"
+      ],
+      "campus": "中国矿业大学南湖校区",
+      "physical_site": true,
+      "network_role": "unmanned_satellite",
+      "dormitory_area": "梅苑",
+      "location": {
+        "description": "梅苑1号楼北侧，面向竹苑4号楼",
+        "longitude": null,
+        "latitude": null,
+        "evidence": {
+          "source_ids": [
+            "S01"
+          ],
+          "classification": "student_reported",
+          "note": "楼栋方位有公开指南依据，尚未现场核验或测绘。"
+        }
+      },
+      "existence_evidence": {
+        "source_ids": [
+          "S01",
+          "S03",
+          "S04",
+          "S05"
+        ],
+        "classification": "cross_checked_public_sources",
+        "note": null
+      },
+      "normal_service_hours": {
+        "open": "07:00",
+        "close": "23:30",
+        "timezone": "Asia/Shanghai",
+        "days": "指南未单列工作日／周末差异",
+        "valid_from": null,
+        "valid_until": null,
+        "demo_baseline_decision_id": "USER-001",
+        "evidence": {
+          "source_ids": [
+            "S01"
+          ],
+          "classification": "student_reported",
+          "note": "作为演示常态资料值；不保证调查日现场实际营业状态。"
+        }
+      },
+      "confirmed_service_descriptions": [
+        "部分中小件代收",
+        "自助取件"
+      ],
+      "service_evidence": {
+        "source_ids": [
+          "S01"
+        ],
+        "classification": "student_reported",
+        "note": null
+      },
+      "warehouse_measured": {
+        "area_m2": null,
+        "rack_count": null,
+        "storage_capacity_parcels": null,
+        "handling_capacity_per_hour": null,
+        "worker_count": null,
+        "floor_plan": null
+      },
+      "warehouse_data_status": "not_publicly_verified",
+      "note": "学生指南建议竹苑同学可寄往梅苑；这不是经测绘确认的排他服务边界。",
+      "map_marker": {
+        "map_id": "MAP-LOGISTICS",
+        "x_px": 378,
+        "y_px": 577,
+        "coordinate_system": "image_pixels_top_left_origin",
+        "accuracy": "approximate_source_red_dot"
+      }
+    },
+    {
+      "id": "NH-LANYUAN",
+      "name": "兰苑无人菜鸟驿站",
+      "aliases": [
+        "兰苑无人快递超市"
+      ],
+      "campus": "中国矿业大学南湖校区",
+      "physical_site": true,
+      "network_role": "unmanned_satellite",
+      "dormitory_area": "兰苑",
+      "location": {
+        "description": "兰苑1号楼南侧，面向兰苑2号楼",
+        "longitude": null,
+        "latitude": null,
+        "evidence": {
+          "source_ids": [
+            "S01"
+          ],
+          "classification": "student_reported",
+          "note": "楼栋方位有公开指南依据，尚未现场核验或测绘。"
+        }
+      },
+      "existence_evidence": {
+        "source_ids": [
+          "S01",
+          "S03",
+          "S04",
+          "S05"
+        ],
+        "classification": "cross_checked_public_sources",
+        "note": null
+      },
+      "normal_service_hours": {
+        "open": "07:00",
+        "close": "23:30",
+        "timezone": "Asia/Shanghai",
+        "days": "指南未单列工作日／周末差异",
+        "valid_from": null,
+        "valid_until": null,
+        "demo_baseline_decision_id": "USER-001",
+        "evidence": {
+          "source_ids": [
+            "S01"
+          ],
+          "classification": "student_reported",
+          "note": "作为演示常态资料值；不保证调查日现场实际营业状态。"
+        }
+      },
+      "confirmed_service_descriptions": [
+        "部分中小件代收",
+        "自助取件"
+      ],
+      "service_evidence": {
+        "source_ids": [
+          "S01"
+        ],
+        "classification": "student_reported",
+        "note": null
+      },
+      "warehouse_measured": {
+        "area_m2": null,
+        "rack_count": null,
+        "storage_capacity_parcels": null,
+        "handling_capacity_per_hour": null,
+        "worker_count": null,
+        "floor_plan": null
+      },
+      "warehouse_data_status": "not_publicly_verified",
+      "note": "面向周边取件需求，不推断其每日件量或容量。",
+      "map_marker": {
+        "map_id": "MAP-LOGISTICS",
+        "x_px": 229,
+        "y_px": 978,
+        "coordinate_system": "image_pixels_top_left_origin",
+        "accuracy": "approximate_source_red_dot"
+      }
+    }
+  ],
+  "supplementary_service_points": [
+    {
+      "id": "NH-SF",
+      "name": "顺丰（驿收发）",
+      "kind": "courier_counter",
+      "parent_site_id": "NH-TAOYUAN",
+      "independent_physical_site": false,
+      "location": "桃苑物流服务中心内部西侧",
+      "separate_counter_hours": null,
+      "source_ids": [
+        "S01"
+      ],
+      "pickup_method": "依短信取件码领取，异常时向现场人员询问。",
+      "note": "不能将主站参考时间直接当作柜台已核实营业时间。"
+    },
+    {
+      "id": "NH-JD",
+      "name": "京东（矿大南湖小蜜蜂）",
+      "kind": "courier_counter",
+      "parent_site_id": "NH-TAOYUAN",
+      "independent_physical_site": false,
+      "location": "桃苑物流服务中心内部西侧",
+      "separate_counter_hours": null,
+      "source_ids": [
+        "S01"
+      ],
+      "pickup_method": "依短信取件码领取，异常时向现场人员询问。",
+      "note": "独立柜台时间和柜内布局未公开核实。"
+    },
+    {
+      "id": "NH-MAILROOM",
+      "name": "南湖校区收发室",
+      "kind": "postal_mailroom",
+      "parent_site_id": null,
+      "independent_physical_site": true,
+      "part_of_cainiao_one_plus_three": false,
+      "location": "竹苑3号楼一层南侧，三食堂斜对面",
+      "source_ids": [
+        "S01"
+      ],
+      "normal_hours": {
+        "weekdays": [
+          [
+            "08:30",
+            "11:30"
+          ],
+          [
+            "13:00",
+            "17:30"
+          ]
+        ],
+        "weekends": [
+          [
+            "08:30",
+            "11:30"
+          ]
+        ]
+      },
+      "services": [
+        "平信、挂号信、明信片、印刷品、报刊等邮件领取",
+        "部分EMS邮件领取，以实际通知为准"
+      ],
+      "note": "补充服务点，不并入四站仓储容量汇总；EMS包裹与邮政收发室的具体分流以实际通知为准。"
+    }
+  ],
+  "coverage_note": "公开资料确认的核心网络，不声称覆盖全部临时取件点或此后新增点。"
+}

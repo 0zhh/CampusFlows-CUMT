@@ -1,0 +1,107 @@
+/* ============================================================
+   驿链 CampusFlow —— 设计 token
+   主色取"驿站"的暖金，辅色取校园的玉青；四苑各有识别色
+   ============================================================ */
+
+:root {
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-pill: 999px;
+
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-base: 14px;
+  --fs-md: 16px;
+  --fs-lg: 20px;
+  --fs-xl: 26px;
+  --fs-2xl: 34px;
+  --fs-3xl: 46px;
+
+  --lh-tight: 1.22;
+  --lh-base: 1.55;
+  --lh-loose: 1.75;
+
+  --nav-h: 58px;
+  --max-w: 1600px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 140ms;
+  --t-base: 240ms;
+  --t-slow: 420ms;
+
+  /* 品牌色：驿站暖金 */
+  --brand: #e8a33d;
+  --brand-soft: #f0bd6b;
+  --brand-dim: rgb(232 163 61 / 0.14);
+
+  /* 语义色 */
+  --ok: #3ec9a7;
+  --warn: #e8a33d;
+  --danger: #e2605a;
+  --info: #5b9bd5;
+  --ok-dim: rgb(62 201 167 / 0.14);
+  --warn-dim: rgb(232 163 61 / 0.14);
+  --danger-dim: rgb(226 96 90 / 0.14);
+  --info-dim: rgb(91 155 213 / 0.14);
+  /* 标签用的"墨色"：暗色下就是原色，浅色下压深以满足对比度 */
+  --ok-ink: #3ec9a7;
+  --warn-ink: #e8a33d;
+  --danger-ink: #e2605a;
+  --info-ink: #5b9bd5;
+
+  /* 四苑识别色 */
+  --tao: #e8735a;
+  --song: #3fa97c;
+  --mei: #c05c8e;
+  --lan: #6e7fd4;
+}
+
+:root,
+[data-theme='dark'] {
+  --bg-0: #080b10;
+  --bg-1: #10151c;
+  --bg-2: #171e27;
+  --bg-3: #202935;
+  --bg-4: #2a3543;
+  --line: #26313d;
+  --line-strong: #3b4757;
+  --fg-0: #e9eef4;
+  --fg-1: #a3b0be;
+  --fg-2: #84909d;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-2: 0 4px 18px rgb(0 0 0 / 0.45);
+  --shadow-3: 0 12px 40px rgb(0 0 0 / 0.55);
+  --grid: rgb(255 255 255 / 0.028);
+}
+
+[data-theme='light'] {
+  --bg-0: #eef1f5;
+  --bg-1: #ffffff;
+  --bg-2: #f4f6f9;
+  --bg-3: #e8ecf1;
+  --bg-4: #dbe1e8;
+  --line: #dde3ea;
+  --line-strong: #c2cad4;
+  --fg-0: #10151c;
+  --fg-1: #4a5563;
+  --fg-2: #5a6470;
+  --shadow-1: 0 1px 2px rgb(16 21 28 / 0.06);
+  --shadow-2: 0 4px 18px rgb(16 21 28 / 0.08);
+  --shadow-3: 0 12px 40px rgb(16 21 28 / 0.14);
+  --grid: rgb(16 21 28 / 0.03);
+  --ok-ink: #1c7d64;
+  --warn-ink: #8a5a00;
+  --danger-ink: #b3352e;
+  --info-ink: #2c6396;
+}

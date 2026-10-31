@@ -1,0 +1,48 @@
+{
+  "research_date": "2026-10-27",
+  "records": [
+    {
+      "id": "STAT-001",
+      "metric": "日均快递件量",
+      "value": 12000,
+      "operator": ">",
+      "unit": "件/日",
+      "scope": "南湖菜鸟驿站相关公开汇总；原文未细化统计边界或每站口径",
+      "period": "2025-04-10报道时",
+      "source_ids": [
+        "S03"
+      ],
+      "allowed_use": "项目背景的历史公开量级",
+      "forbidden_use": "当作桃苑独站件量、当前库存、当前实时到件量或每站分配量"
+    },
+    {
+      "id": "STAT-002",
+      "metric": "无人快递超市快递占比",
+      "value": 65,
+      "operator": "approximately",
+      "unit": "%",
+      "scope": "无人快递超市合计，未公开三站各自占比",
+      "period": "2025-04-10报道时",
+      "source_ids": [
+        "S03"
+      ],
+      "allowed_use": "说明辅站网络的重要性",
+      "forbidden_use": "将65%均分后称为各站实测数据"
+    },
+    {
+      "id": "STAT-003",
+      "metric": "暑期日均快递处理量",
+      "value": 2000,
+      "operator": "reported",
+      "unit": "单/日",
+      "scope": "南湖校区，暑期口径",
+      "period": "2025暑期；2025-08-25报道",
+      "source_ids": [
+        "S07"
+      ],
+      "allowed_use": "历史假期与常态场景差异背景",
+      "forbidden_use": "与2025年4月数据直接计算实际业务下降比例，或推导仓库容量"
+    }
+  ],
+  "warning": "业务流量不等于库存容量；这组历史数字不能作为2026实时看板。"
+}

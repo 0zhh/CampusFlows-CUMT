@@ -1,0 +1,31 @@
+# 依赖
+node_modules/
+.pnpm-store/
+
+# 构建产物
+dist/
+dist-ssr/
+*.local
+
+# 探针产物（无头浏览器截图、审计 JSON、临时 profile）
+.probe/
+
+# 后端（第 2 段）
+backend/target/
+*.class
+*.jar
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# 本地库与密钥
+*.db
+*.mv.db
+*.trace.db
+application-local.yml
+.env

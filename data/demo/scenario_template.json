@@ -1,0 +1,45 @@
+{
+  "data_type": "SIMULATED_TEMPLATE",
+  "campus": "CUMT_NANHU_ONLY",
+  "not_real_operations": true,
+  "status": "template_only_no_demo_traffic_generated",
+  "time_step_minutes": 30,
+  "initial_state": [
+    {
+      "site_id": "NH-TAOYUAN",
+      "initial_unprocessed_parcels": null,
+      "initial_ready_for_pickup_parcels": null,
+      "assumed_unprocessed_capacity": null,
+      "assumed_pickup_inventory_capacity": null,
+      "data_type": "SIMULATED_NOT_MEASURED"
+    },
+    {
+      "site_id": "NH-SONGYUAN",
+      "initial_unprocessed_parcels": null,
+      "initial_ready_for_pickup_parcels": null,
+      "assumed_unprocessed_capacity": null,
+      "assumed_pickup_inventory_capacity": null,
+      "data_type": "SIMULATED_NOT_MEASURED"
+    },
+    {
+      "site_id": "NH-MEIYUAN",
+      "initial_unprocessed_parcels": null,
+      "initial_ready_for_pickup_parcels": null,
+      "assumed_unprocessed_capacity": null,
+      "assumed_pickup_inventory_capacity": null,
+      "data_type": "SIMULATED_NOT_MEASURED"
+    },
+    {
+      "site_id": "NH-LANYUAN",
+      "initial_unprocessed_parcels": null,
+      "initial_ready_for_pickup_parcels": null,
+      "assumed_unprocessed_capacity": null,
+      "assumed_pickup_inventory_capacity": null,
+      "data_type": "SIMULATED_NOT_MEASURED"
+    }
+  ],
+  "demand": [],
+  "baseline_plan": null,
+  "adjusted_plan": null,
+  "note": "真实站点资料与将来人为设置的演示参数分开存放；不得将null自动转为0，未填完前不得运行仿真。"
+}
