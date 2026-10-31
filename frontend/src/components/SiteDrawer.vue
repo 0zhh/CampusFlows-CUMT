@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch, onUnmounted, nextTick, ref } from 'vue'
 import { X, MapPin, Clock, Package, Boxes, ArrowRight } from 'lucide-vue-next'
 import { SITES, isOpenNow } from '@/data/sites'
 import type { Scenario } from '@/data/types'
@@ -16,6 +16,35 @@ const emit = defineEmits<{
   (e: 'update:open', v: boolean): void
   (e: 'go-sites'): void
 }>()
+
+const closeBtn = ref<HTMLButtonElement | null>(null)
+let lastFocused: HTMLElement | null = null
+
+/** Esc 关闭 + 打开时把焦点移进抽屉，关闭后焦点回原位（键盘用户不会"丢失光标"） */
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') {
+    e.stopPropagation()
+    emit('update:open', false)
+  }
+}
+
+watch(
+  () => props.open,
+  async (open) => {
+    if (open) {
+      lastFocused = document.activeElement as HTMLElement | null
+      document.addEventListener('keydown', onKeydown)
+      await nextTick()
+      closeBtn.value?.focus()
+    } else {
+      document.removeEventListener('keydown', onKeydown)
+      lastFocused?.focus?.()
+      lastFocused = null
+    }
+  }
+)
+
+onUnmounted(() => document.removeEventListener('keydown', onKeydown))
 
 const site = computed(() => SITES.find((s) => s.id === props.siteId) ?? null)
 const sum = computed(() => props.scenario.summary.find((s) => s.site_id === props.siteId) ?? null)
@@ -50,7 +79,7 @@ const spark = computed(() => {
                 <p class="drawer__sub">{{ site.roleLabel }} · {{ site.area }}</p>
               </div>
             </div>
-            <button class="drawer__close" aria-label="关闭" @click="emit('update:open', false)">
+            <button ref="closeBtn" class="drawer__close" aria-label="关闭" @click="emit('update:open', false)">
               <X :size="18" />
             </button>
           </header>
