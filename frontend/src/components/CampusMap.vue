@@ -1,7 +1,9 @@
 <script setup lang="ts">
 /**
- * 南湖校区矢量地图（Leaflet + 本地 OSM GeoJSON）
- * 三层底图：A 矢量校园（默认，离线可用）/ B 卫星影像 / C 手册原图对照
+ * 南湖校区站点分布地图（Leaflet）
+ * 两种底图：A 手册原图（默认，离线可用，四个红点就是站点真值）
+ *           B 卫星影像（Esri 在线瓦片，需联网）
+ * 坐标来自 store：校准过的用校准值，没校准的用 site_geolocation.json 的默认值。
  */
 import { onMounted, onUnmounted, ref, watch, computed } from 'vue'
 import L from 'leaflet'
@@ -17,26 +19,23 @@ const props = defineProps<{
 
 const emit = defineEmits<{ (e: 'select', id: string): void }>()
 
-type LayerKind = 'vector' | 'satellite' | 'manual'
-const layer = ref<LayerKind>('vector')
+type LayerKind = 'satellite' | 'manual'
+const layer = ref<LayerKind>('manual')
 
 const el = ref<HTMLDivElement | null>(null)
 let map: L.Map | null = null
-let geoLayer: L.GeoJSON | null = null
 let satLayer: L.TileLayer | null = null
 let manualLayer: L.ImageOverlay | null = null
 const markers = new Map<string, L.Marker>()
 const store = useAppStore()
 
-// 校区范围：OSM way 273639857「中国矿业大学(南湖校区)」的外接矩形
-// bbox 34.20692..34.22281 / 117.13015..117.15010，取整后仅留极小外扩
+// 视野范围：OSM way 273639857 的外接矩形，取整后仅留极小外扩
 const CAMPUS_BOUNDS = L.latLngBounds(
   [34.2065, 117.1295],
   [34.2232, 117.1506]
 )
 
-// 手册原图的"地理配准"：默认是一个近似值，用顶栏的校准工具调整后
-// 会连同四个站点的坐标一起存到本机，之后红点和图标就重合了。
+/** 手册原图的覆盖范围由 store 提供；校准后它会和四个站点坐标一起更新 */
 const manualBounds = computed(() =>
   L.latLngBounds(
     [store.manualBounds.south, store.manualBounds.west],
@@ -51,57 +50,6 @@ const riskSiteIds = computed(() => {
   })
   return set
 })
-
-function styleFor(f: any): L.PathOptions {
-  const kind: string = f.properties.kind ?? ''
-  const dark = store.theme === 'dark'
-
-  // 三级层次：画布 < 校园地面 < 建筑，保证暗色下也能一眼分清
-  // 亮暗两套都用"画布 < 校园地面 < 建筑/水域 < 道路"的四级明度台阶，
-  // 每级至少差 25 个亮度单位，缩到 700px 宽也能分清。
-  const c = dark
-    ? {
-        bFill: '#3d5170', bLine: '#6b86a8',
-        wFill: '#1a5c86', wLine: '#3b9fd4',
-        gFill: '#24543a', gLine: '#3f8460',
-        campusFill: '#222d3c', campusLine: '#46586e',
-        trunk: '#899bb2', secondary: '#6d8098', minor: '#556678', path: '#445362'
-      }
-    : {
-        bFill: '#b7c3d3', bLine: '#8c9bad',
-        wFill: '#8cc3e8', wLine: '#5c9dcc',
-        gFill: '#aed8b8', gLine: '#7bae88',
-        campusFill: '#fbfcfe', campusLine: '#a3b1c2',
-        trunk: '#a68a5c', secondary: '#bfab80', minor: '#d2c7ae', path: '#e2dac8'
-      }
-
-  if (kind === 'amenity=university') {
-    return { color: c.campusLine, weight: 1, fillColor: c.campusFill, fillOpacity: 1 }
-  }
-  if (kind.startsWith('building')) {
-    return { color: c.bLine, weight: 0.8, fillColor: c.bFill, fillOpacity: 0.95 }
-  }
-  if (kind.startsWith('natural=water') || kind.startsWith('leisure=swimming')) {
-    return { color: c.wLine, weight: 1, fillColor: c.wFill, fillOpacity: 0.9 }
-  }
-  if (kind.startsWith('leisure')) {
-    return { color: c.gLine, weight: 1, fillColor: c.gFill, fillOpacity: 0.85 }
-  }
-  if (kind.startsWith('highway')) {
-    const hw = f.properties.highway
-    if (['trunk', 'trunk_link', 'primary', 'primary_link'].includes(hw)) {
-      return { color: c.trunk, weight: 2.6, opacity: 0.95 }
-    }
-    if (['secondary', 'secondary_link', 'tertiary', 'tertiary_link'].includes(hw)) {
-      return { color: c.secondary, weight: 2, opacity: 0.95 }
-    }
-    if (['footway', 'path', 'steps', 'pedestrian', 'track', 'cycleway'].includes(hw)) {
-      return { color: c.path, weight: 1.1, opacity: 0.9, dashArray: '3 3' }
-    }
-    return { color: c.minor, weight: 1.4, opacity: 0.95 }
-  }
-  return { color: c.campusLine, weight: 0.8, opacity: 0.6 }
-}
 
 function siteIcon(site: (typeof SITES)[number]) {
   const open = isOpenNow(site)
@@ -147,13 +95,7 @@ function buildMarkers() {
 
 function applyLayer() {
   if (!map) return
-  if (geoLayer) geoLayer.setStyle(() => ({ opacity: 1 }))
-  if (layer.value === 'vector') {
-    if (satLayer) { satLayer.remove(); satLayer = null }
-    if (manualLayer) { manualLayer.remove(); manualLayer = null }
-    if (geoLayer && !map.hasLayer(geoLayer)) geoLayer.addTo(map)
-  } else if (layer.value === 'satellite') {
-    if (geoLayer) geoLayer.remove()
+  if (layer.value === 'satellite') {
     if (manualLayer) { manualLayer.remove(); manualLayer = null }
     if (!satLayer) {
       satLayer = L.tileLayer(
@@ -163,7 +105,6 @@ function applyLayer() {
     }
     satLayer.addTo(map)
   } else {
-    if (geoLayer) geoLayer.remove()
     if (satLayer) { satLayer.remove(); satLayer = null }
     if (!manualLayer) {
       manualLayer = L.imageOverlay('/maps/cumtlive_logistics_locations.png', manualBounds.value, {
@@ -189,28 +130,9 @@ async function init() {
 
   L.control.zoom({ position: 'bottomright' }).addTo(map)
   L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map)
+  map.attributionControl.setPrefix('')
 
-  map.attributionControl.setPrefix(
-    '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>'
-  )
-
-  const res = await fetch('/geo/cumt_nanhu_campus.geojson')
-  const fc = await res.json()
-
-  geoLayer = L.geoJSON(fc, {
-    style: styleFor,
-    onEachFeature: (f, lyr) => {
-      const n = f.properties?.name
-      if (n) lyr.bindTooltip(n, { sticky: true, className: 'feat-tip' })
-    }
-  })
-  geoLayer.addTo(map)
-
-  // 校区边界虚线（OSM way 273639857 的外接矩形，仅示意范围）
-  L.rectangle(CAMPUS_BOUNDS, {
-    color: '#e8a33d', weight: 1, dashArray: '6 6', fill: false, opacity: 0.22, interactive: false
-  }).addTo(map)
-
+  applyLayer()
   buildMarkers()
 
   // 视野对准整个校区，四站落在校区西侧（与真实情况一致）
@@ -225,13 +147,6 @@ onUnmounted(() => {
 })
 
 watch(layer, applyLayer)
-watch(
-  () => store.theme,
-  () => {
-    if (!geoLayer) return
-    geoLayer.setStyle(styleFor as any)
-  }
-)
 watch(riskSiteIds, () => buildMarkers())
 watch(() => store.siteOverride, () => buildMarkers(), { deep: true })
 watch(manualBounds, (b) => manualLayer?.setBounds(b))
@@ -255,9 +170,8 @@ watch(
 defineExpose({ setLayer: (l: LayerKind) => (layer.value = l) })
 
 const layerOptions = [
-  { id: 'vector' as const, label: '矢量校园', hint: '本地 OSM · 离线可用' },
-  { id: 'satellite' as const, label: '卫星影像', hint: 'Esri 在线瓦片 · 需联网' },
-  { id: 'manual' as const, label: '手册原图', hint: '学生手册原图 · 近似配准' }
+  { id: 'manual' as const, label: '手册原图', hint: '学生手册原图 · 离线可用' },
+  { id: 'satellite' as const, label: '卫星影像', hint: 'Esri 在线瓦片 · 需联网' }
 ]
 </script>
 
@@ -288,7 +202,7 @@ const layerOptions = [
     </div>
 
     <p class="map__note">
-      站点位置为按公开资料近似定位（约 ±150 m），非测绘成果
+      站点位置可在顶栏「校准站点位置」里手动对齐，非测绘成果
     </p>
   </div>
 </template>
@@ -308,8 +222,8 @@ const layerOptions = [
   min-height: 520px;
   width: 100%;
   background-color: #0a0f15;
-  /* 校园多边形只覆盖约一半画幅，外面用极淡点阵填充，
-     让人看出"这里是校区外、不在本图范围内"，而不是以为地图没加载完 */
+  /* 底图未加载完（卫星瓦片要联网）时，用点阵表示"这里是空的"，
+     而不是留一块纯黑让人以为地图挂了 */
   background-image: radial-gradient(circle, rgb(120 142 166 / 0.18) 1px, transparent 1px);
   background-size: 16px 16px;
 }
@@ -317,9 +231,6 @@ const layerOptions = [
   background-color: #e3e8ee;
   background-image: radial-gradient(circle, rgb(120 138 158 / 0.22) 1px, transparent 1px);
 }
-
-/* 让 Leaflet 深色化 */
-.map :deep(.leaflet-tile-pane) { filter: saturate(0.9); }
 
 .map__layers {
   position: absolute;

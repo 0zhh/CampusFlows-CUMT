@@ -28,8 +28,9 @@ const sources = [
 ]
 
 const osmSources = [
-  { name: 'OpenStreetMap（ODbL-1.0）', url: 'https://www.openstreetmap.org/copyright', use: '校园矢量底图 299 个要素，经 Overpass API 抓取' },
-  { name: 'Esri ArcGIS World Imagery', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer', use: '卫星影像底图（在线瓦片，仅演示用）' }
+  { name: '学生手册《校园物流服务点分布图》', url: '', use: '默认底图；四个红点即站点位置，离线可用' },
+  { name: 'Esri ArcGIS World Imagery', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer', use: '卫星影像底图（在线瓦片，仅演示用）' },
+  { name: 'OpenStreetMap（ODbL-1.0）', url: 'https://www.openstreetmap.org/copyright', use: '只用于核对站点方位与校区范围，不再作为底图渲染' }
 ]
 
 const modelRows = computed(() => Object.entries(dataMeta.value.formulas))
@@ -107,14 +108,14 @@ useReveal(".panel")
           </tbody>
         </table>
         <p class="note">
-          站点经纬度是按公开资料方位描述、并按手册原图上四个红点之间的相对方位推定的<b>近似值（约 ±120 m）</b>，
-          性质为演示近似，<b>不是测绘成果</b>。手册原图是网页地图截图，和 OSM 不是同一套投影，
-          像素坐标不能直接当经纬度用，因此顶栏放了一个「校准站点位置」工具：
-          把原图拖到与底图重合，或直接在地图上按顺序点四个位置，坐标会由程序反算并记住。
+          地图只剩两种底图：<b>手册原图</b>（默认，离线可用，四个红点就是站点真值）与
+          <b>卫星影像</b>（Esri 在线瓦片，需联网）。原先那套 OSM 矢量底图已经去掉——
+          它在宿舍区几乎是空白，看不出楼，反而误导。
         </p>
         <p class="note">
-          另外 OSM 的校区多边形在西南角是粗轮廓，把研究生宿舍一带切在了外面，
-          所以站点图标偶尔会压着轮廓线，这不代表位置错了。
+          手册原图是网页地图截图，和卫星影像不是同一套投影，像素坐标不能直接当经纬度用，
+          所以顶栏放了「校准站点位置」：把原图拖到与卫星影像重合（或直接在地图上按顺序点四个位置），
+          坐标由程序反算并记住，之后图标就会落在红点上。站点经纬度仍属<b>演示近似</b>，不是测绘成果。
         </p>
       </div>
     </section>

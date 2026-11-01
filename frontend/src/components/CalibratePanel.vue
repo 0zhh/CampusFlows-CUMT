@@ -12,7 +12,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { X, RotateCcw, Check, Copy, ZoomIn, ZoomOut, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Layers } from 'lucide-vue-next'
 import { SITES } from '@/data/sites'
-import { useAppStore } from '@/stores/app'
+import { useAppStore, boundsAtScale, DEFAULT_M_PER_PX, CAMPUS_CENTER } from '@/stores/app'
 
 const props = defineProps<{ open: boolean }>()
 const emit = defineEmits<{ (e: 'update:open', v: boolean): void }>()
@@ -29,19 +29,11 @@ const DOTS: Record<string, [number, number]> = {
   'NH-LANYUAN': [228.5, 977.5]
 }
 
-const CAMPUS_CENTER: [number, number] = [34.21644, 117.13867]
-
-/** 初始：把图放大到"1.9 米/像素"，居中于校区；用户再自己拖 */
+/** 打开面板时接着当前的覆盖范围（可能是上次校准的结果），没有就用默认比例尺 */
 function initialBounds() {
-  const mPerPx = 1.9
-  const halfW = (IMG_W * mPerPx) / 2 / 92000
-  const halfH = (IMG_H * mPerPx) / 2 / 110574
-  return {
-    west: CAMPUS_CENTER[1] - halfW,
-    east: CAMPUS_CENTER[1] + halfW,
-    south: CAMPUS_CENTER[0] - halfH,
-    north: CAMPUS_CENTER[0] + halfH
-  }
+  const b = store.manualBounds
+  const usable = b && b.east > b.west && b.north > b.south
+  return usable ? { ...b } : boundsAtScale(DEFAULT_M_PER_PX)
 }
 
 const bounds = ref(initialBounds())
@@ -55,13 +47,13 @@ const el = ref<HTMLDivElement | null>(null)
 let map: L.Map | null = null
 let overlay: L.ImageOverlay | null = null
 let previews: L.LayerGroup | null = null
-let geo: L.GeoJSON | null = null
+let geo: L.TileLayer | null = null
 
 /** 站点坐标：点选模式用手点的，对齐模式由红点像素反算 */
 const derived = computed(() =>
   SITES.map((s) => {
     const [px, py] = DOTS[s.id]
-    const p = picked.value[s.id]
+    const p = mode.value === 'pick' ? picked.value[s.id] : undefined
     return {
       id: s.id,
       shortName: s.shortName,
@@ -78,6 +70,8 @@ const boundsLeaflet = computed(
 )
 
 function syncOverlay() {
+  // 面板刚打开时地图还没建好，watcher 可能先触发，这里要挡一下
+  if (!map || !previews) return
   overlay?.setBounds(boundsLeaflet.value)
   previews?.clearLayers()
   derived.value.forEach((d) => {
@@ -123,8 +117,27 @@ function nudge(dxPx: number, dyPx: number) {
 
 let dragFrom: { x: number; y: number; b: typeof bounds.value } | null = null
 
+/** 切模式时清掉另一种模式留下的东西，免得两种结果混在一起 */
+function switchMode(m: 'align' | 'pick') {
+  mode.value = m
+  picked.value = {}
+  pickIndex.value = 0
+  dragFrom = null
+  // 对齐模式拖的是图片，点选模式拖的是地图
+  if (map) m === 'pick' ? map.dragging.enable() : map.dragging.disable()
+  syncOverlay()
+}
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') {
+    e.stopPropagation()
+    emit('update:open', false)
+  }
+}
+
 function onMapClick(e: L.LeafletMouseEvent) {
   if (mode.value !== 'pick') return
+  if (pickIndex.value >= SITES.length) return
   const site = SITES[pickIndex.value]
   if (!site) return
   picked.value = { ...picked.value, [site.id]: { lat: e.latlng.lat, lng: e.latlng.lng } }
@@ -133,7 +146,7 @@ function onMapClick(e: L.LeafletMouseEvent) {
 }
 
 function onDown(e: PointerEvent) {
-  if (!map) return
+  if (!map || mode.value !== 'align') return
   dragFrom = { x: e.clientX, y: e.clientY, b: { ...bounds.value } }
   ;(e.target as HTMLElement).setPointerCapture?.(e.pointerId)
 }
@@ -173,23 +186,18 @@ async function init() {
     doubleClickZoom: false
   })
 
-  const res = await fetch('/geo/cumt_nanhu_campus.geojson')
-  const fc = await res.json()
-  const dark = store.theme === 'dark'
-  geo = L.geoJSON(fc, {
-    style: (f: any) => {
-      const kind = f.properties.kind ?? ''
-      if (kind === 'amenity=university') return { color: dark ? '#46586e' : '#a3b1c2', weight: 1, fillOpacity: 0 }
-      if (kind.startsWith('building')) return { color: dark ? '#7d8fa6' : '#8c9bad', weight: 0.8, fillOpacity: dark ? 0.25 : 0.35, fillColor: dark ? '#3d5170' : '#b7c3d3' }
-      if (kind.startsWith('highway')) return { color: dark ? '#8b9db4' : '#a89468', weight: 1.6, opacity: 0.9 }
-      return { color: dark ? '#3e4c5c' : '#b9c4d1', weight: 0.6, opacity: 0.5 }
-    }
-  }).addTo(map)
+  // 对齐参照用卫星影像：它是真实地理位置的底，原图叠上去才好对
+  geo = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    { maxZoom: 19, attribution: '影像 © Esri, Maxar, Earthstar Geographics' }
+  ).addTo(map)
 
   overlay = L.imageOverlay('/maps/cumtlive_logistics_locations.png', boundsLeaflet.value, {
     opacity: opacity.value,
     interactive: false
   }).addTo(map)
+  // 点选模式下把原图压淡一点，免得挡住卫星底图
+  void 0
 
   map.on('click', onMapClick)
   previews = L.layerGroup().addTo(map)
@@ -201,8 +209,11 @@ watch(
   () => props.open,
   async (v) => {
     if (v) {
+      document.addEventListener('keydown', onKeydown)
+      bounds.value = initialBounds()
       await init()
     } else {
+      document.removeEventListener('keydown', onKeydown)
       map?.remove()
       map = null
       overlay = null
@@ -214,9 +225,15 @@ watch(
 )
 
 watch(bounds, syncOverlay, { deep: true })
+// 对齐模式要看清原图，点选模式要看清底图
+watch(mode, (m) => {
+  if (m === 'pick' && opacity.value > 0.35) opacity.value = 0.28
+  if (m === 'align' && opacity.value < 0.35) opacity.value = 0.62
+})
 watch(opacity, (v) => overlay?.setOpacity(v))
 
 onUnmounted(() => {
+  document.removeEventListener('keydown', onKeydown)
   map?.remove()
   map = null
 })
@@ -227,8 +244,9 @@ function apply() {
     o[d.id] = { lat: Number(d.lat.toFixed(6)), lng: Number(d.lng.toFixed(6)) }
   })
   store.setSiteOverride(o)
-  // 同时把原图的覆盖范围存下来，切到「手册原图」底图时红点会正好压在图标下面
-  store.setManualBounds({ ...bounds.value })
+  // 对齐模式下顺带把原图的覆盖范围存下来，切到「手册原图」底图时红点正好压在图标下面。
+  // 点选模式没有对过原图，就别去动它，否则原图会被挪歪。
+  if (mode.value === 'align') store.setManualBounds({ ...bounds.value })
   emit('update:open', false)
 }
 
@@ -273,7 +291,7 @@ function reset() {
               :class="{ 'cal__mode-btn--on': mode === 'align' }"
               role="tab"
               :aria-selected="mode === 'align'"
-              @click="mode = 'align'"
+              @click="switchMode('align')"
             >
               ① 拖动原图对齐
               <em>原图叠在底图上，拖到路和楼重合</em>
@@ -283,7 +301,7 @@ function reset() {
               :class="{ 'cal__mode-btn--on': mode === 'pick' }"
               role="tab"
               :aria-selected="mode === 'pick'"
-              @click="mode = 'pick'; pickIndex = 0; picked = {}; syncOverlay()"
+              @click="switchMode('pick')"
             >
               ② 直接点四个位置
               <em>按 桃苑 → 松苑 → 梅苑 → 兰苑 的顺序点地图</em>

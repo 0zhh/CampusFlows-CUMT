@@ -165,13 +165,21 @@ check('主题持久化到 localStorage', (await ev(`localStorage.getItem('campus
 // ---------- 7. 底图切换 ----------
 await go('/overview')
 const layers = await ev(`[...document.querySelectorAll('.layer-btn')].map(b => b.textContent.replace(/\\s+/g,' ').trim())`)
-check('三种底图可选', layers.length === 3, JSON.stringify(layers))
-for (const idx of [1, 2, 0]) {
-  await ev(`document.querySelectorAll('.layer-btn')[${idx}].click()`)
-  await sleep(1200)
-}
-const backToVector = await ev(`document.querySelectorAll('.leaflet-overlay-pane path').length`)
-check('切回矢量底图后图形仍在', backToVector > 100, String(backToVector))
+check('两种底图可选', layers.length === 2, JSON.stringify(layers))
+check('默认是手册原图', String(layers[0]).includes('手册'), String(layers[0]))
+check('第二种是卫星影像', String(layers[1]).includes('卫星'), String(layers[1]))
+// 手册原图默认就必须已经渲染出图片（离线可用，不依赖网络）
+const imgNow = await ev(`document.querySelectorAll('.leaflet-image-layer').length`)
+check('手册原图已渲染', imgNow >= 1, String(imgNow))
+// 切到卫星再切回来，图片层仍要在
+await ev(`document.querySelectorAll('.layer-btn')[1].click()`)
+await sleep(2200)
+const tiles = await ev(`document.querySelectorAll('.leaflet-tile').length`)
+check('卫星影像层有瓦片', tiles > 0, String(tiles))
+await ev(`document.querySelectorAll('.layer-btn')[0].click()`)
+await sleep(1200)
+const backToImg = await ev(`document.querySelectorAll('.leaflet-image-layer').length`)
+check('切回手册原图后图片仍在', backToImg >= 1, String(backToImg))
 
 // ---------- 8. 站点页 ----------
 await go('/sites')

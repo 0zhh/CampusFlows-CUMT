@@ -5,7 +5,7 @@ import { setTimeout as sleep } from 'node:timers/promises'
 
 const WIDTH = Number(process.argv[2] || 1440)
 const THEME = process.argv[3] || 'dark'
-const LAYER = process.argv[4] || 'vector'
+const LAYER = process.argv[4] || 'manual'
 const NAME = process.argv[5] || 'mapshot'
 
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
@@ -39,8 +39,8 @@ await S('Emulation.setDeviceMetricsOverride', { width: WIDTH, height: 1000, devi
 await S('Page.navigate', { url: 'http://127.0.0.1:5173/overview' })
 await sleep(1500)
 if (THEME === 'light') { await S('Runtime.evaluate', { expression: "document.querySelector('.icon-btn--theme')?.click()" }); await sleep(500) }
-if (LAYER !== 'vector') {
-  await S('Runtime.evaluate', { expression: `[...document.querySelectorAll('.layer-btn')].find(b => b.textContent.includes(${JSON.stringify(LAYER === 'satellite' ? '卫星' : '手册')}))?.click()` })
+if (LAYER !== 'manual') {
+  await S('Runtime.evaluate', { expression: `[...document.querySelectorAll('.layer-btn')].find(b => b.textContent.includes('卫星'))?.click()` })
 }
 await sleep(4200)
 

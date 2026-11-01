@@ -40,17 +40,33 @@ npm run preview      # 预览 dist/
 
 ```
 src/
-  components/    CampusMap（Leaflet 三层底图）、EChart、KpiCard、SiteDrawer…
+  components/    CampusMap（Leaflet 双底图：手册原图 / 卫星影像）、CalibratePanel（地图校准）、EChart、KpiCard、SiteDrawer…
   composables/   useData（数据访问）、useDataSource（后端探测）、useChartTheme、useCountUp、useReveal
   data/          types.ts、sites.ts、scenarios.json（后端 DTO 必须与此对齐）
   stores/app.ts  主题、场景、数据来源
   styles/        tokens.css（设计 token）、base.css（重置与通用类）
   views/         五个页面
 public/
-  geo/cumt_nanhu_campus.geojson   OSM 矢量底图，299 个要素，ODbL-1.0
+  geo/cumt_nanhu_campus.geojson   只用于核对校区范围，页面不再渲染
   maps/cumtlive_logistics_locations.png  学生手册原图（近似配准）
 scripts/         audit / interact / mapshot / text 等无头浏览器检查脚本
 ```
+
+## 地图与校准
+
+地图有两种底图：
+
+- **手册原图**（默认）——学生手册那张图，离线可用，四个红点就是站点位置
+- **卫星影像**——Esri 在线瓦片，需联网
+
+手册原图是网页地图截图，和卫星影像不是同一套投影，所以顶栏放了个「校准站点位置」按钮（准星图标），两种方式：
+
+1. **拖动原图对齐**——原图半透明叠在卫星影像上，拖着图、滚轮缩放，让它和真实地理重合；
+   四个红点的像素位置是写死的，对齐后站点经纬度由程序反算
+2. **直接点四个位置**——按 桃苑 → 松苑 → 梅苑 → 兰苑 的顺序在底图上点四下，点哪儿就是哪儿
+
+点「应用」后图标立刻移到对应位置，并连同原图覆盖范围一起存进 localStorage；
+切到手册原图时，图标会正好压在红点上。点「复制 JSON」可以把坐标拿出来写回源码。
 
 ## 数据契约
 
@@ -73,12 +89,15 @@ scripts/         audit / interact / mapshot / text 等无头浏览器检查脚�
 node scripts/interact.mjs                    # 27 条交互断言 + 控制台错误计数
 node scripts/audit.mjs http://127.0.0.1:5173 1440 dark    # 布局/裁剪/重叠/对比度
 node scripts/audit.mjs http://127.0.0.1:5173 1440 light
-node scripts/mapshot.mjs 1440 dark vector    # 单独截地图
+node scripts/calibrate.mjs                   # 校准面板 20 条断言
+node scripts/keyboard.mjs                    # 纯键盘可达性
+node scripts/mapshot.mjs 1440 dark manual    # 单独截地图（manual / satellite）
 node scripts/text.mjs /overview              # 导出页面可见文本
 ```
 
 ## 素材许可
 
-矢量底图来自 OpenStreetMap，ODbL-1.0，署名「© OpenStreetMap contributors」已放在
-地图右下角与页脚。卫星影像走 Esri 公共服务，仅在线使用、不缓存分发。
+默认底图是学生手册的《校园物流服务点分布图》，离线可用，四个红点就是站点位置。
+卫星影像走 Esri 公共服务，仅在线使用、不缓存分发。OpenStreetMap 数据（ODbL-1.0）
+只用来核对校区范围与站点方位，不再作为底图渲染，署名仍保留在页脚。
 其余 11 张实景图片的再发布许可**尚未核实**，只用于课堂演示，不公开分发。

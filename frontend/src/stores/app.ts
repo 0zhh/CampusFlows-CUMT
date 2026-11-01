@@ -15,8 +15,32 @@ export interface GeoBounds { west: number; south: number; east: number; north: n
 
 export interface LatLng { lat: number; lng: number }
 
-/** 手册原图默认覆盖范围（未校准时）；北侧留到 34.2250 是为了把校门口也框进来 */
-const DEFAULT_MANUAL_BOUNDS: GeoBounds = { west: 117.125, south: 34.204, east: 117.153, north: 34.225 }
+/** 手册原图尺寸（像素），与 data/maps/logistics_markers.json 一致 */
+export const MANUAL_IMAGE = { width: 1821, height: 1123 }
+/**
+ * 未校准时的默认比例尺：1.62 米/像素，等比不拉扁。
+ * 取值依据：校区南北 1.76 km 要装进 1123 px 高（s ≥ 1.56），
+ * 同时校区宽度约占画幅 63%，与"截图以校区为中心"的观感相符。
+ */
+export const DEFAULT_M_PER_PX = 1.62
+export const CAMPUS_CENTER: [number, number] = [34.21644, 117.13867]
+
+const M_PER_DEG_LAT = 110574
+const M_PER_DEG_LON = 111320 * Math.cos((34.21 * Math.PI) / 180)
+
+/** 按给定比例尺、以校区中心为锚点算出的原图覆盖范围 */
+export function boundsAtScale(mPerPx: number): GeoBounds {
+  const halfLng = (MANUAL_IMAGE.width * mPerPx) / 2 / M_PER_DEG_LON
+  const halfLat = (MANUAL_IMAGE.height * mPerPx) / 2 / M_PER_DEG_LAT
+  return {
+    west: CAMPUS_CENTER[1] - halfLng,
+    east: CAMPUS_CENTER[1] + halfLng,
+    south: CAMPUS_CENTER[0] - halfLat,
+    north: CAMPUS_CENTER[0] + halfLat
+  }
+}
+
+const DEFAULT_MANUAL_BOUNDS: GeoBounds = boundsAtScale(DEFAULT_M_PER_PX)
 
 function readManualBounds(): GeoBounds | null {
   try {
