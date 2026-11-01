@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import {
-  LayoutDashboard, MapPin, TrendingUp, Siren, BookOpen, Sun, Moon, Database, Radio
+  LayoutDashboard, MapPin, TrendingUp, Siren, BookOpen, Sun, Moon, Database, Radio, Crosshair
 } from 'lucide-vue-next'
 import SiteFooter from '@/components/SiteFooter.vue'
+import CalibratePanel from '@/components/CalibratePanel.vue'
 
 const store = useAppStore()
 const route = useRoute()
@@ -21,6 +22,8 @@ const nav = [
 const currentTitle = computed(() => (route.meta.title as string) ?? '')
 
 onMounted(() => store.setTheme(store.theme))
+
+const calOpen = ref(false)
 </script>
 
 <template>
@@ -64,9 +67,16 @@ onMounted(() => store.setTheme(store.theme))
           <Radio :size="13" aria-hidden="true" />
           接口数据
         </span>
-        <button class="icon-btn" :aria-label="store.theme === 'dark' ? '切换到浅色主题' : '切换到深色主题'" @click="store.toggleTheme()">
+        <button
+          class="icon-btn icon-btn--theme"
+          :aria-label="store.theme === 'dark' ? '切换到浅色主题' : '切换到深色主题'"
+          @click="store.toggleTheme()"
+        >
           <Sun v-if="store.theme === 'dark'" :size="16" />
           <Moon v-else :size="16" />
+        </button>
+        <button class="icon-btn" aria-label="校准站点位置" title="校准站点位置" @click="calOpen = true">
+          <Crosshair :size="16" />
         </button>
       </div>
     </header>
@@ -80,6 +90,8 @@ onMounted(() => store.setTheme(store.theme))
     </main>
 
     <SiteFooter />
+
+    <CalibratePanel v-model:open="calOpen" />
   </div>
 </template>
 

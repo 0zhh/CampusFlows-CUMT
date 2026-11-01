@@ -38,7 +38,7 @@ await S('Page.enable'); await S('Runtime.enable')
 await S('Emulation.setDeviceMetricsOverride', { width: WIDTH, height: 1000, deviceScaleFactor: 1, mobile: false })
 await S('Page.navigate', { url: 'http://127.0.0.1:5173/overview' })
 await sleep(1500)
-if (THEME === 'light') { await S('Runtime.evaluate', { expression: "document.querySelector('.icon-btn')?.click()" }); await sleep(500) }
+if (THEME === 'light') { await S('Runtime.evaluate', { expression: "document.querySelector('.icon-btn--theme')?.click()" }); await sleep(500) }
 if (LAYER !== 'vector') {
   await S('Runtime.evaluate', { expression: `[...document.querySelectorAll('.layer-btn')].find(b => b.textContent.includes(${JSON.stringify(LAYER === 'satellite' ? '卫星' : '手册')}))?.click()` })
 }

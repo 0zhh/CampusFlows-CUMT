@@ -40,7 +40,7 @@ await S('Emulation.setDeviceMetricsOverride', { width: WIDTH, height: 950, devic
 await S('Page.navigate', { url: 'http://127.0.0.1:5173' + ROUTE })
 await sleep(1200)
 if (THEME === 'light') {
-  await S('Runtime.evaluate', { expression: "document.querySelector('.icon-btn')?.click()" })
+  await S('Runtime.evaluate', { expression: "document.querySelector('.icon-btn--theme')?.click()" })
   await sleep(600)
 }
 await sleep(3600)

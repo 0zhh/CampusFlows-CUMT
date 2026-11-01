@@ -35,11 +35,13 @@ const CAMPUS_BOUNDS = L.latLngBounds(
   [34.2232, 117.1506]
 )
 
-// 手册原图的"地理配准"：把 PNG 的四个角近似贴到校区范围上
-// 这是演示用的近似对齐，不构成测绘配准
-const MANUAL_BOUNDS = L.latLngBounds(
-  [34.2040, 117.1250],
-  [34.2250, 117.1530]
+// 手册原图的"地理配准"：默认是一个近似值，用顶栏的校准工具调整后
+// 会连同四个站点的坐标一起存到本机，之后红点和图标就重合了。
+const manualBounds = computed(() =>
+  L.latLngBounds(
+    [store.manualBounds.south, store.manualBounds.west],
+    [store.manualBounds.north, store.manualBounds.east]
+  )
 )
 
 const riskSiteIds = computed(() => {
@@ -126,7 +128,8 @@ function buildMarkers() {
   markers.forEach((m) => m.remove())
   markers.clear()
   SITES.forEach((site) => {
-    const m = L.marker([site.lat, site.lng], {
+    const p = store.sitePos(site.id)
+    const m = L.marker([p.lat, p.lng], {
       icon: siteIcon(site),
       zIndexOffset: site.role === 'main_hub' ? 500 : 0,
       keyboard: true,
@@ -163,7 +166,7 @@ function applyLayer() {
     if (geoLayer) geoLayer.remove()
     if (satLayer) { satLayer.remove(); satLayer = null }
     if (!manualLayer) {
-      manualLayer = L.imageOverlay('/maps/cumtlive_logistics_locations.png', MANUAL_BOUNDS, {
+      manualLayer = L.imageOverlay('/maps/cumtlive_logistics_locations.png', manualBounds.value, {
         opacity: 1,
         interactive: false
       })
@@ -230,6 +233,8 @@ watch(
   }
 )
 watch(riskSiteIds, () => buildMarkers())
+watch(() => store.siteOverride, () => buildMarkers(), { deep: true })
+watch(manualBounds, (b) => manualLayer?.setBounds(b))
 
 watch(
   () => props.selectedId,
@@ -240,7 +245,10 @@ watch(
       return
     }
     const site = SITES.find((s) => s.id === id)
-    if (site) map.flyTo([site.lat, site.lng], 17, { duration: 0.6 })
+    if (site) {
+      const p = store.sitePos(site.id)
+      map.flyTo([p.lat, p.lng], 17, { duration: 0.6 })
+    }
   }
 )
 

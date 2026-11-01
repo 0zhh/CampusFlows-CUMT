@@ -156,7 +156,7 @@ check('S2 生成多张工单', ticketCount >= 3, String(ticketCount))
 // ---------- 6. 主题切换 ----------
 await go('/about')
 const bgDark = await ev(`getComputedStyle(document.body).backgroundColor`)
-await ev(`document.querySelector('.icon-btn').click()`)
+await ev(`document.querySelector('.icon-btn--theme').click()`)
 await sleep(900)
 const bgLight = await ev(`getComputedStyle(document.body).backgroundColor`)
 check('主题切换改变底色', bgDark !== bgLight, bgDark + ' -> ' + bgLight)

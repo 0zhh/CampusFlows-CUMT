@@ -107,8 +107,14 @@ useReveal(".panel")
           </tbody>
         </table>
         <p class="note">
-          站点经纬度是按公开资料方位描述结合 OSM 同名场地 POI 推定的<b>近似值（约 ±150 m）</b>，
-          性质为演示近似，<b>不是测绘成果</b>。手册原图像素坐标仅对那张图有效，不能当经纬度使用。
+          站点经纬度是按公开资料方位描述、并按手册原图上四个红点之间的相对方位推定的<b>近似值（约 ±120 m）</b>，
+          性质为演示近似，<b>不是测绘成果</b>。手册原图是网页地图截图，和 OSM 不是同一套投影，
+          像素坐标不能直接当经纬度用，因此顶栏放了一个「校准站点位置」工具：
+          把原图拖到与底图重合，或直接在地图上按顺序点四个位置，坐标会由程序反算并记住。
+        </p>
+        <p class="note">
+          另外 OSM 的校区多边形在西南角是粗轮廓，把研究生宿舍一带切在了外面，
+          所以站点图标偶尔会压着轮廓线，这不代表位置错了。
         </p>
       </div>
     </section>
@@ -181,7 +187,7 @@ useReveal(".panel")
               <td>{{ s.roleLabel }}</td>
               <td>{{ s.locationText }}</td>
               <td class="num">{{ s.hours.open }}—{{ s.hours.close }}</td>
-              <td class="num">{{ s.lat.toFixed(4) }}, {{ s.lng.toFixed(4) }}</td>
+              <td class="num">{{ store.sitePos(s.id).lat.toFixed(4) }}, {{ store.sitePos(s.id).lng.toFixed(4) }}</td>
             </tr>
           </tbody>
         </table>

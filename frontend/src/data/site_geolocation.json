@@ -13,8 +13,8 @@
     "approximate_wgs84": {
       "classification": "demo_approximation",
       "accuracy": "约 ±150 m，非实测、非测绘",
-      "method": "osm_neighborhood_anchor",
-      "note": "按学生手册方位描述（如桃苑4号楼楼下南侧）结合 OSM 同名场地/食堂 POI 圈定苑区范围后取落点；不得作为测绘成果引用"
+      "method": "osm_neighborhood_anchor + image_relative_order",
+      "note": "先按手册原图红点之间的相对方位定四站的相互位置（松苑在最北、桃苑在其东南、梅苑在西南、兰苑最南），再结合 OSM 同名场地与食堂 POI 圈定苑区范围取落点；误差约 ±120 m，非实测、非测绘。前端顶栏的“校准站点位置”可以把它调到与红点完全重合。"
     }
   },
   "campus_boundary_reference": {
@@ -38,8 +38,8 @@
         "y_px": 518
       },
       "approximate_wgs84": {
-        "lng": 117.1379,
-        "lat": 34.2181
+        "lng": 117.1385,
+        "lat": 34.2178
       },
       "anchor_pois": [
         "桃一宿舍楼 34.21866,117.13793",
@@ -55,8 +55,8 @@
         "y_px": 298
       },
       "approximate_wgs84": {
-        "lng": 117.1344,
-        "lat": 34.2156
+        "lng": 117.1358,
+        "lat": 34.2194
       },
       "anchor_pois": [
         "二食堂 34.21483,117.13345",
@@ -73,7 +73,7 @@
       },
       "approximate_wgs84": {
         "lng": 117.1322,
-        "lat": 34.2117
+        "lat": 34.212
       },
       "anchor_pois": [
         "梅苑篮球场 34.21238,117.13188",
@@ -89,8 +89,8 @@
         "y_px": 978
       },
       "approximate_wgs84": {
-        "lng": 117.131,
-        "lat": 34.2082
+        "lng": 117.1318,
+        "lat": 34.209
       },
       "anchor_pois": [
         "矿大南大门 34.20866,117.13412"
