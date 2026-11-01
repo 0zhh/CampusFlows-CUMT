@@ -279,8 +279,8 @@ function reset() {
         <section class="cal" role="dialog" aria-modal="true" aria-label="地图校准">
           <header class="cal__head">
             <div>
-              <h2>地图校准 · 把手册原图对齐到矢量底图</h2>
-              <p>拖动图片、滚轮缩放，让原图的路和楼与底图重合。四个红点位置是固定的，对齐后坐标由程序反算。</p>
+              <h2>地图校准 · 把手册原图对齐到卫星影像</h2>
+              <p>拖动图片、滚轮缩放，让原图的路和操场与卫星影像重合。四个红点的位置是固定的，对齐后坐标由程序反算。</p>
             </div>
             <button class="cal__close" aria-label="关闭" @click="emit('update:open', false)"><X :size="18" /></button>
           </header>
@@ -294,7 +294,7 @@ function reset() {
               @click="switchMode('align')"
             >
               ① 拖动原图对齐
-              <em>原图叠在底图上，拖到路和楼重合</em>
+              <em>原图半透明叠在卫星影像上，拖到重合</em>
             </button>
             <button
               class="cal__mode-btn"
@@ -304,7 +304,7 @@ function reset() {
               @click="switchMode('pick')"
             >
               ② 直接点四个位置
-              <em>按 桃苑 → 松苑 → 梅苑 → 兰苑 的顺序点地图</em>
+              <em>按 桃苑 → 松苑 → 梅苑 → 兰苑 的顺序点</em>
             </button>
             <span v-if="mode === 'pick'" class="cal__progress">
               {{ pickIndex >= 4 ? '已点完，点「应用」生效' : '下一个：' + (SITES[pickIndex]?.shortName ?? '') }}
@@ -351,8 +351,9 @@ function reset() {
                 </tbody>
               </table>
               <p class="cal__hint">
-                对齐后点「应用」，四个站点图标会移到红点上，并记住在本机浏览器里。
-                想写回源码就点「复制 JSON」发给我。
+                对齐后点「应用」，四个站点图标会移到红点上，并记在本机浏览器里；
+                对齐模式下还会一并记住原图的覆盖范围，切回手册原图时红点正好压在图标下。
+                想把这些坐标写回源码，点「复制 JSON」。
               </p>
               <div class="cal__acts">
                 <button class="btn btn--primary" @click="apply"><Check :size="14" /> 应用</button>
