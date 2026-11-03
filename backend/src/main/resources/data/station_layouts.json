@@ -1,0 +1,1137 @@
+{
+  "schema_version": "1.1",
+  "generated_at": "2026-11-03",
+  "layout_version": "v6",
+  "note": "货架数/层数/每层位数/通道宽来自参数表（实测档）；六个货架区从左到右均等排布，每区 8 排、每排 5 个货架号，属设计示意，非实测平面图。",
+  "stations": [
+    {
+      "station_id": "NH-TAOYUAN",
+      "name": "桃苑物流服务中心",
+      "truth_level": "public_structure + observed_counts + designed_arrangement",
+      "floor": {
+        "width_m": 28.0,
+        "depth_m": 31.8,
+        "area_m2": 890,
+        "area_note": "按阵列与通道推算，非实测面积"
+      },
+      "params": {
+        "bays": 240,
+        "tiers": 4,
+        "slots_per_tier": 20,
+        "bay_length_m": 1.0,
+        "rack_depth_m": 0.6,
+        "aisle_m": 0.8,
+        "cols": 6,
+        "rows_per_col": 8,
+        "rows": 48,
+        "bays_per_row": 5,
+        "left_bays": 2,
+        "right_bays": 3,
+        "physical_slots": 19200,
+        "code_format": "货架号-层号-序号"
+      },
+      "zones": [
+        {
+          "id": "Z-SF",
+          "kind": "brand_sf",
+          "label": "顺丰独立收发区",
+          "x_m": 2.0,
+          "y_m": 2.4,
+          "w_m": 24.0,
+          "h_m": 2.4
+        },
+        {
+          "id": "Z-ENTRY",
+          "kind": "entrance",
+          "label": "出入口",
+          "x_m": 0.2,
+          "y_m": 5.3,
+          "w_m": 1.6,
+          "h_m": 3.0
+        },
+        {
+          "id": "Z-SCAN",
+          "kind": "counter",
+          "label": "扫码出库台",
+          "x_m": 2.2,
+          "y_m": 5.3,
+          "w_m": 23.8,
+          "h_m": 3.0
+        },
+        {
+          "id": "Z-MANUAL",
+          "kind": "manual",
+          "label": "人工服务台",
+          "x_m": 15.2,
+          "y_m": 28.0,
+          "w_m": 5.0,
+          "h_m": 3.0
+        }
+      ],
+      "rows": [
+        {
+          "row_id": "R01",
+          "zone_id": "Z-C1",
+          "col": 0,
+          "row_in_col": 0,
+          "x_m": 2.0,
+          "y_m": 9.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            1,
+            2
+          ],
+          "right_bays": [
+            3,
+            4,
+            5
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R02",
+          "zone_id": "Z-C1",
+          "col": 0,
+          "row_in_col": 1,
+          "x_m": 2.0,
+          "y_m": 11.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            6,
+            7
+          ],
+          "right_bays": [
+            8,
+            9,
+            10
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R03",
+          "zone_id": "Z-C1",
+          "col": 0,
+          "row_in_col": 2,
+          "x_m": 2.0,
+          "y_m": 13.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            11,
+            12
+          ],
+          "right_bays": [
+            13,
+            14,
+            15
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R04",
+          "zone_id": "Z-C1",
+          "col": 0,
+          "row_in_col": 3,
+          "x_m": 2.0,
+          "y_m": 15.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            16,
+            17
+          ],
+          "right_bays": [
+            18,
+            19,
+            20
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R05",
+          "zone_id": "Z-C1",
+          "col": 0,
+          "row_in_col": 4,
+          "x_m": 2.0,
+          "y_m": 17.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            21,
+            22
+          ],
+          "right_bays": [
+            23,
+            24,
+            25
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R06",
+          "zone_id": "Z-C1",
+          "col": 0,
+          "row_in_col": 5,
+          "x_m": 2.0,
+          "y_m": 19.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            26,
+            27
+          ],
+          "right_bays": [
+            28,
+            29,
+            30
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R07",
+          "zone_id": "Z-C1",
+          "col": 0,
+          "row_in_col": 6,
+          "x_m": 2.0,
+          "y_m": 21.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            31,
+            32
+          ],
+          "right_bays": [
+            33,
+            34,
+            35
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R08",
+          "zone_id": "Z-C1",
+          "col": 0,
+          "row_in_col": 7,
+          "x_m": 2.0,
+          "y_m": 23.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            36,
+            37
+          ],
+          "right_bays": [
+            38,
+            39,
+            40
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R09",
+          "zone_id": "Z-C2",
+          "col": 1,
+          "row_in_col": 0,
+          "x_m": 6.2,
+          "y_m": 9.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            41,
+            42
+          ],
+          "right_bays": [
+            43,
+            44,
+            45
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R10",
+          "zone_id": "Z-C2",
+          "col": 1,
+          "row_in_col": 1,
+          "x_m": 6.2,
+          "y_m": 11.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            46,
+            47
+          ],
+          "right_bays": [
+            48,
+            49,
+            50
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R11",
+          "zone_id": "Z-C2",
+          "col": 1,
+          "row_in_col": 2,
+          "x_m": 6.2,
+          "y_m": 13.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            51,
+            52
+          ],
+          "right_bays": [
+            53,
+            54,
+            55
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R12",
+          "zone_id": "Z-C2",
+          "col": 1,
+          "row_in_col": 3,
+          "x_m": 6.2,
+          "y_m": 15.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            56,
+            57
+          ],
+          "right_bays": [
+            58,
+            59,
+            60
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R13",
+          "zone_id": "Z-C2",
+          "col": 1,
+          "row_in_col": 4,
+          "x_m": 6.2,
+          "y_m": 17.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            61,
+            62
+          ],
+          "right_bays": [
+            63,
+            64,
+            65
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R14",
+          "zone_id": "Z-C2",
+          "col": 1,
+          "row_in_col": 5,
+          "x_m": 6.2,
+          "y_m": 19.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            66,
+            67
+          ],
+          "right_bays": [
+            68,
+            69,
+            70
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R15",
+          "zone_id": "Z-C2",
+          "col": 1,
+          "row_in_col": 6,
+          "x_m": 6.2,
+          "y_m": 21.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            71,
+            72
+          ],
+          "right_bays": [
+            73,
+            74,
+            75
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R16",
+          "zone_id": "Z-C2",
+          "col": 1,
+          "row_in_col": 7,
+          "x_m": 6.2,
+          "y_m": 23.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            76,
+            77
+          ],
+          "right_bays": [
+            78,
+            79,
+            80
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R17",
+          "zone_id": "Z-C3",
+          "col": 2,
+          "row_in_col": 0,
+          "x_m": 10.4,
+          "y_m": 9.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            81,
+            82
+          ],
+          "right_bays": [
+            83,
+            84,
+            85
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R18",
+          "zone_id": "Z-C3",
+          "col": 2,
+          "row_in_col": 1,
+          "x_m": 10.4,
+          "y_m": 11.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            86,
+            87
+          ],
+          "right_bays": [
+            88,
+            89,
+            90
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R19",
+          "zone_id": "Z-C3",
+          "col": 2,
+          "row_in_col": 2,
+          "x_m": 10.4,
+          "y_m": 13.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            91,
+            92
+          ],
+          "right_bays": [
+            93,
+            94,
+            95
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R20",
+          "zone_id": "Z-C3",
+          "col": 2,
+          "row_in_col": 3,
+          "x_m": 10.4,
+          "y_m": 15.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            96,
+            97
+          ],
+          "right_bays": [
+            98,
+            99,
+            100
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R21",
+          "zone_id": "Z-C3",
+          "col": 2,
+          "row_in_col": 4,
+          "x_m": 10.4,
+          "y_m": 17.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            101,
+            102
+          ],
+          "right_bays": [
+            103,
+            104,
+            105
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R22",
+          "zone_id": "Z-C3",
+          "col": 2,
+          "row_in_col": 5,
+          "x_m": 10.4,
+          "y_m": 19.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            106,
+            107
+          ],
+          "right_bays": [
+            108,
+            109,
+            110
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R23",
+          "zone_id": "Z-C3",
+          "col": 2,
+          "row_in_col": 6,
+          "x_m": 10.4,
+          "y_m": 21.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            111,
+            112
+          ],
+          "right_bays": [
+            113,
+            114,
+            115
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R24",
+          "zone_id": "Z-C3",
+          "col": 2,
+          "row_in_col": 7,
+          "x_m": 10.4,
+          "y_m": 23.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            116,
+            117
+          ],
+          "right_bays": [
+            118,
+            119,
+            120
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R25",
+          "zone_id": "Z-C4",
+          "col": 3,
+          "row_in_col": 0,
+          "x_m": 14.6,
+          "y_m": 9.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            121,
+            122
+          ],
+          "right_bays": [
+            123,
+            124,
+            125
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R26",
+          "zone_id": "Z-C4",
+          "col": 3,
+          "row_in_col": 1,
+          "x_m": 14.6,
+          "y_m": 11.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            126,
+            127
+          ],
+          "right_bays": [
+            128,
+            129,
+            130
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R27",
+          "zone_id": "Z-C4",
+          "col": 3,
+          "row_in_col": 2,
+          "x_m": 14.6,
+          "y_m": 13.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            131,
+            132
+          ],
+          "right_bays": [
+            133,
+            134,
+            135
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R28",
+          "zone_id": "Z-C4",
+          "col": 3,
+          "row_in_col": 3,
+          "x_m": 14.6,
+          "y_m": 15.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            136,
+            137
+          ],
+          "right_bays": [
+            138,
+            139,
+            140
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R29",
+          "zone_id": "Z-C4",
+          "col": 3,
+          "row_in_col": 4,
+          "x_m": 14.6,
+          "y_m": 17.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            141,
+            142
+          ],
+          "right_bays": [
+            143,
+            144,
+            145
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R30",
+          "zone_id": "Z-C4",
+          "col": 3,
+          "row_in_col": 5,
+          "x_m": 14.6,
+          "y_m": 19.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            146,
+            147
+          ],
+          "right_bays": [
+            148,
+            149,
+            150
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R31",
+          "zone_id": "Z-C4",
+          "col": 3,
+          "row_in_col": 6,
+          "x_m": 14.6,
+          "y_m": 21.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            151,
+            152
+          ],
+          "right_bays": [
+            153,
+            154,
+            155
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R32",
+          "zone_id": "Z-C4",
+          "col": 3,
+          "row_in_col": 7,
+          "x_m": 14.6,
+          "y_m": 23.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            156,
+            157
+          ],
+          "right_bays": [
+            158,
+            159,
+            160
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R33",
+          "zone_id": "Z-C5",
+          "col": 4,
+          "row_in_col": 0,
+          "x_m": 18.8,
+          "y_m": 9.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            161,
+            162
+          ],
+          "right_bays": [
+            163,
+            164,
+            165
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R34",
+          "zone_id": "Z-C5",
+          "col": 4,
+          "row_in_col": 1,
+          "x_m": 18.8,
+          "y_m": 11.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            166,
+            167
+          ],
+          "right_bays": [
+            168,
+            169,
+            170
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R35",
+          "zone_id": "Z-C5",
+          "col": 4,
+          "row_in_col": 2,
+          "x_m": 18.8,
+          "y_m": 13.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            171,
+            172
+          ],
+          "right_bays": [
+            173,
+            174,
+            175
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R36",
+          "zone_id": "Z-C5",
+          "col": 4,
+          "row_in_col": 3,
+          "x_m": 18.8,
+          "y_m": 15.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            176,
+            177
+          ],
+          "right_bays": [
+            178,
+            179,
+            180
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R37",
+          "zone_id": "Z-C5",
+          "col": 4,
+          "row_in_col": 4,
+          "x_m": 18.8,
+          "y_m": 17.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            181,
+            182
+          ],
+          "right_bays": [
+            183,
+            184,
+            185
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R38",
+          "zone_id": "Z-C5",
+          "col": 4,
+          "row_in_col": 5,
+          "x_m": 18.8,
+          "y_m": 19.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            186,
+            187
+          ],
+          "right_bays": [
+            188,
+            189,
+            190
+          ],
+          "managed_by": "SELF",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R39",
+          "zone_id": "Z-C5",
+          "col": 4,
+          "row_in_col": 6,
+          "x_m": 18.8,
+          "y_m": 21.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            191,
+            192
+          ],
+          "right_bays": [
+            193,
+            194,
+            195
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R40",
+          "zone_id": "Z-C5",
+          "col": 4,
+          "row_in_col": 7,
+          "x_m": 18.8,
+          "y_m": 23.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            196,
+            197
+          ],
+          "right_bays": [
+            198,
+            199,
+            200
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R41",
+          "zone_id": "Z-C6",
+          "col": 5,
+          "row_in_col": 0,
+          "x_m": 23.0,
+          "y_m": 9.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            201,
+            202
+          ],
+          "right_bays": [
+            203,
+            204,
+            205
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R42",
+          "zone_id": "Z-C6",
+          "col": 5,
+          "row_in_col": 1,
+          "x_m": 23.0,
+          "y_m": 11.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            206,
+            207
+          ],
+          "right_bays": [
+            208,
+            209,
+            210
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R43",
+          "zone_id": "Z-C6",
+          "col": 5,
+          "row_in_col": 2,
+          "x_m": 23.0,
+          "y_m": 13.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            211,
+            212
+          ],
+          "right_bays": [
+            213,
+            214,
+            215
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R44",
+          "zone_id": "Z-C6",
+          "col": 5,
+          "row_in_col": 3,
+          "x_m": 23.0,
+          "y_m": 15.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            216,
+            217
+          ],
+          "right_bays": [
+            218,
+            219,
+            220
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R45",
+          "zone_id": "Z-C6",
+          "col": 5,
+          "row_in_col": 4,
+          "x_m": 23.0,
+          "y_m": 17.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            221,
+            222
+          ],
+          "right_bays": [
+            223,
+            224,
+            225
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R46",
+          "zone_id": "Z-C6",
+          "col": 5,
+          "row_in_col": 5,
+          "x_m": 23.0,
+          "y_m": 19.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            226,
+            227
+          ],
+          "right_bays": [
+            228,
+            229,
+            230
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R47",
+          "zone_id": "Z-C6",
+          "col": 5,
+          "row_in_col": 6,
+          "x_m": 23.0,
+          "y_m": 21.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            231,
+            232
+          ],
+          "right_bays": [
+            233,
+            234,
+            235
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R48",
+          "zone_id": "Z-C6",
+          "col": 5,
+          "row_in_col": 7,
+          "x_m": 23.0,
+          "y_m": 23.2,
+          "length_m": 3.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            236,
+            237
+          ],
+          "right_bays": [
+            238,
+            239,
+            240
+          ],
+          "managed_by": "JD",
+          "tiers": 4,
+          "slots_per_tier": 20
+        }
+      ]
+    },
+    {
+      "station_id": "NH-LANYUAN",
+      "name": "兰苑无人菜鸟驿站",
+      "status": "pending_photos",
+      "note": "等用户提供实景照片后生成。"
+    }
+  ]
+}

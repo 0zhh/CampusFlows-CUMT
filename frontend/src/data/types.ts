@@ -7,12 +7,20 @@ export interface DemandRow {
   pickups: number
 }
 
+export type LoadLevel = 'normal' | 'watch' | 'limit' | 'overflow'
+
 export interface SiteParams {
   capacity_per_bucket: number
   kappa_q: number
   kappa_i: number
   q0: number
   i0: number
+  /** 物理储位数（照片/参数推算） */
+  physical_slots?: number
+  physical_source?: 'observed' | 'assumed'
+  kappa_i_warn?: number
+  aisle_m?: number
+  counters?: number
   /** 站点建成时的常量（不随场景变化），用于"这是固定设施还是临时措施"的说明 */
   capacity_norm: number
   kappa_q_norm: number
@@ -28,12 +36,33 @@ export interface ScenarioSite {
   demand: DemandRow[]
 }
 
+export interface WeekDaySite {
+  site_id: string
+  start_i: number
+  end_i: number
+  occupancy_pct: number
+  level: LoadLevel
+  projected: boolean
+}
+
+export interface WeekDay {
+  day: number
+  sites: WeekDaySite[]
+}
+
 export interface SiteSummary {
   site_id: string
   daily_arrivals: number
   daily_pickups: number
   peak_q: number
   peak_i: number
+  physical_slots?: number
+  occupancy_pct?: number
+  level?: LoadLevel
+  aisle_ok_pct?: number
+  queue_min?: number
+  i0?: number
+  net_per_day?: number
   risk_buckets: number
   risk_q_buckets: number
   risk_i_buckets: number
@@ -61,6 +90,8 @@ export interface TimelineRow {
 export interface Scenario {
   scenario_id: string
   name: string
+  day_index?: number
+  week?: WeekDay[]
   classification: 'SIMULATED'
   note: string
   total_daily_arrivals: number
@@ -99,3 +130,4 @@ export interface SiteStatic {
   px: number
   py: number
 }
+

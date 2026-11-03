@@ -25,6 +25,10 @@ const statusFilters: { id: 'all' | IncidentStatus; label: string }[] = [
 ]
 const filter = ref<'all' | IncidentStatus>('all')
 
+const STATUS_RANK: Record<string, number> = { open: 0, doing: 1, closed: 2 }
+
+/** 未闭环的排前面，同状态按风险时段先后 */
+/** 只在生成时按状态排一次；点击改状态不重排，避免列表在脚下跳动 */
 const filtered = computed(() =>
   filter.value === 'all' ? incidents.value : incidents.value.filter((i) => i.status === filter.value)
 )

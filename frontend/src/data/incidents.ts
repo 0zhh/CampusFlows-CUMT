@@ -177,5 +177,8 @@ export function generateIncidents(scenario: Scenario): Incident[] {
     })
   }
 
+  // 演示口径：列表首条固定为「待处理」，方便从 待处理 → 处理中 → 已闭环 走一遍
+  if (out.length) out[0].status = 'open'
+
   return out
 }

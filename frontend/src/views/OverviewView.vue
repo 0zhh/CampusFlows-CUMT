@@ -207,6 +207,27 @@ const siteRows = computed(() =>
   })
 )
 
+const weekRows = computed(() => {
+  const wk = scenario.value.week ?? []
+  return wk.map((d) => {
+    const t = d.sites.find((s) => s.site_id === 'NH-TAOYUAN') ?? d.sites[0]
+    return {
+      day: d.day,
+      pct: t.occupancy_pct,
+      level: t.level,
+      projected: t.projected,
+      h: Math.min(100, t.occupancy_pct)
+    }
+  })
+})
+
+function levelText(l?: string) {
+  return l === 'overflow' ? '满仓' : l === 'limit' ? '限流' : l === 'watch' ? '预警' : '正常'
+}
+function levelTag(l?: string) {
+  return l === 'overflow' || l === 'limit' ? 'tag--danger' : l === 'watch' ? 'tag--warn' : 'tag--ok'
+}
+
 void simSeries
 
 useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
@@ -224,12 +245,15 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
     <section class="kpis" aria-label="关键指标">
       <KpiCard label="当日到件" :value="kpi.totalArrivals" unit="件" :icon="Package" simulated hint="四站合计，演示假设" />
       <KpiCard label="当日取走" :value="kpi.totalPickups" unit="件" :icon="PackageCheck" simulated hint="实际完成取件，不含未满足" />
-      <KpiCard label="峰值未处理积压" :value="kpi.peakQ" unit="件" :icon="Layers" simulated
-        :tone="kpi.peakQ > 0 ? 'warn' : 'ok'" hint="全场单站单时段最高值" />
-      <KpiCard label="峰值待取库存" :value="kpi.peakI" unit="件" :icon="Boxes" simulated
-        :tone="kpi.peakI > 2500 ? 'warn' : 'default'" hint="已上架未取走" />
-      <KpiCard label="风险时段" :value="kpi.riskBuckets" unit="个" :icon="TriangleAlert" simulated
-        :tone="kpi.riskBuckets > 0 ? 'danger' : 'ok'" :hint="`涉及 ${kpi.riskSites} 个站点`" />
+      <KpiCard label="最高占用率" :value="kpi.maxOcc" unit="%" :icon="Boxes" simulated
+        :tone="kpi.maxOcc >= 85 ? 'danger' : kpi.maxOcc >= 70 ? 'warn' : 'ok'"
+        hint="物理储位占用，最高的站点" />
+      <KpiCard label="通道可通行率" :value="kpi.minAisle" unit="%" :icon="Layers" simulated
+        :tone="kpi.minAisle < 70 ? 'danger' : kpi.minAisle < 85 ? 'warn' : 'ok'"
+        hint="低于 70% 即通道受限" />
+      <KpiCard label="高峰排队" :value="kpi.maxQueue" unit="分钟" :icon="TriangleAlert" simulated
+        :tone="kpi.maxQueue > 20 ? 'danger' : kpi.maxQueue > 10 ? 'warn' : 'ok'"
+        hint="超过 20 分钟即服务受限" />
       <KpiCard label="未满足取件" :value="kpi.unmet" unit="件" :icon="PackageX" simulated
         :tone="kpi.unmet > 0 ? 'danger' : 'ok'" hint="需求超过可交付量" />
     </section>
@@ -260,8 +284,7 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
                 </span>
                 <span class="site-row__num num">{{ r.sum.peak_q }}</span>
                 <span class="site-row__unit">件</span>
-                <span v-if="r.risk" class="tag tag--danger">{{ r.sum.risk_buckets }} 段</span>
-                <span v-else class="tag tag--ok">正常</span>
+                <span class="tag" :class="levelTag(r.sum.level)">{{ levelText(r.sum.level) }}</span>
               </button>
             </li>
           </ul>
@@ -307,6 +330,27 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
           </ul>
         </div>
       </div>
+
+      <div class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">本周与推演</h2>
+          <span class="panel__hint">第 7 天按设计占用率回推，第 8—9 天为外推</span>
+        </div>
+        <div class="panel__body">
+          <ol class="week">
+            <li v-for="d in weekRows" :key="d.day" class="week__item" :class="'week__item--' + d.level">
+              <span class="week__day">D{{ d.day }}</span>
+              <span class="week__bar"><i :style="{ height: d.h + '%' }" /></span>
+              <span class="week__num num">{{ d.pct }}%</span>
+              <span v-if="d.projected" class="week__proj">外推</span>
+            </li>
+          </ol>
+          <p class="note">
+            第 7 天收盘 {{ weekRows[6]?.pct }}%，仍在运营上限（物理储位的 85%）之下；
+            按每天净增 {{ fmt(scenario.summary[0]?.net_per_day ?? 0) }} 件推算，第 9 天会越过满仓线。
+          </p>
+        </div>
+      </div>
     </section>
 
     <SiteDrawer v-model:open="drawerOpen" :site-id="selected" :scenario="scenario" @go-sites="router.push('/sites')" />
@@ -314,6 +358,17 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
 </template>
 
 <style scoped>
+.week { display: flex; align-items: flex-end; gap: 8px; height: 132px; margin-bottom: var(--sp-3); }
+.week__item { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1 1 0; height: 100%; }
+.week__day { font-size: 10px; color: var(--fg-2); }
+.week__bar { flex: 1 1 auto; width: 100%; display: flex; align-items: flex-end; background: var(--bg-2); border-radius: 3px; overflow: hidden; }
+.week__bar i { display: block; width: 100%; background: var(--ok); transition: height 0.3s var(--ease); }
+.week__item--watch .week__bar i { background: var(--warn); }
+.week__item--limit .week__bar i { background: var(--danger); }
+.week__item--overflow .week__bar i { background: var(--danger); filter: brightness(0.8); }
+.week__num { font-size: 10px; color: var(--fg-1); }
+.week__proj { font-size: 9px; color: var(--fg-2); }
+
 .ov { display: grid; gap: var(--sp-5); }
 
 .ov__bar {

@@ -68,6 +68,12 @@ export interface Kpi {
   riskBuckets: number
   riskSites: number
   unmet: number
+  /** 最高占用率 % */
+  maxOcc: number
+  /** 最低通道可通行率 % */
+  minAisle: number
+  /** 最长高峰排队 分钟 */
+  maxQueue: number
 }
 
 export function scenarioKpi(scenario: Scenario): Kpi {
@@ -79,7 +85,10 @@ export function scenarioKpi(scenario: Scenario): Kpi {
     peakI: Math.max(...sum.map((s) => s.peak_i)),
     riskBuckets: sum.reduce((a, s) => a + s.risk_buckets, 0),
     riskSites: sum.filter((s) => s.risk_buckets > 0).length,
-    unmet: sum.reduce((a, s) => a + s.unmet, 0)
+    unmet: sum.reduce((a, s) => a + s.unmet, 0),
+    maxOcc: Math.max(...sum.map((s) => s.occupancy_pct ?? 0)),
+    minAisle: Math.min(...sum.map((s) => s.aisle_ok_pct ?? 100)),
+    maxQueue: Math.max(...sum.map((s) => s.queue_min ?? 0))
   }
 }
 
