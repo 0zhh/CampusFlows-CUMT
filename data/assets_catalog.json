@@ -154,6 +154,54 @@
       "sha256": "52c4e719be8e5286ec755522126a51cc5f1619d15a4c742ebdc0c090938cf001",
       "use_restriction": "具体站点与校区未逐图注明；不直接绑定桃苑或其他南湖站",
       "rights": "original_rightsholder; open_reuse_license_not_verified"
+    },
+    {
+      "id": "A12",
+      "title": "桃苑主站：顺丰服务台与 25—53 号货架",
+      "asset_type": "user_field_photo",
+      "local_path": "reference/taoyuan_interior/P1_sf_counter_and_racks25-53.jpg",
+      "source_ids": [
+        "S25"
+      ],
+      "license_status": "user_owned",
+      "use_restriction": "用户本人拍摄；本项目课程演示与报告可用，对外公开需用户同意",
+      "content_caveats": "手机广角拍摄，边缘有畸变；尺寸为目测估算，非实测"
+    },
+    {
+      "id": "A13",
+      "title": "桃苑主站：108—114 号货架与自助取件导向牌",
+      "asset_type": "user_field_photo",
+      "local_path": "reference/taoyuan_interior/P2_rack108-114_aisle_and_sign.jpg",
+      "source_ids": [
+        "S25"
+      ],
+      "license_status": "user_owned",
+      "use_restriction": "用户本人拍摄；本项目课程演示与报告可用，对外公开需用户同意",
+      "content_caveats": "手机广角拍摄，边缘有畸变；尺寸为目测估算，非实测"
+    },
+    {
+      "id": "A14",
+      "title": "桃苑主站：147—154 号货架号牌与空置备用架",
+      "asset_type": "user_field_photo",
+      "local_path": "reference/taoyuan_interior/P3_racks147-155_board_pair.jpg",
+      "source_ids": [
+        "S25"
+      ],
+      "license_status": "user_owned",
+      "use_restriction": "用户本人拍摄；本项目课程演示与报告可用，对外公开需用户同意",
+      "content_caveats": "手机广角拍摄，边缘有畸变；尺寸为目测估算，非实测"
+    },
+    {
+      "id": "A15",
+      "title": "桃苑主站：71—107 号货架段与结构柱",
+      "asset_type": "user_field_photo",
+      "local_path": "reference/taoyuan_interior/P4_racks71-107_signs_and_column.jpg",
+      "source_ids": [
+        "S25"
+      ],
+      "license_status": "user_owned",
+      "use_restriction": "用户本人拍摄；本项目课程演示与报告可用，对外公开需用户同意",
+      "content_caveats": "手机广角拍摄，边缘有畸变；尺寸为目测估算，非实测"
     }
   ]
 }

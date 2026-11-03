@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 159,
-  "total_bytes": 25153218,
+  "count": 168,
+  "total_bytes": 27311534,
   "files": [
     {
       "path": ".gitignore",
@@ -16,13 +16,13 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 40800,
-      "sha256": "bd4c0c2b45d75858233b5f50c56591a2145ca916ae84a08de4ac04a67686245a"
+      "bytes": 41500,
+      "sha256": "3bc151017404290e9365999be45d28fdcb2359ea4898cd640b351092349d7c49"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
-      "bytes": 15669,
-      "sha256": "3c57bb7726c481f428b34139fce6976fee597ab2f8cdfefe40d28fd0fe6d3d01"
+      "bytes": 17139,
+      "sha256": "b544530e32320bbe5b55b784f114305a24c7f064234fbbfc829991060e48f54f"
     },
     {
       "path": "data/README.md",
@@ -31,8 +31,8 @@
     },
     {
       "path": "data/assets_catalog.json",
-      "bytes": 6810,
-      "sha256": "45d4397100185278f05ab59d3d25cad97ca96fbbe88fe6a806c34759ea947de4"
+      "bytes": 8965,
+      "sha256": "f7ba6ad3f11dafc0b17f15d360fa287b55e40521d825425e6be9e80e05820730"
     },
     {
       "path": "data/nanhu_operating_rules.json",
@@ -66,8 +66,8 @@
     },
     {
       "path": "data/source_catalog.json",
-      "bytes": 15375,
-      "sha256": "3db1e4ee7ad6bf69396eafeee1a5fdc7fbd30a0dab65459809316e9ac5910944"
+      "bytes": 15975,
+      "sha256": "50990cf6ccccbd6d741a108bdf6a6b224b932d4379aa643c5f45f8735a24611c"
     },
     {
       "path": "data/资料核验与缺口.md",
@@ -131,8 +131,8 @@
     },
     {
       "path": "data/params/param_registry.json",
-      "bytes": 13712,
-      "sha256": "20a9ed480996cf56ecd02c87d5ddb7061f93ab7fb713abf3f3b0c835d87a2f67"
+      "bytes": 18164,
+      "sha256": "5ec6ccdc3b9d2d2fb0327a9486181f28f5b8f2613a8a8e0a43abd400dbb8d826"
     },
     {
       "path": "data/reference/cumt_2022_unmanned_station_photo.jpg",
@@ -190,9 +190,34 @@
       "sha256": "ddebf136d5d9f9a0f9a6330b1aa2e637a772b19b033adc5f2aa78e88a127c177"
     },
     {
+      "path": "data/reference/taoyuan_photo_evidence.json",
+      "bytes": 6198,
+      "sha256": "1c325b992e5354208fd52f1a6febd1689bd427377b98c10d31c05b7a67345387"
+    },
+    {
       "path": "data/reference/实景素材索引.md",
       "bytes": 4706,
       "sha256": "f59ae7c12acf920ffbabbfc28e0f3dbce08e5df6316f0934ceb24d7cfedc1274"
+    },
+    {
+      "path": "data/reference/taoyuan_interior/P1_sf_counter_and_racks25-53.jpg",
+      "bytes": 443491,
+      "sha256": "73146114f471082480143e7bd33d9ca7f3bbcf46dafd0996e436cf5f1c98e0a2"
+    },
+    {
+      "path": "data/reference/taoyuan_interior/P2_rack108-114_aisle_and_sign.jpg",
+      "bytes": 547000,
+      "sha256": "26ef6efc3cb46ddba944b2d065bf14a645a3a7a4831a3bfa104e1748d129a95a"
+    },
+    {
+      "path": "data/reference/taoyuan_interior/P3_racks147-155_board_pair.jpg",
+      "bytes": 539012,
+      "sha256": "f4193c16feb618ab94d4f3d8966de218161f2740302ae4a86a29d4c4e0ffc717"
+    },
+    {
+      "path": "data/reference/taoyuan_interior/P4_racks71-107_signs_and_column.jpg",
+      "bytes": 528467,
+      "sha256": "64a0a49f66a21b099a5f79d3b703fc075fdd786bf9d4e4f549764d7273ca6c14"
     },
     {
       "path": "data/research/build_params.py",
@@ -215,9 +240,14 @@
       "sha256": "c3cb20f6aeb512278b39f7edaf04bc3a5ae55e142d6966c80f6c81aadd3672bd"
     },
     {
+      "path": "data/research/extract_photo_evidence.py",
+      "bytes": 7096,
+      "sha256": "4a830b2f53556de24bd12f5886c43f3565e8e0cdeb32b2624843b4ac76158d2c"
+    },
+    {
       "path": "data/research/file_manifest.json",
-      "bytes": 25290,
-      "sha256": "a3e24add4b4529432470414baee99b89010b4bcc99e434c7339fcaca3f26bc9a"
+      "bytes": 28287,
+      "sha256": "d97fe5883880501f4def59188d04a04b33046807627f5748486959c91ebabab4"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -258,6 +288,11 @@
       "path": "data/research/make_manifest.py",
       "bytes": 1684,
       "sha256": "01236711f61df03182c1d414cd45d043ef48f77242c08276052b0c7a67db3ac7"
+    },
+    {
+      "path": "data/research/merge_photo_params.py",
+      "bytes": 8263,
+      "sha256": "37930af3267017fbf4c43180f8031d5c6766267d087e16b4f03b4af12fa2f7c4"
     },
     {
       "path": "data/research/probe_route_graph.py",
@@ -791,13 +826,23 @@
     },
     {
       "path": "report/Java语言及网络编程_课程报告_初版.docx",
-      "bytes": 55813,
-      "sha256": "09cb3605ca830cf9a6225529fd2c1841aeac330ad7db36269ee96bf630a2f0c9"
+      "bytes": 62564,
+      "sha256": "1efa60435e20674329ec25a40648d311f8255e1f15b13b9b929844bf9071281d"
+    },
+    {
+      "path": "report/Java语言及网络编程_课程报告_初版_v2.docx",
+      "bytes": 57005,
+      "sha256": "09c36486719aeb5e01fbf34c32de59f58101c75ec467e3a3f4dd5514e7a4b9f8"
     },
     {
       "path": "report/build_report.py",
-      "bytes": 38258,
-      "sha256": "61acbce7500eb2cbe3ba7c622091c541e4982a6fca6bb60fb58f9bebdc1237f3"
+      "bytes": 40755,
+      "sha256": "6c0dbe4d6f8fd3ec5b3db827a5cfd703634610e30697eaf6d5d74d29f63ffdfe"
+    },
+    {
+      "path": "report/~$va语言及网络编程_课程报告_初版.docx",
+      "bytes": 162,
+      "sha256": "9fd4d0ea6615e9a8f114f7304494cea6cf06a940c8fdf0c5a68dc21141c85084"
     }
   ]
 }

@@ -291,6 +291,18 @@
       "retrieved_at": "2026-11-03T00:00:00+00:00",
       "download_status": "not_downloaded",
       "use_scope": "“超时未取 → 退回”的制度依据。具体保管天数由各站点自定，本模型取 3 天并给出 3—10 天区间。"
+    },
+    {
+      "id": "S25",
+      "title": "桃苑物流服务中心内部实景照片（4 张）",
+      "publisher": "用户本人拍摄",
+      "source_type": "user_field_photo",
+      "url": null,
+      "published_date": "2026-11-03",
+      "retrieved_at": "2026-11-03T00:00:00+00:00",
+      "download_status": "local_copy",
+      "local_path": "reference/taoyuan_interior/",
+      "use_scope": "货架编号体系、取件码规则、层数、通道与分区；结构化为 reference/taoyuan_photo_evidence.json。仅用于本项目课程演示，对外发布需用户同意。"
     }
   ]
 }
