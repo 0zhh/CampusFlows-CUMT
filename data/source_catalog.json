@@ -1,5 +1,5 @@
 {
-  "research_date": "2026-10-27",
+  "research_date": "2026-11-03",
   "timezone": "Asia/Shanghai",
   "sources": [
     {
@@ -225,6 +225,72 @@
       "local_path": "sources/cumt_2024_winter_report.html",
       "sha256": "a726f14cd1d349cf3ecab520c72635424ecf0fc7509aa4d264d6611520c6b715",
       "use_scope": "保障物流供给配图可见货架和通道；文章涉及两校区，未逐图注明具体站点，不能据此强行归入某一南湖站。"
+    },
+    {
+      "id": "S19",
+      "title": "139.38亿件！2025年“双11”期间快递业务量再创新高",
+      "publisher": "新华网（转国家邮政局监测数据）",
+      "source_type": "official_news",
+      "url": "https://www.news.cn/fortune/20251112/c261f96ed1ca45858f1a7774c3c27d0f/c.html",
+      "published_date": "2025-11-12",
+      "retrieved_at": "2026-11-03T00:00:00+00:00",
+      "download_status": "fetched_text_only",
+      "use_scope": "双11 期间全国快递日均揽收 6.34 亿件，为日常业务量的 117.8%；单日峰值 7.77 亿件。用于给出“旺季放大倍数”的下界锚点。"
+    },
+    {
+      "id": "S20",
+      "title": "快递驿站的自助取件真的好用吗？",
+      "publisher": "闽南日报（漳州新闻网）",
+      "source_type": "local_news",
+      "url": "http://www.zzxww.com/pc/content/202403/05/content_127924.html",
+      "published_date": "2024-03-05",
+      "retrieved_at": "2026-11-03T00:00:00+00:00",
+      "download_status": "fetched_text_only",
+      "use_scope": "取件码结构：每个货架每层有编号，取件码前两位对应货架号与层号，后四位为顺序码；自助取件先按码找件再扫码出库。用于定义储位编码与取件码生成规则。"
+    },
+    {
+      "id": "S21",
+      "title": "“人还未至，行李先到”，开学前有高校驿站每日到3万个包裹",
+      "publisher": "光明网（转潇湘晨报/九派新闻）",
+      "source_type": "news",
+      "url": "https://m.gmw.cn/2025-09/08/content_1304139182.htm",
+      "published_date": "2025-09-08",
+      "retrieved_at": "2026-11-03T00:00:00+00:00",
+      "download_status": "fetched_text_only",
+      "use_scope": "武汉某高校南湖校区驿站开学季日均到件约 3 万件、比平时增加约 2 倍、30 人引导出库、单件派费约 0.9 元、室内不足时开辟室外临时堆放区。用于给出校园旺季放大倍数的上界锚点与人力/临时区参数。"
+    },
+    {
+      "id": "S22",
+      "title": "菜鸟驿站（百科词条）",
+      "publisher": "百度百科",
+      "source_type": "encyclopedia",
+      "url": "https://baike.baidu.com/item/%E8%8F%9C%E9%B8%9F%E9%A9%BF%E7%AB%99",
+      "published_date": null,
+      "retrieved_at": "2026-11-03T00:00:00+00:00",
+      "download_status": "fetched_text_only",
+      "use_scope": "全国城市站点 4 万余个、高校校园驿站 1000 余个；末端“社会化协同”模式。仅作背景量级，不作本站数据。"
+    },
+    {
+      "id": "S23",
+      "title": "快递驿站专用货架 商品规格（1800×600×2000 mm，5 层，承重 300 kg）",
+      "publisher": "1688 商品页（多家厂商同规格）",
+      "source_type": "commercial_spec",
+      "url": "https://detail.1688.com/offer/954688016157.html",
+      "published_date": null,
+      "retrieved_at": "2026-11-03T00:00:00+00:00",
+      "download_status": "fetched_text_only",
+      "use_scope": "驿站货架常见外形尺寸与层数、承重。用于平面图与储位模板的默认尺寸，不代表南湖校区的实测尺寸。"
+    },
+    {
+      "id": "S24",
+      "title": "快递暂行条例（第二十六条：无法投递的快件应当退回寄件人）",
+      "publisher": "国务院",
+      "source_type": "regulation",
+      "url": "https://www.gov.cn/zhengce/content/2018-03/27/content_5277757.htm",
+      "published_date": "2018-03-27",
+      "retrieved_at": "2026-11-03T00:00:00+00:00",
+      "download_status": "not_downloaded",
+      "use_scope": "“超时未取 → 退回”的制度依据。具体保管天数由各站点自定，本模型取 3 天并给出 3—10 天区间。"
     }
   ]
 }

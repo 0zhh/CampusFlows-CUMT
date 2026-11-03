@@ -1,81 +1,137 @@
 {
- "date": "2026-10-27",
- "decisions": [
-  {
-   "id": "USER-001",
-   "topic": "常态营业时间",
-   "user_statement": "这个就按手册的来",
-   "decision": "采用桃苑08:30—18:30、三个无人站07:00—23:30作为常态演示基线",
-   "source_ids": [
-    "S01"
-   ],
-   "classification": "user_selected_demo_baseline",
-   "not_a_field_measurement": true
-  },
-  {
-   "id": "USER-002",
-   "topic": "项目定位",
-   "decision": "固定矿大南湖校区，课程演示优先，不建设跨高校接入平台，不要求投入真实运营",
-   "classification": "user_scope_instruction"
-  },
-  {
-   "id": "USER-003",
-   "topic": "内部布局素材的有效性",
-   "user_statement": "这种图片里面没有多少关于货架、分拣区、待取区、服务台和出入口的具体分布，有效信息少，可以不用看",
-   "decision": "人物遮挡或仅露局部货架的照片不作为布局依据；优先完整平面图、清晰分区图或覆盖动线的连续全景资料",
-   "classification": "user_evidence_quality_requirement"
-  },
-  {
-   "id": "USER-004",
-   "topic": "系统形态",
-   "user_statement": "后端要有，数据库我觉得也有必要，就按照 Spring Boot + H2/MySQL 全栈来，开发时间充裕不用管",
-   "decision": "按 Spring Boot 3.2.3 + H2(开发默认)/MySQL 8(可选) 实现完整全栈，前端 Vue3+TS+Vite",
-   "classification": "user_scope_instruction",
-   "supersedes": "v1.2 轻量前端路线"
-  },
-  {
-   "id": "USER-005",
-   "topic": "交付顺序与优先级",
-   "user_statement": "前端比后端更重要！需要你先把前端做出来，我确认前端可以后，再真正的开发后端实现真正的功能",
-   "decision": "硬性顺序：第1段前端 F1-F6 → 用户验收门 → 第2段后端 B1-B4 → 第3段联调 D1-D3；验收未过不得写 Java 业务代码",
-   "classification": "user_delivery_order_instruction"
-  },
-  {
-   "id": "USER-006",
-   "topic": "后端未完成时的演示降级",
-   "user_statement": "在后端没有开发完全时，你完全可以拿一部分数据或者几个例子拿来演示就可以了",
-   "decision": "前端在 /api 不可用时自动回落 data/demo 内置样例，顶部提示演示数据模式；此回落为硬要求",
-   "classification": "user_authorization"
-  },
-  {
-   "id": "USER-007",
-   "topic": "地图呈现参考",
-   "user_statement": "可以借鉴 Huaihai-Battlefield-Collab 下的 HB Web，它生成的淮海战役网页地图挺好，并且要找清楚它的地图数据来源，想照同样渠道去找南湖校区的数据",
-   "decision": "采用 Leaflet + 本地 OSM GeoJSON 矢量层（默认）+ Esri World_Imagery 卫星层 + 手册原图对照层 三层可切换；不采用 Cesium 三维",
-   "classification": "user_technical_direction"
-  },
-  {
-   "id": "USER-008",
-   "topic": "场景裁剪",
-   "user_statement": "寒暑假以及法定节假日等特殊情况不用管",
-   "decision": "不实现寒假/暑假/法定节假日场景与 dated_overrides 回放；假日规则保留为资料，不进演示",
-   "classification": "user_scope_instruction"
-  }
- ],
- "pending_questions": [
-  {
-   "id": "PENDING-001",
-   "topic": "假期无人站是否能取已有包裹",
-   "status": "closed_by_user_scope",
-   "current_safe_handling": "具体年份回放按对应官方通知，其他情况标待核实",
-   "resolution": "USER-008 假日场景整体裁剪，此问题不再阻塞"
-  },
-  {
-   "id": "PENDING-002",
-   "topic": "四站及桃苑内顺丰／京东有无最新搬迁或新增",
-   "status": "awaiting_user_reply",
-   "current_safe_handling": "按公开资料显示，保留未现场核实标签"
-  }
- ],
- "date_updated": "2026-10-31"
+  "date": "2026-11-03",
+  "decisions": [
+    {
+      "id": "USER-001",
+      "topic": "常态营业时间",
+      "user_statement": "这个就按手册的来",
+      "decision": "采用桃苑08:30—18:30、三个无人站07:00—23:30作为常态演示基线",
+      "source_ids": [
+        "S01"
+      ],
+      "classification": "user_selected_demo_baseline",
+      "not_a_field_measurement": true
+    },
+    {
+      "id": "USER-002",
+      "topic": "项目定位",
+      "decision": "固定矿大南湖校区，课程演示优先，不建设跨高校接入平台，不要求投入真实运营",
+      "classification": "user_scope_instruction"
+    },
+    {
+      "id": "USER-003",
+      "topic": "内部布局素材的有效性",
+      "user_statement": "这种图片里面没有多少关于货架、分拣区、待取区、服务台和出入口的具体分布，有效信息少，可以不用看",
+      "decision": "人物遮挡或仅露局部货架的照片不作为布局依据；优先完整平面图、清晰分区图或覆盖动线的连续全景资料",
+      "classification": "user_evidence_quality_requirement"
+    },
+    {
+      "id": "USER-004",
+      "topic": "系统形态",
+      "user_statement": "后端要有，数据库我觉得也有必要，就按照 Spring Boot + H2/MySQL 全栈来，开发时间充裕不用管",
+      "decision": "按 Spring Boot 3.2.3 + H2(开发默认)/MySQL 8(可选) 实现完整全栈，前端 Vue3+TS+Vite",
+      "classification": "user_scope_instruction",
+      "supersedes": "v1.2 轻量前端路线"
+    },
+    {
+      "id": "USER-005",
+      "topic": "交付顺序与优先级",
+      "user_statement": "前端比后端更重要！需要你先把前端做出来，我确认前端可以后，再真正的开发后端实现真正的功能",
+      "decision": "硬性顺序：第1段前端 F1-F6 → 用户验收门 → 第2段后端 B1-B4 → 第3段联调 D1-D3；验收未过不得写 Java 业务代码",
+      "classification": "user_delivery_order_instruction"
+    },
+    {
+      "id": "USER-006",
+      "topic": "后端未完成时的演示降级",
+      "user_statement": "在后端没有开发完全时，你完全可以拿一部分数据或者几个例子拿来演示就可以了",
+      "decision": "前端在 /api 不可用时自动回落 data/demo 内置样例，顶部提示演示数据模式；此回落为硬要求",
+      "classification": "user_authorization"
+    },
+    {
+      "id": "USER-007",
+      "topic": "地图呈现参考",
+      "user_statement": "可以借鉴 Huaihai-Battlefield-Collab 下的 HB Web，它生成的淮海战役网页地图挺好，并且要找清楚它的地图数据来源，想照同样渠道去找南湖校区的数据",
+      "decision": "采用 Leaflet + 本地 OSM GeoJSON 矢量层（默认）+ Esri World_Imagery 卫星层 + 手册原图对照层 三层可切换；不采用 Cesium 三维",
+      "classification": "user_technical_direction"
+    },
+    {
+      "id": "USER-008",
+      "topic": "场景裁剪",
+      "user_statement": "寒暑假以及法定节假日等特殊情况不用管",
+      "decision": "不实现寒假/暑假/法定节假日场景与 dated_overrides 回放；假日规则保留为资料，不进演示",
+      "classification": "user_scope_instruction"
+    },
+    {
+      "id": "USER-009",
+      "topic": "现场观测",
+      "user_statement": "现场观测不能做，剩下的数据只能从网络上获得或者我线下拍几张实景照片给你",
+      "decision": "不安排现场观测；所有非公开数据按 assumed 处理并给区间；用户提供实拍照片后据照片修正平面结构与尺寸",
+      "classification": "user_constraint"
+    },
+    {
+      "id": "USER-010",
+      "topic": "演示尺度",
+      "user_statement": "就按照你的建议来做",
+      "decision": "默认一天（07:00—23:30，1 分钟步长）；一周用\"日均 ± 日间波动\"折叠，不做 7×1350 步展开",
+      "classification": "user_approved_proposal"
+    },
+    {
+      "id": "USER-011",
+      "topic": "包裹粒度",
+      "user_statement": "不需要细到每个包裹，只需要\"批次/货架聚合\"就可以了，最多可以点开显示某个货架的正面2D图",
+      "decision": "仿真按批次与货架聚合；单件只在被选中时展开；货架提供正面 2D 视图",
+      "classification": "user_scope_instruction"
+    },
+    {
+      "id": "USER-012",
+      "topic": "平面图精度",
+      "user_statement": "可以分清楚每个货架、货架间的过道就可以了，我等会会把我拍的照片发给你",
+      "decision": "平面图只需区分货架与过道；先按参数化模板生成，照片到位后替换为按照片复原的结构",
+      "classification": "user_scope_instruction"
+    },
+    {
+      "id": "USER-013",
+      "topic": "承运商口径",
+      "user_statement": "就按你说的做",
+      "decision": "只用文字使用承运商名称（顺丰、京东、韵达、中通、圆通、申通、EMS），不使用任何公司 logo",
+      "classification": "user_approved_proposal"
+    },
+    {
+      "id": "USER-014",
+      "topic": "演示环境",
+      "user_statement": "分辨率最好是在1k以上，不投屏，只用做ppt展示就行了，展示时间不能超过5分钟但也不能太短",
+      "decision": "目标分辨率 ≥1280×720（按 1440 设计与验收）；不入投屏；演示控制在 3—5 分钟",
+      "classification": "user_constraint"
+    },
+    {
+      "id": "USER-015",
+      "topic": "交付优先级",
+      "user_statement": "截止时间不多了，所以要求先做前端的演示，再做后端的真实、完整功能，数据尽量真实",
+      "decision": "顺序锁定为 前端演示 → 实体仿真增强 → 后端真实功能；数据尽量真实，拿不到的做成参数",
+      "classification": "user_delivery_order"
+    },
+    {
+      "id": "USER-016",
+      "topic": "课程交付物",
+      "user_statement": "不只是要做ppt展示，还要上交结课报告，但是报告不用展示",
+      "decision": "除 PPT 与展示外，须按课程《报告说明》提交结课报告（报告不参与展示）",
+      "classification": "course_requirement"
+    }
+  ],
+  "pending_questions": [
+    {
+      "id": "PENDING-001",
+      "topic": "假期无人站是否能取已有包裹",
+      "status": "closed_by_user_scope",
+      "current_safe_handling": "具体年份回放按对应官方通知，其他情况标待核实",
+      "resolution": "USER-008 假日场景整体裁剪，此问题不再阻塞"
+    },
+    {
+      "id": "PENDING-002",
+      "topic": "四站及桃苑内顺丰／京东有无最新搬迁或新增",
+      "status": "awaiting_user_reply",
+      "current_safe_handling": "按公开资料显示，保留未现场核实标签"
+    }
+  ],
+  "date_updated": "2026-10-31"
 }

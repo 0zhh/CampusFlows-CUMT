@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 142,
-  "total_bytes": 22055124,
+  "count": 159,
+  "total_bytes": 25153218,
   "files": [
     {
       "path": ".gitignore",
@@ -10,14 +10,19 @@
       "sha256": "2088027fe074993cd6078d5815fa0e6241333a3aa5c9db2ec8ca4f0c329ad01a"
     },
     {
-      "path": "CampusFlow_总体开发计划与实施路线_v1.2_南湖校区驿链演示版.md",
-      "bytes": 20620,
-      "sha256": "828576bde5e1d3bd092c3e3241e2a6ff55e5f70d6f534263a61f02d2a5e5bebd"
+      "path": "CampusFlow_总体开发计划与实施路线_v1.3_南湖校区全栈演示版.md",
+      "bytes": 28260,
+      "sha256": "2274ed21f6449c198ad63a42d8f612edd38efacd4217a9e6cb2a95df356b17e1"
     },
     {
-      "path": "CampusFlow_总体开发计划与实施路线_v1.3_南湖校区全栈演示版.md",
-      "bytes": 26994,
-      "sha256": "0863fe5c6443fdbf8dfa5c661f060eab50e4ce834e53c9384d75b03d471952e9"
+      "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
+      "bytes": 40800,
+      "sha256": "bd4c0c2b45d75858233b5f50c56591a2145ca916ae84a08de4ac04a67686245a"
+    },
+    {
+      "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
+      "bytes": 15669,
+      "sha256": "3c57bb7726c481f428b34139fce6976fee597ab2f8cdfefe40d28fd0fe6d3d01"
     },
     {
       "path": "data/README.md",
@@ -61,8 +66,8 @@
     },
     {
       "path": "data/source_catalog.json",
-      "bytes": 11631,
-      "sha256": "027f9a7085ccc34cacbe83f095f033c400a60b43cd6d2d93766ed72229fe2b8d"
+      "bytes": 15375,
+      "sha256": "3db1e4ee7ad6bf69396eafeee1a5fdc7fbd30a0dab65459809316e9ac5910944"
     },
     {
       "path": "data/资料核验与缺口.md",
@@ -96,8 +101,8 @@
     },
     {
       "path": "data/geo/site_geolocation.json",
-      "bytes": 3169,
-      "sha256": "f0412c67a59bf278e7f0e5e02a4622711e2c515ce35aadd4b6bd33dff7715309"
+      "bytes": 3374,
+      "sha256": "5d23254f6bf2f6047275a029656a1c9494395bff8bbf8775588eed7d5d1e47f3"
     },
     {
       "path": "data/maps/cumt_official_campus_traffic_2025.png",
@@ -110,6 +115,11 @@
       "sha256": "8c1f28ef979cce540400c926ddfdbafc5ae227f2392466961f883cebbe6237e3"
     },
     {
+      "path": "data/maps/cumtlive_logistics_locations_reddots.png",
+      "bytes": 726120,
+      "sha256": "77491f5838a1b358741acd26f32643fd60d110a7c321b390c5781e13844c7c09"
+    },
+    {
       "path": "data/maps/logistics_markers.json",
       "bytes": 1405,
       "sha256": "b6133c4dc3ad824b1fdffb02c1914fe4d9a1a9cbd1161449ba50069ff3eab73f"
@@ -118,6 +128,11 @@
       "path": "data/maps/map_manifest.json",
       "bytes": 1530,
       "sha256": "a5e1596a7a6d06315c5618097f91d71cdb9b9ef8bb519971f047f63f42602a89"
+    },
+    {
+      "path": "data/params/param_registry.json",
+      "bytes": 13712,
+      "sha256": "20a9ed480996cf56ecd02c87d5ddb7061f93ab7fb713abf3f3b0c835d87a2f67"
     },
     {
       "path": "data/reference/cumt_2022_unmanned_station_photo.jpg",
@@ -180,6 +195,11 @@
       "sha256": "f59ae7c12acf920ffbabbfc28e0f3dbce08e5df6316f0934ceb24d7cfedc1274"
     },
     {
+      "path": "data/research/build_params.py",
+      "bytes": 15976,
+      "sha256": "d907d9167e23e295a524bba6793ecff753818d196f31d43bbd882963210e485a"
+    },
+    {
       "path": "data/research/build_reference_data.py",
       "bytes": 31368,
       "sha256": "4cf8f09a0f67ac6aae2599f0a4a1fd4c92c5e8a7b56406e4c3e1319fe947f706"
@@ -196,8 +216,33 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 13121,
-      "sha256": "0fc83ef4e35cfe786af9c32d01a7fc79f2ba98bea970f8af70fc287254e60904"
+      "bytes": 25290,
+      "sha256": "a3e24add4b4529432470414baee99b89010b4bcc99e434c7339fcaca3f26bc9a"
+    },
+    {
+      "path": "data/research/fit_fft_georef.py",
+      "bytes": 4195,
+      "sha256": "ad605f64faa96501f5d7d78087b05adcd4d61d9a5f0bbd77b59022489f079412"
+    },
+    {
+      "path": "data/research/fit_image_georef.py",
+      "bytes": 4778,
+      "sha256": "962ef61fc342498174db4d1e35cfb1989fe6dab8c8a622e88ae479717ed37666"
+    },
+    {
+      "path": "data/research/fit_roads_georef.py",
+      "bytes": 4487,
+      "sha256": "5e56ed6deabda05cea67ff9686bbb1defd38a02c4faf9a5b3caf0d6b1ad4fff6"
+    },
+    {
+      "path": "data/research/fit_water2.py",
+      "bytes": 3583,
+      "sha256": "60873ca9a6aa41d4a13cc17bd632f460177844fea8522bee0e0ba6245122a5f7"
+    },
+    {
+      "path": "data/research/fit_water_georef.py",
+      "bytes": 3620,
+      "sha256": "55f78727b7f31467b16ac04f5afcae4896f518dffd0b659f9a2fd766a6f320d2"
     },
     {
       "path": "data/research/generate_demo_scenarios.py",
@@ -215,14 +260,19 @@
       "sha256": "01236711f61df03182c1d414cd45d043ef48f77242c08276052b0c7a67db3ac7"
     },
     {
+      "path": "data/research/probe_route_graph.py",
+      "bytes": 3030,
+      "sha256": "ecb8069081f3e5e904211b96422ef84cd33830c5e91023b736bfcac0b9201924"
+    },
+    {
       "path": "data/research/research_log.json",
       "bytes": 1689,
       "sha256": "9d7261f4f8ca461509ad2f3a189e362430b45d04d36a9a45c352446bbb4074a1"
     },
     {
       "path": "data/research/user_decisions.json",
-      "bytes": 3716,
-      "sha256": "a7f49cd21f6d96b365255e7665281b9e3bf7f256ce6a34ca14d26d245fd576b1"
+      "bytes": 7002,
+      "sha256": "3a8d5664dd76a9b2524885a95e5cfd7c23d1485c2a493474c3498740ac86ddf3"
     },
     {
       "path": "data/research/validate_bundle.py",
@@ -416,13 +466,13 @@
     },
     {
       "path": "docs/screenshots/P1-运营总览-dark.png",
-      "bytes": 335073,
-      "sha256": "3a0b18daf9e61a9f4fe8b24a5bddf64b2dbf458130c26e6afef7ddf0004b5aa5"
+      "bytes": 469496,
+      "sha256": "d7a21e0de598677414c8749a09d54bab1bbdf60223eab7a32126f566bb09af44"
     },
     {
       "path": "docs/screenshots/P1-运营总览-light.png",
-      "bytes": 333197,
-      "sha256": "a31a57450146b1bf8c915dc48e5a35974178796669cd5627e1742d572538b8bd"
+      "bytes": 469000,
+      "sha256": "177388aa506ce3cc9c930bb80787431ba79e5ebd8a107fb0eb73da52bdb8a917"
     },
     {
       "path": "docs/screenshots/P2-站点与服务-dark.png",
@@ -465,19 +515,24 @@
       "sha256": "129a27e718a9b3f23e1d054bc67f58c700e952142bd096e20465d2d16b142f95"
     },
     {
-      "path": "docs/screenshots/地图-矢量-浅色.png",
-      "bytes": 149878,
-      "sha256": "8b045fe69bc02f17d2666a5cd57b0d1390c66b9ca5fc11a01bfa69c9975109dc"
+      "path": "docs/screenshots/地图-卫星影像.png",
+      "bytes": 740532,
+      "sha256": "70245bb22eca905f2bda869c23d520441f34eaa5439c41d16e0c16e95dda1fad"
     },
     {
-      "path": "docs/screenshots/地图-矢量-深色.png",
-      "bytes": 150485,
-      "sha256": "1d6926d9f55efd80cd0225049ac3bf3fa32e5f4171b0c03f3951b66b23dd8324"
+      "path": "docs/screenshots/地图-手册原图.png",
+      "bytes": 284334,
+      "sha256": "b98cb4e872f12c78f13ae7d38c09f2fe7d13cbe33cd67ab9bae14997e699bd78"
+    },
+    {
+      "path": "docs/screenshots/地图校准面板.png",
+      "bytes": 1132990,
+      "sha256": "c77cf117e2b604878fefed9d816cce26a1a141a65abdd470ff9c76c19211424d"
     },
     {
       "path": "frontend/README.md",
-      "bytes": 3811,
-      "sha256": "0f691388576432a1dff36c584ef0c8ccaab8805a98a624c0576ba5c372c4f413"
+      "bytes": 5112,
+      "sha256": "b8b6a627f15de41afd79b87a9aa8512754f7ee13928b34cd966ace043c6b999c"
     },
     {
       "path": "frontend/index.html",
@@ -525,9 +580,24 @@
       "sha256": "ff165430d0486f36a29f79c4f3a8bae3f18fc2195ae248edabbc7353a977752f"
     },
     {
+      "path": "frontend/scripts/calibrate.mjs",
+      "bytes": 9749,
+      "sha256": "baa13d026500aa254f44412eafe70548afb9846e692e714d0aab81bc150e3557"
+    },
+    {
+      "path": "frontend/scripts/calshot.mjs",
+      "bytes": 2549,
+      "sha256": "a3021f3c5fe594d1148200fa2bba59b85fa22145fedc7bdceafef81ded4c3100"
+    },
+    {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 9962,
-      "sha256": "48c670f3b813c47c23fc1b0f474c223ef077735bcd11cd3eb0d2b016c19f7f72"
+      "bytes": 10588,
+      "sha256": "bbe52f72d14bd79dbaab3537f37597007b1051c2d52bf5b232cab34e5a82cc35"
+    },
+    {
+      "path": "frontend/scripts/keyboard.mjs",
+      "bytes": 6201,
+      "sha256": "24441f588a0b7bf51d1a84251ffed9d6ee92c003dfc941345887b5813d38e698"
     },
     {
       "path": "frontend/scripts/mapcheck.mjs",
@@ -536,8 +606,8 @@
     },
     {
       "path": "frontend/scripts/mapshot.mjs",
-      "bytes": 3384,
-      "sha256": "2db16a5b72bceb6204f0c6f1ead1f42fb9f0d520789dfa5b3eb6afe8a8351813"
+      "bytes": 3337,
+      "sha256": "c596ec66e9f15723481bd9ed7bd05699e03e17951d03426409957fdd20cff141"
     },
     {
       "path": "frontend/scripts/probe.mjs",
@@ -546,8 +616,8 @@
     },
     {
       "path": "frontend/scripts/shot.mjs",
-      "bytes": 2734,
-      "sha256": "4277c8fbfc817dcaf0a02046cc64fa09fc0ad9e185abff4a1a07a41938695ee5"
+      "bytes": 2741,
+      "sha256": "cc859d95c8132117bf1443bf2b61f61c7a6c2b4a00bc813cabce8138cd4221dd"
     },
     {
       "path": "frontend/scripts/text.mjs",
@@ -556,8 +626,8 @@
     },
     {
       "path": "frontend/src/App.vue",
-      "bytes": 6298,
-      "sha256": "92f8f6720989db4f4b5e6c6649afe2ce07916952f956e425ed0137446adf5b55"
+      "bytes": 6675,
+      "sha256": "b58b48385fccc1986afbf313b87cc7db11fbd1f7902c02def3961c9b59caaedd"
     },
     {
       "path": "frontend/src/env.d.ts",
@@ -570,9 +640,14 @@
       "sha256": "6eefcb5dadfd340236181ec48462e048e4793d84049feb83d6cbf239ad1d227f"
     },
     {
+      "path": "frontend/src/components/CalibratePanel.vue",
+      "bytes": 17524,
+      "sha256": "594af956d9ed919d9f300c3faf5596a6144d1444285a4ac6ff30d9fa9d26e9a2"
+    },
+    {
       "path": "frontend/src/components/CampusMap.vue",
-      "bytes": 14628,
-      "sha256": "7de13cc6c32c45efbd83aca7947f9da18990baa82a19ab159bfd2ecbee742a0d"
+      "bytes": 11418,
+      "sha256": "26d5d3ca7e44962143376149cf8afe59f2f5b889bdeaaf3b3582d9467ec72123"
     },
     {
       "path": "frontend/src/components/EChart.vue",
@@ -591,8 +666,8 @@
     },
     {
       "path": "frontend/src/components/SiteDrawer.vue",
-      "bytes": 9782,
-      "sha256": "972b61f0323a2beb7d976ac7128d2088df5f8dcd6b326bb3db677bcab224b7d3"
+      "bytes": 10617,
+      "sha256": "3e2f06ea007077f34b896b8f3567548a800eab5f723c8dc394c999c8c994ee76"
     },
     {
       "path": "frontend/src/components/SiteFooter.vue",
@@ -646,8 +721,8 @@
     },
     {
       "path": "frontend/src/data/site_geolocation.json",
-      "bytes": 3169,
-      "sha256": "f0412c67a59bf278e7f0e5e02a4622711e2c515ce35aadd4b6bd33dff7715309"
+      "bytes": 3374,
+      "sha256": "5d23254f6bf2f6047275a029656a1c9494395bff8bbf8775588eed7d5d1e47f3"
     },
     {
       "path": "frontend/src/data/sites.json",
@@ -676,8 +751,8 @@
     },
     {
       "path": "frontend/src/stores/app.ts",
-      "bytes": 1330,
-      "sha256": "3bb40e27fa1d2a13f0836e9d3f47851219c081a394ded2e2fa47a701cae1c855"
+      "bytes": 4813,
+      "sha256": "550925f01778e6f5d5023435190ba32e65587df7b40523fd9e97a6d9933e0323"
     },
     {
       "path": "frontend/src/styles/base.css",
@@ -691,8 +766,8 @@
     },
     {
       "path": "frontend/src/views/AboutView.vue",
-      "bytes": 11113,
-      "sha256": "5eed37e5478e92098d3dbc96466ebb2a2bbb803a8b8e34d09fb0c475bc650a5f"
+      "bytes": 11797,
+      "sha256": "9ae55b4489ae8053f0ef1a29bf0a0185ea554f6a0de8782ca9e80b63e2ade3b4"
     },
     {
       "path": "frontend/src/views/IncidentsView.vue",
@@ -713,6 +788,16 @@
       "path": "frontend/src/views/SitesView.vue",
       "bytes": 12157,
       "sha256": "4f692bd1a2cda6538951ad209c71c2c20287cdbe14892be4b796de142f491f5e"
+    },
+    {
+      "path": "report/Java语言及网络编程_课程报告_初版.docx",
+      "bytes": 55813,
+      "sha256": "09cb3605ca830cf9a6225529fd2c1841aeac330ad7db36269ee96bf630a2f0c9"
+    },
+    {
+      "path": "report/build_report.py",
+      "bytes": 38258,
+      "sha256": "61acbce7500eb2cbe3ba7c622091c541e4982a6fca6bb60fb58f9bebdc1237f3"
     }
   ]
 }
