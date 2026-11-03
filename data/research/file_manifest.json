@@ -2,7 +2,7 @@
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
   "count": 172,
-  "total_bytes": 27442262,
+  "total_bytes": 27441642,
   "files": [
     {
       "path": ".gitignore",
@@ -106,8 +106,8 @@
     },
     {
       "path": "data/geo/station_layouts.json",
-      "bytes": 25542,
-      "sha256": "5d6181541c7b7168c73c314aacfc228d727775f6dcf9d39647390f2ea9cd265d"
+      "bytes": 25541,
+      "sha256": "e3510fba3ec79c2e478fb3c463316d259750082557eb58688bb6e7166858c012"
     },
     {
       "path": "data/maps/cumt_official_campus_traffic_2025.png",
@@ -251,8 +251,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 30584,
-      "sha256": "01f9bb81a2ac5006e3c9ef1806a1b0e2d18bda0266cb8cd918b705445dcb4a80"
+      "bytes": 30774,
+      "sha256": "c31ea86a2e719a0d688c8d1ef1119ffbb7376802da984bc2c4f4b33ec9ee1e7a"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -281,8 +281,8 @@
     },
     {
       "path": "data/research/gen_station_layout.py",
-      "bytes": 8235,
-      "sha256": "4ee02c092f5095c8bf96d9cff82ad2ca2d85a142be719a8c2605137f30fcd43d"
+      "bytes": 8358,
+      "sha256": "12b89f5382377ad528d2dc959665e0373625feb33ca7d847a6440fb0d0cbbcd0"
     },
     {
       "path": "data/research/generate_demo_scenarios.py",
@@ -575,14 +575,14 @@
       "sha256": "c77cf117e2b604878fefed9d816cce26a1a141a65abdd470ff9c76c19211424d"
     },
     {
-      "path": "docs/screenshots/桃苑室内布局-v6-六列.png",
-      "bytes": 51047,
-      "sha256": "1ad597de339ef851c340ef5cef89caad6f4c43607946ee68e4221d48f5404b3b"
-    },
-    {
       "path": "docs/screenshots/桃苑室内布局-v6-六竖条.png",
       "bytes": 40182,
       "sha256": "ef077a71a4917295b7e37711811bf219f003ddb88a5e3045e619e5993cfdcaba"
+    },
+    {
+      "path": "docs/screenshots/桃苑室内布局-v7-收窄.png",
+      "bytes": 50115,
+      "sha256": "36a73630c3d8b8260c9fba55a6168f8d08a52aa5a5aa6c9c0ad6382573137ef6"
     },
     {
       "path": "frontend/README.md",

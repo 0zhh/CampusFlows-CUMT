@@ -27,7 +27,7 @@ PER_TIER = P['P-SLOTS-PER-TIER']['value']  # 20
 AISLE = P['P-AISLE-WIDTH']['value']        # 0.8
 DEPTH = P['P-SHELF-OBSERVED']['value']['depth_mm'] / 1000.0  # 0.6
 
-BAY_LEN = 1.5
+BAY_LEN = 1.0                              # 3 开间 = 3.0 m 一排；收窄是为了整体宽度压缩 1/4
 LEFT_BAYS = 2
 RIGHT_BAYS = 3
 BAYS_PER_ROW = LEFT_BAYS + RIGHT_BAYS      # 5
@@ -81,8 +81,8 @@ zones = [
     {"id": "Z-SCAN", "kind": "counter", "label": "扫码出库台",
      "x_m": 2.2, "y_m": round(SCAN_Y, 2), "w_m": round(W - 4.2, 2), "h_m": SCAN_H},
     {"id": "Z-MANUAL", "kind": "manual", "label": "人工服务台",
-     "x_m": round(MARGIN + 5 * (RUN_LEN + COL_GAP), 2), "y_m": round(D - BOTTOM + 0.7, 2),
-     "w_m": RUN_LEN, "h_m": 3.0},
+     "x_m": round(MARGIN + 3 * (RUN_LEN + COL_GAP) + 0.6, 2), "y_m": round(D - BOTTOM + 0.8, 2),
+     "w_m": 5.0, "h_m": 3.0},
 ]
 
 layout = {
@@ -138,11 +138,11 @@ def font(sz):
 
 F_T, F_L, F_S = font(25), font(14), font(10)
 OX, OY = 40, 104
-dr.text((OX, 20), '桃苑主站室内布局 v6 · %d 架 × %d 层 × %d 位 = %d 储位'
+dr.text((OX, 20), '桃苑主站室内布局 v7 · %d 架 × %d 层 × %d 位 = %d 储位'
         % (BAYS, TIERS, PER_TIER, BAYS * TIERS * PER_TIER), fill=(18, 22, 30), font=F_T)
 dr.text((OX, 54), '六个货架区自左向右均等排布（每区 %d 排 × 每排 %d 号）· 通道 %.1f m · 占地约 %.0f m² · v6'
         % (ROWS_PER_COL, BAYS_PER_ROW, AISLE, W * D), fill=(90, 100, 118), font=F_L)
-dr.text((OX, 74), '顶部：顺丰独立收发区 → 扫码出库台（出入口在出库台左侧）· 底部：人工服务台',
+dr.text((OX, 74), '顶部：顺丰独立收发区 → 扫码出库台（出入口在出库台左侧）· 底部：人工服务台（已左移加宽）· v7',
         fill=(90, 100, 118), font=F_S)
 
 dr.rectangle([OX, OY, OX + W * SCALE, OY + D * SCALE], fill=(240, 243, 248), outline=(160, 170, 186))
