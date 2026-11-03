@@ -1,16 +1,17 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "generated_at": "2026-11-03",
-  "note": "货架数/层数/每层位数/通道宽来自参数表（桃苑为照片+用户口述实测档）；行列排布按“三列等长、每排两侧各 5 个货架号、通道 0.8 m”生成，是设计示意，不是实测平面图。",
+  "layout_version": "v5",
+  "note": "货架数/层数/每层位数/通道宽来自参数表（实测档）；六个货架区的排布按“3 列 × 2 带、每区 4 排、每排两侧各 5 号”生成，是设计示意，非实测平面图。",
   "stations": [
     {
       "station_id": "NH-TAOYUAN",
       "name": "桃苑物流服务中心",
       "truth_level": "public_structure + observed_counts + designed_arrangement",
       "floor": {
-        "width_m": 31.3,
-        "depth_m": 30.5,
-        "area_m2": 955,
+        "width_m": 30.9,
+        "depth_m": 34.2,
+        "area_m2": 1057,
         "area_note": "按阵列与通道推算，非实测面积"
       },
       "params": {
@@ -21,17 +22,29 @@
         "rack_depth_m": 0.6,
         "aisle_m": 0.8,
         "rows": 24,
+        "rows_per_band": 4,
+        "cols": 3,
+        "bands": 2,
         "bays_per_row": 10,
         "physical_slots": 19200,
         "code_format": "货架号-层号-序号"
       },
       "zones": [
         {
+          "id": "Z-SF",
+          "kind": "brand_sf",
+          "label": "顺丰独立收发区",
+          "x_m": 2.0,
+          "y_m": 2.4,
+          "w_m": 26.9,
+          "h_m": 2.4
+        },
+        {
           "id": "Z-ENTRY",
           "kind": "entrance",
           "label": "出入口",
           "x_m": 0.2,
-          "y_m": 2.6,
+          "y_m": 5.2,
           "w_m": 1.6,
           "h_m": 3.2
         },
@@ -40,16 +53,16 @@
           "kind": "counter",
           "label": "扫码出库台",
           "x_m": 2.2,
-          "y_m": 2.6,
-          "w_m": 27.1,
+          "y_m": 5.2,
+          "w_m": 26.7,
           "h_m": 3.2
         },
         {
           "id": "Z-MANUAL",
-          "kind": "brand",
+          "kind": "manual",
           "label": "人工服务台",
-          "x_m": 21.8,
-          "y_m": 26.7,
+          "x_m": 21.4,
+          "y_m": 30.3,
           "w_m": 7.5,
           "h_m": 3.0
         }
@@ -57,9 +70,12 @@
       "rows": [
         {
           "row_id": "R01",
-          "block": 0,
+          "zone_id": "Z-A1",
+          "col": 0,
+          "band": 0,
+          "row_in_band": 0,
           "x_m": 2.0,
-          "y_m": 8.0,
+          "y_m": 9.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -78,14 +94,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 8.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R02",
-          "block": 0,
+          "zone_id": "Z-A1",
+          "col": 0,
+          "band": 0,
+          "row_in_band": 1,
           "x_m": 2.0,
-          "y_m": 10.0,
+          "y_m": 11.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -104,14 +122,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 10.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R03",
-          "block": 0,
+          "zone_id": "Z-A1",
+          "col": 0,
+          "band": 0,
+          "row_in_band": 2,
           "x_m": 2.0,
-          "y_m": 12.0,
+          "y_m": 13.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -130,14 +150,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 12.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R04",
-          "block": 0,
+          "zone_id": "Z-A1",
+          "col": 0,
+          "band": 0,
+          "row_in_band": 3,
           "x_m": 2.0,
-          "y_m": 14.0,
+          "y_m": 15.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -156,14 +178,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 14.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R05",
-          "block": 0,
+          "zone_id": "Z-B1",
+          "col": 0,
+          "band": 1,
+          "row_in_band": 0,
           "x_m": 2.0,
-          "y_m": 16.0,
+          "y_m": 19.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -182,14 +206,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 16.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R06",
-          "block": 0,
+          "zone_id": "Z-B1",
+          "col": 0,
+          "band": 1,
+          "row_in_band": 1,
           "x_m": 2.0,
-          "y_m": 18.0,
+          "y_m": 21.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -208,14 +234,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 18.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R07",
-          "block": 0,
+          "zone_id": "Z-B1",
+          "col": 0,
+          "band": 1,
+          "row_in_band": 2,
           "x_m": 2.0,
-          "y_m": 20.0,
+          "y_m": 23.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -234,14 +262,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 20.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R08",
-          "block": 0,
+          "zone_id": "Z-B1",
+          "col": 0,
+          "band": 1,
+          "row_in_band": 3,
           "x_m": 2.0,
-          "y_m": 22.0,
+          "y_m": 25.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -260,14 +290,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 22.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R09",
-          "block": 1,
-          "x_m": 11.9,
-          "y_m": 8.0,
+          "zone_id": "Z-A2",
+          "col": 1,
+          "band": 0,
+          "row_in_band": 0,
+          "x_m": 11.7,
+          "y_m": 9.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -286,14 +318,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 8.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R10",
-          "block": 1,
-          "x_m": 11.9,
-          "y_m": 10.0,
+          "zone_id": "Z-A2",
+          "col": 1,
+          "band": 0,
+          "row_in_band": 1,
+          "x_m": 11.7,
+          "y_m": 11.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -312,14 +346,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 10.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R11",
-          "block": 1,
-          "x_m": 11.9,
-          "y_m": 12.0,
+          "zone_id": "Z-A2",
+          "col": 1,
+          "band": 0,
+          "row_in_band": 2,
+          "x_m": 11.7,
+          "y_m": 13.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -338,14 +374,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 12.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R12",
-          "block": 1,
-          "x_m": 11.9,
-          "y_m": 14.0,
+          "zone_id": "Z-A2",
+          "col": 1,
+          "band": 0,
+          "row_in_band": 3,
+          "x_m": 11.7,
+          "y_m": 15.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -364,14 +402,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 14.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R13",
-          "block": 1,
-          "x_m": 11.9,
-          "y_m": 16.0,
+          "zone_id": "Z-B2",
+          "col": 1,
+          "band": 1,
+          "row_in_band": 0,
+          "x_m": 11.7,
+          "y_m": 19.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -390,14 +430,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 16.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R14",
-          "block": 1,
-          "x_m": 11.9,
-          "y_m": 18.0,
+          "zone_id": "Z-B2",
+          "col": 1,
+          "band": 1,
+          "row_in_band": 1,
+          "x_m": 11.7,
+          "y_m": 21.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -416,14 +458,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 18.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R15",
-          "block": 1,
-          "x_m": 11.9,
-          "y_m": 20.0,
+          "zone_id": "Z-B2",
+          "col": 1,
+          "band": 1,
+          "row_in_band": 2,
+          "x_m": 11.7,
+          "y_m": 23.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -442,14 +486,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 20.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R16",
-          "block": 1,
-          "x_m": 11.9,
-          "y_m": 22.0,
+          "zone_id": "Z-B2",
+          "col": 1,
+          "band": 1,
+          "row_in_band": 3,
+          "x_m": 11.7,
+          "y_m": 25.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -468,14 +514,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 22.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R17",
-          "block": 2,
-          "x_m": 21.8,
-          "y_m": 8.0,
+          "zone_id": "Z-A3",
+          "col": 2,
+          "band": 0,
+          "row_in_band": 0,
+          "x_m": 21.4,
+          "y_m": 9.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -494,14 +542,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 8.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R18",
-          "block": 2,
-          "x_m": 21.8,
-          "y_m": 10.0,
+          "zone_id": "Z-A3",
+          "col": 2,
+          "band": 0,
+          "row_in_band": 1,
+          "x_m": 21.4,
+          "y_m": 11.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -520,14 +570,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 10.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R19",
-          "block": 2,
-          "x_m": 21.8,
-          "y_m": 12.0,
+          "zone_id": "Z-A3",
+          "col": 2,
+          "band": 0,
+          "row_in_band": 2,
+          "x_m": 21.4,
+          "y_m": 13.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -546,14 +598,16 @@
           ],
           "managed_by": "SELF",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 12.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R20",
-          "block": 2,
-          "x_m": 21.8,
-          "y_m": 14.0,
+          "zone_id": "Z-A3",
+          "col": 2,
+          "band": 0,
+          "row_in_band": 3,
+          "x_m": 21.4,
+          "y_m": 15.2,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -572,14 +626,16 @@
           ],
           "managed_by": "JD",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 14.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R21",
-          "block": 2,
-          "x_m": 21.8,
-          "y_m": 16.0,
+          "zone_id": "Z-B3",
+          "col": 2,
+          "band": 1,
+          "row_in_band": 0,
+          "x_m": 21.4,
+          "y_m": 19.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -598,14 +654,16 @@
           ],
           "managed_by": "JD",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 16.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R22",
-          "block": 2,
-          "x_m": 21.8,
-          "y_m": 18.0,
+          "zone_id": "Z-B3",
+          "col": 2,
+          "band": 1,
+          "row_in_band": 1,
+          "x_m": 21.4,
+          "y_m": 21.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -624,14 +682,16 @@
           ],
           "managed_by": "JD",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 18.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R23",
-          "block": 2,
-          "x_m": 21.8,
-          "y_m": 20.0,
+          "zone_id": "Z-B3",
+          "col": 2,
+          "band": 1,
+          "row_in_band": 2,
+          "x_m": 21.4,
+          "y_m": 23.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -650,14 +710,16 @@
           ],
           "managed_by": "JD",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 20.6
+          "slots_per_tier": 20
         },
         {
           "row_id": "R24",
-          "block": 2,
-          "x_m": 21.8,
-          "y_m": 22.0,
+          "zone_id": "Z-B3",
+          "col": 2,
+          "band": 1,
+          "row_in_band": 3,
+          "x_m": 21.4,
+          "y_m": 25.6,
           "length_m": 7.5,
           "depth_m": 1.2,
           "left_bays": [
@@ -676,8 +738,7 @@
           ],
           "managed_by": "JD",
           "tiers": 4,
-          "slots_per_tier": 20,
-          "aisle_y_m": 22.6
+          "slots_per_tier": 20
         }
       ]
     },
@@ -685,7 +746,7 @@
       "station_id": "NH-LANYUAN",
       "name": "兰苑无人菜鸟驿站",
       "status": "pending_photos",
-      "note": "用户 2026-11-04 提供实景照片后生成；在此之前不画示意布局。"
+      "note": "等用户提供实景照片后生成；在此之前不画示意布局。"
     }
   ]
 }
