@@ -35,20 +35,16 @@ CROSS_AISLE = 2.4
 MARGIN = 2.0
 HEAD = 6.0                                        # 入口与服务台区
 
-# 分区数自动选：让厅的平面尽量接近方形（长宽比最小）
-best = None
-for nb in (2, 3, 4, 5):
-    rows_per_block = math.ceil(N_ROWS / nb)
-    w = MARGIN * 2 + nb * RUN_LEN + (nb - 1) * CROSS_AISLE
-    d = MARGIN * 2 + HEAD + rows_per_block * ROW_PITCH
-    ratio = max(w, d) / min(w, d)
-    if best is None or ratio < best[0]:
-        best = (ratio, nb, rows_per_block, w, d)
-_, N_BLOCK, BLOCK_ROWS, W, D = best
+# 用户要求：三列等长，最右列不缩水。列数固定 3，排数向上取整后补齐
+N_BLOCK = 3
+BLOCK_ROWS = math.ceil(N_ROWS / N_BLOCK)
+W = MARGIN * 2 + N_BLOCK * RUN_LEN + (N_BLOCK - 1) * CROSS_AISLE
+D = MARGIN * 2 + HEAD + BLOCK_ROWS * ROW_PITCH
 
 rows = []
 bay_no = 0
-for r in range(N_ROWS):
+PADDED_NOTE = '末列与其余两列等长，多出的排位留空（现场就是齐的，不是缺口）'
+for r in range(BLOCK_ROWS * N_BLOCK):
     block = r // BLOCK_ROWS
     row_in_block = r % BLOCK_ROWS
     x = MARGIN + block * (RUN_LEN + CROSS_AISLE)
@@ -62,6 +58,8 @@ for r in range(N_ROWS):
         bay_no += 1
         if bay_no <= BAYS:
             right.append(bay_no)
+    if not left and not right:
+        continue
     rows.append({
         "row_id": "R%02d" % (r + 1),
         "block": block,
@@ -91,7 +89,7 @@ layout = {
     "schema_version": "1.0",
     "generated_at": "2026-11-03",
     "note": "货架数/层数/每层位数/通道宽来自参数表（桃苑为照片+用户口述实测档）；"
-            "行列排布按“一条通道两侧各 5 个货架号”的双面货架形态生成，是设计示意，不是实测平面图。",
+            "行列排布按“三列等长、每排两侧各 5 个货架号、通道 0.8 m”生成，是设计示意，不是实测平面图。",
     "stations": [
         {
             "station_id": "NH-TAOYUAN",

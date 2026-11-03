@@ -9,7 +9,8 @@
     },
     "rule": "页面上三种标签不得混用；结论只用相对量表述；真实数据到手后只改本文件，不改代码",
     "photo_evidence": "照片读数记为 observed，并在 evidence 字段指出结构化文件中的证据位置",
-    "note_2026_11_03": "用户更正桃苑货架数≥220；物理储位与 κ_i 的关系改为“物理容量远大于运营阈值”，瓶颈在通道与人力"
+    "note_2026_11_03": "用户更正桃苑货架数≥220；物理储位与 κ_i 的关系改为“物理容量远大于运营阈值”，瓶颈在通道与人力",
+    "note_2026_11_03b": "通道 0.8 m、每层 20 件、三列等长 → 240 架 / 19,200 物理储位"
   },
   "count": 27,
   "stats": {
@@ -267,17 +268,17 @@
       "id": "P-SLOTS-PER-TIER",
       "group": "C 储位",
       "label": "每层储位数",
-      "value": 12,
+      "value": 20,
       "unit": "个",
       "range": [
-        8,
-        15
+        18,
+        24
       ],
       "source": "observed",
       "source_ids": [
         "S25"
       ],
-      "rationale": "照片中单层可见包裹 8—15 件（含平放叠放），取中值 12；与“一件一格”相比，实际是“一件一个位置”，小件可前后相邻放置。",
+      "rationale": "用户 2026-11-03 更正：单层装满时可达 20 件以上。按 1.5 m 开间 ÷ 约 7.5 cm 一件（含间隙）≈ 20。",
       "used_by": [
         "平面图模板",
         "储位分配"
@@ -486,18 +487,18 @@
       "id": "P-RACK-COUNT",
       "group": "C 储位",
       "label": "主站货架总数",
-      "value": 220,
+      "value": 240,
       "unit": "架",
       "range": [
-        220,
-        280
+        240,
+        300
       ],
       "source": "observed",
       "source_ids": [
         "S25"
       ],
       "evidence": "reference/taoyuan_photo_evidence.json#rack_numbering；用户 2026-11-03 口头更正：至少 220 架",
-      "rationale": "照片号牌覆盖 25—155，用户补充“桃苑至少 220 个货架，没有全景图”。取 220 为下界，区间 220—280 表示“可能更多但无证据”。",
+      "rationale": "用户要求“最右列补齐到与另外两列等长”，即三列等长货架：3 列 × 8 排 × 每排 10 个货架号 = 240 个（与“至少 220”一致）。",
       "used_by": [
         "平面图模板",
         "储位分配",
@@ -509,18 +510,18 @@
       "id": "P-AISLE-WIDTH",
       "group": "C 储位",
       "label": "货架间通道宽度",
-      "value": 1.3,
+      "value": 0.8,
       "unit": "m",
       "range": [
-        1.1,
-        1.6
+        0.75,
+        0.9
       ],
       "source": "observed",
       "source_ids": [
         "S25"
       ],
       "evidence": "reference/taoyuan_photo_evidence.json#aisle",
-      "rationale": "照片中两人错身需侧身、手推车可单向通过，按人体宽度与货架比例估 1.3 m。",
+      "rationale": "用户 2026-11-03 更正：通道约 80 cm，不是 1.3 m。照片里两人错身需侧身、手推车无法双向通过，与 0.8 m 一致。这个宽度直接决定了“货架占用率一高，通道就堵”。",
       "used_by": [
         "平面图模板"
       ],
@@ -530,18 +531,18 @@
       "id": "P-PHYSICAL-SLOTS",
       "group": "C 储位",
       "label": "物理储位总数（推算）",
-      "value": 10560,
+      "value": 19200,
       "unit": "个",
       "range": [
-        10560,
-        22400
+        19200,
+        36000
       ],
       "source": "observed",
       "source_ids": [
         "S25"
       ],
       "evidence": "reference/taoyuan_photo_evidence.json#derived_layout",
-      "rationale": "= 货架 220 × 层 4 × 每层 12。区间下界为 220×4×12，上界按“货架可能到 280、每层可能到 20”组合。",
+      "rationale": "= 240 架 × 4 层 × 20 位。区间上界按“300 架 × 5 层 × 24 位”组合。",
       "used_by": [
         "容量换算"
       ],
