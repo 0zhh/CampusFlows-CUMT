@@ -9,8 +9,8 @@
       "truth_level": "public_structure + observed_counts + designed_arrangement",
       "floor": {
         "width_m": 31.3,
-        "depth_m": 26.0,
-        "area_m2": 814,
+        "depth_m": 30.5,
+        "area_m2": 955,
         "area_note": "按阵列与通道推算，非实测面积"
       },
       "params": {
@@ -30,37 +30,37 @@
           "id": "Z-ENTRY",
           "kind": "entrance",
           "label": "出入口",
-          "x_m": 9.65,
-          "y_m": 0.5,
-          "w_m": 12.0,
-          "h_m": 2.0
+          "x_m": 2.0,
+          "y_m": 0.3,
+          "w_m": 3.2,
+          "h_m": 1.8
         },
         {
           "id": "Z-COUNTER",
           "kind": "counter",
           "label": "人工服务台 / 收银",
           "x_m": 2.0,
-          "y_m": 2.8,
-          "w_m": 9.0,
-          "h_m": 2.6
+          "y_m": 2.4,
+          "w_m": 13.25,
+          "h_m": 3.0
         },
         {
           "id": "Z-SF",
           "kind": "brand",
           "label": "顺丰服务区（含扫码台）",
-          "x_m": 12.0,
-          "y_m": 2.8,
-          "w_m": 7.0,
-          "h_m": 2.6
+          "x_m": 16.05,
+          "y_m": 2.4,
+          "w_m": 13.25,
+          "h_m": 3.0
         },
         {
           "id": "Z-JD",
           "kind": "brand",
-          "label": "京东服务区",
-          "x_m": 20.0,
-          "y_m": 2.8,
-          "w_m": 6.5,
-          "h_m": 2.6
+          "label": "京东服务区（第三列 191—240 一侧）",
+          "x_m": 21.8,
+          "y_m": 26.6,
+          "w_m": 7.5,
+          "h_m": 3.4
         }
       ],
       "rows": [

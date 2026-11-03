@@ -39,7 +39,8 @@ HEAD = 6.0                                        # 入口与服务台区
 N_BLOCK = 3
 BLOCK_ROWS = math.ceil(N_ROWS / N_BLOCK)
 W = MARGIN * 2 + N_BLOCK * RUN_LEN + (N_BLOCK - 1) * CROSS_AISLE
-D = MARGIN * 2 + HEAD + BLOCK_ROWS * ROW_PITCH
+JD_STRIP = 4.5                                     # 底部给京东服务区留一条
+D = MARGIN * 2 + HEAD + BLOCK_ROWS * ROW_PITCH + JD_STRIP
 
 rows = []
 bay_no = 0
@@ -74,15 +75,21 @@ for r in range(BLOCK_ROWS * N_BLOCK):
         "aisle_y_m": round(y + DEPTH, 2)
     })
 
+# 顶部：出入口在左上角；其余横向空间由人工服务台与顺丰平分
+# 京东服务区在第三列（191—240）的南端，不占顶部
+ZONE_Y = 2.4
+ZONE_H = 3.0
 zones = [
-    {"id": "Z-ENTRY", "kind": "entrance", "label": "出入口", "x_m": round(W / 2 - 6, 2), "y_m": 0.5,
-     "w_m": 12.0, "h_m": 2.0},
-    {"id": "Z-COUNTER", "kind": "counter", "label": "人工服务台 / 收银", "x_m": round(MARGIN, 2), "y_m": 2.8,
-     "w_m": 9.0, "h_m": 2.6},
+    {"id": "Z-ENTRY", "kind": "entrance", "label": "出入口", "x_m": round(MARGIN, 2), "y_m": 0.3,
+     "w_m": 3.2, "h_m": 1.8},
+    {"id": "Z-COUNTER", "kind": "counter", "label": "人工服务台 / 收银",
+     "x_m": round(MARGIN, 2), "y_m": ZONE_Y, "w_m": round((W - MARGIN * 2) / 2 - 0.4, 2), "h_m": ZONE_H},
     {"id": "Z-SF", "kind": "brand", "label": "顺丰服务区（含扫码台）",
-     "x_m": round(MARGIN + 10.0, 2), "y_m": 2.8, "w_m": 7.0, "h_m": 2.6},
-    {"id": "Z-JD", "kind": "brand", "label": "京东服务区",
-     "x_m": round(MARGIN + 18.0, 2), "y_m": 2.8, "w_m": 6.5, "h_m": 2.6},
+     "x_m": round(MARGIN + (W - MARGIN * 2) / 2 + 0.4, 2), "y_m": ZONE_Y,
+     "w_m": round((W - MARGIN * 2) / 2 - 0.4, 2), "h_m": ZONE_H},
+    {"id": "Z-JD", "kind": "brand", "label": "京东服务区（第三列 191—240 一侧）",
+     "x_m": round(MARGIN + 2 * (RUN_LEN + CROSS_AISLE), 2), "y_m": round(D - JD_STRIP + 0.6, 2),
+     "w_m": round(RUN_LEN, 2), "h_m": 3.4},
 ]
 
 layout = {
