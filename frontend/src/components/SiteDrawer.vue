@@ -5,6 +5,7 @@ import { SITES, isOpenNow } from '@/data/sites'
 import type { Scenario } from '@/data/types'
 import { simSeries } from '@/composables/useData'
 import StatusDot from './StatusDot.vue'
+import StationPlan from './StationPlan.vue'
 
 const props = defineProps<{
   open: boolean
@@ -91,6 +92,11 @@ const spark = computed(() => {
               <span class="drawer__hours"><Clock :size="12" /> {{ site.hours.open }}—{{ site.hours.close }}</span>
             </div>
 
+            <section class="plan-block">
+              <h3 class="plan-block__title">室内平面图</h3>
+              <StationPlan :site-id="site.id" />
+            </section>
+
             <dl class="facts">
               <div class="fact">
                 <dt><MapPin :size="13" /> 位置</dt>
@@ -169,6 +175,9 @@ const spark = computed(() => {
 </template>
 
 <style scoped>
+.plan-block { display: grid; gap: var(--sp-2); margin: var(--sp-3) 0; }
+.plan-block__title { font-size: var(--fs-sm); font-weight: 600; color: var(--fg-0); }
+
 .drawer-root { position: fixed; inset: 0; z-index: 60; }
 .drawer-mask {
   position: absolute;
