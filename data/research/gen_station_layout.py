@@ -1,0 +1,179 @@
+# -*- coding: utf-8 -*-
+"""生成桃苑主站室内布局数据 + 预览图。
+
+排布按照片里的真实形态：一条通道两侧各一排货架（双面货架），
+每侧 5 个货架号，所以一排 = 10 个货架号、通道净宽 1.3 m。
+220 个货架号 → 22 排，分两个区，中间留横向主通道。
+"""
+import json
+import math
+import os
+
+from PIL import Image, ImageDraw, ImageFont
+
+ROOT = r'D:\java大作业'
+PARAMS = os.path.join(ROOT, 'data', 'params', 'param_registry.json')
+OUT_JSON = os.path.join(ROOT, 'data', 'geo', 'station_layouts.json')
+OUT_PNG = os.path.join(ROOT, '.probe', 'layout_taoyuan.png')
+
+reg = json.load(open(PARAMS, encoding='utf-8'))
+P = {p['id']: p for p in reg['params']}
+
+BAYS = P['P-RACK-COUNT']['value']
+TIERS = P['P-TIERS']['value']
+PER_TIER = P['P-SLOTS-PER-TIER']['value']
+AISLE = P['P-AISLE-WIDTH']['value']
+DEPTH = P['P-SHELF-OBSERVED']['value']['depth_mm'] / 1000.0
+
+BAYS_PER_SIDE = 5
+BAYS_PER_ROW = BAYS_PER_SIDE * 2                  # 一排 10 个货架号
+N_ROWS = math.ceil(BAYS / BAYS_PER_ROW)           # 22 排
+BAY_LEN = 1.5                                     # 单开间长（12 件/层 × 约 12 cm）
+RUN_LEN = BAYS_PER_SIDE * BAY_LEN                 # 7.5 m
+ROW_PITCH = DEPTH * 2 + AISLE                     # 1.2 + 1.3 = 2.5 m
+CROSS_AISLE = 2.4
+MARGIN = 2.0
+HEAD = 6.0                                        # 入口与服务台区
+
+# 分区数自动选：让厅的平面尽量接近方形（长宽比最小）
+best = None
+for nb in (2, 3, 4, 5):
+    rows_per_block = math.ceil(N_ROWS / nb)
+    w = MARGIN * 2 + nb * RUN_LEN + (nb - 1) * CROSS_AISLE
+    d = MARGIN * 2 + HEAD + rows_per_block * ROW_PITCH
+    ratio = max(w, d) / min(w, d)
+    if best is None or ratio < best[0]:
+        best = (ratio, nb, rows_per_block, w, d)
+_, N_BLOCK, BLOCK_ROWS, W, D = best
+
+rows = []
+bay_no = 0
+for r in range(N_ROWS):
+    block = r // BLOCK_ROWS
+    row_in_block = r % BLOCK_ROWS
+    x = MARGIN + block * (RUN_LEN + CROSS_AISLE)
+    y = MARGIN + HEAD + row_in_block * ROW_PITCH
+    left, right = [], []
+    for _ in range(BAYS_PER_SIDE):
+        bay_no += 1
+        if bay_no <= BAYS:
+            left.append(bay_no)
+    for _ in range(BAYS_PER_SIDE):
+        bay_no += 1
+        if bay_no <= BAYS:
+            right.append(bay_no)
+    rows.append({
+        "row_id": "R%02d" % (r + 1),
+        "block": block,
+        "x_m": round(x, 2),
+        "y_m": round(y, 2),
+        "length_m": RUN_LEN,
+        "depth_m": round(DEPTH * 2, 2),
+        "left_bays": left,
+        "right_bays": right,
+        "tiers": TIERS,
+        "slots_per_tier": PER_TIER,
+        "aisle_y_m": round(y + DEPTH, 2)
+    })
+
+zones = [
+    {"id": "Z-ENTRY", "kind": "entrance", "label": "出入口", "x_m": round(W / 2 - 6, 2), "y_m": 0.5,
+     "w_m": 12.0, "h_m": 2.0},
+    {"id": "Z-COUNTER", "kind": "counter", "label": "人工服务台 / 收银", "x_m": round(MARGIN, 2), "y_m": 2.8,
+     "w_m": 9.0, "h_m": 2.6},
+    {"id": "Z-SF", "kind": "brand", "label": "顺丰服务区（含扫码台）",
+     "x_m": round(MARGIN + 10.0, 2), "y_m": 2.8, "w_m": 7.0, "h_m": 2.6},
+    {"id": "Z-JD", "kind": "brand", "label": "京东服务区",
+     "x_m": round(MARGIN + 18.0, 2), "y_m": 2.8, "w_m": 6.5, "h_m": 2.6},
+]
+
+layout = {
+    "schema_version": "1.0",
+    "generated_at": "2026-11-03",
+    "note": "货架数/层数/每层位数/通道宽来自参数表（桃苑为照片+用户口述实测档）；"
+            "行列排布按“一条通道两侧各 5 个货架号”的双面货架形态生成，是设计示意，不是实测平面图。",
+    "stations": [
+        {
+            "station_id": "NH-TAOYUAN",
+            "name": "桃苑物流服务中心",
+            "truth_level": "public_structure + observed_counts + designed_arrangement",
+            "floor": {"width_m": round(W, 1), "depth_m": round(D, 1),
+                      "area_m2": round(W * D), "area_note": "按阵列与通道推算，非实测面积"},
+            "params": {"bays": BAYS, "tiers": TIERS, "slots_per_tier": PER_TIER,
+                       "bay_length_m": BAY_LEN, "rack_depth_m": DEPTH, "aisle_m": AISLE,
+                       "rows": N_ROWS, "bays_per_row": BAYS_PER_ROW,
+                       "physical_slots": BAYS * TIERS * PER_TIER,
+                       "code_format": "货架号-层号-序号"},
+            "zones": zones,
+            "rows": rows,
+        },
+        {
+            "station_id": "NH-LANYUAN",
+            "name": "兰苑无人菜鸟驿站",
+            "status": "pending_photos",
+            "note": "用户 2026-11-04 提供实景照片后生成；在此之前不画示意布局。"
+        }
+    ]
+}
+
+os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
+json.dump(layout, open(OUT_JSON, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+print('json ->', OUT_JSON)
+print('floor %.1f x %.1f m = %.0f m2 ; rows %d ; bays %d ; slots %d'
+      % (W, D, W * D, N_ROWS, BAYS, BAYS * TIERS * PER_TIER))
+
+# ---------------- 预览图 ----------------
+SCALE = 22
+IMG_W, IMG_H = int(W * SCALE) + 80, int(D * SCALE) + 130
+img = Image.new('RGB', (IMG_W, IMG_H), (250, 250, 252))
+dr = ImageDraw.Draw(img)
+
+
+def font(sz):
+    for path in (r'C:\Windows\Fonts\msyh.ttc', r'C:\Windows\Fonts\simhei.ttf'):
+        try:
+            return ImageFont.truetype(path, sz)
+        except Exception:
+            continue
+    return ImageFont.load_default()
+
+
+F_T, F_L, F_S = font(26), font(15), font(11)
+OX, OY = 40, 88
+dr.text((OX, 28), '桃苑主站室内布局（设计示意） %d 货架 × %d 层 × %d 位 = %d 储位'
+        % (BAYS, TIERS, PER_TIER, BAYS * TIERS * PER_TIER), fill=(18, 22, 30), font=F_T)
+dr.text((OX, 60), '一条通道两侧各 %d 个货架号 · 通道净宽 %.1f m · 共 %d 排 · 占地约 %.0f m²（推算）'
+        % (BAYS_PER_SIDE, AISLE, N_ROWS, W * D), fill=(90, 100, 118), font=F_L)
+
+dr.rectangle([OX, OY, OX + W * SCALE, OY + D * SCALE], fill=(240, 243, 248), outline=(160, 170, 186))
+
+for z in zones:
+    x0, y0 = OX + z['x_m'] * SCALE, OY + z['y_m'] * SCALE
+    x1, y1 = x0 + z['w_m'] * SCALE, y0 + z['h_m'] * SCALE
+    c = {"entrance": (63, 169, 124), "counter": (232, 163, 61), "brand": (91, 155, 213)}[z['kind']]
+    dr.rectangle([x0, y0, x1, y1], fill=c, outline=(55, 65, 80))
+    dr.text((x0 + 5, y0 + 4), z['label'], fill=(255, 255, 255), font=F_S)
+
+for row in rows:
+    x0 = OX + row['x_m'] * SCALE
+    y0 = OY + row['y_m'] * SCALE
+    # 通道
+    dr.rectangle([x0, y0 + DEPTH * SCALE, x0 + row['length_m'] * SCALE, y0 + (DEPTH + AISLE) * SCALE],
+                 fill=(255, 255, 255))
+    # 上侧货架
+    dr.rectangle([x0, y0, x0 + row['length_m'] * SCALE, y0 + DEPTH * SCALE],
+                 fill=(60, 80, 112), outline=(28, 38, 52))
+    # 下侧货架
+    dr.rectangle([x0, y0 + (DEPTH + AISLE) * SCALE, x0 + row['length_m'] * SCALE,
+                  y0 + (DEPTH * 2 + AISLE) * SCALE], fill=(74, 96, 130), outline=(28, 38, 52))
+    for side_x in (x0, x0 + row['length_m'] * SCALE):
+        pass
+    lab = '%d-%d / %d-%d' % (row['left_bays'][0], row['left_bays'][-1],
+                             row['right_bays'][0], row['right_bays'][-1]) if row['left_bays'] and row['right_bays'] else ''
+    dr.text((x0 + 4, y0 + DEPTH * SCALE + 1), lab, fill=(120, 132, 150), font=F_S)
+
+dr.text((OX, OY + D * SCALE + 12), '深色为货架（每格一个货架号），白色为通道；入口在上方',
+        fill=(95, 105, 122), font=F_L)
+os.makedirs(os.path.dirname(OUT_PNG), exist_ok=True)
+img.save(OUT_PNG)
+print('preview ->', OUT_PNG, img.size)

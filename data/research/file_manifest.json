@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 168,
-  "total_bytes": 27311534,
+  "count": 171,
+  "total_bytes": 27384184,
   "files": [
     {
       "path": ".gitignore",
@@ -16,13 +16,13 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 41500,
-      "sha256": "3bc151017404290e9365999be45d28fdcb2359ea4898cd640b351092349d7c49"
+      "bytes": 41712,
+      "sha256": "317459d3557de8a473a872bca3fae12b39061173c5f4b198e72d0c360d4e21f6"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
-      "bytes": 17139,
-      "sha256": "b544530e32320bbe5b55b784f114305a24c7f064234fbbfc829991060e48f54f"
+      "bytes": 17365,
+      "sha256": "46230ab58af93de9c6857889cc65428778dfb9ab13913f7777c15f520ce87a04"
     },
     {
       "path": "data/README.md",
@@ -105,6 +105,11 @@
       "sha256": "5d23254f6bf2f6047275a029656a1c9494395bff8bbf8775588eed7d5d1e47f3"
     },
     {
+      "path": "data/geo/station_layouts.json",
+      "bytes": 13481,
+      "sha256": "38909a3364c980ea9982588435bc37f0f65dbde9b9c0e4290e3e1832b1214706"
+    },
+    {
       "path": "data/maps/cumt_official_campus_traffic_2025.png",
       "bytes": 1258688,
       "sha256": "14eb2f2f1c2a7324710d37f9fd01643ffff919d30992b0dec670a9b5a7217ba7"
@@ -131,8 +136,8 @@
     },
     {
       "path": "data/params/param_registry.json",
-      "bytes": 18164,
-      "sha256": "5ec6ccdc3b9d2d2fb0327a9486181f28f5b8f2613a8a8e0a43abd400dbb8d826"
+      "bytes": 18312,
+      "sha256": "c5d2babee98656419661bd1d8861dfc559145596523a0ef8b718b69db6868a92"
     },
     {
       "path": "data/reference/cumt_2022_unmanned_station_photo.jpg",
@@ -246,8 +251,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 28287,
-      "sha256": "d97fe5883880501f4def59188d04a04b33046807627f5748486959c91ebabab4"
+      "bytes": 30046,
+      "sha256": "e8d811f678bf3242b607cf5005b2e7ebf00d54fc6b64e10e73aec9bf2da1aeea"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -273,6 +278,11 @@
       "path": "data/research/fit_water_georef.py",
       "bytes": 3620,
       "sha256": "55f78727b7f31467b16ac04f5afcae4896f518dffd0b659f9a2fd766a6f320d2"
+    },
+    {
+      "path": "data/research/gen_station_layout.py",
+      "bytes": 7546,
+      "sha256": "f1a91828125088f258cbdf5dc5cd825b9be61055683cdc8f7c89d0a184e7a795"
     },
     {
       "path": "data/research/generate_demo_scenarios.py",
@@ -565,6 +575,11 @@
       "sha256": "c77cf117e2b604878fefed9d816cce26a1a141a65abdd470ff9c76c19211424d"
     },
     {
+      "path": "docs/screenshots/桃苑室内布局-示意.png",
+      "bytes": 48278,
+      "sha256": "2d9592a236560aa547dbced5bc402844dad920dff77c35b26869172ee06208d2"
+    },
+    {
       "path": "frontend/README.md",
       "bytes": 5112,
       "sha256": "b8b6a627f15de41afd79b87a9aa8512754f7ee13928b34cd966ace043c6b999c"
@@ -831,13 +846,13 @@
     },
     {
       "path": "report/Java语言及网络编程_课程报告_初版_v2.docx",
-      "bytes": 57005,
-      "sha256": "09c36486719aeb5e01fbf34c32de59f58101c75ec467e3a3f4dd5514e7a4b9f8"
+      "bytes": 57114,
+      "sha256": "3d019a5206a4ed91f8c16255eb5dac9459c4591b00bdab78f724cd2d2ae20884"
     },
     {
       "path": "report/build_report.py",
-      "bytes": 40755,
-      "sha256": "6c0dbe4d6f8fd3ec5b3db827a5cfd703634610e30697eaf6d5d74d29f63ffdfe"
+      "bytes": 41646,
+      "sha256": "1d78f052834b2abee73fad6ffb12f220a2ebca75f70177627e2d998823ffd378"
     },
     {
       "path": "report/~$va语言及网络编程_课程报告_初版.docx",
