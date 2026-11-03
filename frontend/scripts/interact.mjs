@@ -78,7 +78,7 @@ const check = (name, ok, detail) => {
 // ---------- 1. 导航 ----------
 await go('/overview')
 const navCount = await ev('document.querySelectorAll(".nav-item").length')
-check('顶栏 5 个导航项', navCount === 5, String(navCount))
+check('顶栏 6 个导航项', navCount === 6, String(navCount))
 
 for (const [label, path] of [['站点与服务', '/sites'], ['高峰与方案', '/peak'], ['异常协同', '/incidents'], ['资料与说明', '/about'], ['运营总览', '/overview']]) {
   await clickText('.nav-item', label)

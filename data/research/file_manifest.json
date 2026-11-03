@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 190,
-  "total_bytes": 27586109,
+  "count": 198,
+  "total_bytes": 27658790,
   "files": [
     {
       "path": ".gitignore",
@@ -26,8 +26,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4946,
-      "sha256": "5aa6c6c999b2f68e38c21e6bfa3fb2cb0f50a7b398df3babfbf7c414e4050e94"
+      "bytes": 5514,
+      "sha256": "e41d21450c2ccbc3355d50b8ef5b8bbd1d45de6209832cab6c2b0e5c67022b33"
     },
     {
       "path": "backend/pom.xml",
@@ -200,6 +200,11 @@
       "sha256": "e3510fba3ec79c2e478fb3c463316d259750082557eb58688bb6e7166858c012"
     },
     {
+      "path": "data/geo/station_routes.json",
+      "bytes": 7062,
+      "sha256": "095d0a564c621851c12fb1db8aae8592ec4dc46dcf1e703105f2316761d3f8d5"
+    },
+    {
       "path": "data/maps/cumt_official_campus_traffic_2025.png",
       "bytes": 1258688,
       "sha256": "14eb2f2f1c2a7324710d37f9fd01643ffff919d30992b0dec670a9b5a7217ba7"
@@ -325,6 +330,11 @@
       "sha256": "4cf8f09a0f67ac6aae2599f0a4a1fd4c92c5e8a7b56406e4c3e1319fe947f706"
     },
     {
+      "path": "data/research/build_routes.py",
+      "bytes": 3401,
+      "sha256": "2370c0e20b675504c01f86ef3c47ef29b4d3463c7974c7e107dd6417aad03307"
+    },
+    {
       "path": "data/research/collect_sources.py",
       "bytes": 7792,
       "sha256": "1f581558930495ba10cc48948685e4fe81c3d4a21b642f095973b2f46fdbf67f"
@@ -341,8 +351,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 30774,
-      "sha256": "f23850ad6ca0e1b7cc2c7866371d03cfee542bc53c0c243ea3a12b36e49a2a33"
+      "bytes": 34327,
+      "sha256": "ab77a558b5083896b7aef7eefc74ddb85deb7c23299fd6cf431896c7dccba6ba"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -720,9 +730,14 @@
       "sha256": "8c1f28ef979cce540400c926ddfdbafc5ae227f2392466961f883cebbe6237e3"
     },
     {
+      "path": "frontend/scripts/api.mjs",
+      "bytes": 4722,
+      "sha256": "83ec3014c1f76f054c38a9b6837da9dbd6faa0f3f9033f1b6d289af553cec96c"
+    },
+    {
       "path": "frontend/scripts/audit.mjs",
-      "bytes": 8766,
-      "sha256": "ff165430d0486f36a29f79c4f3a8bae3f18fc2195ae248edabbc7353a977752f"
+      "bytes": 8777,
+      "sha256": "304e4e1727eaf640f8800f25f7e81692122abbf3f22b703976906466d0258013"
     },
     {
       "path": "frontend/scripts/calibrate.mjs",
@@ -737,12 +752,12 @@
     {
       "path": "frontend/scripts/interact.mjs",
       "bytes": 10588,
-      "sha256": "bbe52f72d14bd79dbaab3537f37597007b1051c2d52bf5b232cab34e5a82cc35"
+      "sha256": "c5de6a624769bf200749e6af90c935d27a6574c99732b59b5fbd029daf533220"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",
       "bytes": 6201,
-      "sha256": "24441f588a0b7bf51d1a84251ffed9d6ee92c003dfc941345887b5813d38e698"
+      "sha256": "37779ea2316ae61dedc26c1cb571317fd716936d9925ec0411ef421be58c30e4"
     },
     {
       "path": "frontend/scripts/mapcheck.mjs",
@@ -771,8 +786,8 @@
     },
     {
       "path": "frontend/src/App.vue",
-      "bytes": 6675,
-      "sha256": "b58b48385fccc1986afbf313b87cc7db11fbd1f7902c02def3961c9b59caaedd"
+      "bytes": 6754,
+      "sha256": "0fc49ecda36d9015a0781d45289b58f26d61d5f77f285b8274c9eb72797ca7d9"
     },
     {
       "path": "frontend/src/env.d.ts",
@@ -811,13 +826,18 @@
     },
     {
       "path": "frontend/src/components/SiteDrawer.vue",
-      "bytes": 10617,
-      "sha256": "3e2f06ea007077f34b896b8f3567548a800eab5f723c8dc394c999c8c994ee76"
+      "bytes": 10999,
+      "sha256": "f018508e5deb124aea6e6aac8cf8d680af44b5ea553162aebe724a45e97ef831"
     },
     {
       "path": "frontend/src/components/SiteFooter.vue",
       "bytes": 965,
       "sha256": "6dab9a02c4ef940996679938a1ac1c59fa3a72c4f4bda529a8de4e0cd0108f7c"
+    },
+    {
+      "path": "frontend/src/components/StationPlan.vue",
+      "bytes": 9168,
+      "sha256": "20507daefc0932bf16ec802e02633f5e7d4956c2c11406bf447277910b36075a"
     },
     {
       "path": "frontend/src/components/StatusDot.vue",
@@ -880,6 +900,16 @@
       "sha256": "2cf02a230e63f90d6d4203b7cf1a6b82942c55d83da1374cf0fbfdb4ad0f0521"
     },
     {
+      "path": "frontend/src/data/station_layouts.json",
+      "bytes": 25541,
+      "sha256": "e3510fba3ec79c2e478fb3c463316d259750082557eb58688bb6e7166858c012"
+    },
+    {
+      "path": "frontend/src/data/station_routes.json",
+      "bytes": 7062,
+      "sha256": "095d0a564c621851c12fb1db8aae8592ec4dc46dcf1e703105f2316761d3f8d5"
+    },
+    {
       "path": "frontend/src/data/statistics.json",
       "bytes": 1606,
       "sha256": "f4fdbca254369e95f3de2a73b083cdd40ea499bc1e5a2964d276be67def88968"
@@ -890,9 +920,14 @@
       "sha256": "d7469ad29c7a140b9705822da0e28aa6ed8c680c23a9b5aa1a211d823f5d2853"
     },
     {
+      "path": "frontend/src/data/workOrders.ts",
+      "bytes": 1764,
+      "sha256": "6d69dac4b86092bb0b8b496264d8f9ff8c7a4751afc0d387f4e7cea1fae8f086"
+    },
+    {
       "path": "frontend/src/router/index.ts",
-      "bytes": 1308,
-      "sha256": "e2b14445dfd822dde21f117a29830c1e212e383b323777954009a9a2e1b0f22e"
+      "bytes": 1479,
+      "sha256": "f1c33a46bf675f1ea33e9569d18d710bc7dd7d7178cedd890206c252f35345e1"
     },
     {
       "path": "frontend/src/stores/app.ts",
@@ -916,8 +951,8 @@
     },
     {
       "path": "frontend/src/views/IncidentsView.vue",
-      "bytes": 12710,
-      "sha256": "5a0fc8d3832e736216fc163fc1764122139378d3fdeec1827cdebde148dfdcd5"
+      "bytes": 13412,
+      "sha256": "bea9d81cb632671cc5eec90ef2dea02909afe768afc2ceb53ec68b765540f39f"
     },
     {
       "path": "frontend/src/views/OverviewView.vue",
@@ -928,6 +963,11 @@
       "path": "frontend/src/views/PeakView.vue",
       "bytes": 14113,
       "sha256": "41e034d8dcb0cdaf177a0be4a17277133f5df7c665118c2c9c4466987034dd8b"
+    },
+    {
+      "path": "frontend/src/views/RoutesView.vue",
+      "bytes": 8495,
+      "sha256": "12e4377621ae42d4aae0acf6975a23d2cecf42f2b2f58eb2c7bca95099ae234f"
     },
     {
       "path": "frontend/src/views/SitesView.vue",

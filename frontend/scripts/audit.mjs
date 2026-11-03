@@ -9,7 +9,7 @@ import { mkdir, writeFile, rm } from 'node:fs/promises'
 import { setTimeout as sleep } from 'node:timers/promises'
 
 const BASE = process.argv[2] || 'http://127.0.0.1:5173'
-const ROUTES = ['/overview', '/sites', '/peak', '/incidents', '/about']
+const ROUTES = ['/overview', '/sites', '/peak', '/incidents', '/routes', '/about']
 const WIDTH = Number(process.argv[3] || 1440)
 const THEME = process.argv[4] || 'dark'
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'

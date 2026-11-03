@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import {
-  LayoutDashboard, MapPin, TrendingUp, Siren, BookOpen, Sun, Moon, Database, Radio, Crosshair
+  LayoutDashboard, MapPin, TrendingUp, Siren, BookOpen, Sun, Moon, Database, Radio, Crosshair, Truck
 } from 'lucide-vue-next'
 import SiteFooter from '@/components/SiteFooter.vue'
 import CalibratePanel from '@/components/CalibratePanel.vue'
@@ -16,6 +16,7 @@ const nav = [
   { to: '/sites', label: '站点与服务', code: 'P2', icon: MapPin },
   { to: '/peak', label: '高峰与方案', code: 'P3', icon: TrendingUp },
   { to: '/incidents', label: '异常协同', code: 'P4', icon: Siren },
+  { to: '/routes', label: '运输与轨迹', code: 'P6', icon: Truck },
   { to: '/about', label: '资料与说明', code: 'P5', icon: BookOpen }
 ]
 

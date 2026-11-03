@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { Siren, Clock, CheckCircle2, CircleDot, RotateCcw, ChevronRight, User, Bot } from 'lucide-vue-next'
 import { useAppStore } from '@/stores/app'
 import { useScenario } from '@/composables/useData'
@@ -7,6 +7,7 @@ import { SITES } from '@/data/sites'
 import { generateIncidents, type Incident, type IncidentStatus } from '@/data/incidents'
 import ScenarioPicker from '@/components/ScenarioPicker.vue'
 import { useReveal } from '@/composables/useReveal'
+import { fetchWorkOrders, patchWorkOrder, resetWorkOrders, toStatusMap } from '@/data/workOrders'
 
 const store = useAppStore()
 const scenario = useScenario(() => store.scenarioId)
@@ -45,13 +46,24 @@ const counts = computed(() => ({
   closed: incidents.value.filter((i) => i.status === 'closed').length
 }))
 
+/** 后端可用时，工单状态写回数据库；不可用时只改本地 */
+const apiMode = computed(() => store.dataMode === 'api')
+
+onMounted(async () => {
+  if (!apiMode.value) return
+  const remote = await fetchWorkOrders()
+  if (remote) overrides.value = { ...overrides.value, ...toStatusMap(remote) }
+})
+
 function setStatus(id: string, s: IncidentStatus) {
   overrides.value = { ...overrides.value, [id]: s }
+  if (apiMode.value) void patchWorkOrder(id, s)
 }
 
 function reset() {
   overrides.value = {}
   current.value = null
+  if (apiMode.value) void resetWorkOrders()
 }
 
 function siteOf(id: string) {
@@ -74,6 +86,9 @@ useReveal(".stat, .wo, .panel")
       <button class="btn btn--ghost" @click="reset">
         <RotateCcw :size="13" /> 复位工单状态
       </button>
+      <span class="tag" :class="apiMode ? 'tag--public' : 'tag--sim'">
+        {{ apiMode ? '状态写入后端数据库' : '演示数据模式（状态仅在本机）' }}
+      </span>
     </div>
 
     <section class="iv__stats">
