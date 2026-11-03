@@ -1,31 +1,28 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "generated_at": "2026-11-03",
-  "layout_version": "v5",
-  "note": "货架数/层数/每层位数/通道宽来自参数表（实测档）；六个货架区的排布按“3 列 × 2 带、每区 4 排、每排两侧各 5 号”生成，是设计示意，非实测平面图。",
+  "layout_version": "v6",
+  "note": "六个竖着的货架长条并排；每条 20 号/侧 × 2 侧 = 40 号，6 条 = 240 号。货架数/层数/每层位数/通道宽来自参数表（实测档），排布为设计示意。",
   "stations": [
     {
       "station_id": "NH-TAOYUAN",
       "name": "桃苑物流服务中心",
       "truth_level": "public_structure + observed_counts + designed_arrangement",
       "floor": {
-        "width_m": 30.9,
-        "depth_m": 34.2,
-        "area_m2": 1057,
+        "width_m": 15.2,
+        "depth_m": 40.9,
+        "area_m2": 622,
         "area_note": "按阵列与通道推算，非实测面积"
       },
       "params": {
         "bays": 240,
         "tiers": 4,
         "slots_per_tier": 20,
-        "bay_length_m": 1.5,
+        "runs": 6,
+        "bays_per_side": 20,
+        "bay_length_m": 1.2,
         "rack_depth_m": 0.6,
         "aisle_m": 0.8,
-        "rows": 24,
-        "rows_per_band": 4,
-        "cols": 3,
-        "bands": 2,
-        "bays_per_row": 10,
         "physical_slots": 19200,
         "code_format": "货架号-层号-序号"
       },
@@ -35,8 +32,8 @@
           "kind": "brand_sf",
           "label": "顺丰独立收发区",
           "x_m": 2.0,
-          "y_m": 2.4,
-          "w_m": 26.9,
+          "y_m": 2.5,
+          "w_m": 11.2,
           "h_m": 2.4
         },
         {
@@ -44,7 +41,7 @@
           "kind": "entrance",
           "label": "出入口",
           "x_m": 0.2,
-          "y_m": 5.2,
+          "y_m": 5.3,
           "w_m": 1.6,
           "h_m": 3.2
         },
@@ -53,690 +50,1068 @@
           "kind": "counter",
           "label": "扫码出库台",
           "x_m": 2.2,
-          "y_m": 5.2,
-          "w_m": 26.7,
+          "y_m": 5.3,
+          "w_m": 11.0,
           "h_m": 3.2
         },
         {
           "id": "Z-MANUAL",
           "kind": "manual",
           "label": "人工服务台",
-          "x_m": 21.4,
-          "y_m": 30.3,
-          "w_m": 7.5,
+          "x_m": 8.6,
+          "y_m": 37.1,
+          "w_m": 4.6,
           "h_m": 3.0
         }
       ],
-      "rows": [
+      "runs": [
         {
-          "row_id": "R01",
-          "zone_id": "Z-A1",
-          "col": 0,
-          "band": 0,
-          "row_in_band": 0,
+          "run_id": "RUN-1",
           "x_m": 2.0,
-          "y_m": 9.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
+          "y_m": 9.3,
+          "length_m": 24.0,
+          "width_m": 1.2,
+          "aisle_m": 0.8,
+          "bay_length_m": 1.2,
           "left_bays": [
-            1,
-            2,
-            3,
-            4,
-            5
+            {
+              "no": 1,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 2,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 3,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 4,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 5,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 6,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 7,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 8,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 9,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 10,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 11,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 12,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 13,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 14,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 15,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 16,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 17,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 18,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 19,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 20,
+              "managed_by": "SELF"
+            }
           ],
           "right_bays": [
-            6,
-            7,
-            8,
-            9,
-            10
+            {
+              "no": 21,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 22,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 23,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 24,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 25,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 26,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 27,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 28,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 29,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 30,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 31,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 32,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 33,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 34,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 35,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 36,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 37,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 38,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 39,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 40,
+              "managed_by": "SELF"
+            }
           ],
-          "managed_by": "SELF",
           "tiers": 4,
           "slots_per_tier": 20
         },
         {
-          "row_id": "R02",
-          "zone_id": "Z-A1",
-          "col": 0,
-          "band": 0,
-          "row_in_band": 1,
-          "x_m": 2.0,
-          "y_m": 11.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
+          "run_id": "RUN-2",
+          "x_m": 4.0,
+          "y_m": 9.3,
+          "length_m": 24.0,
+          "width_m": 1.2,
+          "aisle_m": 0.8,
+          "bay_length_m": 1.2,
           "left_bays": [
-            11,
-            12,
-            13,
-            14,
-            15
+            {
+              "no": 41,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 42,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 43,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 44,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 45,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 46,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 47,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 48,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 49,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 50,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 51,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 52,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 53,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 54,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 55,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 56,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 57,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 58,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 59,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 60,
+              "managed_by": "SELF"
+            }
           ],
           "right_bays": [
-            16,
-            17,
-            18,
-            19,
-            20
+            {
+              "no": 61,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 62,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 63,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 64,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 65,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 66,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 67,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 68,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 69,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 70,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 71,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 72,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 73,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 74,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 75,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 76,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 77,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 78,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 79,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 80,
+              "managed_by": "SELF"
+            }
           ],
-          "managed_by": "SELF",
           "tiers": 4,
           "slots_per_tier": 20
         },
         {
-          "row_id": "R03",
-          "zone_id": "Z-A1",
-          "col": 0,
-          "band": 0,
-          "row_in_band": 2,
-          "x_m": 2.0,
-          "y_m": 13.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
+          "run_id": "RUN-3",
+          "x_m": 6.0,
+          "y_m": 9.3,
+          "length_m": 24.0,
+          "width_m": 1.2,
+          "aisle_m": 0.8,
+          "bay_length_m": 1.2,
           "left_bays": [
-            21,
-            22,
-            23,
-            24,
-            25
+            {
+              "no": 81,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 82,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 83,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 84,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 85,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 86,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 87,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 88,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 89,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 90,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 91,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 92,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 93,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 94,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 95,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 96,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 97,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 98,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 99,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 100,
+              "managed_by": "SELF"
+            }
           ],
           "right_bays": [
-            26,
-            27,
-            28,
-            29,
-            30
+            {
+              "no": 101,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 102,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 103,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 104,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 105,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 106,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 107,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 108,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 109,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 110,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 111,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 112,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 113,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 114,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 115,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 116,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 117,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 118,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 119,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 120,
+              "managed_by": "SELF"
+            }
           ],
-          "managed_by": "SELF",
           "tiers": 4,
           "slots_per_tier": 20
         },
         {
-          "row_id": "R04",
-          "zone_id": "Z-A1",
-          "col": 0,
-          "band": 0,
-          "row_in_band": 3,
-          "x_m": 2.0,
-          "y_m": 15.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
+          "run_id": "RUN-4",
+          "x_m": 8.0,
+          "y_m": 9.3,
+          "length_m": 24.0,
+          "width_m": 1.2,
+          "aisle_m": 0.8,
+          "bay_length_m": 1.2,
           "left_bays": [
-            31,
-            32,
-            33,
-            34,
-            35
+            {
+              "no": 121,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 122,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 123,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 124,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 125,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 126,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 127,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 128,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 129,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 130,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 131,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 132,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 133,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 134,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 135,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 136,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 137,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 138,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 139,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 140,
+              "managed_by": "SELF"
+            }
           ],
           "right_bays": [
-            36,
-            37,
-            38,
-            39,
-            40
+            {
+              "no": 141,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 142,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 143,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 144,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 145,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 146,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 147,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 148,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 149,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 150,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 151,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 152,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 153,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 154,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 155,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 156,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 157,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 158,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 159,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 160,
+              "managed_by": "SELF"
+            }
           ],
-          "managed_by": "SELF",
           "tiers": 4,
           "slots_per_tier": 20
         },
         {
-          "row_id": "R05",
-          "zone_id": "Z-B1",
-          "col": 0,
-          "band": 1,
-          "row_in_band": 0,
-          "x_m": 2.0,
-          "y_m": 19.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
+          "run_id": "RUN-5",
+          "x_m": 10.0,
+          "y_m": 9.3,
+          "length_m": 24.0,
+          "width_m": 1.2,
+          "aisle_m": 0.8,
+          "bay_length_m": 1.2,
           "left_bays": [
-            41,
-            42,
-            43,
-            44,
-            45
+            {
+              "no": 161,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 162,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 163,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 164,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 165,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 166,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 167,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 168,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 169,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 170,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 171,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 172,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 173,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 174,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 175,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 176,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 177,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 178,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 179,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 180,
+              "managed_by": "SELF"
+            }
           ],
           "right_bays": [
-            46,
-            47,
-            48,
-            49,
-            50
+            {
+              "no": 181,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 182,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 183,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 184,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 185,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 186,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 187,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 188,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 189,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 190,
+              "managed_by": "SELF"
+            },
+            {
+              "no": 191,
+              "managed_by": "JD"
+            },
+            {
+              "no": 192,
+              "managed_by": "JD"
+            },
+            {
+              "no": 193,
+              "managed_by": "JD"
+            },
+            {
+              "no": 194,
+              "managed_by": "JD"
+            },
+            {
+              "no": 195,
+              "managed_by": "JD"
+            },
+            {
+              "no": 196,
+              "managed_by": "JD"
+            },
+            {
+              "no": 197,
+              "managed_by": "JD"
+            },
+            {
+              "no": 198,
+              "managed_by": "JD"
+            },
+            {
+              "no": 199,
+              "managed_by": "JD"
+            },
+            {
+              "no": 200,
+              "managed_by": "JD"
+            }
           ],
-          "managed_by": "SELF",
           "tiers": 4,
           "slots_per_tier": 20
         },
         {
-          "row_id": "R06",
-          "zone_id": "Z-B1",
-          "col": 0,
-          "band": 1,
-          "row_in_band": 1,
-          "x_m": 2.0,
-          "y_m": 21.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
+          "run_id": "RUN-6",
+          "x_m": 12.0,
+          "y_m": 9.3,
+          "length_m": 24.0,
+          "width_m": 1.2,
+          "aisle_m": 0.8,
+          "bay_length_m": 1.2,
           "left_bays": [
-            51,
-            52,
-            53,
-            54,
-            55
+            {
+              "no": 201,
+              "managed_by": "JD"
+            },
+            {
+              "no": 202,
+              "managed_by": "JD"
+            },
+            {
+              "no": 203,
+              "managed_by": "JD"
+            },
+            {
+              "no": 204,
+              "managed_by": "JD"
+            },
+            {
+              "no": 205,
+              "managed_by": "JD"
+            },
+            {
+              "no": 206,
+              "managed_by": "JD"
+            },
+            {
+              "no": 207,
+              "managed_by": "JD"
+            },
+            {
+              "no": 208,
+              "managed_by": "JD"
+            },
+            {
+              "no": 209,
+              "managed_by": "JD"
+            },
+            {
+              "no": 210,
+              "managed_by": "JD"
+            },
+            {
+              "no": 211,
+              "managed_by": "JD"
+            },
+            {
+              "no": 212,
+              "managed_by": "JD"
+            },
+            {
+              "no": 213,
+              "managed_by": "JD"
+            },
+            {
+              "no": 214,
+              "managed_by": "JD"
+            },
+            {
+              "no": 215,
+              "managed_by": "JD"
+            },
+            {
+              "no": 216,
+              "managed_by": "JD"
+            },
+            {
+              "no": 217,
+              "managed_by": "JD"
+            },
+            {
+              "no": 218,
+              "managed_by": "JD"
+            },
+            {
+              "no": 219,
+              "managed_by": "JD"
+            },
+            {
+              "no": 220,
+              "managed_by": "JD"
+            }
           ],
           "right_bays": [
-            56,
-            57,
-            58,
-            59,
-            60
+            {
+              "no": 221,
+              "managed_by": "JD"
+            },
+            {
+              "no": 222,
+              "managed_by": "JD"
+            },
+            {
+              "no": 223,
+              "managed_by": "JD"
+            },
+            {
+              "no": 224,
+              "managed_by": "JD"
+            },
+            {
+              "no": 225,
+              "managed_by": "JD"
+            },
+            {
+              "no": 226,
+              "managed_by": "JD"
+            },
+            {
+              "no": 227,
+              "managed_by": "JD"
+            },
+            {
+              "no": 228,
+              "managed_by": "JD"
+            },
+            {
+              "no": 229,
+              "managed_by": "JD"
+            },
+            {
+              "no": 230,
+              "managed_by": "JD"
+            },
+            {
+              "no": 231,
+              "managed_by": "JD"
+            },
+            {
+              "no": 232,
+              "managed_by": "JD"
+            },
+            {
+              "no": 233,
+              "managed_by": "JD"
+            },
+            {
+              "no": 234,
+              "managed_by": "JD"
+            },
+            {
+              "no": 235,
+              "managed_by": "JD"
+            },
+            {
+              "no": 236,
+              "managed_by": "JD"
+            },
+            {
+              "no": 237,
+              "managed_by": "JD"
+            },
+            {
+              "no": 238,
+              "managed_by": "JD"
+            },
+            {
+              "no": 239,
+              "managed_by": "JD"
+            },
+            {
+              "no": 240,
+              "managed_by": "JD"
+            }
           ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R07",
-          "zone_id": "Z-B1",
-          "col": 0,
-          "band": 1,
-          "row_in_band": 2,
-          "x_m": 2.0,
-          "y_m": 23.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            61,
-            62,
-            63,
-            64,
-            65
-          ],
-          "right_bays": [
-            66,
-            67,
-            68,
-            69,
-            70
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R08",
-          "zone_id": "Z-B1",
-          "col": 0,
-          "band": 1,
-          "row_in_band": 3,
-          "x_m": 2.0,
-          "y_m": 25.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            71,
-            72,
-            73,
-            74,
-            75
-          ],
-          "right_bays": [
-            76,
-            77,
-            78,
-            79,
-            80
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R09",
-          "zone_id": "Z-A2",
-          "col": 1,
-          "band": 0,
-          "row_in_band": 0,
-          "x_m": 11.7,
-          "y_m": 9.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            81,
-            82,
-            83,
-            84,
-            85
-          ],
-          "right_bays": [
-            86,
-            87,
-            88,
-            89,
-            90
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R10",
-          "zone_id": "Z-A2",
-          "col": 1,
-          "band": 0,
-          "row_in_band": 1,
-          "x_m": 11.7,
-          "y_m": 11.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            91,
-            92,
-            93,
-            94,
-            95
-          ],
-          "right_bays": [
-            96,
-            97,
-            98,
-            99,
-            100
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R11",
-          "zone_id": "Z-A2",
-          "col": 1,
-          "band": 0,
-          "row_in_band": 2,
-          "x_m": 11.7,
-          "y_m": 13.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            101,
-            102,
-            103,
-            104,
-            105
-          ],
-          "right_bays": [
-            106,
-            107,
-            108,
-            109,
-            110
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R12",
-          "zone_id": "Z-A2",
-          "col": 1,
-          "band": 0,
-          "row_in_band": 3,
-          "x_m": 11.7,
-          "y_m": 15.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            111,
-            112,
-            113,
-            114,
-            115
-          ],
-          "right_bays": [
-            116,
-            117,
-            118,
-            119,
-            120
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R13",
-          "zone_id": "Z-B2",
-          "col": 1,
-          "band": 1,
-          "row_in_band": 0,
-          "x_m": 11.7,
-          "y_m": 19.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            121,
-            122,
-            123,
-            124,
-            125
-          ],
-          "right_bays": [
-            126,
-            127,
-            128,
-            129,
-            130
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R14",
-          "zone_id": "Z-B2",
-          "col": 1,
-          "band": 1,
-          "row_in_band": 1,
-          "x_m": 11.7,
-          "y_m": 21.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            131,
-            132,
-            133,
-            134,
-            135
-          ],
-          "right_bays": [
-            136,
-            137,
-            138,
-            139,
-            140
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R15",
-          "zone_id": "Z-B2",
-          "col": 1,
-          "band": 1,
-          "row_in_band": 2,
-          "x_m": 11.7,
-          "y_m": 23.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            141,
-            142,
-            143,
-            144,
-            145
-          ],
-          "right_bays": [
-            146,
-            147,
-            148,
-            149,
-            150
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R16",
-          "zone_id": "Z-B2",
-          "col": 1,
-          "band": 1,
-          "row_in_band": 3,
-          "x_m": 11.7,
-          "y_m": 25.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            151,
-            152,
-            153,
-            154,
-            155
-          ],
-          "right_bays": [
-            156,
-            157,
-            158,
-            159,
-            160
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R17",
-          "zone_id": "Z-A3",
-          "col": 2,
-          "band": 0,
-          "row_in_band": 0,
-          "x_m": 21.4,
-          "y_m": 9.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            161,
-            162,
-            163,
-            164,
-            165
-          ],
-          "right_bays": [
-            166,
-            167,
-            168,
-            169,
-            170
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R18",
-          "zone_id": "Z-A3",
-          "col": 2,
-          "band": 0,
-          "row_in_band": 1,
-          "x_m": 21.4,
-          "y_m": 11.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            171,
-            172,
-            173,
-            174,
-            175
-          ],
-          "right_bays": [
-            176,
-            177,
-            178,
-            179,
-            180
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R19",
-          "zone_id": "Z-A3",
-          "col": 2,
-          "band": 0,
-          "row_in_band": 2,
-          "x_m": 21.4,
-          "y_m": 13.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            181,
-            182,
-            183,
-            184,
-            185
-          ],
-          "right_bays": [
-            186,
-            187,
-            188,
-            189,
-            190
-          ],
-          "managed_by": "SELF",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R20",
-          "zone_id": "Z-A3",
-          "col": 2,
-          "band": 0,
-          "row_in_band": 3,
-          "x_m": 21.4,
-          "y_m": 15.2,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            191,
-            192,
-            193,
-            194,
-            195
-          ],
-          "right_bays": [
-            196,
-            197,
-            198,
-            199,
-            200
-          ],
-          "managed_by": "JD",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R21",
-          "zone_id": "Z-B3",
-          "col": 2,
-          "band": 1,
-          "row_in_band": 0,
-          "x_m": 21.4,
-          "y_m": 19.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            201,
-            202,
-            203,
-            204,
-            205
-          ],
-          "right_bays": [
-            206,
-            207,
-            208,
-            209,
-            210
-          ],
-          "managed_by": "JD",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R22",
-          "zone_id": "Z-B3",
-          "col": 2,
-          "band": 1,
-          "row_in_band": 1,
-          "x_m": 21.4,
-          "y_m": 21.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            211,
-            212,
-            213,
-            214,
-            215
-          ],
-          "right_bays": [
-            216,
-            217,
-            218,
-            219,
-            220
-          ],
-          "managed_by": "JD",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R23",
-          "zone_id": "Z-B3",
-          "col": 2,
-          "band": 1,
-          "row_in_band": 2,
-          "x_m": 21.4,
-          "y_m": 23.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            221,
-            222,
-            223,
-            224,
-            225
-          ],
-          "right_bays": [
-            226,
-            227,
-            228,
-            229,
-            230
-          ],
-          "managed_by": "JD",
-          "tiers": 4,
-          "slots_per_tier": 20
-        },
-        {
-          "row_id": "R24",
-          "zone_id": "Z-B3",
-          "col": 2,
-          "band": 1,
-          "row_in_band": 3,
-          "x_m": 21.4,
-          "y_m": 25.6,
-          "length_m": 7.5,
-          "depth_m": 1.2,
-          "left_bays": [
-            231,
-            232,
-            233,
-            234,
-            235
-          ],
-          "right_bays": [
-            236,
-            237,
-            238,
-            239,
-            240
-          ],
-          "managed_by": "JD",
           "tiers": 4,
           "slots_per_tier": 20
         }
@@ -746,7 +1121,7 @@
       "station_id": "NH-LANYUAN",
       "name": "兰苑无人菜鸟驿站",
       "status": "pending_photos",
-      "note": "等用户提供实景照片后生成；在此之前不画示意布局。"
+      "note": "等用户提供实景照片后生成。"
     }
   ]
 }
