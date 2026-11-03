@@ -70,26 +70,25 @@ for r in range(BLOCK_ROWS * N_BLOCK):
         "depth_m": round(DEPTH * 2, 2),
         "left_bays": left,
         "right_bays": right,
+        "managed_by": "JD" if (left and left[0] >= 191) else "SELF",
         "tiers": TIERS,
         "slots_per_tier": PER_TIER,
         "aisle_y_m": round(y + DEPTH, 2)
     })
 
-# 顶部：出入口在左上角；其余横向空间由人工服务台与顺丰平分
-# 京东服务区在第三列（191—240）的南端，不占顶部
-ZONE_Y = 2.4
-ZONE_H = 3.0
+# 顶部：出入口在左、扫码出库台在右（两者同一横带，门在出库台的左边）
+# 底部：人工服务台（原来放京东的位置）
+# 京东不单独占区域——第三列 191—240 号货架就是京东管理的货架，用颜色区分
+ZONE_Y = 2.6
+ZONE_H = 3.2
 zones = [
-    {"id": "Z-ENTRY", "kind": "entrance", "label": "出入口", "x_m": round(MARGIN, 2), "y_m": 0.3,
-     "w_m": 3.2, "h_m": 1.8},
-    {"id": "Z-COUNTER", "kind": "counter", "label": "人工服务台 / 收银",
-     "x_m": round(MARGIN, 2), "y_m": ZONE_Y, "w_m": round((W - MARGIN * 2) / 2 - 0.4, 2), "h_m": ZONE_H},
-    {"id": "Z-SF", "kind": "brand", "label": "顺丰服务区（含扫码台）",
-     "x_m": round(MARGIN + (W - MARGIN * 2) / 2 + 0.4, 2), "y_m": ZONE_Y,
-     "w_m": round((W - MARGIN * 2) / 2 - 0.4, 2), "h_m": ZONE_H},
-    {"id": "Z-JD", "kind": "brand", "label": "京东服务区（第三列 191—240 一侧）",
-     "x_m": round(MARGIN + 2 * (RUN_LEN + CROSS_AISLE), 2), "y_m": round(D - JD_STRIP + 0.6, 2),
-     "w_m": round(RUN_LEN, 2), "h_m": 3.4},
+    {"id": "Z-ENTRY", "kind": "entrance", "label": "出入口", "x_m": 0.2, "y_m": ZONE_Y,
+     "w_m": 1.6, "h_m": ZONE_H},
+    {"id": "Z-SCAN", "kind": "counter", "label": "扫码出库台",
+     "x_m": 2.2, "y_m": ZONE_Y, "w_m": round(W - 4.2, 2), "h_m": ZONE_H},
+    {"id": "Z-MANUAL", "kind": "brand", "label": "人工服务台",
+     "x_m": round(MARGIN + 2 * (RUN_LEN + CROSS_AISLE), 2), "y_m": round(D - JD_STRIP + 0.7, 2),
+     "w_m": round(RUN_LEN, 2), "h_m": 3.0},
 ]
 
 layout = {
@@ -145,9 +144,9 @@ def font(sz):
 
 F_T, F_L, F_S = font(26), font(15), font(11)
 OX, OY = 40, 108
-dr.text((OX, 22), '桃苑主站室内布局 v3 · %d 架 × %d 层 × %d 位 = %d 储位'
+dr.text((OX, 22), '桃苑主站室内布局 v4 · %d 架 × %d 层 × %d 位 = %d 储位'
         % (BAYS, TIERS, PER_TIER, BAYS * TIERS * PER_TIER), fill=(18, 22, 30), font=F_T)
-dr.text((OX, 56), '三列等长（1-80 / 81-160 / 161-240）· 通道 %.1f m · %d 排 · 占地约 %.0f m² · 生成于 2026-11-03'
+dr.text((OX, 56), '三列等长（1-80 / 81-160 / 161-240）· 通道 %.1f m · %d 排 · 占地约 %.0f m² · v4 2026-11-03'
         % (AISLE, N_ROWS, W * D), fill=(90, 100, 118), font=F_L)
 
 dr.rectangle([OX, OY, OX + W * SCALE, OY + D * SCALE], fill=(240, 243, 248), outline=(160, 170, 186))
@@ -165,19 +164,28 @@ for row in rows:
     # 通道
     dr.rectangle([x0, y0 + DEPTH * SCALE, x0 + row['length_m'] * SCALE, y0 + (DEPTH + AISLE) * SCALE],
                  fill=(255, 255, 255))
+    jd = row.get('managed_by') == 'JD'
+    up = (120, 78, 160) if jd else (60, 80, 112)
+    dn = (142, 96, 182) if jd else (74, 96, 130)
     # 上侧货架
-    dr.rectangle([x0, y0, x0 + row['length_m'] * SCALE, y0 + DEPTH * SCALE],
-                 fill=(60, 80, 112), outline=(28, 38, 52))
+    dr.rectangle([x0, y0, x0 + row['length_m'] * SCALE, y0 + DEPTH * SCALE], fill=up, outline=(28, 38, 52))
     # 下侧货架
     dr.rectangle([x0, y0 + (DEPTH + AISLE) * SCALE, x0 + row['length_m'] * SCALE,
-                  y0 + (DEPTH * 2 + AISLE) * SCALE], fill=(74, 96, 130), outline=(28, 38, 52))
+                  y0 + (DEPTH * 2 + AISLE) * SCALE], fill=dn, outline=(28, 38, 52))
     for side_x in (x0, x0 + row['length_m'] * SCALE):
         pass
     lab = '%d-%d / %d-%d' % (row['left_bays'][0], row['left_bays'][-1],
                              row['right_bays'][0], row['right_bays'][-1]) if row['left_bays'] and row['right_bays'] else ''
     dr.text((x0 + 4, y0 + DEPTH * SCALE + 1), lab, fill=(120, 132, 150), font=F_S)
 
-dr.text((OX, OY + D * SCALE + 12), '深色为货架（每格一个货架号），白色为通道；入口在上方',
+# 京东管理区标注：放在该列第一排京东货架的上方
+jd_rows = [r for r in rows if r.get('managed_by') == 'JD']
+if jd_rows:
+    x_jd = OX + jd_rows[0]['x_m'] * SCALE
+    y_jd = OY + (jd_rows[0]['y_m'] - 1.1) * SCALE
+    dr.text((x_jd, y_jd), '京东管理区 191—240（紫色货架）', fill=(120, 78, 160), font=F_L)
+dr.text((OX, OY + D * SCALE + 12),
+        '深蓝＝自营货架，紫色＝京东管理货架；白色为 0.8 m 通道；左上角为出入口，门在扫码出库台左侧',
         fill=(95, 105, 122), font=F_L)
 os.makedirs(os.path.dirname(OUT_PNG), exist_ok=True)
 img.save(OUT_PNG)
