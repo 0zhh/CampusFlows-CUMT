@@ -129,7 +129,7 @@ print('floor %.1f x %.1f m = %.0f m2 ; rows %d ; bays %d ; slots %d'
 
 # ---------------- 预览图 ----------------
 SCALE = 22
-IMG_W, IMG_H = int(W * SCALE) + 80, int(D * SCALE) + 130
+IMG_W, IMG_H = int(W * SCALE) + 80, int(D * SCALE) + 150
 img = Image.new('RGB', (IMG_W, IMG_H), (250, 250, 252))
 dr = ImageDraw.Draw(img)
 
@@ -144,11 +144,11 @@ def font(sz):
 
 
 F_T, F_L, F_S = font(26), font(15), font(11)
-OX, OY = 40, 88
-dr.text((OX, 28), '桃苑主站室内布局（设计示意） %d 货架 × %d 层 × %d 位 = %d 储位'
+OX, OY = 40, 108
+dr.text((OX, 22), '桃苑主站室内布局 v3 · %d 架 × %d 层 × %d 位 = %d 储位'
         % (BAYS, TIERS, PER_TIER, BAYS * TIERS * PER_TIER), fill=(18, 22, 30), font=F_T)
-dr.text((OX, 60), '一条通道两侧各 %d 个货架号 · 通道净宽 %.1f m · 共 %d 排 · 占地约 %.0f m²（推算）'
-        % (BAYS_PER_SIDE, AISLE, N_ROWS, W * D), fill=(90, 100, 118), font=F_L)
+dr.text((OX, 56), '三列等长（1-80 / 81-160 / 161-240）· 通道 %.1f m · %d 排 · 占地约 %.0f m² · 生成于 2026-11-03'
+        % (AISLE, N_ROWS, W * D), fill=(90, 100, 118), font=F_L)
 
 dr.rectangle([OX, OY, OX + W * SCALE, OY + D * SCALE], fill=(240, 243, 248), outline=(160, 170, 186))
 
