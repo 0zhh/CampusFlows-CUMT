@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 245,
-  "total_bytes": 29650717,
+  "count": 249,
+  "total_bytes": 29749070,
   "files": [
     {
       "path": ".gitignore",
@@ -325,6 +325,11 @@
       "sha256": "ee39f78c76706c7008cb87dcef0ad20dce2f16f40c09ebdde7dfeb0365d102ea"
     },
     {
+      "path": "data/demo/nov_daily_summary.csv",
+      "bytes": 839,
+      "sha256": "7c33d5976d1b8afda7f35d14940a14164c783863079181f97d710022b137421c"
+    },
+    {
       "path": "data/demo/nov_flow_summary.json",
       "bytes": 6901,
       "sha256": "aa31e41c8664bb4b08010c69fed61e4d1a8219279f8d21f843a49cb9a21a8dc0"
@@ -333,6 +338,16 @@
       "path": "data/demo/nov_inbound_outbound_10min.csv",
       "bytes": 375666,
       "sha256": "12a5953878765de9ed5a36e5cf9c81a06bc4c867756634e5acf0dc24efb7437f"
+    },
+    {
+      "path": "data/demo/nov_inbound_wide.csv",
+      "bytes": 49898,
+      "sha256": "718a420a736ddb1fa0164940cace2e29e74b93fd37817b6837196145771f9490"
+    },
+    {
+      "path": "data/demo/nov_outbound_wide.csv",
+      "bytes": 43912,
+      "sha256": "f81e9f718f6a6d3208bd1008ca1990ed865db7bf194341e3bddf70bbb7b5e90b"
     },
     {
       "path": "data/demo/scenario_template.json",
@@ -521,8 +536,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 43540,
-      "sha256": "fc0af654bb51b9fb9b1ba0e59f4db682898fd2d80dfd661e9dc2f37a7e15ee4f"
+      "bytes": 44585,
+      "sha256": "46507e65edcf6ded6f97e87cb81dacb36966e9b01d6b83cd659e25d7f52428ab"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -578,6 +593,11 @@
       "path": "data/research/merge_photo_params.py",
       "bytes": 8263,
       "sha256": "37930af3267017fbf4c43180f8031d5c6766267d087e16b4f03b4af12fa2f7c4"
+    },
+    {
+      "path": "data/research/pivot_nov_flows.py",
+      "bytes": 2659,
+      "sha256": "8dac1ad03f25c3650974c4253ec3eda6b7e7ba61d25132c7a116eb97c9b82b4c"
     },
     {
       "path": "data/research/probe_route_graph.py",
