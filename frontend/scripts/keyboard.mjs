@@ -6,10 +6,12 @@ import { spawn } from 'node:child_process'
 import { mkdir, rm } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { tmpdir } from 'node:os'
+import { join, sep } from 'node:path'
 
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const PORT = 9700 + Math.floor(Math.random() * 60)
-const OUT = fileURLToPath(new URL('../../.probe/', import.meta.url))
+const OUT = join(tmpdir(), 'campusflow-probe') + sep
 await mkdir(OUT, { recursive: true })
 const profile = OUT + 'kb-' + PORT
 await rm(profile, { recursive: true, force: true })

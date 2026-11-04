@@ -2,10 +2,12 @@ import { spawn } from 'node:child_process'
 import { mkdir, rm, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { tmpdir } from 'node:os'
+import { join, sep } from 'node:path'
 
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const PORT = 9950
-const OUT = fileURLToPath(new URL('../../.probe/', import.meta.url))
+const OUT = join(tmpdir(), 'campusflow-probe') + sep
 await mkdir(OUT, { recursive: true })
 const profile = OUT + 'calshot'
 await rm(profile, { recursive: true, force: true })
@@ -31,4 +33,7 @@ await sleep(2600)
 const shot = await S('Page.captureScreenshot', { format: 'png' })
 await writeFile(OUT + 'calpanel.png', Buffer.from(shot.data, 'base64'))
 console.log('ok', OUT + 'calpanel.png')
-ws.close(); chrome.kill(); process.exit(0)
+ws.close(); chrome.kill()
+// cleanup：删除本次用的浏览器 profile，避免临时目录越堆越大
+await rm(profile, { recursive: true, force: true }).catch(() => {})
+process.exit(0)

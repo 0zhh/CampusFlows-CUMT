@@ -7,6 +7,8 @@ import { spawn } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { mkdir, writeFile, rm } from 'node:fs/promises'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { tmpdir } from 'node:os'
+import { join, sep } from 'node:path'
 
 const BASE = process.argv[2] || 'http://127.0.0.1:5173'
 const ROUTES = ['/overview', '/sites', '/peak', '/incidents', '/routes', '/about']
@@ -14,7 +16,7 @@ const WIDTH = Number(process.argv[3] || 1440)
 const THEME = process.argv[4] || 'dark'
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const PORT = 9334
-const OUT = fileURLToPath(new URL('../../.probe/', import.meta.url))
+const OUT = join(tmpdir(), 'campusflow-probe') + sep
 
 await mkdir(OUT, { recursive: true })
 const profile = OUT + 'profile2'
@@ -216,4 +218,7 @@ for (const r of out) {
   for (const c of r.contrast) if (!c.pass) console.log('   CONTRAST', c.sel, c.ratio)
 }
 
-ws.close(); chrome.kill(); process.exit(0)
+ws.close(); chrome.kill()
+// cleanup：删除本次用的浏览器 profile，避免临时目录越堆越大
+await rm(profile, { recursive: true, force: true }).catch(() => {})
+process.exit(0)

@@ -2,11 +2,13 @@ import { spawn } from 'node:child_process'
 import { mkdir, writeFile, rm } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { tmpdir } from 'node:os'
+import { join, sep } from 'node:path'
 
 const ROUTE = process.argv[2] || '/overview'
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const PORT = 9500 + Math.floor(Math.random() * 60)
-const OUT = fileURLToPath(new URL('../../.probe/', import.meta.url))
+const OUT = join(tmpdir(), 'campusflow-probe') + sep
 await mkdir(OUT, { recursive: true })
 const profile = OUT + 'tx-' + PORT
 await rm(profile, { recursive: true, force: true })
@@ -40,4 +42,7 @@ if (SC) {
 }
 const r = await S('Runtime.evaluate', { returnByValue: true, expression: 'document.querySelector("main").innerText' })
 console.log(r.result.value)
-ws.close(); chrome.kill(); process.exit(0)
+ws.close(); chrome.kill()
+// cleanup：删除本次用的浏览器 profile，避免临时目录越堆越大
+await rm(profile, { recursive: true, force: true }).catch(() => {})
+process.exit(0)
