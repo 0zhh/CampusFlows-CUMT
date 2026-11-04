@@ -397,6 +397,8 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
 
 <style scoped>
 .map-expand { margin-left: auto; font-size: var(--fs-xs); }
+/* 面板是 grid 且默认 stretch，行高会被右栏撑开；这里把表头钉死，剩下的都给地图 */
+.ov__map { grid-template-rows: auto minmax(0, 1fr); align-self: start; }
 
 .carrier { display: grid; gap: 6px; margin: var(--sp-3) 0; }
 .carrier__title { font-size: var(--fs-xs); color: var(--fg-2); }

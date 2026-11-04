@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
   "generated_at": "2026-11-04",
-  "layout_version": "v2",
+  "layout_version": "v3",
   "note": "货架数/层数/每层位数/通道宽来自参数表（实测档）；六个货架区从左到右均等排布，每区 8 排、每排 5 个货架号，属设计示意，非实测平面图。",
   "stations": [
     {
@@ -1131,12 +1131,13 @@
       "station_id": "NH-LANYUAN",
       "name": "兰苑无人菜鸟驿站",
       "status": "designed",
+      "layout_version": "v2",
       "truth_level": "observed_counts + designed_arrangement",
       "source": "用户手绘平面图 + 实景照片（2026-11-04）",
       "floor": {
-        "width_m": 14.0,
-        "depth_m": 15.8,
-        "area_m2": 221,
+        "width_m": 11.6,
+        "depth_m": 17.0,
+        "area_m2": 197,
         "area_note": "按货架阵列与通道推算，非实测面积"
       },
       "params": {
@@ -1148,10 +1149,9 @@
         "bay_length_m": 1.0,
         "rack_depth_m": 0.6,
         "aisle_m": 0.8,
-        "rows": 5,
-        "bays_per_row": 11,
-        "left_bays": 5,
-        "right_bays": 6,
+        "cols": 5,
+        "per_col": 11,
+        "col_width_m": 1.2,
         "physical_slots": 5500,
         "code_format": "货架号-层号-序号"
       },
@@ -1161,7 +1161,7 @@
           "kind": "entrance",
           "label": "出入口",
           "x_m": 0.2,
-          "y_m": 0.6,
+          "y_m": 1.0,
           "w_m": 1.5,
           "h_m": 2.6
         },
@@ -1170,38 +1170,39 @@
           "kind": "counter",
           "label": "出库台",
           "x_m": 2.2,
-          "y_m": 0.6,
-          "w_m": 3.6,
+          "y_m": 1.0,
+          "w_m": 3.4,
           "h_m": 2.6
         },
         {
           "id": "Z-RESERVED",
           "kind": "reserved",
           "label": "",
-          "x_m": 9.6,
-          "y_m": 0.4,
-          "w_m": 4.0,
-          "h_m": 3.4
+          "x_m": 7.4,
+          "y_m": 0.6,
+          "w_m": 3.8,
+          "h_m": 3.6
         }
       ],
       "rows": [
         {
-          "row_id": "R01",
+          "row_id": "C01",
           "zone_id": "Z-RACK",
+          "orientation": "vertical",
           "col": 0,
           "row_in_col": 0,
-          "x_m": 1.4,
-          "y_m": 4.4,
+          "x_m": 1.5,
+          "y_m": 5.0,
+          "w_m": 1.2,
           "length_m": 11.0,
           "depth_m": 1.2,
-          "left_bays": [
+          "bay_len_m": 1.0,
+          "bays": [
             545,
             546,
             547,
             548,
-            549
-          ],
-          "right_bays": [
+            549,
             550,
             551,
             552,
@@ -1214,22 +1215,23 @@
           "slots_per_tier": 20
         },
         {
-          "row_id": "R02",
+          "row_id": "C02",
           "zone_id": "Z-RACK",
-          "col": 0,
+          "orientation": "vertical",
+          "col": 1,
           "row_in_col": 1,
-          "x_m": 1.4,
-          "y_m": 6.4,
+          "x_m": 3.5,
+          "y_m": 5.0,
+          "w_m": 1.2,
           "length_m": 11.0,
           "depth_m": 1.2,
-          "left_bays": [
+          "bay_len_m": 1.0,
+          "bays": [
             556,
             557,
             558,
             559,
-            505
-          ],
-          "right_bays": [
+            505,
             506,
             507,
             508,
@@ -1242,22 +1244,23 @@
           "slots_per_tier": 20
         },
         {
-          "row_id": "R03",
+          "row_id": "C03",
           "zone_id": "Z-RACK",
-          "col": 0,
+          "orientation": "vertical",
+          "col": 2,
           "row_in_col": 2,
-          "x_m": 1.4,
-          "y_m": 8.4,
+          "x_m": 5.5,
+          "y_m": 5.0,
+          "w_m": 1.2,
           "length_m": 11.0,
           "depth_m": 1.2,
-          "left_bays": [
+          "bay_len_m": 1.0,
+          "bays": [
             512,
             513,
             514,
             515,
-            516
-          ],
-          "right_bays": [
+            516,
             517,
             518,
             519,
@@ -1270,22 +1273,23 @@
           "slots_per_tier": 20
         },
         {
-          "row_id": "R04",
+          "row_id": "C04",
           "zone_id": "Z-RACK",
-          "col": 0,
+          "orientation": "vertical",
+          "col": 3,
           "row_in_col": 3,
-          "x_m": 1.4,
-          "y_m": 10.4,
+          "x_m": 7.5,
+          "y_m": 5.0,
+          "w_m": 1.2,
           "length_m": 11.0,
           "depth_m": 1.2,
-          "left_bays": [
+          "bay_len_m": 1.0,
+          "bays": [
             523,
             524,
             525,
             526,
-            527
-          ],
-          "right_bays": [
+            527,
             528,
             529,
             530,
@@ -1298,22 +1302,23 @@
           "slots_per_tier": 20
         },
         {
-          "row_id": "R05",
+          "row_id": "C05",
           "zone_id": "Z-RACK",
-          "col": 0,
+          "orientation": "vertical",
+          "col": 4,
           "row_in_col": 4,
-          "x_m": 1.4,
-          "y_m": 12.4,
+          "x_m": 9.5,
+          "y_m": 5.0,
+          "w_m": 1.2,
           "length_m": 11.0,
           "depth_m": 1.2,
-          "left_bays": [
+          "bay_len_m": 1.0,
+          "bays": [
             534,
             535,
             536,
             537,
-            538
-          ],
-          "right_bays": [
+            538,
             539,
             540,
             541,
@@ -1327,10 +1332,11 @@
         }
       ],
       "notes": [
-        "545—550 号货架离出入口最近（用户指定），排在最靠近出入口的第一排",
+        "货架按列排布：每列 11 个货架，沿进深方向自上而下编号，列间 0.8 m 通道",
+        "545—550 位于最靠近出入口的第一列上端（用户指定）",
         "右上角为保留区，用途未知，图中留空不标注",
-        "照片显示每架 5 层，层号写在红梁标签上（505-1 … 505-5）",
-        "取件码规则：货架号-层号-包裹序号，与桃苑一致"
+        "每个货架只有一个货架号，55 个货架对应 505—559 共 55 个号",
+        "照片显示每架 5 层，层号写在红梁标签上（505-1 … 505-5）"
       ]
     }
   ]

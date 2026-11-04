@@ -122,8 +122,8 @@ await ev(`document.querySelector('.drawer__close')?.click()`)
 await sleep(700)
 check('抽屉可关闭', (await ev(`!!document.querySelector('.drawer')`)) === false)
 
-// 地图标记点击
-await ev(`document.querySelectorAll('.site-marker')[2]?.click()`)
+// 地图标记点击：手册底图不画彩色标记（原图自带红点），只剩透明热区
+await ev(`document.querySelectorAll('.site-hit__pad')[2]?.click()`)
 await sleep(1200)
 check('点击地图标记打开抽屉', (await ev(`!!document.querySelector('.drawer')`)) === true)
 

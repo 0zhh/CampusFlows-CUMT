@@ -18,6 +18,10 @@ interface Row {
   depth_m: number
   left_bays: number[]
   right_bays: number[]
+  orientation?: 'vertical'
+  w_m?: number
+  bay_len_m?: number
+  bays?: number[]
   managed_by: 'SELF' | 'JD'
   tiers: number
   slots_per_tier: number
@@ -69,7 +73,8 @@ function slotCode(bay: number, tier: number, idx: number) {
 
 const bayList = computed(() => {
   if (!selected.value) return [] as number[]
-  return [...selected.value.left_bays, ...selected.value.right_bays]
+  const r = selected.value
+  return r.bays ?? [...r.left_bays, ...r.right_bays]
 })
 
 const slots = computed(() => {
@@ -126,25 +131,44 @@ function pickSlot(bay: number, tier: number, idx: number) {
         </g>
 
         <g v-for="row in station.rows" :key="row.row_id" class="row" @click="pick(row)">
-          <rect
-            :x="row.x_m" :y="row.y_m" :width="row.length_m" :height="row.depth_m"
-            :class="['rack', row.managed_by === 'JD' ? 'rack--jd' : 'rack--self',
-                     selected && selected.row_id === row.row_id ? 'rack--on' : '']"
-          />
-          <text :x="row.x_m + 0.1" :y="row.y_m - 0.25" class="row__label">
-            {{ row.left_bays[0] }}-{{ row.right_bays[row.right_bays.length - 1] }}
-          </text>
+          <template v-if="row.orientation === 'vertical'">
+            <rect
+              :x="row.x_m" :y="row.y_m" :width="row.w_m ?? row.depth_m" :height="row.length_m"
+              :class="['rack', 'rack--self', selected && selected.row_id === row.row_id ? 'rack--on' : '']"
+            />
+            <line
+              v-for="k in (row.bays?.length ?? 1) - 1" :key="'t' + k"
+              :x1="row.x_m" :y1="row.y_m + k * (row.bay_len_m ?? 1)"
+              :x2="row.x_m + (row.w_m ?? row.depth_m)" :y2="row.y_m + k * (row.bay_len_m ?? 1)"
+              class="rack__tick"
+            />
+            <text :x="row.x_m + 0.15" :y="row.y_m - 0.3" class="row__label">{{ row.row_id }}</text>
+          </template>
+          <template v-else>
+            <rect
+              :x="row.x_m" :y="row.y_m" :width="row.length_m" :height="row.depth_m"
+              :class="['rack', row.managed_by === 'JD' ? 'rack--jd' : 'rack--self',
+                       selected && selected.row_id === row.row_id ? 'rack--on' : '']"
+            />
+            <text :x="row.x_m + 0.1" :y="row.y_m - 0.25" class="row__label">
+              {{ row.left_bays[0] }}-{{ row.right_bays[row.right_bays.length - 1] }}
+            </text>
+          </template>
         </g>
       </svg>
 
       <p class="plan__legend">
-        <i class="sw sw--self" />自营货架　<i class="sw sw--jd" />京东管理 191—240　
-        <i class="sw sw--scan" />扫码出库台　<i class="sw sw--sf" />顺丰收发区　<i class="sw sw--manual" />人工服务台
+        <i class="sw sw--self" />货架
+        <template v-if="station.params?.bays >= 200">
+          　<i class="sw sw--jd" />京东管理 191—240　<i class="sw sw--sf" />顺丰收发区　<i class="sw sw--manual" />人工服务台
+        </template>
+        　<i class="sw sw--scan" />{{ station.params?.bays >= 200 ? '扫码出库台' : '出库台' }}　
+        <i class="sw sw--reserved" />保留区（用途未定）
       </p>
 
       <div v-if="selected" class="shelf">
         <div class="shelf__head">
-          <b>{{ selected.zone_id }} · 第 {{ selected.row_in_col + 1 }} 排</b>
+          <b>{{ selected.zone_id }} · {{ selected.orientation === 'vertical' ? '第 ' + ((selected.col ?? 0) + 1) + ' 列' : '第 ' + ((selected.row_in_col ?? 0) + 1) + ' 排' }}</b>
           <span class="num">货架 {{ bayList[0] }}—{{ bayList[bayList.length - 1] }}</span>
           <span class="num">{{ selected.tiers }} 层 × {{ selected.slots_per_tier }} 位 = {{ bayList.length * selected.tiers * selected.slots_per_tier }} 个储位</span>
           <span class="shelf__occ num">在架 {{ occupancy }}%</span>
@@ -199,6 +223,7 @@ function pickSlot(bay: number, tier: number, idx: number) {
 .rack--self { fill: #3d5170; }
 .rack--jd { fill: #784ea0; }
 .rack--on { stroke: var(--brand); stroke-width: 0.12; }
+.rack__tick { stroke: rgba(255,255,255,0.35); stroke-width: 0.03; }
 .row__label { font-size: 0.34px; fill: var(--fg-2); }
 
 .plan__legend { font-size: 10px; color: var(--fg-2); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
@@ -208,6 +233,7 @@ function pickSlot(bay: number, tier: number, idx: number) {
 .sw--scan { background: #e8a33d; }
 .sw--sf { background: #965c80; }
 .sw--manual { background: #5b9bd5; }
+.sw--reserved { background: #dfe3ea; border: 1px solid var(--line); }
 
 .shelf { border-top: 1px dashed var(--line); padding-top: var(--sp-2); display: grid; gap: var(--sp-2); }
 .shelf__head { display: flex; gap: var(--sp-3); flex-wrap: wrap; font-size: var(--fs-xs); color: var(--fg-1); align-items: baseline; }

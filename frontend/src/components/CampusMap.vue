@@ -84,6 +84,17 @@ function posOf(site: (typeof SITES)[number]) {
 }
 
 function siteIcon(site: (typeof SITES)[number]) {
+  // 手册原图本来就把红点印在图上了，不再重复画彩色标记；
+  // 但保留一个透明热区，点击照样能打开站点抽屉。
+  if (layer.value === 'manual') {
+    return L.divIcon({
+      className: 'site-hit',
+      iconSize: [30, 30],
+      iconAnchor: [15, 15],
+      html: '<span class="site-hit__pad"></span>'
+    })
+  }
+
   const open = isOpenNow(site)
   const risk = riskSiteIds.value.has(site.id)
   const main = site.role === 'main_hub'
@@ -199,23 +210,30 @@ function refit() {
 }
 
 let ro: ResizeObserver | null = null
-let lastSize = ''
+let rafId = 0
 onMounted(() => {
   void init().then(() => {
     if (!el.value) return
+    // 容器尺寸一变就重算，永远按当前真实尺寸纠正 Leaflet 缓存的尺寸
     ro = new ResizeObserver(() => {
-      if (!map || !el.value) return
-      const k = el.value.clientWidth + 'x' + el.value.clientHeight
-      if (k === lastSize) return
-      lastSize = k
-      map.invalidateSize()
-      refit()
+      if (!map) return
+      cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(() => {
+        map?.invalidateSize()
+        refit()
+      })
     })
     ro.observe(el.value)
+    // 首帧之后再兜一次（面板刚插入时高度可能还没定型）
+    window.setTimeout(() => {
+      map?.invalidateSize()
+      refit()
+    }, 260)
   })
 })
 
 onUnmounted(() => {
+  cancelAnimationFrame(rafId)
   ro?.disconnect()
   clearRoutes()
   map?.remove()
@@ -377,7 +395,7 @@ const layerOptions = [
       </button>
     </div>
 
-    <div class="map__legend">
+    <div v-if="layer === 'satellite'" class="map__legend">
       <span class="lg"><i class="lg__dot" style="background: var(--tao)" />桃苑主站</span>
       <span class="lg"><i class="lg__dot" style="background: var(--song)" />松苑</span>
       <span class="lg"><i class="lg__dot" style="background: var(--mei)" />梅苑</span>
@@ -385,6 +403,9 @@ const layerOptions = [
       <span class="lg"><i class="lg__ring" />风险时段</span>
       <span v-if="showRoutes" class="lg"><i class="lg__line" />配送路径</span>
     </div>
+    <p v-else class="map__legend map__legend--plain">
+      站点位置已在原图上用红点标出 · 点击可查看当前负荷
+    </p>
 
     <p class="map__note">
       站点位置可在顶栏「校准站点位置」里手动对齐，非测绘成果
@@ -393,6 +414,20 @@ const layerOptions = [
 </template>
 
 <style scoped>
+.site-hit__pad {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+.site-hit:hover .site-hit__pad {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 55%, transparent);
+  background: color-mix(in oklab, var(--brand) 14%, transparent);
+}
+.map__legend--plain { font-size: var(--fs-xs); color: var(--fg-2); }
+
 .lg__line { width: 16px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--tao) 0 25%, var(--song) 25% 50%, var(--mei) 50% 75%, var(--lan) 75% 100%); display: inline-block; }
 
 .map-wrap {
