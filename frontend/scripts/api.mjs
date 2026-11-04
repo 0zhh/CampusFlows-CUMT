@@ -48,8 +48,11 @@ check('布局接口 200', lay.status === 200)
 check('48 排货架', lay.json?.rows?.length === 48, String(lay.json?.rows?.length))
 check('240 个货架号', lay.json?.params?.bays === 240, String(lay.json?.params?.bays))
 check('京东 191–240 共 10 排', lay.json?.rows?.filter((r) => r.managed_by === 'JD').length === 10)
-const missing = await get('/api/layouts/NH-LANYUAN')
-check('兰苑无布局返回 pending', missing.json?.status === 'pending_photos', String(missing.json?.status))
+const ly = await get('/api/layouts/NH-LANYUAN')
+check('兰苑布局 5 列', ly.json?.rows?.length === 5, String(ly.json?.rows?.length))
+check('兰苑 55 架 5 层 = 5500 储位', ly.json?.params?.physical_slots === 5500, String(ly.json?.params?.physical_slots))
+check('兰苑编号 545 递减到 491', ly.json?.rows?.[0]?.bays?.[0] === 545 && ly.json?.rows?.[4]?.bays?.[10] === 491,
+  [ly.json?.rows?.[0]?.bays?.[0], ly.json?.rows?.[4]?.bays?.[10]].join('→'))
 
 // 5. 工单流转
 const before = await get('/api/workorders')
@@ -111,8 +114,9 @@ check('桃苑物理储位 24000', tao2?.physicalSlots === 24000, String(tao2?.ph
 
 const pv = await get('/api/params/versions')
 check('参数版本 200', pv.status === 200, JSON.stringify(pv.json?.[0]?.version))
-check('参数版本 1.0 共 27 项', pv.json?.[0]?.totalCnt === 27, String(pv.json?.[0]?.totalCnt))
-check('三档计数 9/1/17', pv.json?.[0]?.observedCnt === 9 && pv.json?.[0]?.publicCnt === 1 && pv.json?.[0]?.assumedCnt === 17)
+check('参数版本 1.0 共 31 项', pv.json?.[0]?.totalCnt === 31, String(pv.json?.[0]?.totalCnt))
+check('三档计数 10/1/19', pv.json?.[0]?.observedCnt === 10 && pv.json?.[0]?.publicCnt === 1 && pv.json?.[0]?.assumedCnt === 19,
+  [pv.json?.[0]?.observedCnt, pv.json?.[0]?.publicCnt, pv.json?.[0]?.assumedCnt].join('/'))
 
 const runs = await get('/api/simulations')
 check('运行历史 200', runs.status === 200, JSON.stringify(runs.json?.length))
