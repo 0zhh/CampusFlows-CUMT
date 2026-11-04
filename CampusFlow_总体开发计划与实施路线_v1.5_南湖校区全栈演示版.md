@@ -730,3 +730,38 @@ H2 能证明"能持久化"，但撑不起下面五件事——它们都需要**�
 - **不做**：登录鉴权、真实运单、多校区、分库分表、读写分离
 - **保留**：H2 作为答辩兜底（没网、没 Docker 也能演示完整前端）
 - **前端兼容**：所有新接口都走 `getJson`，不可达时返回 null 并回落本地数据，不破坏"没后端也能演示"
+
+### 13.6 落地记录（2026-11-04，按 P0—P3 执行完毕）
+
+| 阶段 | 状态 | 证据 |
+|---|---|---|
+| P0 环境 | ✅ | 容器 `campusflow-mysql` 运行中，MySQL 8.4.13，库 `campusflow` |
+| P1 建表 | ✅ | `db/migration/V1__schema.sql`，15 张表全部建成 |
+| P2 种子 | ✅ | V2/V3 导入，共 **23,858 行**：slot 19,200 / shelf 240 / parcel 2,000 / pickup_code 2,000 / demand_bucket 396 / sim_result 132 … |
+| P3 实体与仓储 | ✅ | 13 个 JPA 实体 + 8 个仓储；`--spring.profiles.active=mysql` 可启动 |
+| P4 新功能接口 | ✅ | 5 组接口全部可用，契约测试 **45/45** |
+| P5 前端接入 | ⏳ | 接口已就绪，页面尚未接入（下一步） |
+
+**SQL 侧校验**（在容器里直接查）：
+
+```
+SELECT SUM(arrivals) FROM demand_bucket WHERE scenario_id='S2-PEAK';   -- 13640 ✅
+SELECT COUNT(*) FROM shelf s JOIN rack_row r ON r.id=s.row_id WHERE r.managed_by='JD';  -- 50 ✅
+SELECT COUNT(*) FROM slot WHERE parcel_id IS NOT NULL;                  -- 2000 / 19200 ✅
+-- 唯一约束：重复取件码 → ERROR 1062 Duplicate entry ✅
+```
+
+**新接口实测**：
+
+| 接口 | 结果 |
+|---|---|
+| `GET /api/pickup/1-1-1000` | 200，返回货架 1 / 层 1 / 位 4 / 承运商 ZT |
+| `GET /api/pickup/999-9-9999` | 404 |
+| `GET /api/stats/carriers` | 200，8 家承运商，合计 2,000 件在架 |
+| `GET /api/simulations` | 200，种子运行 peakI 16016、132 条逐桶结果 |
+| `GET /api/params/versions` | 200，v1.0 共 27 项（9/1/17） |
+| `PATCH /api/workorders/WO-001` | 200，事件数 2 → 3（写入审计流水） |
+
+> 实现要点：命名策略统一为 `CamelCaseToUnderscoresNamingStrategy`，个别尾字母大写的字段
+> （`aisleM` / `kappaI` / `peakI` / `riskQ` 等）显式写了 `Column(name=...)` —— Hibernate 对
+> "末尾单大写字母"不下划线，这是踩过的坑。`mysql` profile 用 `ddl-auto: none`，以 SQL 脚本为准。

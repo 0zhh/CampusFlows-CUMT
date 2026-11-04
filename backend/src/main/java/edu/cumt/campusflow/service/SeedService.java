@@ -5,10 +5,12 @@ import edu.cumt.campusflow.model.WorkOrder;
 import edu.cumt.campusflow.repo.SiteRepository;
 import edu.cumt.campusflow.repo.WorkOrderRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-/** 首次启动时把站点与演示工单写进 H2，重复启动不重复插入 */
+/** 首次启动时把站点与演示工单写进 H2；MySQL 形态下数据已由 SQL 灌好，不再写库 */
 @Component
+@Profile("dev")
 public class SeedService implements CommandLineRunner {
 
     private final SiteRepository sites;

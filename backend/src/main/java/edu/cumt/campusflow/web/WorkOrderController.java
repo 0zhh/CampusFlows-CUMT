@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import edu.cumt.campusflow.model.WorkOrder;
+import edu.cumt.campusflow.model.WorkOrderEvent;
+import edu.cumt.campusflow.repo.WorkOrderEventRepository;
+import java.time.LocalDateTime;
 import edu.cumt.campusflow.repo.WorkOrderRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +24,17 @@ import org.springframework.web.server.ResponseStatusException;
 public class WorkOrderController {
 
     private final WorkOrderRepository orders;
+    private final WorkOrderEventRepository events;
 
-    public WorkOrderController(WorkOrderRepository orders) {
+    public WorkOrderController(WorkOrderRepository orders, WorkOrderEventRepository events) {
         this.orders = orders;
+        this.events = events;
+    }
+
+    /** F2：工单状态流转流水 */
+    @GetMapping("/{id}/events")
+    public List<WorkOrderEvent> events(@PathVariable String id) {
+        return events.findByWoIdOrderByAtTimeAsc(id);
     }
 
     @GetMapping
@@ -42,8 +53,20 @@ public class WorkOrderController {
         if (status == null || !List.of("open", "doing", "closed").contains(status)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "status 只能是 open/doing/closed");
         }
-        w.setStatus(status);
-        return orders.save(w);
+        String from = w.getStatus();
+        if (!status.equals(from)) {
+            w.setStatus(status);
+            orders.save(w);
+            WorkOrderEvent ev = new WorkOrderEvent();
+            ev.woId = id;
+            ev.fromStatus = from;
+            ev.toStatus = status;
+            ev.actor = body.getOrDefault("actor", "调度员");
+            ev.atTime = LocalDateTime.now();
+            ev.note = body.getOrDefault("note", "");
+            events.save(ev);
+        }
+        return w;
     }
 
     /** 一键复位：全部回到 open 之前的状态（演示用） */

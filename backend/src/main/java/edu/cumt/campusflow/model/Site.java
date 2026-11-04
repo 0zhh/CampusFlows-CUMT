@@ -12,12 +12,17 @@ public class Site {
     private String id;
     private String name;
     private String role;
+    @jakarta.persistence.Column(columnDefinition = "CHAR(5)")
     private String openTime;
+    @jakarta.persistence.Column(columnDefinition = "CHAR(5)")
     private String closeTime;
     private int physicalSlots;
+    @jakarta.persistence.Column(name = "kappa_i")
     private int kappaI;
+    @jakarta.persistence.Column(name = "kappa_q")
     private int kappaQ;
     private int capacityPerBucket;
+    @jakarta.persistence.Column(name = "aisle_m")
     private double aisleM;
     private int counters;
     private String physicalSource;

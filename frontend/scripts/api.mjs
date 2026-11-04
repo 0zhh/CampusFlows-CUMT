@@ -102,6 +102,51 @@ check('守恒式成立', conserved)
 check('峰值待取 150', sim.json?.peakI === 150, String(sim.json?.peakI))
 check('返回通道可通行率', typeof sim.json?.aisleOkPct === 'number', String(sim.json?.aisleOkPct))
 
+
+// ---------- 7. MySQL 新功能（P3 之后） ----------
+const sites2 = await get('/api/sites')
+check('站点接口返回 4 条', sites2.json?.length === 4, String(sites2.json?.length))
+const tao2 = sites2.json?.find((s) => s.id === 'NH-TAOYUAN')
+check('桃苑物理储位 19200', tao2?.physicalSlots === 19200, String(tao2?.physicalSlots))
+
+const pv = await get('/api/params/versions')
+check('参数版本 200', pv.status === 200, JSON.stringify(pv.json?.[0]?.version))
+check('参数版本 1.0 共 27 项', pv.json?.[0]?.totalCnt === 27, String(pv.json?.[0]?.totalCnt))
+check('三档计数 9/1/17', pv.json?.[0]?.observedCnt === 9 && pv.json?.[0]?.publicCnt === 1 && pv.json?.[0]?.assumedCnt === 17)
+
+const runs = await get('/api/simulations')
+check('运行历史 200', runs.status === 200, JSON.stringify(runs.json?.length))
+check('至少一次运行且峰值 16016', runs.json?.[0]?.peakI === 16016, String(runs.json?.[0]?.peakI))
+const run1 = await get('/api/simulations/' + runs.json?.[0]?.id)
+check('单次运行逐桶 132 条', run1.json?.rows?.length === 132, String(run1.json?.rows?.length))
+
+const pk = await get('/api/pickup/1-1-1000')
+check('取件码查询 200', pk.status === 200, JSON.stringify(pk.json?.code))
+check('取件码能定位到货架/层/位', pk.json?.shelfNo === 1 && pk.json?.tier === 1 && typeof pk.json?.cell === 'number',
+  [pk.json?.shelfNo, pk.json?.tier, pk.json?.cell].join('/'))
+check('取件码带承运商', typeof pk.json?.carrier === 'string' && pk.json.carrier.length > 0, String(pk.json?.carrier))
+const pkMiss = await get('/api/pickup/999-9-9999')
+check('不存在的取件码返回 404', pkMiss.status === 404, String(pkMiss.status))
+
+const car = await get('/api/stats/carriers?siteId=NH-TAOYUAN')
+check('承运商统计 200', car.status === 200, String(car.json?.length) + ' 家')
+check('在架件数合计 > 0', (car.json ?? []).reduce((a, x) => a + x.onShelf, 0) > 0,
+  String((car.json ?? []).reduce((a, x) => a + x.onShelf, 0)))
+
+const ev0 = await get('/api/workorders/WO-001/events')
+check('工单事件 200', ev0.status === 200, String(ev0.json?.length) + ' 条')
+const evBefore = ev0.json?.length ?? 0
+const st = ev0.json?.[ev0.json.length - 1]?.toStatus
+const flip = st === 'closed' ? 'open' : 'closed'
+await get('/api/workorders/WO-001', {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ status: flip, actor: '测试', note: '契约测试' })
+})
+const ev1 = await get('/api/workorders/WO-001/events')
+check('状态流转写入事件（+1）', (ev1.json?.length ?? 0) === evBefore + 1,
+  evBefore + ' -> ' + (ev1.json?.length ?? 0))
+
 const pass = results.filter(Boolean).length
 console.log('\n' + '='.repeat(50))
 console.log(`结果: ${pass}/${results.length} 通过`)

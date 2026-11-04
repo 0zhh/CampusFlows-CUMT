@@ -14,6 +14,7 @@ public class WorkOrder {
     private String siteId;
     private String kind;
     private String status;
+    @jakarta.persistence.Column(columnDefinition = "CHAR(5)")
     private String bucket;
     private String title;
     private String detail;

@@ -26,7 +26,15 @@ java -jar target/campusflow-1.0.0.jar
 | http://127.0.0.1:8080/api/scenarios | 三场景逐桶数据（12 万字节） |
 | http://127.0.0.1:8080/api/workorders | 工单列表（H2 表 work_order） |
 | http://127.0.0.1:8080/api/layouts/NH-TAOYUAN | 桃苑室内布局 |
-| http://127.0.0.1:8080/h2-console | H2 控制台（JDBC URL: `jdbc:h2:file:./data/campusflow`，用户 sa，密码空） |
+| http://127.0.0.1:8080/api/pickup/1-1-1000 | **取件码查位置**（五表连接） |
+| http://127.0.0.1:8080/api/stats/carriers?siteId=NH-TAOYUAN | **承运商在架统计**（GROUP BY） |
+| http://127.0.0.1:8080/api/simulations | **仿真运行历史** |
+| http://127.0.0.1:8080/api/params/versions | **参数版本快照** |
+| http://127.0.0.1:8080/api/workorders/WO-001/events | **工单流转审计** |
+| http://127.0.0.1:8080/h2-console | H2 控制台（仅 dev profile；JDBC URL `jdbc:h2:file:./data/campusflow`，用户 sa，密码空） |
+
+**MySQL 形态（Docker）**：`--spring.profiles.active=mysql` 启动后，站点/工单/场景/储位全部来自 MySQL（15 表 23,858 行），
+五个新功能接口只在 MySQL 形态下有意义（H2 形态下没有这些表）。
 
 ### 1b. 生产形态库：Docker MySQL（可选）
 

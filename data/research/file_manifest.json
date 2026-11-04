@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 209,
-  "total_bytes": 29126977,
+  "count": 237,
+  "total_bytes": 29155362,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 45278,
-      "sha256": "17b9a0c463435050087098e3603a4f7b0d5a66093fcbd2f27d1a3008fafcd4cb"
+      "bytes": 47214,
+      "sha256": "7cc9d5434a91fb29f059a9ea6a43ac804bfd55ef434744d37d05181d37c247af"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -26,8 +26,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6355,
-      "sha256": "e9d2c6b78fdab97b452dcf17da1fa708771721f84c12b329aaeaf636d27383d1"
+      "bytes": 7022,
+      "sha256": "d41c98b5ed071b5b2b500a1ee0a830fe237981ae47eb663c36891b251cb4046f"
     },
     {
       "path": "verify.ps1",
@@ -36,8 +36,13 @@
     },
     {
       "path": "backend/pom.xml",
-      "bytes": 1808,
-      "sha256": "88770f76a66019e69fcd6a38c748769a1a768133f110938d35cc2a59ae11e000"
+      "bytes": 1956,
+      "sha256": "6158afaa1a991ed9bb814da8441079edf7a4eafced813c29869550db030783c5"
+    },
+    {
+      "path": "backend/run.err",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "path": "backend/src/main/java/edu/cumt/campusflow/CampusFlowApplication.java",
@@ -45,19 +50,124 @@
       "sha256": "0959510de0d8ba7b1b8b4a0eafd828acca2793c9b345cb4db044cbd491a0a4b0"
     },
     {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/Carrier.java",
+      "bytes": 273,
+      "sha256": "88c5a14b4378ab7a53602fc3d4147821b93228a50bc589fe8dbee60eb5f921f5"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/DemandBucket.java",
+      "bytes": 768,
+      "sha256": "338ea9ecd497d51765b9ec361855ba45fd320c003ffaa6a078b2b5386e27fb86"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/ParamVersion.java",
+      "bytes": 475,
+      "sha256": "4946074a6139ea8dc7d14c17079bf94ccd93cb3e77bd8180481d6d1a9ff1f137"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/Parcel.java",
+      "bytes": 604,
+      "sha256": "41a98d7463905f2d7d7a89806242596926350a19b4ab1e261225875e9c4e196e"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/PickupCode.java",
+      "bytes": 612,
+      "sha256": "5b7e0a41609516a35f889a39dd47f110bf5c444f38370c6baf4cde18ddef3f14"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/RackRow.java",
+      "bytes": 711,
+      "sha256": "899afd3a3704484d1b1c3c0cfee1e4b2ca2b408b52ed0f9ea8192f30114a50d7"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/Scenario.java",
+      "bytes": 323,
+      "sha256": "901be900a109c14ced89bb6f82636478e9a031c404b1b42f3f0bcd8740236173"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/ScenarioSiteParam.java",
+      "bytes": 699,
+      "sha256": "a2ff59a0a759cf490d4313a04a92507041064ec0a51b92db03b1407728ea8f69"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/Shelf.java",
+      "bytes": 342,
+      "sha256": "35af4d033355b955d6e82b965136b966446772f571f0757fb835a65bab371ec7"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/SimResult.java",
+      "bytes": 897,
+      "sha256": "5e50510f972a7ba8f448a31991b72225bd021147df24de0b619ef69a67a249cf"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/SimulationRun.java",
+      "bytes": 689,
+      "sha256": "487e5e17054824a363ac983bf7b3398d0573abe324c3466885c6b1ed736fe2b8"
+    },
+    {
       "path": "backend/src/main/java/edu/cumt/campusflow/model/Site.java",
-      "bytes": 1948,
-      "sha256": "21029ee73128ccc519d5ee212cb47f4bfbe0332c7b9c5e9467346bc9e15f07cc"
+      "bytes": 2222,
+      "sha256": "942cf727922942116081ff0a26ffb3bdca01b1388e9d0726f38dba658d0d2c52"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/Slot.java",
+      "bytes": 357,
+      "sha256": "b2d1b1a1e68227fc2c20113ac6ff42d1cc0f222d5ee2e99ceff52641b233c687"
     },
     {
       "path": "backend/src/main/java/edu/cumt/campusflow/model/WorkOrder.java",
-      "bytes": 1387,
-      "sha256": "134e754bddd55f07f2995b82be106c7afd881f857dba23ec63ac7f57e1fbf84a"
+      "bytes": 1449,
+      "sha256": "0fddf0656af7ee754a2c7af61dab6022805bd278ff4a74b18e99bfe5a0d0f64c"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/model/WorkOrderEvent.java",
+      "bytes": 607,
+      "sha256": "6b903cf0fc97664424a962d0afd3296ab68de5ed8132855781eb4a6db613a9fc"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/repo/CarrierRepository.java",
+      "bytes": 217,
+      "sha256": "9ed254762a7227ebc6f8f665b90b2646db759f55bfb2855d1d4e57ff1aca272d"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/repo/ParamVersionRepository.java",
+      "bytes": 311,
+      "sha256": "6ff78861d2f3786632f2aa66f3c795db405c4d9313eb4b02c60fd31726c39525"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/repo/ParcelRepository.java",
+      "bytes": 750,
+      "sha256": "5794e77a3e23815086340de41d3330bcd2b46027bc3fd8320e1c3a607e8e6024"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/repo/PickupCodeRepository.java",
+      "bytes": 1025,
+      "sha256": "359c8069ce0124ace6732c0b59ddcf5a2de8b982d5da1b3fab4eba5366a81e5d"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/repo/ScenarioRepository.java",
+      "bytes": 220,
+      "sha256": "33108a0f70859a706a878127dcdea15605e39bfdef768c1bf2c4f9d7673fa45b"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/repo/SimResultRepository.java",
+      "bytes": 323,
+      "sha256": "297634cea608842467330998decd37f9bd517efef0d3df9e2761107d87247ec2"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/repo/SimulationRunRepository.java",
+      "bytes": 394,
+      "sha256": "cc71073600f7d3740f1dcadac19fc9ad302f0197367705553bf53a68ac4f46fa"
     },
     {
       "path": "backend/src/main/java/edu/cumt/campusflow/repo/SiteRepository.java",
       "bytes": 209,
       "sha256": "06631b2a85149352104985105554821e658d0063d0cb426b5a7ae3c727401c1b"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/repo/WorkOrderEventRepository.java",
+      "bytes": 325,
+      "sha256": "100586d31640cbaad6662b6222c2e2bd2d50f226bedecff14498d74f8bb37505"
     },
     {
       "path": "backend/src/main/java/edu/cumt/campusflow/repo/WorkOrderRepository.java",
@@ -66,8 +176,8 @@
     },
     {
       "path": "backend/src/main/java/edu/cumt/campusflow/service/SeedService.java",
-      "bytes": 2100,
-      "sha256": "04a4c90a7fc2eb51a0e1e9f9bf0f029f7bdd3c66089a9b39801ef7d385f72a06"
+      "bytes": 2197,
+      "sha256": "a7640133d7de8a8719e85120af0adf274c7801cf53474f10abd67a6b74774d70"
     },
     {
       "path": "backend/src/main/java/edu/cumt/campusflow/service/SimulationService.java",
@@ -85,6 +195,21 @@
       "sha256": "b032e9cf90fd10fa5d576847d09ae327668e5a040aec06839c7577929c192930"
     },
     {
+      "path": "backend/src/main/java/edu/cumt/campusflow/web/ParamController.java",
+      "bytes": 1488,
+      "sha256": "2fd7566352a82b40222f4003306af4f95c01c0baa8eb85e3247100e734b1c1b5"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/web/PickupController.java",
+      "bytes": 2126,
+      "sha256": "d18d2765153d6671ee37839d5bf479cae1ff106bf13602d608fa5f0fd30195dc"
+    },
+    {
+      "path": "backend/src/main/java/edu/cumt/campusflow/web/RunController.java",
+      "bytes": 4061,
+      "sha256": "f72aa92bc1420e9b6308efeab917bd6dd111503a2d8a6ab2db77c5f02dc70173"
+    },
+    {
       "path": "backend/src/main/java/edu/cumt/campusflow/web/SimulationController.java",
       "bytes": 2783,
       "sha256": "3000ba76958537a309bcc530133573767a0f7d8d46f536a59e8fb6a94e39800d"
@@ -95,14 +220,29 @@
       "sha256": "04f2f44eaa76b90589f5e559a306bc459a7733ae48290bb580471b3ceba78085"
     },
     {
+      "path": "backend/src/main/java/edu/cumt/campusflow/web/StatsController.java",
+      "bytes": 1559,
+      "sha256": "0fb2bca69245d97d0ca3355041ec39c1a8679c3732c3a1db762da5675a4f825c"
+    },
+    {
       "path": "backend/src/main/java/edu/cumt/campusflow/web/WorkOrderController.java",
-      "bytes": 2348,
-      "sha256": "ecf7720476d46e8db7fc8c52fc956819119abe450d22500334e7abec2b115483"
+      "bytes": 3242,
+      "sha256": "536d304b1c1d1c8b163409ab55ede6dcaacaed516ec934746a3daad44b424849"
+    },
+    {
+      "path": "backend/src/main/resources/application-dev.yml",
+      "bytes": 385,
+      "sha256": "463af66a6dbb6b46b0f30b7c9938b260386ab7eda6bd652595e0f31e0d2e36ce"
+    },
+    {
+      "path": "backend/src/main/resources/application-mysql.yml",
+      "bytes": 613,
+      "sha256": "d7e2e8627c5d5b64d597053c78890b84d56bdb8a1b0f3c5d7ecf30cf5b7fa78e"
     },
     {
       "path": "backend/src/main/resources/application.yml",
-      "bytes": 544,
-      "sha256": "9e7eeadec9d6ae0f4cccf1cedc12b2426e4b5bd9e097f568975dd7e105c3c75b"
+      "bytes": 369,
+      "sha256": "bce88bc08f473f19546ec763383243ad7f8528381a1afa09c0287c4fbf284268"
     },
     {
       "path": "backend/src/main/resources/data/scenarios.json",
@@ -361,8 +501,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 36850,
-      "sha256": "6d18a7fa10bdc706b41ed4b638b5282eebd2682f69e54df29d91a1b360a50b6e"
+      "bytes": 37539,
+      "sha256": "95e4256e09289fd9d7996bafb6e58f6b64fae1953d0d4745c8bc1347d29e6195"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -791,8 +931,8 @@
     },
     {
       "path": "frontend/scripts/api.mjs",
-      "bytes": 4722,
-      "sha256": "83ec3014c1f76f054c38a9b6837da9dbd6faa0f3f9033f1b6d289af553cec96c"
+      "bytes": 7361,
+      "sha256": "f000d4245022ae19354299ab493c21cd8af80e783a69620f6df4a3ca3447fe65"
     },
     {
       "path": "frontend/scripts/audit.mjs",
