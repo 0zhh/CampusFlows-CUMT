@@ -21,8 +21,8 @@ DAYS = 11                      # 11-01 … 11-11
 STEP_MIN = 10
 SLOTS = 24 * 60 // STEP_MIN    # 144
 
-PEAK_ARRIVALS = 13640
-PEAK_PICKUPS = 9300
+PEAK_ARRIVALS = 17050
+PEAK_PICKUPS = 11625
 SHARE = {'NH-TAOYUAN': 0.34, 'NH-SONGYUAN': 0.26, 'NH-MEIYUAN': 0.22, 'NH-LANYUAN': 0.18}
 NAMES = {'NH-TAOYUAN': '桃苑物流服务中心', 'NH-SONGYUAN': '松苑无人菜鸟驿站',
          'NH-MEIYUAN': '梅苑无人菜鸟驿站', 'NH-LANYUAN': '兰苑无人菜鸟驿站'}

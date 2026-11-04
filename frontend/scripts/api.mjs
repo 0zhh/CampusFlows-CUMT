@@ -26,8 +26,8 @@ const sites = await get('/api/sites')
 check('站点接口 200', sites.status === 200)
 check('四个站点', Array.isArray(sites.json) && sites.json.length === 4, String(sites.json?.length))
 const tao = sites.json?.find((s) => s.id === 'NH-TAOYUAN')
-check('桃苑物理储位 19200', tao?.physicalSlots === 19200, String(tao?.physicalSlots))
-check('桃苑 κ_i 16320', tao?.kappaI === 16320, String(tao?.kappaI))
+check('桃苑物理储位 24000', tao?.physicalSlots === 24000, String(tao?.physicalSlots))
+check('桃苑 κ_i 20400', tao?.kappaI === 20400, String(tao?.kappaI))
 check('桃苑通道 0.8 m', tao?.aisleM === 0.8, String(tao?.aisleM))
 
 // 3. 场景数据
@@ -107,7 +107,7 @@ check('返回通道可通行率', typeof sim.json?.aisleOkPct === 'number', Stri
 const sites2 = await get('/api/sites')
 check('站点接口返回 4 条', sites2.json?.length === 4, String(sites2.json?.length))
 const tao2 = sites2.json?.find((s) => s.id === 'NH-TAOYUAN')
-check('桃苑物理储位 19200', tao2?.physicalSlots === 19200, String(tao2?.physicalSlots))
+check('桃苑物理储位 24000', tao2?.physicalSlots === 24000, String(tao2?.physicalSlots))
 
 const pv = await get('/api/params/versions')
 check('参数版本 200', pv.status === 200, JSON.stringify(pv.json?.[0]?.version))
@@ -116,7 +116,7 @@ check('三档计数 9/1/17', pv.json?.[0]?.observedCnt === 9 && pv.json?.[0]?.pu
 
 const runs = await get('/api/simulations')
 check('运行历史 200', runs.status === 200, JSON.stringify(runs.json?.length))
-check('至少一次运行且峰值 16016', runs.json?.[0]?.peakI === 16016, String(runs.json?.[0]?.peakI))
+check('至少一次运行且峰值 20020', runs.json?.[0]?.peakI === 20020, String(runs.json?.[0]?.peakI))
 const run1 = await get('/api/simulations/' + runs.json?.[0]?.id)
 check('单次运行逐桶 132 条', run1.json?.rows?.length === 132, String(run1.json?.rows?.length))
 

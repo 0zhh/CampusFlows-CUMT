@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-11-03",
+  "generated_at": "2026-11-05",
   "policy": {
     "source_levels": {
       "observed": "本项目现场/脚本实测，样本与误差写在 rationale 里",
@@ -12,11 +12,13 @@
     "note_2026_11_03": "用户更正桃苑货架数≥220；物理储位与 κ_i 的关系改为“物理容量远大于运营阈值”，瓶颈在通道与人力",
     "note_2026_11_03b": "通道 0.8 m、每层 20 件、三列等长 → 240 架 / 19,200 物理储位"
   },
-  "count": 27,
+  "count": 31,
   "stats": {
-    "observed": 9,
+    "assumed": 19,
+    "total": 31,
+    "observed": 10,
     "public": 1,
-    "assumed": 17
+    "observed+assumed": 1
   },
   "params": [
     {
@@ -48,7 +50,7 @@
       "unit": "倍",
       "range": [
         1.18,
-        3.0
+        3
       ],
       "source": "assumed",
       "source_ids": [
@@ -246,7 +248,7 @@
       "id": "P-TIERS",
       "group": "C 储位",
       "label": "货架层数（含顶层）",
-      "value": 4,
+      "value": 5,
       "unit": "层",
       "range": [
         3,
@@ -256,7 +258,7 @@
       "source_ids": [
         "S25"
       ],
-      "rationale": "货架端部层标可见 41-1、41-2、41-3，即单架至少 3 层；按 2 m 架高与常见层距推算为 4 层（含顶层）。",
+      "rationale": "桃苑与兰苑实景照片均可见 5 层（红梁标签 505-1…505-5），全站统一 5 层",
       "used_by": [
         "平面图模板",
         "储位分配"
@@ -531,7 +533,7 @@
       "id": "P-PHYSICAL-SLOTS",
       "group": "C 储位",
       "label": "物理储位总数（推算）",
-      "value": 19200,
+      "value": 24000,
       "unit": "个",
       "range": [
         19200,
@@ -542,7 +544,7 @@
         "S25"
       ],
       "evidence": "reference/taoyuan_photo_evidence.json#derived_layout",
-      "rationale": "= 240 架 × 4 层 × 20 位。区间上界按“300 架 × 5 层 × 24 位”组合。",
+      "rationale": "240 架 × 5 层 × 20 位 = 24,000（桃苑）",
       "used_by": [
         "容量换算"
       ],
@@ -622,6 +624,59 @@
         "平面图模板（校验）"
       ],
       "swap_hint": "—"
+    },
+    {
+      "id": "P-RACK-COUNT-LANYUAN",
+      "label": "兰苑货架总数",
+      "value": 55,
+      "unit": "架",
+      "source": "observed",
+      "range": [
+        55,
+        55
+      ],
+      "rationale": "实景照片 491—545 共 55 个货架号",
+      "value_kind": "count"
+    },
+    {
+      "id": "P-RACK-COUNT-SONGYUAN",
+      "label": "松苑货架总数",
+      "value": 31,
+      "unit": "架",
+      "source": "assumed",
+      "range": [
+        24,
+        40
+      ],
+      "rationale": "无照片，按驿站规模假设",
+      "value_kind": "count"
+    },
+    {
+      "id": "P-RACK-COUNT-MEIYUAN",
+      "label": "梅苑货架总数",
+      "value": 28,
+      "unit": "架",
+      "source": "assumed",
+      "range": [
+        20,
+        36
+      ],
+      "rationale": "无照片，按驿站规模假设",
+      "value_kind": "count"
+    },
+    {
+      "id": "P-PHYSICAL-SLOTS-BY-SITE",
+      "label": "各站物理储位",
+      "value": {
+        "NH-TAOYUAN": 24000,
+        "NH-SONGYUAN": 3100,
+        "NH-MEIYUAN": 2800,
+        "NH-LANYUAN": 5500
+      },
+      "unit": "个",
+      "source": "observed+assumed",
+      "value_kind": "map",
+      "rationale": "货架数 × 5 层 × 20 位；桃苑与兰苑为实测货架数，松苑/梅苑为假设"
     }
   ]
 }

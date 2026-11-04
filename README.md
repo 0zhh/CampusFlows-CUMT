@@ -57,6 +57,13 @@ java -jar target/campusflow-1.0.0.jar --spring.profiles.active=mysql
 
 > 注意：MySQL 形态的代码**尚未实现**——四份文档是准备件，等你确认后再动。
 
+### 1c. 一键启动/停止
+
+```powershell
+.\start-all.ps1    # MySQL 容器 → 后端(mysql profile) → 前端
+.\stop-all.ps1     # 停后端与前端，MySQL 容器保留
+```
+
 ### 2. 前端（端口 5173）
 
 ```bash

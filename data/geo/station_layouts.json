@@ -16,7 +16,7 @@
       },
       "params": {
         "bays": 240,
-        "tiers": 4,
+        "tiers": 5,
         "slots_per_tier": 20,
         "bay_length_m": 1.0,
         "rack_depth_m": 0.6,
@@ -27,7 +27,7 @@
         "bays_per_row": 5,
         "left_bays": 2,
         "right_bays": 3,
-        "physical_slots": 19200,
+        "physical_slots": 24000,
         "code_format": "货架号-层号-序号"
       },
       "zones": [
@@ -88,7 +88,7 @@
             5
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -110,7 +110,7 @@
             10
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -132,7 +132,7 @@
             15
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -154,7 +154,7 @@
             20
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -176,7 +176,7 @@
             25
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -198,7 +198,7 @@
             30
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -220,7 +220,7 @@
             35
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -242,7 +242,7 @@
             40
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -264,7 +264,7 @@
             45
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -286,7 +286,7 @@
             50
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -308,7 +308,7 @@
             55
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -330,7 +330,7 @@
             60
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -352,7 +352,7 @@
             65
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -374,7 +374,7 @@
             70
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -396,7 +396,7 @@
             75
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -418,7 +418,7 @@
             80
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -440,7 +440,7 @@
             85
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -462,7 +462,7 @@
             90
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -484,7 +484,7 @@
             95
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -506,7 +506,7 @@
             100
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -528,7 +528,7 @@
             105
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -550,7 +550,7 @@
             110
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -572,7 +572,7 @@
             115
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -594,7 +594,7 @@
             120
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -616,7 +616,7 @@
             125
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -638,7 +638,7 @@
             130
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -660,7 +660,7 @@
             135
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -682,7 +682,7 @@
             140
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -704,7 +704,7 @@
             145
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -726,7 +726,7 @@
             150
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -748,7 +748,7 @@
             155
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -770,7 +770,7 @@
             160
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -792,7 +792,7 @@
             165
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -814,7 +814,7 @@
             170
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -836,7 +836,7 @@
             175
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -858,7 +858,7 @@
             180
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -880,7 +880,7 @@
             185
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -902,7 +902,7 @@
             190
           ],
           "managed_by": "SELF",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -924,7 +924,7 @@
             195
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -946,7 +946,7 @@
             200
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -968,7 +968,7 @@
             205
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -990,7 +990,7 @@
             210
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -1012,7 +1012,7 @@
             215
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -1034,7 +1034,7 @@
             220
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -1056,7 +1056,7 @@
             225
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -1078,7 +1078,7 @@
             230
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -1100,7 +1100,7 @@
             235
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         },
         {
@@ -1122,7 +1122,7 @@
             240
           ],
           "managed_by": "JD",
-          "tiers": 4,
+          "tiers": 5,
           "slots_per_tier": 20
         }
       ]

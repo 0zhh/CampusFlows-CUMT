@@ -19,12 +19,21 @@ scen = json.load(open(SC, encoding='utf-8'))
 lay = json.load(open(LAY, encoding='utf-8'))
 prm = json.load(open(PRM, encoding='utf-8'))
 
-SITES = [
-    ('NH-TAOYUAN', '桃苑物流服务中心', 'main_hub', '08:30', '18:30', 19200, 16320, 14320, 298, 0.80, 2, 'observed', 34.2178, 117.1385),
-    ('NH-SONGYUAN', '松苑无人菜鸟驿站', 'unmanned', '07:00', '23:30', 2500, 2125, 480, 197, 0.80, 1, 'assumed', 34.2194, 117.1358),
-    ('NH-MEIYUAN', '梅苑无人菜鸟驿站', 'unmanned', '07:00', '23:30', 2230, 1895, 430, 167, 0.80, 1, 'assumed', 34.2120, 117.1322),
-    ('NH-LANYUAN', '兰苑无人菜鸟驿站', 'unmanned', '07:00', '23:30', 1770, 1505, 350, 137, 0.80, 1, 'assumed', 34.2090, 117.1318),
-]
+# 站点主档直接取 S2（双十一第 7 天）的参数，避免两处硬编码漂移
+_s2 = next(s for s in scen['scenarios'] if s['scenario_id'] == 'S2-PEAK')
+_s2_params = {x['site_id']: x['params'] for x in _s2['sites']}
+_META = {
+    'NH-TAOYUAN': ('桃苑物流服务中心', 'main_hub', '08:30', '18:30', 24000, 'observed', 0.80, 2, 34.2178, 117.1385),
+    'NH-SONGYUAN': ('松苑无人菜鸟驿站', 'unmanned', '07:00', '23:30', 3100, 'assumed', 0.80, 1, 34.2194, 117.1358),
+    'NH-MEIYUAN': ('梅苑无人菜鸟驿站', 'unmanned', '07:00', '23:30', 2800, 'assumed', 0.80, 1, 34.2120, 117.1322),
+    'NH-LANYUAN': ('兰苑无人菜鸟驿站', 'unmanned', '07:00', '23:30', 5500, 'observed', 0.80, 1, 34.2090, 117.1318),
+}
+SITES = []
+for _sid, (_n, _role, _o, _c, _phys, _src, _aisle, _cnt, _lat, _lng) in _META.items():
+    _p = _s2_params[_sid]
+    SITES.append((_sid, _n, _role, _o, _c, _phys, _p['kappa_i'], _p['kappa_q'],
+                  _p['capacity_per_bucket'], _aisle, _cnt, _src, _lat, _lng))
+
 CARRIERS = [
     ('SF', '顺丰'), ('JD', '京东'), ('ZT', '中通'), ('YT', '圆通'),
     ('YD', '韵达'), ('ST', '申通'), ('EMS', '邮政EMS'), ('OTHER', '其他'),

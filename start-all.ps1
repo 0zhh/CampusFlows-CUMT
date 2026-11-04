@@ -36,8 +36,8 @@ if (Test-Port 8080) {
   Write-Output '      already running'
 } else {
   Push-Location (Join-Path $root 'backend')
-  Start-Process -FilePath java -ArgumentList '-jar', 'target/campusflow-1.0.0.jar', '--spring.profiles.active=mysql' `
-    -RedirectStandardOutput 'run.log' -RedirectStandardError 'run.err' -WindowStyle Hidden
+  # 用 cmd /c start 起，脱离调用它的 PowerShell 进程树，脚本退出后服务仍活着
+  Start-Process -FilePath 'cmd.exe' -ArgumentList '/c', 'start "" /b java -jar target\campusflow-1.0.0.jar --spring.profiles.active=mysql > run.log 2>&1' -WindowStyle Hidden
   Pop-Location
   for ($i = 0; $i -lt 40; $i++) {
     Start-Sleep -Seconds 1

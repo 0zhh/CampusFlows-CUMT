@@ -16,7 +16,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = r'D:\java大作业'
 PARAMS = os.path.join(ROOT, 'data', 'params', 'param_registry.json')
 OUT_JSON = os.path.join(ROOT, 'data', 'geo', 'station_layouts.json')
-OUT_PNG = os.path.join(ROOT, '.probe', 'layout_taoyuan.png')
+OUT_PNG = os.path.join(ROOT, 'docs', 'screenshots', '桃苑室内布局-v8-五层.png')
 
 reg = json.load(open(PARAMS, encoding='utf-8'))
 P = {p['id']: p for p in reg['params']}

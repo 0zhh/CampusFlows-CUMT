@@ -41,17 +41,17 @@ W_PICKUP = norm(W_PICKUP)
 
 SITES = [
     {"id": "NH-TAOYUAN", "name": "桃苑物流服务中心", "open": "08:30", "close": "18:30",
-     "lo": 3, "hi": 23, "cap_factor": 1.00, "physical_slots": 19200,
+     "lo": 3, "hi": 23, "cap_factor": 1.00, "physical_slots": 24000,
      "physical_source": "observed", "aisle_m": 0.8, "counters": 2},
     {"id": "NH-SONGYUAN", "name": "松苑无人菜鸟驿站", "open": "07:00", "close": "23:30",
-     "lo": 0, "hi": 32, "cap_factor": 1.10, "physical_slots": 2500,
+     "lo": 0, "hi": 32, "cap_factor": 1.10, "physical_slots": 3100,
      "physical_source": "assumed", "aisle_m": 0.8, "counters": 1},
     {"id": "NH-MEIYUAN", "name": "梅苑无人菜鸟驿站", "open": "07:00", "close": "23:30",
-     "lo": 0, "hi": 32, "cap_factor": 1.10, "physical_slots": 2230,
+     "lo": 0, "hi": 32, "cap_factor": 1.10, "physical_slots": 2800,
      "physical_source": "assumed", "aisle_m": 0.8, "counters": 1},
     {"id": "NH-LANYUAN", "name": "兰苑无人菜鸟驿站", "open": "07:00", "close": "23:30",
-     "lo": 0, "hi": 32, "cap_factor": 1.10, "physical_slots": 1770,
-     "physical_source": "assumed", "aisle_m": 0.8, "counters": 1},
+     "lo": 0, "hi": 32, "cap_factor": 1.10, "physical_slots": 5500,
+     "physical_source": "observed", "aisle_m": 0.8, "counters": 1},
 ]
 
 SITE_SHARE = {"NH-TAOYUAN": 0.34, "NH-SONGYUAN": 0.26, "NH-MEIYUAN": 0.22, "NH-LANYUAN": 0.18}
@@ -143,11 +143,11 @@ def metrics(site, phys, peak_i, d_day, counters):
 
 
 SCENARIOS = [
-    {"scenario_id": "S1-NORMAL", "name": "常态工作日", "total_a": 6200, "total_d": 5952,
+    {"scenario_id": "S1-NORMAL", "name": "常态工作日", "total_a": 7750, "total_d": 7440,
      "note": "双十一前的常态基线。站点按峰值建成，设备与货架不缩水，因此常态下能力有富余。"},
-    {"scenario_id": "S2-PEAK", "name": "双十一第 7 天", "total_a": 13640, "total_d": 9300,
+    {"scenario_id": "S2-PEAK", "name": "双十一第 7 天", "total_a": 17050, "total_d": 11625,
      "note": "连续第 7 天高峰。货架已用到八成，通道开始被临时堆放挤占；再不管，第 9 天满仓。"},
-    {"scenario_id": "S3-PEAK-ADJ", "name": "第 7 天 + 分流与增能", "total_a": 13640, "total_d": 9300,
+    {"scenario_id": "S3-PEAK-ADJ", "name": "第 7 天 + 分流与增能", "total_a": 17050, "total_d": 11625,
      "note": "同样第 7 天的量，但桃苑把 18% 到件转给三个无人站、加开第 3 台自助机、扩待取区。"},
 ]
 
