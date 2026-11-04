@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 239,
-  "total_bytes": 29174291,
+  "count": 245,
+  "total_bytes": 29650717,
   "files": [
     {
       "path": ".gitignore",
@@ -320,6 +320,21 @@
       "sha256": "828576bde5e1d3bd092c3e3241e2a6ff55e5f70d6f534263a61f02d2a5e5bebd"
     },
     {
+      "path": "data/demo/nov_campus_inbound_10min.csv",
+      "bytes": 33332,
+      "sha256": "ee39f78c76706c7008cb87dcef0ad20dce2f16f40c09ebdde7dfeb0365d102ea"
+    },
+    {
+      "path": "data/demo/nov_flow_summary.json",
+      "bytes": 6901,
+      "sha256": "aa31e41c8664bb4b08010c69fed61e4d1a8219279f8d21f843a49cb9a21a8dc0"
+    },
+    {
+      "path": "data/demo/nov_inbound_outbound_10min.csv",
+      "bytes": 375666,
+      "sha256": "12a5953878765de9ed5a36e5cf9c81a06bc4c867756634e5acf0dc24efb7437f"
+    },
+    {
       "path": "data/demo/scenario_template.json",
       "bytes": 1554,
       "sha256": "d47872f0a232f7f9c6c728cc0eeba382fa517c0041a077607142b4e424fe5b95"
@@ -480,6 +495,11 @@
       "sha256": "2370c0e20b675504c01f86ef3c47ef29b4d3463c7974c7e107dd6417aad03307"
     },
     {
+      "path": "data/research/check_nov_flows.py",
+      "bytes": 5273,
+      "sha256": "8a0ed6adff328a8cedf0ee2165d06b69067a8dea103e48dc1a2059296df92dee"
+    },
+    {
       "path": "data/research/collect_sources.py",
       "bytes": 7792,
       "sha256": "1f581558930495ba10cc48948685e4fe81c3d4a21b642f095973b2f46fdbf67f"
@@ -501,8 +521,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 43194,
-      "sha256": "04f95016364c841a2dad78773caea1afe8a828899698c2f5109148eaf0c1cd37"
+      "bytes": 43540,
+      "sha256": "fc0af654bb51b9fb9b1ba0e59f4db682898fd2d80dfd661e9dc2f37a7e15ee4f"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -528,6 +548,11 @@
       "path": "data/research/fit_water_georef.py",
       "bytes": 3620,
       "sha256": "55f78727b7f31467b16ac04f5afcae4896f518dffd0b659f9a2fd766a6f320d2"
+    },
+    {
+      "path": "data/research/gen_nov_flows.py",
+      "bytes": 7073,
+      "sha256": "8745517151386c25d03791ac3733007bff23d165fc49537a110be213cb348580"
     },
     {
       "path": "data/research/gen_station_layout.py",
@@ -805,6 +830,11 @@
       "sha256": "30d3a1e7e6af648ba39f25c6f48de0bc3a3f63510a8aad775842237933bd3d6c"
     },
     {
+      "path": "docs/db/11月流量-预览.png",
+      "bytes": 47600,
+      "sha256": "93b4ab04eb9d96fa4c808b9f6a236a303b57af47c6cc1ffe44408a56403db905"
+    },
+    {
       "path": "docs/db/ER-图.png",
       "bytes": 256956,
       "sha256": "1a747291d1535f3de76d85b9ed27e03ab3075b7ae3a090001d58496de7d298e9"
@@ -951,8 +981,8 @@
     },
     {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 10588,
-      "sha256": "c5de6a624769bf200749e6af90c935d27a6574c99732b59b5fbd029daf533220"
+      "bytes": 10823,
+      "sha256": "c19874dbd544bff2e0866b0696a4d0d47a1bf1540813221d2718ba65769d5448"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",

@@ -1,0 +1,302 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-04",
+  "period": {
+    "start": "2026-11-01",
+    "end": "2026-11-11",
+    "days": 11
+  },
+  "granularity_minutes": 10,
+  "slots_per_day": 144,
+  "units": {
+    "inbound": "件",
+    "outbound": "件"
+  },
+  "definition": {
+    "inbound": "校外到件：当日进入校门并分配到该站的包裹数",
+    "outbound": "出库：当日该站被取走的包裹数（不含退回与调拨）",
+    "campus_inbound": "四站 inbound 之和"
+  },
+  "assumptions": [
+    "峰值日（11-11）四站到件合计 13,640 件、取件合计 9,300 件，与 scenarios.json 的 S2 口径一致",
+    "站点份额 桃苑 0.34 / 松苑 0.26 / 梅苑 0.22 / 兰苑 0.18",
+    "日系数呈两波：11-01…11-03 第一波回落、11-04…11-09 日常、11-11 峰值",
+    "到件只在 06:00—22:00 发生；取件只在各站营业时间内发生",
+    "全部为演示数据，不代表真实业务量"
+  ],
+  "day_factors": {},
+  "daily": [
+    {
+      "date": "2026-11-01",
+      "factor": 0.95,
+      "arrivals": 12958,
+      "pickups": 8835,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 4406,
+          "pickups": 3004
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 3369,
+          "pickups": 2297
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 2851,
+          "pickups": 1944
+        },
+        "NH-LANYUAN": {
+          "arrivals": 2332,
+          "pickups": 1590
+        }
+      }
+    },
+    {
+      "date": "2026-11-02",
+      "factor": 0.88,
+      "arrivals": 12003,
+      "pickups": 8184,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 4081,
+          "pickups": 2783
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 3121,
+          "pickups": 2128
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 2641,
+          "pickups": 1800
+        },
+        "NH-LANYUAN": {
+          "arrivals": 2160,
+          "pickups": 1473
+        }
+      }
+    },
+    {
+      "date": "2026-11-03",
+      "factor": 0.72,
+      "arrivals": 9821,
+      "pickups": 6696,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 3339,
+          "pickups": 2277
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 2553,
+          "pickups": 1741
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 2161,
+          "pickups": 1473
+        },
+        "NH-LANYUAN": {
+          "arrivals": 1768,
+          "pickups": 1205
+        }
+      }
+    },
+    {
+      "date": "2026-11-04",
+      "factor": 0.58,
+      "arrivals": 7911,
+      "pickups": 5394,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 2690,
+          "pickups": 1834
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 2057,
+          "pickups": 1402
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 1740,
+          "pickups": 1187
+        },
+        "NH-LANYUAN": {
+          "arrivals": 1424,
+          "pickups": 971
+        }
+      }
+    },
+    {
+      "date": "2026-11-05",
+      "factor": 0.56,
+      "arrivals": 7638,
+      "pickups": 5208,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 2597,
+          "pickups": 1771
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 1986,
+          "pickups": 1354
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 1680,
+          "pickups": 1146
+        },
+        "NH-LANYUAN": {
+          "arrivals": 1375,
+          "pickups": 937
+        }
+      }
+    },
+    {
+      "date": "2026-11-06",
+      "factor": 0.57,
+      "arrivals": 7775,
+      "pickups": 5301,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 2644,
+          "pickups": 1803
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 2022,
+          "pickups": 1378
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 1710,
+          "pickups": 1166
+        },
+        "NH-LANYUAN": {
+          "arrivals": 1399,
+          "pickups": 954
+        }
+      }
+    },
+    {
+      "date": "2026-11-07",
+      "factor": 0.59,
+      "arrivals": 8048,
+      "pickups": 5487,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 2736,
+          "pickups": 1865
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 2092,
+          "pickups": 1427
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 1771,
+          "pickups": 1207
+        },
+        "NH-LANYUAN": {
+          "arrivals": 1449,
+          "pickups": 988
+        }
+      }
+    },
+    {
+      "date": "2026-11-08",
+      "factor": 0.61,
+      "arrivals": 8320,
+      "pickups": 5673,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 2829,
+          "pickups": 1929
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 2163,
+          "pickups": 1475
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 1830,
+          "pickups": 1248
+        },
+        "NH-LANYUAN": {
+          "arrivals": 1498,
+          "pickups": 1021
+        }
+      }
+    },
+    {
+      "date": "2026-11-09",
+      "factor": 0.6,
+      "arrivals": 8184,
+      "pickups": 5580,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 2783,
+          "pickups": 1897
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 2128,
+          "pickups": 1451
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 1800,
+          "pickups": 1228
+        },
+        "NH-LANYUAN": {
+          "arrivals": 1473,
+          "pickups": 1004
+        }
+      }
+    },
+    {
+      "date": "2026-11-10",
+      "factor": 0.78,
+      "arrivals": 10639,
+      "pickups": 7254,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 3617,
+          "pickups": 2466
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 2766,
+          "pickups": 1886
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 2341,
+          "pickups": 1596
+        },
+        "NH-LANYUAN": {
+          "arrivals": 1915,
+          "pickups": 1306
+        }
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "factor": 1.0,
+      "arrivals": 13640,
+      "pickups": 9300,
+      "by_site": {
+        "NH-TAOYUAN": {
+          "arrivals": 4638,
+          "pickups": 3162
+        },
+        "NH-SONGYUAN": {
+          "arrivals": 3546,
+          "pickups": 2418
+        },
+        "NH-MEIYUAN": {
+          "arrivals": 3001,
+          "pickups": 2046
+        },
+        "NH-LANYUAN": {
+          "arrivals": 2455,
+          "pickups": 1674
+        }
+      }
+    }
+  ],
+  "totals": {
+    "arrivals": 106937,
+    "pickups": 72912
+  },
+  "files": {
+    "by_site": "nov_inbound_outbound_10min.csv",
+    "campus_inbound": "nov_campus_inbound_10min.csv"
+  }
+}
