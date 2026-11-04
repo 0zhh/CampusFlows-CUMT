@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 254,
-  "total_bytes": 30504600,
+  "count": 257,
+  "total_bytes": 30608509,
   "files": [
     {
       "path": ".gitignore",
@@ -26,8 +26,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7171,
-      "sha256": "985e216c14971bbefda4e9197f66122846cbdf2b7caaf5ffa4ead058ba14a8c8"
+      "bytes": 7079,
+      "sha256": "b262068a942b8344249136595e743c6a55950f1fbbb9e7c43c661bfb1a5dd8c4"
     },
     {
       "path": "start-all.ps1",
@@ -261,8 +261,8 @@
     },
     {
       "path": "backend/src/main/resources/data/station_layouts.json",
-      "bytes": 25541,
-      "sha256": "e3510fba3ec79c2e478fb3c463316d259750082557eb58688bb6e7166858c012"
+      "bytes": 30251,
+      "sha256": "596d03228ccf682852727cc271723ef10abed9f72f96406805c4b2bde1c5d8d5"
     },
     {
       "path": "backend/src/test/java/edu/cumt/campusflow/SimulationServiceTest.java",
@@ -381,8 +381,8 @@
     },
     {
       "path": "data/geo/station_layouts.json",
-      "bytes": 25541,
-      "sha256": "e3510fba3ec79c2e478fb3c463316d259750082557eb58688bb6e7166858c012"
+      "bytes": 30251,
+      "sha256": "596d03228ccf682852727cc271723ef10abed9f72f96406805c4b2bde1c5d8d5"
     },
     {
       "path": "data/geo/station_routes.json",
@@ -546,8 +546,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 45927,
-      "sha256": "10912e2dcc326320c8447cdf27b5695a44fa346dc4bb4d431c050ecff716db03"
+      "bytes": 46115,
+      "sha256": "f42f775b5bce08d57cc7c3388d3c7258ab8d0b9d6ffbcf733a505a688b594f84"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -573,6 +573,11 @@
       "path": "data/research/fit_water_georef.py",
       "bytes": 3620,
       "sha256": "55f78727b7f31467b16ac04f5afcae4896f518dffd0b659f9a2fd766a6f320d2"
+    },
+    {
+      "path": "data/research/gen_lanyuan_layout.py",
+      "bytes": 7472,
+      "sha256": "a7e494b48d2f118fb9c332fd7b2a4c8314c4de2ee1129bd823b16e9b6293dcfa"
     },
     {
       "path": "data/research/gen_nov_flows.py",
@@ -930,6 +935,11 @@
       "sha256": "129a27e718a9b3f23e1d054bc67f58c700e952142bd096e20465d2d16b142f95"
     },
     {
+      "path": "docs/screenshots/兰苑室内布局-v1.png",
+      "bytes": 78966,
+      "sha256": "44febc7074d2f6ec0bc162e868d4a9d260b9d0b77e25a195acaa925d7617acab"
+    },
+    {
       "path": "docs/screenshots/地图-卫星影像.png",
       "bytes": 740532,
       "sha256": "70245bb22eca905f2bda869c23d520441f34eaa5439c41d16e0c16e95dda1fad"
@@ -1121,8 +1131,8 @@
     },
     {
       "path": "frontend/src/components/StationPlan.vue",
-      "bytes": 9168,
-      "sha256": "20507daefc0932bf16ec802e02633f5e7d4956c2c11406bf447277910b36075a"
+      "bytes": 9226,
+      "sha256": "3ecc3648c8095e6b8cb71dd02d585f051e3a6fd060603d1438f6162ec83fc2d5"
     },
     {
       "path": "frontend/src/components/StatusDot.vue",
@@ -1191,8 +1201,8 @@
     },
     {
       "path": "frontend/src/data/station_layouts.json",
-      "bytes": 25541,
-      "sha256": "e3510fba3ec79c2e478fb3c463316d259750082557eb58688bb6e7166858c012"
+      "bytes": 30251,
+      "sha256": "596d03228ccf682852727cc271723ef10abed9f72f96406805c4b2bde1c5d8d5"
     },
     {
       "path": "frontend/src/data/station_routes.json",
@@ -1273,6 +1283,11 @@
       "path": "report/build_report.py",
       "bytes": 41646,
       "sha256": "1d78f052834b2abee73fad6ffb12f220a2ebca75f70177627e2d998823ffd378"
+    },
+    {
+      "path": "undefined/temp/campusflow-probe/ly.mjs",
+      "bytes": 3187,
+      "sha256": "a7a25aa14794b8a78a0c63b52f1c7b851cafa449f0f867850862f5a8d046cc31"
     }
   ]
 }

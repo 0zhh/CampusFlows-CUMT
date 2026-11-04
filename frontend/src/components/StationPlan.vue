@@ -102,7 +102,7 @@ function pickSlot(bay: number, tier: number, idx: number) {
 
 <template>
   <div class="plan">
-    <template v-if="station && !station.status">
+    <template v-if="station && station.rows && station.rows.length">
       <div class="plan__head">
         <span class="plan__badge">设计示意</span>
         <span class="plan__meta">
@@ -173,7 +173,7 @@ function pickSlot(bay: number, tier: number, idx: number) {
     </template>
 
     <p v-else class="plan__empty">
-      该站点还没有室内布局照片，暂不绘制示意平面图（避免凭空画）。桃苑主站可查看。
+      该站点还没有室内布局资料，暂不绘制示意平面图（避免凭空画）。桃苑、兰苑可查看。
     </p>
   </div>
 </template>
@@ -191,6 +191,7 @@ function pickSlot(bay: number, tier: number, idx: number) {
 .floor { fill: var(--bg-1); }
 .zone--entrance { fill: #3fa97c; }
 .zone--counter { fill: #e8a33d; }
+.zone--reserved { fill: #dfe3ea; }
 .zone--brand_sf { fill: #965c80; }
 .zone--manual { fill: #5b9bd5; }
 .zone__label { font-size: 0.55px; fill: #fff; }

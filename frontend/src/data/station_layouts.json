@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-11-03",
-  "layout_version": "v6",
+  "generated_at": "2026-11-04",
+  "layout_version": "v2",
   "note": "货架数/层数/每层位数/通道宽来自参数表（实测档）；六个货架区从左到右均等排布，每区 8 排、每排 5 个货架号，属设计示意，非实测平面图。",
   "stations": [
     {
@@ -1130,8 +1130,208 @@
     {
       "station_id": "NH-LANYUAN",
       "name": "兰苑无人菜鸟驿站",
-      "status": "pending_photos",
-      "note": "等用户提供实景照片后生成。"
+      "status": "designed",
+      "truth_level": "observed_counts + designed_arrangement",
+      "source": "用户手绘平面图 + 实景照片（2026-11-04）",
+      "floor": {
+        "width_m": 14.0,
+        "depth_m": 15.8,
+        "area_m2": 221,
+        "area_note": "按货架阵列与通道推算，非实测面积"
+      },
+      "params": {
+        "bays": 55,
+        "bay_first": 505,
+        "bay_last": 559,
+        "tiers": 5,
+        "slots_per_tier": 20,
+        "bay_length_m": 1.0,
+        "rack_depth_m": 0.6,
+        "aisle_m": 0.8,
+        "rows": 5,
+        "bays_per_row": 11,
+        "left_bays": 5,
+        "right_bays": 6,
+        "physical_slots": 5500,
+        "code_format": "货架号-层号-序号"
+      },
+      "zones": [
+        {
+          "id": "Z-ENTRY",
+          "kind": "entrance",
+          "label": "出入口",
+          "x_m": 0.2,
+          "y_m": 0.6,
+          "w_m": 1.5,
+          "h_m": 2.6
+        },
+        {
+          "id": "Z-COUNTER",
+          "kind": "counter",
+          "label": "出库台",
+          "x_m": 2.2,
+          "y_m": 0.6,
+          "w_m": 3.6,
+          "h_m": 2.6
+        },
+        {
+          "id": "Z-RESERVED",
+          "kind": "reserved",
+          "label": "",
+          "x_m": 9.6,
+          "y_m": 0.4,
+          "w_m": 4.0,
+          "h_m": 3.4
+        }
+      ],
+      "rows": [
+        {
+          "row_id": "R01",
+          "zone_id": "Z-RACK",
+          "col": 0,
+          "row_in_col": 0,
+          "x_m": 1.4,
+          "y_m": 4.4,
+          "length_m": 11.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            545,
+            546,
+            547,
+            548,
+            549
+          ],
+          "right_bays": [
+            550,
+            551,
+            552,
+            553,
+            554,
+            555
+          ],
+          "managed_by": "SELF",
+          "tiers": 5,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R02",
+          "zone_id": "Z-RACK",
+          "col": 0,
+          "row_in_col": 1,
+          "x_m": 1.4,
+          "y_m": 6.4,
+          "length_m": 11.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            556,
+            557,
+            558,
+            559,
+            505
+          ],
+          "right_bays": [
+            506,
+            507,
+            508,
+            509,
+            510,
+            511
+          ],
+          "managed_by": "SELF",
+          "tiers": 5,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R03",
+          "zone_id": "Z-RACK",
+          "col": 0,
+          "row_in_col": 2,
+          "x_m": 1.4,
+          "y_m": 8.4,
+          "length_m": 11.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            512,
+            513,
+            514,
+            515,
+            516
+          ],
+          "right_bays": [
+            517,
+            518,
+            519,
+            520,
+            521,
+            522
+          ],
+          "managed_by": "SELF",
+          "tiers": 5,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R04",
+          "zone_id": "Z-RACK",
+          "col": 0,
+          "row_in_col": 3,
+          "x_m": 1.4,
+          "y_m": 10.4,
+          "length_m": 11.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            523,
+            524,
+            525,
+            526,
+            527
+          ],
+          "right_bays": [
+            528,
+            529,
+            530,
+            531,
+            532,
+            533
+          ],
+          "managed_by": "SELF",
+          "tiers": 5,
+          "slots_per_tier": 20
+        },
+        {
+          "row_id": "R05",
+          "zone_id": "Z-RACK",
+          "col": 0,
+          "row_in_col": 4,
+          "x_m": 1.4,
+          "y_m": 12.4,
+          "length_m": 11.0,
+          "depth_m": 1.2,
+          "left_bays": [
+            534,
+            535,
+            536,
+            537,
+            538
+          ],
+          "right_bays": [
+            539,
+            540,
+            541,
+            542,
+            543,
+            544
+          ],
+          "managed_by": "SELF",
+          "tiers": 5,
+          "slots_per_tier": 20
+        }
+      ],
+      "notes": [
+        "545—550 号货架离出入口最近（用户指定），排在最靠近出入口的第一排",
+        "右上角为保留区，用途未知，图中留空不标注",
+        "照片显示每架 5 层，层号写在红梁标签上（505-1 … 505-5）",
+        "取件码规则：货架号-层号-包裹序号，与桃苑一致"
+      ]
     }
   ]
 }
