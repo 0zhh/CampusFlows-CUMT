@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 204,
-  "total_bytes": 27949050,
+  "count": 205,
+  "total_bytes": 27974278,
   "files": [
     {
       "path": ".gitignore",
@@ -356,8 +356,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 36352,
-      "sha256": "58c5929d2182874f5a611b81b945c830b229a024781968c8cdfe190c800640df"
+      "bytes": 36679,
+      "sha256": "98cfdbf5f7bd339d3cf57b6f86c36f969a0d4d1465d6f7c286930d22d85501b4"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -418,6 +418,11 @@
       "path": "data/research/render_er.py",
       "bytes": 10222,
       "sha256": "150f1f3a7031b8e974ab99a5c6dd2d1132dfab6a29a2ad5e86f2d7b5b1f2406f"
+    },
+    {
+      "path": "data/research/render_er_chen.py",
+      "bytes": 8220,
+      "sha256": "d686d53045955d4712651bcb7829412e347b36c3eb81fe855eb2542a58eb89f2"
     },
     {
       "path": "data/research/research_log.json",
@@ -621,8 +626,8 @@
     },
     {
       "path": "docs/db/01-ER图与实体关系.md",
-      "bytes": 8327,
-      "sha256": "c2a0131bfdf9d9a1711fb53eb33d04582cf7732e3c4348677215d262ebe177ca"
+      "bytes": 8465,
+      "sha256": "61c4e0e2356f6285118a7605f6203b46b799b324e9ceaa16b1d58e206f992259"
     },
     {
       "path": "docs/db/02-关系设计表.md",
@@ -641,8 +646,8 @@
     },
     {
       "path": "docs/db/ER-图.png",
-      "bytes": 240413,
-      "sha256": "14b6b3acd189968347a8c53750cfde0b684d3a6a7902133db9dcd9b30a161672"
+      "bytes": 256956,
+      "sha256": "1a747291d1535f3de76d85b9ed27e03ab3075b7ae3a090001d58496de7d298e9"
     },
     {
       "path": "docs/screenshots/P1-运营总览-dark.png",
