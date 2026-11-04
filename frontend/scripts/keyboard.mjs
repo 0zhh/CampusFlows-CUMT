@@ -91,7 +91,7 @@ for (let i = 0; i < 12; i++) {
   const info = await ev(`(() => { const a = document.activeElement; return { tag: a.tagName, cls: a.className, text: (a.textContent||'').trim().replace(/\\s+/g,' ').slice(0,14) } })()`)
   if (String(info.cls).includes('nav-item')) navReached.push(info.text)
 }
-check('Tab 到达 6 个导航项', navReached.length >= 6, navReached.length + ' 次：' + navReached.slice(0, 5).join(' / '))
+check('Tab 到达 5 个导航项', navReached.length >= 5, navReached.length + ' 次：' + navReached.slice(0, 5).join(' / '))
 
 // 4. Enter 能激活导航
 await ev(`document.querySelector('.nav-item[href="/sites"]').focus()`)

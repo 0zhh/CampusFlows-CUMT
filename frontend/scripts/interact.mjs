@@ -83,7 +83,7 @@ const check = (name, ok, detail) => {
 // ---------- 1. 导航 ----------
 await go('/overview')
 const navCount = await ev('document.querySelectorAll(".nav-item").length')
-check('顶栏 6 个导航项', navCount === 6, String(navCount))
+check('顶栏 5 个导航项', navCount === 5, String(navCount))
 
 for (const [label, path] of [['站点与服务', '/sites'], ['高峰与方案', '/peak'], ['异常协同', '/incidents'], ['资料与说明', '/about'], ['运营总览', '/overview']]) {
   await clickText('.nav-item', label)
@@ -141,6 +141,21 @@ const sigB = await sig()
 check('切换站点后图表重绘', sigA !== sigB, sigA + ' -> ' + sigB)
 const focusName = await ev(`document.querySelector('.chip--on')?.textContent.replace(/\\s+/g,' ').trim()`)
 check('站点选中态跟随', String(focusName).includes('松苑'), focusName)
+
+// ---------- 4b. 地图放大视图 ----------
+await go('/overview')
+await ev(`document.querySelector('.map-expand').click()`)
+await sleep(1600)
+check('地图放大视图打开', await ev(`!!document.querySelector('.mx')`))
+check('放大图里有配送路径', (await ev(`document.querySelectorAll('.mx .leaflet-overlay-pane path').length`)) >= 4,
+  String(await ev(`document.querySelectorAll('.mx .leaflet-overlay-pane path').length`)))
+check('线路一览 4 条', (await ev(`document.querySelectorAll('.mx__routes li').length`)) === 4)
+await ev(`document.querySelector('.mx__actions .btn').click()`)
+await sleep(500)
+check('重置驿站位置有反馈', String(await ev(`document.querySelector('.mx__toast')?.textContent`)).includes('已恢复'))
+await ev(`document.querySelector('.mx__close').click()`)
+await sleep(700)
+check('放大视图可关闭', !(await ev(`!!document.querySelector('.mx')`)))
 
 // ---------- 5. 工单状态流转 ----------
 await go('/incidents')

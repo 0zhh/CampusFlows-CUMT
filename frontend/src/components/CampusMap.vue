@@ -11,10 +11,13 @@ import 'leaflet/dist/leaflet.css'
 import { SITES, isOpenNow } from '@/data/sites'
 import { useAppStore } from '@/stores/app'
 import type { Scenario } from '@/data/types'
+import routesData from '@/data/station_routes.json'
 
 const props = defineProps<{
   scenario: Scenario
   selectedId?: string | null
+  /** 是否叠加校内运输路径与车辆（放大视图里打开） */
+  showRoutes?: boolean
 }>()
 
 const emit = defineEmits<{ (e: 'select', id: string): void }>()
@@ -27,6 +30,9 @@ let map: L.Map | null = null
 let satLayer: L.TileLayer | null = null
 let manualLayer: L.ImageOverlay | null = null
 const markers = new Map<string, L.Marker>()
+let routeGroup: L.LayerGroup | null = null
+let vehicle: L.CircleMarker | null = null
+let vehicleTimer: number | undefined
 const store = useAppStore()
 
 // 视野范围：OSM way 273639857 的外接矩形，取整后仅留极小外扩
@@ -137,11 +143,14 @@ async function init() {
 
   // 视野对准整个校区，四站落在校区西侧（与真实情况一致）
   map.fitBounds(CAMPUS_BOUNDS, { padding: [16, 16] })
+
+  if (props.showRoutes) drawRoutes()
 }
 
 onMounted(init)
 
 onUnmounted(() => {
+  clearRoutes()
   map?.remove()
   map = null
 })
@@ -167,7 +176,98 @@ watch(
   }
 )
 
-defineExpose({ setLayer: (l: LayerKind) => (layer.value = l) })
+/* ---------- 校内运输路径（放大视图里显示） ---------- */
+interface RouteItem {
+  site_id: string
+  name: string
+  reachable: boolean
+  length_m?: number
+  minutes?: number
+  polyline?: [number, number][]
+}
+const routes = (routesData as unknown as { routes: RouteItem[] }).routes
+const gate = (routesData as unknown as { gate: { name: string; lon: number; lat: number } }).gate
+
+/** 把经纬度折线转成 Leaflet 坐标，并返回累计长度，供车辆插值 */
+function toPath(r: RouteItem) {
+  const pts = (r.polyline ?? []).map(([lon, lat]) => L.latLng(lat, lon))
+  const acc = [0]
+  for (let i = 1; i < pts.length; i++) acc.push(acc[i - 1] + pts[i].distanceTo(pts[i - 1]))
+  return { pts, acc, total: acc[acc.length - 1] || 1 }
+}
+
+function pointAt(path: ReturnType<typeof toPath>, ratio: number) {
+  const target = path.total * Math.min(1, Math.max(0, ratio))
+  for (let i = 1; i < path.acc.length; i++) {
+    if (path.acc[i] >= target) {
+      const seg = path.acc[i] - path.acc[i - 1] || 1
+      const t = (target - path.acc[i - 1]) / seg
+      return L.latLng(
+        path.pts[i - 1].lat + (path.pts[i].lat - path.pts[i - 1].lat) * t,
+        path.pts[i - 1].lng + (path.pts[i].lng - path.pts[i - 1].lng) * t
+      )
+    }
+  }
+  return path.pts[path.pts.length - 1]
+}
+
+function drawRoutes() {
+  if (!map) return
+  clearRoutes()
+  routeGroup = L.layerGroup().addTo(map)
+
+  // 校门
+  L.circleMarker([gate.lat, gate.lon], {
+    radius: 7, color: '#ffffff', weight: 2, fillColor: '#2fa36b', fillOpacity: 1
+  })
+    .addTo(routeGroup)
+    .bindTooltip(gate.name + '（校门 · 配送起点）', { direction: 'top', offset: [0, -8] })
+
+  const longest = Math.max(...routes.filter((r) => r.reachable).map((r) => r.minutes ?? 1))
+  routes.filter((r) => r.reachable).forEach((r) => {
+    const pts = (r.polyline ?? []).map(([lon, lat]) => [lat, lon] as [number, number])
+    const color = SITES.find((s) => s.id === r.site_id)?.color ?? '#3f6fb5'
+    L.polyline(pts, { color, weight: 4, opacity: 0.85, dashArray: '1 0' })
+      .addTo(routeGroup!)
+      .bindTooltip(`${r.name} · ${r.length_m} m · 约 ${r.minutes} 分钟`, { sticky: true })
+    // 终点标签
+    const end = pts[pts.length - 1]
+    L.circleMarker(end, { radius: 5, color, weight: 2, fillColor: '#fff', fillOpacity: 1 }).addTo(routeGroup!)
+  })
+
+  // 车辆：沿最长路线循环跑，速度按分钟数归一
+  const main = toPath(routes.filter((r) => r.reachable).sort((a, b) => (b.minutes ?? 0) - (a.minutes ?? 0))[0])
+  vehicle = L.circleMarker(pointAt(main, 0), {
+    radius: 6, color: '#1f2933', weight: 2, fillColor: '#ffd166', fillOpacity: 1
+  }).addTo(map).bindTooltip('校内配送车（示意）', { direction: 'top', offset: [0, -8] })
+
+  let t = 0
+  window.clearInterval(vehicleTimer)
+  vehicleTimer = window.setInterval(() => {
+    t = (t + 0.004) % 1
+    vehicle?.setLatLng(pointAt(main, t))
+  }, 120)
+  void longest
+}
+
+function clearRoutes() {
+  window.clearInterval(vehicleTimer)
+  vehicleTimer = undefined
+  vehicle?.remove()
+  vehicle = null
+  routeGroup?.remove()
+  routeGroup = null
+}
+
+watch(
+  () => props.showRoutes,
+  (on) => {
+    if (!map) return
+    on ? drawRoutes() : clearRoutes()
+  }
+)
+
+defineExpose({ setLayer: (l: LayerKind) => (layer.value = l), redraw: () => (props.showRoutes ? drawRoutes() : null) })
 
 const layerOptions = [
   { id: 'manual' as const, label: '手册原图', hint: '学生手册原图 · 离线可用' },
@@ -199,6 +299,7 @@ const layerOptions = [
       <span class="lg"><i class="lg__dot" style="background: var(--mei)" />梅苑</span>
       <span class="lg"><i class="lg__dot" style="background: var(--lan)" />兰苑</span>
       <span class="lg"><i class="lg__ring" />风险时段</span>
+      <span v-if="showRoutes" class="lg"><i class="lg__line" />配送路径</span>
     </div>
 
     <p class="map__note">
@@ -208,6 +309,8 @@ const layerOptions = [
 </template>
 
 <style scoped>
+.lg__line { width: 16px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--tao) 0 25%, var(--song) 25% 50%, var(--mei) 50% 75%, var(--lan) 75% 100%); display: inline-block; }
+
 .map-wrap {
   position: relative;
   border-radius: var(--r-lg);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Package, PackageCheck, Layers, Boxes, TriangleAlert, PackageX, ArrowUpRight } from 'lucide-vue-next'
+import { Package, PackageCheck, Layers, Boxes, TriangleAlert, PackageX, ArrowUpRight, Maximize2 } from 'lucide-vue-next'
 import { useAppStore } from '@/stores/app'
 import { useScenario, scenarioKpi, simSeries } from '@/composables/useData'
 import { SITES, isOpenNow } from '@/data/sites'
@@ -9,6 +9,7 @@ import { useChartTheme } from '@/composables/useChartTheme'
 import KpiCard from '@/components/KpiCard.vue'
 import StatusDot from '@/components/StatusDot.vue'
 import CampusMap from '@/components/CampusMap.vue'
+import MapExpand from '@/components/MapExpand.vue'
 import EChart from '@/components/EChart.vue'
 import ScenarioPicker from '@/components/ScenarioPicker.vue'
 import SiteDrawer from '@/components/SiteDrawer.vue'
@@ -24,6 +25,7 @@ const kpi = computed(() => scenarioKpi(scenario.value))
 const { t, tooltip, axisCommon } = useChartTheme()
 
 const selected = ref<string | null>(null)
+const mapBig = ref(false)
 const drawerOpen = ref(false)
 
 function pickSite(id: string) {
@@ -273,9 +275,13 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
       <div class="panel ov__map">
         <div class="panel__head">
           <h2 class="panel__title">南湖校区站点分布</h2>
-          <span class="panel__hint">点击站点查看当前负荷</span>
+          <button class="btn btn--ghost map-expand" @click="mapBig = true">
+            <Maximize2 :size="13" /> 放大　　
+          </button>
         </div>
         <CampusMap :scenario="scenario" :selected-id="selected" @select="pickSite" />
+
+        <MapExpand v-model:open="mapBig" :scenario="scenario" :selected-id="selected" @select="pickSite" />
       </div>
 
       <div class="ov__side">
@@ -390,6 +396,8 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
 </template>
 
 <style scoped>
+.map-expand { margin-left: auto; font-size: var(--fs-xs); }
+
 .carrier { display: grid; gap: 6px; margin: var(--sp-3) 0; }
 .carrier__title { font-size: var(--fs-xs); color: var(--fg-2); }
 .carrier__list { display: grid; gap: 4px; }

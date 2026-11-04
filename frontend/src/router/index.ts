@@ -27,12 +27,6 @@ const routes = [
     meta: { title: '异常协同', code: 'P4', icon: 'Siren' }
   },
   {
-    path: '/routes',
-    name: 'routes',
-    component: () => import('@/views/RoutesView.vue'),
-    meta: { title: '运输与轨迹', code: 'P6', icon: 'Truck' }
-  },
-  {
     path: '/about',
     name: 'about',
     component: () => import('@/views/AboutView.vue'),
