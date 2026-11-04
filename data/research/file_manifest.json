@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 205,
-  "total_bytes": 27974278,
+  "count": 209,
+  "total_bytes": 29126977,
   "files": [
     {
       "path": ".gitignore",
@@ -350,14 +350,19 @@
       "sha256": "c3cb20f6aeb512278b39f7edaf04bc3a5ae55e142d6966c80f6c81aadd3672bd"
     },
     {
+      "path": "data/research/export_mysql_seed.py",
+      "bytes": 11114,
+      "sha256": "d0a1c0ab5b79a4d93d47a3415950fc11d0ec0bf9a123f682629b5e64f0c8aff1"
+    },
+    {
       "path": "data/research/extract_photo_evidence.py",
       "bytes": 7096,
       "sha256": "4a830b2f53556de24bd12f5886c43f3565e8e0cdeb32b2624843b4ac76158d2c"
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 36679,
-      "sha256": "98cfdbf5f7bd339d3cf57b6f86c36f969a0d4d1465d6f7c286930d22d85501b4"
+      "bytes": 36850,
+      "sha256": "6d18a7fa10bdc706b41ed4b638b5282eebd2682f69e54df29d91a1b360a50b6e"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -623,6 +628,21 @@
       "path": "data/sources/yangzi_2023_cumt_sohu.txt",
       "bytes": 7642,
       "sha256": "95d8caf2dc3f1bea91e497a3685de2c8beec57b109cd2428c191c220a367ff81"
+    },
+    {
+      "path": "db/migration/V1__schema.sql",
+      "bytes": 10017,
+      "sha256": "05f6425d7cfce9a40c0447b9b9c8488e501300752f2e69d8b5cbaf5a7ddcc6de"
+    },
+    {
+      "path": "db/migration/V2__seed_base.sql",
+      "bytes": 46370,
+      "sha256": "e52fffd2c142cd3d2c79594a9c383f6ce3e5de641193def87d99fa98709a5ed2"
+    },
+    {
+      "path": "db/migration/V3__seed_volume.sql",
+      "bytes": 1085027,
+      "sha256": "7e9abd23490796f74323b0f411863039d172d4dfb24ac06f13526ad2fa0f0e7d"
     },
     {
       "path": "docs/db/01-ER图与实体关系.md",
