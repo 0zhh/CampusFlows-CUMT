@@ -123,7 +123,8 @@ check('应用后关闭面板', (await ev("!!document.querySelector('.cal')")) ==
 const stored = await ev("localStorage.getItem('campusflow-site-pos-v1')")
 check('站点坐标写入 localStorage', !!stored && stored.includes('NH-TAOYUAN'), String(stored).slice(0, 70))
 check('原图范围也一起写入', !!(await ev("localStorage.getItem('campusflow-manual-bounds-v1')")))
-const markerPos = await ev("[...document.querySelectorAll('.site-marker')].map(m => m.style.transform).join('|')")
+// 手册底图不画彩色标记（原图自带红点），只剩透明热区；两种都算"标记已重绘"
+const markerPos = await ev("[...document.querySelectorAll('.site-hit, .site-marker')].map(m => m.style.transform).join('|')")
 check('地图上 4 个标记已重绘', markerPos.split('|').length === 4, markerPos.slice(0, 60))
 
 // ---------- 6. 刷新后仍在，且重开面板接着上次的值 ----------

@@ -14,10 +14,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = r'D:\java大作业'
 OUT_JSON = os.path.join(ROOT, 'data', 'geo', 'station_layouts.json')
-OUT_PNG = os.path.join(ROOT, 'docs', 'screenshots', '兰苑室内布局-v2-纵列.png')
+OUT_PNG = os.path.join(ROOT, 'docs', 'screenshots', '兰苑室内布局-v3-递减编号.png')
 
-BAY_FIRST, BAY_LAST = 505, 559
-BAYS = BAY_LAST - BAY_FIRST + 1          # 55
+BAY_LOW, BAY_HIGH = 491, 545      # 545 是最大号，位于左上角；向右/向下依次递减
+BAYS = BAY_HIGH - BAY_LOW + 1            # 55
 TIERS = 5
 PER_TIER = 20
 AISLE = 0.8
@@ -29,8 +29,9 @@ COLS = 5
 PER_COL = BAYS // COLS                   # 11
 assert PER_COL * COLS == BAYS
 
-# 编号：从门口第一列开始，自上而下递增；559 之后回到 505 继续
-order = list(range(545, 560)) + list(range(505, 545))
+# 编号：左上角 545（最大），沿列自上而下、再从左到右依次递减到 491
+order = list(range(BAY_HIGH, BAY_LOW - 1, -1))
+assert order[0] == 545 and order[-1] == BAY_LOW and len(order) == BAYS
 
 W, D = 11.6, 17.0
 LEFT = 1.5
@@ -76,7 +77,7 @@ station = {
     "source": "用户手绘平面图 + 实景照片（2026-11-04）",
     "floor": {"width_m": W, "depth_m": D, "area_m2": round(W * D),
               "area_note": "按货架阵列与通道推算，非实测面积"},
-    "params": {"bays": BAYS, "bay_first": BAY_FIRST, "bay_last": BAY_LAST,
+    "params": {"bays": BAYS, "bay_first": BAY_LOW, "bay_last": BAY_HIGH,
                "tiers": TIERS, "slots_per_tier": PER_TIER,
                "bay_length_m": BAY_LEN, "rack_depth_m": DEPTH, "aisle_m": AISLE,
                "cols": COLS, "per_col": PER_COL, "col_width_m": RUN_W,
@@ -84,10 +85,11 @@ station = {
     "zones": [ENTRY, COUNTER, RESERVED],
     "rows": cols,
     "notes": [
-        "货架按列排布：每列 11 个货架，沿进深方向自上而下编号，列间 0.8 m 通道",
-        "545—550 位于最靠近出入口的第一列上端（用户指定）",
+        "货架按列排布：5 列 × 每列 11 架，列间 0.8 m 通道",
+        "编号从左上角 545（最大）开始，沿列自上而下、再从左到右依次递减到 491",
+        "545 号位于最靠近出入口的第一列顶端（用户指定：左上角 545 号最大）",
         "右上角为保留区，用途未知，图中留空不标注",
-        "每个货架只有一个货架号，55 个货架对应 505—559 共 55 个号",
+        "全站 55 个货架对应 491—545 共 55 个号，一号一架不重复",
         "照片显示每架 5 层，层号写在红梁标签上（505-1 … 505-5）",
     ],
 }
@@ -127,7 +129,7 @@ F_R = font(14, True); F_SM = font(13)
 dr.text((PAD_L, 24), '兰苑无人菜鸟驿站 · 室内布局', fill=(18, 22, 30), font=F_T)
 dr.text((PAD_L, 68), '%d 架 × %d 层 × %d 位 = %d 储位 · %d 列 × 每列 %d 架 · 通道 %.1f m · 占地约 %.0f m²'
         % (BAYS, TIERS, PER_TIER, PHYS, COLS, PER_COL, AISLE, W * D), fill=(90, 100, 118), font=F_S)
-dr.text((PAD_L, 94), '货架按列纵向排布（用户 2026-11-04 更正）；依据实景照片 505—559 号货架、每架 5 层',
+dr.text((PAD_L, 94), '货架按列纵向排布；左上角 545 为最大号，向右向下依次递减至 491（每架 5 层）',
         fill=(90, 100, 118), font=F_S)
 
 OX = (IMG_W - W * SCALE) // 2
@@ -146,7 +148,7 @@ ex, ey = OX + ENTRY['x_m'] * SCALE, OY + (ENTRY['y_m'] + ENTRY['h_m'] / 2) * SCA
 dr.line([ex - 34, ey, ex, ey], fill=(63, 169, 124), width=4)
 dr.polygon([(ex - 10, ey - 8), (ex, ey), (ex - 10, ey + 8)], fill=(63, 169, 124))
 
-NEAR = set(range(545, 551))
+NEAR = {BAY_HIGH}   # 545 是最大号，紧邻出入口
 RACK_FILL, NEAR_FILL = (58, 76, 106), (150, 62, 60)
 for c in cols:
     x0 = OX + c['x_m'] * SCALE
@@ -162,13 +164,13 @@ for c in cols:
     dr.text((x0 + w / 2 - 16, y0 - 22), 'C%d' % (c['col'] + 1), fill=(90, 104, 126), font=F_SM)
 
 dr.text((PAD_L, OY + D * SCALE + 18),
-        '深蓝＝货架（每架 5 层，双面）· 红棕＝545—550，离出入口最近 · 白色＝0.8 m 通道',
+        '深蓝＝货架（每架 5 层，双面）· 红棕＝545（最大号，紧邻出入口）· 白色＝0.8 m 通道',
         fill=(95, 105, 122), font=F_S)
 dr.text((PAD_L, OY + D * SCALE + 46),
         '绿色＝出入口　橙色＝出库台　浅灰＝保留区（用途未知，按要求留空、不标注）',
         fill=(95, 105, 122), font=F_S)
 dr.text((PAD_L, OY + D * SCALE + 74),
-        '注：55 个货架对应 505—559 共 55 个号，一号一架不重复；编号自门口第一列起自上而下，到 559 后回到 505。',
+        '注：55 个货架对应 491—545 共 55 个号，一号一架不重复；左上角 545 最大，向右、向下依次递减。',
         fill=(130, 140, 156), font=F_SM)
 
 os.makedirs(os.path.dirname(OUT_PNG), exist_ok=True)

@@ -2,7 +2,7 @@
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
   "count": 257,
-  "total_bytes": 30620534,
+  "total_bytes": 30623443,
   "files": [
     {
       "path": ".gitignore",
@@ -261,8 +261,8 @@
     },
     {
       "path": "backend/src/main/resources/data/station_layouts.json",
-      "bytes": 30578,
-      "sha256": "748d9e38d1a911285c91474a7871e173fc2831dd21a3209b2bf7ad02f9797fa0"
+      "bytes": 30674,
+      "sha256": "4b79f90d782c5f54f632761f1b89950ff486b2dadec62cc2431bead61198c0eb"
     },
     {
       "path": "backend/src/test/java/edu/cumt/campusflow/SimulationServiceTest.java",
@@ -381,8 +381,8 @@
     },
     {
       "path": "data/geo/station_layouts.json",
-      "bytes": 30578,
-      "sha256": "748d9e38d1a911285c91474a7871e173fc2831dd21a3209b2bf7ad02f9797fa0"
+      "bytes": 30674,
+      "sha256": "4b79f90d782c5f54f632761f1b89950ff486b2dadec62cc2431bead61198c0eb"
     },
     {
       "path": "data/geo/station_routes.json",
@@ -546,8 +546,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 46651,
-      "sha256": "83163951ef930349bfca8fa2d3e47b9be3f6d77f51eee312d48a6e694a09f3f7"
+      "bytes": 46659,
+      "sha256": "5ae17b325c99f768dd169642edd6f76ff0b986c4072ce30f2817f119a5615ecd"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -576,8 +576,8 @@
     },
     {
       "path": "data/research/gen_lanyuan_layout.py",
-      "bytes": 7407,
-      "sha256": "51515127f39d12c79f61b9c53087a7084407ed81d82151cf0dd9802f459c3857"
+      "bytes": 7662,
+      "sha256": "a253a3325514897f5a36e5f9f3f9911fe928f6ae6c8c0de85f33912463682153"
     },
     {
       "path": "data/research/gen_nov_flows.py",
@@ -935,9 +935,9 @@
       "sha256": "129a27e718a9b3f23e1d054bc67f58c700e952142bd096e20465d2d16b142f95"
     },
     {
-      "path": "docs/screenshots/兰苑室内布局-v2-纵列.png",
-      "bytes": 86788,
-      "sha256": "8443743bcec882c0cd1019961b70d16b72115a9d210c35ebebc0b6cd56b92b95"
+      "path": "docs/screenshots/兰苑室内布局-v3-递减编号.png",
+      "bytes": 88205,
+      "sha256": "393e4ad95b270832402c1ee33e99f952cf7ca453c04f01c8cf21941385c41e3a"
     },
     {
       "path": "docs/screenshots/地图-卫星影像.png",
@@ -1026,8 +1026,8 @@
     },
     {
       "path": "frontend/scripts/calibrate.mjs",
-      "bytes": 10009,
-      "sha256": "7bf57c9772df05bc135443a5abfd84f72ef7a408799b324ece27e33443eb1afe"
+      "bytes": 10131,
+      "sha256": "c5137a5faae96e859749cf126a2d79c3d400eda4b6990e75579bd163da400c2d"
     },
     {
       "path": "frontend/scripts/calshot.mjs",
@@ -1036,8 +1036,8 @@
     },
     {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 12067,
-      "sha256": "c4c52d42feb5d5b74dc35fd7c56e71885efee0b827fe0ec5e0d8980ef66ae563"
+      "bytes": 12886,
+      "sha256": "d7ca213f373b8d5e0f345a4f2222a9bf1390ec9b89a435b2857450acc6d203c1"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",
@@ -1201,8 +1201,8 @@
     },
     {
       "path": "frontend/src/data/station_layouts.json",
-      "bytes": 30578,
-      "sha256": "748d9e38d1a911285c91474a7871e173fc2831dd21a3209b2bf7ad02f9797fa0"
+      "bytes": 30674,
+      "sha256": "4b79f90d782c5f54f632761f1b89950ff486b2dadec62cc2431bead61198c0eb"
     },
     {
       "path": "frontend/src/data/station_routes.json",
