@@ -2,6 +2,8 @@ import { spawn } from 'node:child_process'
 import { mkdir, writeFile, rm } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { tmpdir } from 'node:os'
+import { join, sep } from 'node:path'
 
 const ROUTE = process.argv[2] || '/overview'
 const WIDTH = Number(process.argv[3] || 1440)
@@ -10,7 +12,7 @@ const THEME = process.argv[5] || 'dark'
 
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const PORT = 9336 + Math.floor(Math.random() * 40)
-const OUT = fileURLToPath(new URL('../../.probe/', import.meta.url))
+const OUT = join(tmpdir(), 'campusflow-probe') + sep
 await mkdir(OUT, { recursive: true })
 const profile = OUT + 'p-' + PORT
 await rm(profile, { recursive: true, force: true })

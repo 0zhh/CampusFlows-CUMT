@@ -2,20 +2,22 @@
  * 用 Chrome DevTools Protocol 检查页面：
  *  - 收集 console 错误与未捕获异常
  *  - 检查横向溢出（在指定视口下 scrollWidth > clientWidth）
- *  - 截图存到 .probe/
+ *  - 截图存到系统临时目录 campusflow-probe/
  * 用法: node scripts/probe.mjs [baseUrl]
  */
 import { spawn } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { mkdir, writeFile, rm } from 'node:fs/promises'
 import { setTimeout as sleep } from 'node:timers/promises'
+import { tmpdir } from 'node:os'
+import { join, sep } from 'node:path'
 
 const BASE = process.argv[2] || 'http://127.0.0.1:5173'
 const ROUTES = ['/overview', '/sites', '/peak', '/incidents', '/about']
 const WIDTHS = [1280, 1440, 1920]
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const PORT = 9333
-const OUT = fileURLToPath(new URL('../../.probe/', import.meta.url))
+const OUT = join(tmpdir(), 'campusflow-probe') + sep
 
 await mkdir(OUT, { recursive: true })
 
