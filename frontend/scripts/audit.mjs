@@ -19,6 +19,9 @@ const PORT = 9334
 const OUT = join(tmpdir(), 'campusflow-probe') + sep
 
 await mkdir(OUT, { recursive: true })
+// clean-slate：每次跑之前清掉上一轮残留，避免临时目录越滚越大
+await rm(OUT, { recursive: true, force: true }).catch(() => {})
+await mkdir(OUT, { recursive: true }).catch(() => {})
 const profile = OUT + 'profile2'
 await rm(profile, { recursive: true, force: true })
 

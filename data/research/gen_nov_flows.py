@@ -55,20 +55,43 @@ def arrival_weights():
             w.append(max(0.15, 1.0 - (h - 19) * 0.28))
     return w
 
-# 取件日内曲线：午间与晚饭后两个峰
+# 取件日内曲线：按课程表（8:00-12:00 / 14:00-18:00 / 19:00-20:45 上课）
+# 学生只有课间才来取件 → 四个峰：早课前、午休、晚饭、晚课后；上课时段是低谷
+CLASS_BLOCKS = [(8.0, 12.0), (14.0, 18.0), (19.0, 20.75)]
+PEAK_WINDOWS = [
+    (7.0, 8.0, 0.55, '早课前'),
+    (12.0, 14.0, 1.00, '午休'),
+    (18.0, 19.0, 0.85, '晚饭'),
+    (20.75, 23.0, 0.95, '晚课后'),
+]
+TROUGH = 0.07          # 上课时段的基础流量
+RAMP_MIN = 12          # 边界处 12 分钟内线性过渡，避免生硬的台阶
+
+
+def base_weight(h):
+    for a, b, w, _ in PEAK_WINDOWS:
+        if a <= h < b:
+            return w
+    for a, b in CLASS_BLOCKS:
+        if a <= h < b:
+            return TROUGH
+    return 0.0
+
+
 def pickup_weights(open_h, close_h):
-    w = []
+    raw = []
     for i in range(SLOTS):
         h = (i * STEP_MIN) / 60.0
         if h < open_h or h >= close_h:
-            w.append(0.0)
+            raw.append(0.0)
             continue
-        # 两个高斯峰：12:00、18:00
-        import math
-        a = math.exp(-((h - 12.0) ** 2) / (2 * 1.4 ** 2))
-        b = math.exp(-((h - 18.0) ** 2) / (2 * 1.6 ** 2))
-        w.append(0.15 + a + 1.15 * b)
-    return w
+        # 在 ±RAMP_MIN 内对阶梯做线性过渡
+        acc, n = 0.0, 0
+        for k in range(-RAMP_MIN, RAMP_MIN + 1, 3):
+            acc += base_weight(min(23.99, max(0.0, h + k / 60.0)))
+            n += 1
+        raw.append(acc / n)
+    return raw
 
 
 def parse_hhmm(s):
@@ -173,9 +196,17 @@ meta = {
         '站点份额 桃苑 0.34 / 松苑 0.26 / 梅苑 0.22 / 兰苑 0.18',
         '日系数呈两波：11-01…11-03 第一波回落、11-04…11-09 日常、11-11 峰值',
         '到件只在 06:00—22:00 发生；取件只在各站营业时间内发生',
+        '取件曲线按课程表设计：8:00-12:00、14:00-18:00、19:00-20:45 上课，这些时段是低谷',
+        '取件高峰：07:00-08:00 早课前（次峰）、12:00-14:00 午休、18:00-19:00 晚饭、20:45-23:00 晚课后',
         '全部为演示数据，不代表真实业务量',
     ],
-    'day_factors': {START + timedelta(days=i): None for i in []},
+    'class_blocks': [{'start': '08:00', 'end': '12:00'}, {'start': '14:00', 'end': '18:00'},
+                     {'start': '19:00', 'end': '20:45'}],
+    'peak_windows': [{'start': '07:00', 'end': '08:00', 'weight': 0.55, 'label': '早课前 (次峰)'},
+                     {'start': '12:00', 'end': '14:00', 'weight': 1.00, 'label': '午休 (主峰)'},
+                     {'start': '18:00', 'end': '19:00', 'weight': 0.85, 'label': '晚饭 (次主峰)'},
+                     {'start': '20:45', 'end': '23:00', 'weight': 0.95, 'label': '晚课后 (主峰)'}],
+    'station_hours_effect': '桃苑 08:30-18:30，接不到 20:45 之后的晚课后峰；这一段全部由三个无人站承接',
     'daily': daily,
     'totals': {
         'arrivals': sum(d['arrivals'] for d in daily),

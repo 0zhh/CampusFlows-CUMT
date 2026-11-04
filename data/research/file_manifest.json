@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 249,
-  "total_bytes": 29749070,
+  "count": 253,
+  "total_bytes": 29838655,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 48279,
-      "sha256": "02ffd54620df6ae97760bbacdc4b4221046eedf86490122cbb39b5571aa60397"
+      "bytes": 49590,
+      "sha256": "765ca655179516877c81d94e6c947f08b6539515a4b4a0ac25ec230a78a37fee"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -28,6 +28,16 @@
       "path": "README.md",
       "bytes": 7233,
       "sha256": "a26fc940e946f30b04172fc6011a7904a8d48d658cc2509d65873f053e64bb0c"
+    },
+    {
+      "path": "start-all.ps1",
+      "bytes": 2927,
+      "sha256": "612dfdcdeb101bf30c7ed31d76107f31db7559e76c48001fb4536fd3ddc3868f"
+    },
+    {
+      "path": "stop-all.ps1",
+      "bytes": 550,
+      "sha256": "d079e09e4f179db88487d4a3456ae66e976a8d59f8aaad7c79187aaf84890133"
     },
     {
       "path": "verify.ps1",
@@ -331,13 +341,13 @@
     },
     {
       "path": "data/demo/nov_flow_summary.json",
-      "bytes": 6901,
-      "sha256": "aa31e41c8664bb4b08010c69fed61e4d1a8219279f8d21f843a49cb9a21a8dc0"
+      "bytes": 7970,
+      "sha256": "d13aabb57963465592b58b69df503abcaf15cdc3af3ba8de8caef796d9333412"
     },
     {
       "path": "data/demo/nov_inbound_outbound_10min.csv",
-      "bytes": 375666,
-      "sha256": "12a5953878765de9ed5a36e5cf9c81a06bc4c867756634e5acf0dc24efb7437f"
+      "bytes": 374854,
+      "sha256": "8cbcc9a681539bce514c0721bfaad4c159ae937af53f7c9f5cf28e136fd17e5b"
     },
     {
       "path": "data/demo/nov_inbound_wide.csv",
@@ -346,8 +356,8 @@
     },
     {
       "path": "data/demo/nov_outbound_wide.csv",
-      "bytes": 43912,
-      "sha256": "f81e9f718f6a6d3208bd1008ca1990ed865db7bf194341e3bddf70bbb7b5e90b"
+      "bytes": 43100,
+      "sha256": "70d1fdb112402b6bd7b787590e63672c1fd2a208463702d2fc625dcf69986790"
     },
     {
       "path": "data/demo/scenario_template.json",
@@ -536,8 +546,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 44585,
-      "sha256": "46507e65edcf6ded6f97e87cb81dacb36966e9b01d6b83cd659e25d7f52428ab"
+      "bytes": 45270,
+      "sha256": "0e2e71e9de6a95487e8964fdc7e69a9227ec4bec13848ec7fa7969c18182cd7f"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -566,8 +576,8 @@
     },
     {
       "path": "data/research/gen_nov_flows.py",
-      "bytes": 7073,
-      "sha256": "8745517151386c25d03791ac3733007bff23d165fc49537a110be213cb348580"
+      "bytes": 8679,
+      "sha256": "75067cab7ec8095d1e7bd7e4ecc99106faa2a1f24cd6fd962b09af099bfec379"
     },
     {
       "path": "data/research/gen_station_layout.py",
@@ -598,6 +608,11 @@
       "path": "data/research/pivot_nov_flows.py",
       "bytes": 2659,
       "sha256": "8dac1ad03f25c3650974c4253ec3eda6b7e7ba61d25132c7a116eb97c9b82b4c"
+    },
+    {
+      "path": "data/research/plot_class_peaks.py",
+      "bytes": 3989,
+      "sha256": "5fed8af4710df0b8afa26b5146963d0e326a7976d45e582bac23d7d27e6efe60"
     },
     {
       "path": "data/research/probe_route_graph.py",
@@ -851,13 +866,18 @@
     },
     {
       "path": "docs/db/11月流量-预览.png",
-      "bytes": 47600,
-      "sha256": "93b4ab04eb9d96fa4c808b9f6a236a303b57af47c6cc1ffe44408a56403db905"
+      "bytes": 45744,
+      "sha256": "ed7d5eb975969cf122a5c368aaa160cc827839552daf07cb010f97b442a71f12"
     },
     {
       "path": "docs/db/ER-图.png",
       "bytes": 256956,
       "sha256": "1a747291d1535f3de76d85b9ed27e03ab3075b7ae3a090001d58496de7d298e9"
+    },
+    {
+      "path": "docs/db/出库曲线-课表版.png",
+      "bytes": 78512,
+      "sha256": "fcbbe9bdb9676d043c64a3fefbfdd1245f2ca5f49b7745d51d6533266704bf7f"
     },
     {
       "path": "docs/screenshots/P1-运营总览-dark.png",
@@ -986,33 +1006,33 @@
     },
     {
       "path": "frontend/scripts/audit.mjs",
-      "bytes": 8777,
-      "sha256": "304e4e1727eaf640f8800f25f7e81692122abbf3f22b703976906466d0258013"
+      "bytes": 9186,
+      "sha256": "416d0b741aad4f05f80eeb934fefaa25280c94d96189f0f8da77a62a9a9721f1"
     },
     {
       "path": "frontend/scripts/calibrate.mjs",
-      "bytes": 9749,
-      "sha256": "baa13d026500aa254f44412eafe70548afb9846e692e714d0aab81bc150e3557"
+      "bytes": 10009,
+      "sha256": "7bf57c9772df05bc135443a5abfd84f72ef7a408799b324ece27e33443eb1afe"
     },
     {
       "path": "frontend/scripts/calshot.mjs",
-      "bytes": 2549,
-      "sha256": "a3021f3c5fe594d1148200fa2bba59b85fa22145fedc7bdceafef81ded4c3100"
+      "bytes": 2958,
+      "sha256": "a2f6f55c7d7192df13bf13eff0f4ae3a9ad2eedb8a24021cd542e845250d3d02"
     },
     {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 10823,
-      "sha256": "c19874dbd544bff2e0866b0696a4d0d47a1bf1540813221d2718ba65769d5448"
+      "bytes": 11083,
+      "sha256": "4c53379d31cddc7ef6ca86e6c03d89ab207559b63d061e9b0c25ad0d1e94bd35"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",
-      "bytes": 6201,
-      "sha256": "37779ea2316ae61dedc26c1cb571317fd716936d9925ec0411ef421be58c30e4"
+      "bytes": 6461,
+      "sha256": "968cec1e956a800973c9970a6f5b5a1027059034406f3aca44d23f0351c0ce18"
     },
     {
       "path": "frontend/scripts/mapcheck.mjs",
-      "bytes": 3450,
-      "sha256": "bf1693078cec0f38a008eb15e4b8b0c4c9ddd388f79dbfb9246fbd5e9faf3a0d"
+      "bytes": 3859,
+      "sha256": "9e69a0972ecc914df136dd50269f49412b8991d8a7d1a35988629046ffd48f6e"
     },
     {
       "path": "frontend/scripts/mapshot.mjs",
@@ -1031,8 +1051,8 @@
     },
     {
       "path": "frontend/scripts/text.mjs",
-      "bytes": 2576,
-      "sha256": "b0718893ad3f04017afcb117df2a37ae72f5701f61f4d5a9e0d6390744333026"
+      "bytes": 2985,
+      "sha256": "f65a08610af35cd0bf98b4de08e19a153142f6a58f0d0a5eb08e867e09565e76"
     },
     {
       "path": "frontend/src/App.vue",

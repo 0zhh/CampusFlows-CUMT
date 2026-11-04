@@ -9,6 +9,9 @@ const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const PORT = 9950
 const OUT = join(tmpdir(), 'campusflow-probe') + sep
 await mkdir(OUT, { recursive: true })
+// clean-slate：每次跑之前清掉上一轮残留，避免临时目录越滚越大
+await rm(OUT, { recursive: true, force: true }).catch(() => {})
+await mkdir(OUT, { recursive: true }).catch(() => {})
 const profile = OUT + 'calshot'
 await rm(profile, { recursive: true, force: true })
 const chrome = spawn(CHROME, ['--headless=new', `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`,
