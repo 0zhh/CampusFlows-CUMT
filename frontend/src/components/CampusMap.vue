@@ -9,7 +9,7 @@ import { onMounted, onUnmounted, ref, watch, computed } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { SITES, isOpenNow } from '@/data/sites'
-import { useAppStore } from '@/stores/app'
+import { useAppStore, MANUAL_IMAGE } from '@/stores/app'
 import type { Scenario } from '@/data/types'
 import routesData from '@/data/station_routes.json'
 
@@ -18,9 +18,16 @@ const props = defineProps<{
   selectedId?: string | null
   /** 是否叠加校内运输路径与车辆（放大视图里打开） */
   showRoutes?: boolean
+  /** 描线模式：点地图取点 */
+  trace?: boolean
+  /** 描线模式的点（经纬度） */
+  tracePoints?: { lat: number; lng: number }[]
 }>()
 
-const emit = defineEmits<{ (e: 'select', id: string): void }>()
+const emit = defineEmits<{
+  (e: 'select', id: string): void
+  (e: 'mapclick', p: { lat: number; lng: number }): void
+}>()
 
 type LayerKind = 'satellite' | 'manual'
 const layer = ref<LayerKind>('manual')
@@ -33,6 +40,7 @@ const markers = new Map<string, L.Marker>()
 let routeGroup: L.LayerGroup | null = null
 let vehicle: L.CircleMarker | null = null
 let vehicleTimer: number | undefined
+let traceLayer: L.Polyline | null = null
 const store = useAppStore()
 
 // 视野范围：OSM way 273639857 的外接矩形，取整后仅留极小外扩
@@ -56,6 +64,24 @@ const riskSiteIds = computed(() => {
   })
   return set
 })
+
+/**
+ * 站点位置：手工校准优先；否则手册底图用原图像素反算（红点在哪，标记就在哪），
+ * 卫星底图用 WGS84 近似值。两张底图各有各的坐标真值，不能混用。
+ */
+function pixelToLatLng(site: (typeof SITES)[number]) {
+  const b = store.manualBounds
+  return {
+    lat: b.north - (site.py / MANUAL_IMAGE.height) * (b.north - b.south),
+    lng: b.west + (site.px / MANUAL_IMAGE.width) * (b.east - b.west)
+  }
+}
+
+function posOf(site: (typeof SITES)[number]) {
+  const o = store.siteOverride[site.id]
+  if (o) return o
+  return layer.value === 'manual' ? pixelToLatLng(site) : { lat: site.lat, lng: site.lng }
+}
 
 function siteIcon(site: (typeof SITES)[number]) {
   const open = isOpenNow(site)
@@ -82,7 +108,7 @@ function buildMarkers() {
   markers.forEach((m) => m.remove())
   markers.clear()
   SITES.forEach((site) => {
-    const p = store.sitePos(site.id)
+    const p = posOf(site)
     const m = L.marker([p.lat, p.lng], {
       icon: siteIcon(site),
       zIndexOffset: site.role === 'main_hub' ? 500 : 0,
@@ -130,6 +156,8 @@ async function init() {
     zoom: 16,
     minZoom: 14,
     maxZoom: 19,
+    zoomSnap: 0,       // 允许小数级缩放，fitBounds 才能把原图铺满容器
+    zoomDelta: 0.5,
     zoomControl: false,
     attributionControl: true
   })
@@ -140,25 +168,73 @@ async function init() {
 
   applyLayer()
   buildMarkers()
+  map.on('click', (e: L.LeafletMouseEvent) => {
+    if (props.trace) emit('mapclick', { lat: e.latlng.lat, lng: e.latlng.lng })
+  })
 
   // 视野对准整个校区，四站落在校区西侧（与真实情况一致）
   map.fitBounds(CAMPUS_BOUNDS, { padding: [16, 16] })
 
   if (props.showRoutes) drawRoutes()
+  drawTrace()
+  refit()
 }
 
-onMounted(init)
+/** 描线预览：把已点的点连成虚线 */
+function drawTrace() {
+  if (!map) return
+  traceLayer?.remove()
+  traceLayer = null
+  const pts = props.tracePoints ?? []
+  if (pts.length < 2) return
+  traceLayer = L.polyline(pts.map((p) => [p.lat, p.lng] as [number, number]), {
+    color: '#ffb037', weight: 4, opacity: 0.95, dashArray: '6 6'
+  }).addTo(map)
+}
+
+function refit() {
+  if (!map) return
+  if (layer.value === 'manual') map.fitBounds(manualBounds.value, { padding: [12, 12] })
+  else map.fitBounds(CAMPUS_BOUNDS, { padding: [16, 16] })
+}
+
+let ro: ResizeObserver | null = null
+let lastSize = ''
+onMounted(() => {
+  void init().then(() => {
+    if (!el.value) return
+    ro = new ResizeObserver(() => {
+      if (!map || !el.value) return
+      const k = el.value.clientWidth + 'x' + el.value.clientHeight
+      if (k === lastSize) return
+      lastSize = k
+      map.invalidateSize()
+      refit()
+    })
+    ro.observe(el.value)
+  })
+})
 
 onUnmounted(() => {
+  ro?.disconnect()
   clearRoutes()
   map?.remove()
   map = null
 })
 
-watch(layer, applyLayer)
+watch(layer, () => {
+  applyLayer()
+  refit()
+  buildMarkers()
+})
 watch(riskSiteIds, () => buildMarkers())
 watch(() => store.siteOverride, () => buildMarkers(), { deep: true })
-watch(manualBounds, (b) => manualLayer?.setBounds(b))
+watch(() => props.tracePoints, drawTrace, { deep: true })
+
+watch(manualBounds, (b) => {
+  manualLayer?.setBounds(b)
+  buildMarkers()
+})
 
 watch(
   () => props.selectedId,
@@ -170,7 +246,7 @@ watch(
     }
     const site = SITES.find((s) => s.id === id)
     if (site) {
-      const p = store.sitePos(site.id)
+      const p = posOf(site)
       map.flyTo([p.lat, p.lng], 17, { duration: 0.6 })
     }
   }
@@ -267,7 +343,15 @@ watch(
   }
 )
 
-defineExpose({ setLayer: (l: LayerKind) => (layer.value = l), redraw: () => (props.showRoutes ? drawRoutes() : null) })
+defineExpose({
+  setLayer: (l: LayerKind) => (layer.value = l),
+  /** 弹窗淡入后容器尺寸才定型，外部在动画结束后调一次 */
+  refresh: () => {
+    map?.invalidateSize()
+    refit()
+    if (props.showRoutes) drawRoutes()
+  }
+})
 
 const layerOptions = [
   { id: 'manual' as const, label: '手册原图', hint: '学生手册原图 · 离线可用' },
@@ -366,8 +450,8 @@ const layerOptions = [
 
 .map__legend {
   position: absolute;
+  bottom: 46px;
   left: var(--sp-3);
-  bottom: var(--sp-3);
   z-index: 500;
   display: flex;
   flex-wrap: wrap;

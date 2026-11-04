@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 253,
-  "total_bytes": 29842528,
+  "count": 254,
+  "total_bytes": 30504600,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 50748,
-      "sha256": "b6baa107c76f7fc159a7654722d1f08085953bf4e9f163b5cd71f5dc24a8394b"
+      "bytes": 51680,
+      "sha256": "7f0c4ac28ad9fe0a7f39f3ff1f1227004dfa1373b693c24988fd2024f63006ae"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -546,8 +546,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 45923,
-      "sha256": "cb121c93efa0c9de6f9ac84054ccbb0e60924c3bc7a98367a3f36a168af06f30"
+      "bytes": 45927,
+      "sha256": "10912e2dcc326320c8447cdf27b5695a44fa346dc4bb4d431c050ecff716db03"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -940,6 +940,11 @@
       "sha256": "b98cb4e872f12c78f13ae7d38c09f2fe7d13cbe33cd67ab9bae14997e699bd78"
     },
     {
+      "path": "docs/screenshots/地图放大-配送路径.png",
+      "bytes": 655878,
+      "sha256": "46acfd46bc695f4f97fab53fe8c649bf5d395a89bcf80997c2125cd423503edc"
+    },
+    {
       "path": "docs/screenshots/地图校准面板.png",
       "bytes": 1132990,
       "sha256": "c77cf117e2b604878fefed9d816cce26a1a141a65abdd470ff9c76c19211424d"
@@ -1076,8 +1081,8 @@
     },
     {
       "path": "frontend/src/components/CampusMap.vue",
-      "bytes": 15299,
-      "sha256": "a5332ddf860f3f355cc000904368d0690438cf53b83996cf16dae1efc76cd0bc"
+      "bytes": 17669,
+      "sha256": "00e002541b6e038960f06b5a088829bba38ff6c0d8b9fb523e407071f3a6d357"
     },
     {
       "path": "frontend/src/components/EChart.vue",
@@ -1091,8 +1096,8 @@
     },
     {
       "path": "frontend/src/components/MapExpand.vue",
-      "bytes": 5627,
-      "sha256": "cae69ed1dfced727b5db2e1724614182738f201a158c58f010b1d4c9ef05d246"
+      "bytes": 8515,
+      "sha256": "ab2a6331eea83076ca4a1d9e812c8d25b0e3b0f0c4d08150353a5d82e634810b"
     },
     {
       "path": "frontend/src/components/PickupLookup.vue",
