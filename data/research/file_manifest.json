@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 202,
-  "total_bytes": 27697613,
+  "count": 204,
+  "total_bytes": 27949050,
   "files": [
     {
       "path": ".gitignore",
@@ -356,8 +356,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 35707,
-      "sha256": "a61f225774b8f5c3156834505557094298b0a604f8fb11d2fcd79270ef4007d2"
+      "bytes": 36352,
+      "sha256": "58c5929d2182874f5a611b81b945c830b229a024781968c8cdfe190c800640df"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -413,6 +413,11 @@
       "path": "data/research/probe_route_graph.py",
       "bytes": 3030,
       "sha256": "ecb8069081f3e5e904211b96422ef84cd33830c5e91023b736bfcac0b9201924"
+    },
+    {
+      "path": "data/research/render_er.py",
+      "bytes": 10222,
+      "sha256": "150f1f3a7031b8e974ab99a5c6dd2d1132dfab6a29a2ad5e86f2d7b5b1f2406f"
     },
     {
       "path": "data/research/research_log.json",
@@ -616,8 +621,8 @@
     },
     {
       "path": "docs/db/01-ER图与实体关系.md",
-      "bytes": 8170,
-      "sha256": "024bb80473c543d8088baed535651aa4dad291a4c785f21b55d87582e1ce84a4"
+      "bytes": 8327,
+      "sha256": "c2a0131bfdf9d9a1711fb53eb33d04582cf7732e3c4348677215d262ebe177ca"
     },
     {
       "path": "docs/db/02-关系设计表.md",
@@ -633,6 +638,11 @@
       "path": "docs/db/04-MySQL具体设计.md",
       "bytes": 8032,
       "sha256": "30d3a1e7e6af648ba39f25c6f48de0bc3a3f63510a8aad775842237933bd3d6c"
+    },
+    {
+      "path": "docs/db/ER-图.png",
+      "bytes": 240413,
+      "sha256": "14b6b3acd189968347a8c53750cfde0b684d3a6a7902133db9dcd9b30a161672"
     },
     {
       "path": "docs/screenshots/P1-运营总览-dark.png",
