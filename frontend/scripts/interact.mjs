@@ -56,15 +56,20 @@ await S('Page.enable'); await S('Runtime.enable')
 await S('Emulation.setDeviceMetricsOverride', { width: 1440, height: 950, deviceScaleFactor: 1, mobile: false })
 
 /** 点击包含指定文字的元素；找不到就让测试失败而不是崩溃 */
-const clickText = async (selector, text) => {
-  const ok = await ev(`(() => {
-    const el = [...document.querySelectorAll(${JSON.stringify(selector)})]
-      .find((n) => n.textContent.includes(${JSON.stringify(text)}));
-    if (!el) return false;
-    el.click();
-    return true;
-  })()`)
-  if (!ok) throw new Error(`找不到包含「${text}」的 ${selector}`)
+const clickText = async (selector, text, timeoutMs = 6000) => {
+  const t0 = Date.now()
+  while (Date.now() - t0 < timeoutMs) {
+    const ok = await ev(`(() => {
+      const el = [...document.querySelectorAll(${JSON.stringify(selector)})]
+        .find((n) => n.textContent.includes(${JSON.stringify(text)}));
+      if (!el) return false;
+      el.click();
+      return true;
+    })()`)
+    if (ok) return
+    await sleep(200)
+  }
+  throw new Error(`找不到包含「${text}」的 ${selector}`)
 }
 
 const ev = async (expr) => {
@@ -75,6 +80,18 @@ const ev = async (expr) => {
 const go = async (route) => { await S('Page.navigate', { url: 'http://127.0.0.1:5173' + route }); await sleep(2600) }
 
 const results = []
+/** 等某个选择器出现（最多 timeoutMs），避免页面还在渲染就点 */
+async function waitFor(selector, timeoutMs = 6000) {
+  const t0 = Date.now()
+  while (Date.now() - t0 < timeoutMs) {
+    const n = await ev(`document.querySelectorAll(${JSON.stringify(selector)}).length`)
+    if (n > 0) return n
+    await sleep(200)
+  }
+  const diag = await ev(`location.pathname + ' | panels=' + [...document.querySelectorAll('.panel__title')].map(e => e.textContent.trim()).join(',')`)
+  throw new Error('等待超时: ' + selector + ' @ ' + diag)
+}
+
 const check = (name, ok, detail) => {
   results.push({ name, ok, detail })
   console.log((ok ? '  PASS ' : '  FAIL ') + name + (detail ? '  — ' + detail : ''))
@@ -112,6 +129,7 @@ check('S2 下总览出现风险标记', riskTags >= 1, String(riskTags))
 
 // ---------- 3. 地图 → 抽屉 ----------
 await go('/overview')
+await waitFor('.site-row')
 await ev(`document.querySelector('.site-row').click()`)
 await sleep(1500)
 const drawerOpen = await ev(`!!document.querySelector('.drawer')`)
@@ -144,7 +162,8 @@ check('站点选中态跟随', String(focusName).includes('松苑'), focusName)
 
 // ---------- 4b. 地图放大视图 ----------
 await go('/overview')
-await ev(`document.querySelector('.map-expand').click()`)
+for (let i = 0; i < 20 && !(await ev("!!document.querySelector('.map-expand')")); i++) await sleep(200)
+await ev("document.querySelector('.map-expand').click()")
 await sleep(1600)
 check('地图放大视图打开', await ev(`!!document.querySelector('.mx')`))
 check('放大图里有配送路径', (await ev(`document.querySelectorAll('.mx .leaflet-overlay-pane path').length`)) >= 4,
