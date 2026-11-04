@@ -139,6 +139,9 @@ check('站点选中态跟随', String(focusName).includes('松苑'), focusName)
 
 // ---------- 5. 工单状态流转 ----------
 await go('/incidents')
+// 后端在跑时先把工单复位到确定状态，避免上一轮测试留下的状态让断言漂移
+await ev(`fetch('/api/workorders/reset', { method: 'POST' }).then(() => location.reload()).catch(() => null)`)
+await sleep(2200)
 const readStat = (label) => ev(`[...document.querySelectorAll('.stat')].find((s) => s.textContent.includes(${JSON.stringify(label)}))?.querySelector('.stat__n')?.textContent.trim()`)
 const closedBefore = Number(await readStat('已闭环'))
 await clickText('.actions__row .btn', '处理中')
