@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 257,
-  "total_bytes": 30623443,
+  "count": 258,
+  "total_bytes": 31036083,
   "files": [
     {
       "path": ".gitignore",
@@ -546,8 +546,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 46659,
-      "sha256": "5ae17b325c99f768dd169642edd6f76ff0b986c4072ce30f2817f119a5615ecd"
+      "bytes": 46665,
+      "sha256": "9384f2fe9f0c561c477d8d409d8f715e5d42af7e1b8267f270192e9231ab8d4c"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -958,6 +958,11 @@
       "path": "docs/screenshots/地图校准面板.png",
       "bytes": 1132990,
       "sha256": "c77cf117e2b604878fefed9d816cce26a1a141a65abdd470ff9c76c19211424d"
+    },
+    {
+      "path": "docs/screenshots/总览-手册底图.png",
+      "bytes": 412634,
+      "sha256": "3eb19e73c077cb2da5b720ef47adf5c61ae4c958ec15386f143cc2989b400d02"
     },
     {
       "path": "docs/screenshots/桃苑室内布局-v6-六竖条.png",
