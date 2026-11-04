@@ -95,7 +95,7 @@ L2.append('-- 工单（演示初始四条）')
 WOS = [
     ('WO-001', 'NH-SONGYUAN', 'exceed', 'open', '14:30', '松苑 待取区超限', '在架件数越过运营上限，需引导取件或扩临时周转区'),
     ('WO-002', 'NH-MEIYUAN', 'exceed', 'doing', '15:00', '梅苑 待取区超限', '已开放临时待取区，持续跟进'),
-    ('WO-003', 'NH-LANYUAN', 'watch', 'closed', '16:00', '兰苑 待取区接近上限', '高峰平稳度过，工单闭环'),
+    ('WO-003', 'NH-LANYUAN', 'exceed', 'closed', '16:00', '兰苑 待取区超限', '高峰平稳度过，工单闭环'),
     ('WO-004', 'NH-TAOYUAN', 'watch', 'open', '15:30', '桃苑 待取区接近上限', '按第 7 天水位预置的观察工单'),
 ]
 L2.append(batch_insert('work_order',

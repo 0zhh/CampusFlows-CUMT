@@ -12,6 +12,9 @@ import CampusMap from '@/components/CampusMap.vue'
 import EChart from '@/components/EChart.vue'
 import ScenarioPicker from '@/components/ScenarioPicker.vue'
 import SiteDrawer from '@/components/SiteDrawer.vue'
+import PickupLookup from '@/components/PickupLookup.vue'
+import { getCarrierStats, type CarrierStat } from '@/data/mysql'
+import { onMounted } from 'vue'
 import { useReveal } from '@/composables/useReveal'
 
 const store = useAppStore()
@@ -207,6 +210,14 @@ const siteRows = computed(() =>
   })
 )
 
+const carriers = ref<CarrierStat[]>([])
+const maxCarrier = computed(() => Math.max(1, ...carriers.value.map((c) => c.onShelf)))
+
+onMounted(async () => {
+  const list = await getCarrierStats('NH-TAOYUAN')
+  if (list) carriers.value = list
+})
+
 const weekRows = computed(() => {
   const wk = scenario.value.week ?? []
   return wk.map((d) => {
@@ -268,6 +279,16 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
       </div>
 
       <div class="ov__side">
+        <div class="panel ov__pickup">
+          <div class="panel__head">
+            <h2 class="panel__title">取件码查询</h2>
+            <span class="panel__hint">查位置与承运商</span>
+          </div>
+          <div class="panel__body">
+            <PickupLookup />
+          </div>
+        </div>
+
         <div class="panel ov__sites">
           <div class="panel__head">
             <h2 class="panel__title">四站实时状态</h2>
@@ -345,6 +366,17 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
               <span v-if="d.projected" class="week__proj">外推</span>
             </li>
           </ol>
+          <div v-if="carriers.length" class="carrier">
+            <span class="carrier__title">在架件按承运商</span>
+            <ul class="carrier__list">
+              <li v-for="c in carriers" :key="c.carrierCode">
+                <i class="carrier__bar" :style="{ width: (c.onShelf / maxCarrier) * 100 + '%' }" />
+                <span class="carrier__name">{{ c.carrier }}</span>
+                <span class="carrier__num num">{{ c.onShelf }}</span>
+              </li>
+            </ul>
+          </div>
+
           <p class="note">
             第 7 天收盘 {{ weekRows[6]?.pct }}%，仍在运营上限（物理储位的 85%）之下；
             按每天净增 {{ fmt(scenario.summary[0]?.net_per_day ?? 0) }} 件推算，第 9 天会越过满仓线。
@@ -358,6 +390,14 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
 </template>
 
 <style scoped>
+.carrier { display: grid; gap: 6px; margin: var(--sp-3) 0; }
+.carrier__title { font-size: var(--fs-xs); color: var(--fg-2); }
+.carrier__list { display: grid; gap: 4px; }
+.carrier__list li { display: grid; grid-template-columns: 64px minmax(0, 1fr) 48px; align-items: center; gap: var(--sp-2); position: relative; font-size: var(--fs-xs); }
+.carrier__bar { position: absolute; left: 64px; height: 12px; background: var(--brand-dim); border-radius: 2px; z-index: 0; }
+.carrier__name { grid-column: 1; color: var(--fg-3, var(--fg-2)); }
+.carrier__num { grid-column: 3; text-align: right; color: var(--fg-1); }
+
 .week { display: flex; align-items: flex-end; gap: 8px; height: 132px; margin-bottom: var(--sp-3); }
 .week__item { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1 1 0; height: 100%; }
 .week__day { font-size: 10px; color: var(--fg-2); }

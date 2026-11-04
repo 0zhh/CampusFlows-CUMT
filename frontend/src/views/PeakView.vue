@@ -7,6 +7,8 @@ import { SITES } from '@/data/sites'
 import { useChartTheme } from '@/composables/useChartTheme'
 import EChart from '@/components/EChart.vue'
 import ScenarioPicker from '@/components/ScenarioPicker.vue'
+import { onMounted } from 'vue'
+import { getRuns, type RunRow } from '@/data/mysql'
 import { useReveal } from '@/composables/useReveal'
 
 const store = useAppStore()
@@ -111,6 +113,19 @@ const compareOption = computed(() => {
   }
 })
 
+const runs = ref<RunRow[]>([])
+const runId = ref<number | null>(null)
+const pickedRun = computed(() => runs.value.find((r) => r.id === runId.value) ?? null)
+const currentPeak = computed(() => Math.max(...rows.value.map((r) => r.i), 0))
+
+onMounted(async () => {
+  const list = await getRuns()
+  if (list && list.length) {
+    runs.value = list
+    runId.value = list[0].id
+  }
+})
+
 const riskRows = computed(() =>
   rows.value
     .map((r, i) => ({ ...r, idx: i }))
@@ -130,6 +145,20 @@ useReveal(".kpis > *, .grid2 > *, .panel")
   <div class="pk">
     <div class="pk__bar">
       <ScenarioPicker />
+      <div v-if="runs.length" class="runs">
+        <label class="runs__label" for="run-select">历史运行</label>
+        <select id="run-select" v-model.number="runId" class="runs__select">
+          <option v-for="r in runs" :key="r.id" :value="r.id">
+            第 {{ r.id }} 次 · {{ r.scenarioId }} · 峰值 {{ r.peakI }} 件
+          </option>
+        </select>
+        <span v-if="pickedRun" class="runs__diff">
+          与当前场景峰值 {{ currentPeak }} 件相比
+          <b :class="pickedRun.peakI >= currentPeak ? 'up' : 'down'">
+            {{ pickedRun.peakI >= currentPeak ? '+' : '' }}{{ pickedRun.peakI - currentPeak }}
+          </b>
+        </span>
+      </div>
       <div class="pk__site" role="group" aria-label="选择站点">
         <button
           v-for="s in SITES"
@@ -260,6 +289,12 @@ useReveal(".kpis > *, .grid2 > *, .panel")
 </template>
 
 <style scoped>
+.runs { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); color: var(--fg-2); flex-wrap: wrap; }
+.runs__select { padding: 4px var(--sp-2); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--fg-0); font-size: var(--fs-xs); }
+.runs__diff b { color: var(--fg-0); }
+.runs__diff b.up { color: var(--danger-ink, var(--danger)); }
+.runs__diff b.down { color: var(--ok-ink, var(--ok)); }
+
 .pk { display: grid; gap: var(--sp-5); }
 
 .pk__bar {

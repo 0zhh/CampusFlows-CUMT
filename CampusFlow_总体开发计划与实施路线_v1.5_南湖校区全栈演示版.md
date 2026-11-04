@@ -740,7 +740,7 @@ H2 能证明"能持久化"，但撑不起下面五件事——它们都需要**�
 | P2 种子 | ✅ | V2/V3 导入，共 **23,858 行**：slot 19,200 / shelf 240 / parcel 2,000 / pickup_code 2,000 / demand_bucket 396 / sim_result 132 … |
 | P3 实体与仓储 | ✅ | 13 个 JPA 实体 + 8 个仓储；`--spring.profiles.active=mysql` 可启动 |
 | P4 新功能接口 | ✅ | 5 组接口全部可用，契约测试 **45/45** |
-| P5 前端接入 | ⏳ | 接口已就绪，页面尚未接入（下一步） |
+| P5 前端接入 | ✅ | 五处全部接入：取件码查询（P1）、历史运行下拉（P3）、工单事件时间线（P4）、参数版本（P5）、承运商在架（P1） |
 
 **SQL 侧校验**（在容器里直接查）：
 
@@ -765,3 +765,16 @@ SELECT COUNT(*) FROM slot WHERE parcel_id IS NOT NULL;                  -- 2000 
 > 实现要点：命名策略统一为 `CamelCaseToUnderscoresNamingStrategy`，个别尾字母大写的字段
 > （`aisleM` / `kappaI` / `peakI` / `riskQ` 等）显式写了 `Column(name=...)` —— Hibernate 对
 > "末尾单大写字母"不下划线，这是踩过的坑。`mysql` profile 用 `ddl-auto: none`，以 SQL 脚本为准。
+
+**P5 接入明细**（都在 `getJson` 约定下：后端不可达时静默回落）
+
+| 位置 | 组件 | 数据来源 |
+|---|---|---|
+| P1 运营总览 · 侧栏 | `PickupLookup.vue` | `GET /api/pickup/{code}`，返回站点/货架/层/位/承运商 |
+| P1 运营总览 · 本期要点 | 承运商在架条 | `GET /api/stats/carriers`，8 家横向占比条 |
+| P3 高峰与方案 · 顶部 | 历史运行下拉 | `GET /api/simulations`，显示与当前峰值的差值 |
+| P4 异常协同 · 详情 | 处理记录时间线 | 优先 `GET /api/workorders/{id}/events`（按站点对齐工单号），取不到回落本地 actions |
+| P5 资料与说明 · 模型面板 | 参数版本徽标 | `GET /api/params/versions`，显示 v1.0 · 9 实测 / 1 公开 / 17 假设 |
+
+> 实现中修掉两个真问题：① 工单号在本地与库里不同源，改成**按站点对齐**；
+> ② 改状态后列表会跳到别的工单，改为**动作即钉住选中**。

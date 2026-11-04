@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import edu.cumt.campusflow.repo.CarrierRepository;
 import edu.cumt.campusflow.repo.PickupCodeRepository;
 import edu.cumt.campusflow.repo.SiteRepository;
 import org.springframework.http.HttpStatus;
@@ -21,10 +22,12 @@ public class PickupController {
 
     private final PickupCodeRepository codes;
     private final SiteRepository sites;
+    private final CarrierRepository carriers;
 
-    public PickupController(PickupCodeRepository codes, SiteRepository sites) {
+    public PickupController(PickupCodeRepository codes, SiteRepository sites, CarrierRepository carriers) {
         this.codes = codes;
         this.sites = sites;
+        this.carriers = carriers;
     }
 
     @GetMapping("/{code}")
@@ -40,7 +43,9 @@ public class PickupController {
         out.put("siteId", r[1]);
         sites.findById(siteId).ifPresent(s -> out.put("siteName", s.getName()));
         out.put("parcelId", r[2]);
-        out.put("carrier", r[3]);
+        String carrierCode = String.valueOf(r[3]);
+        out.put("carrierCode", carrierCode);
+        out.put("carrier", carriers.findById(carrierCode).map(x -> x.name).orElse(carrierCode));
         out.put("size", r[4]);
         out.put("shelvedAt", r[5]);
         out.put("status", r[6]);

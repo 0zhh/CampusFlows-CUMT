@@ -4,11 +4,19 @@ import { Database, FlaskConical, CircleHelp, Map, ShieldCheck, FileText, PlugZap
 import { dataMeta } from '@/composables/useData'
 import { probeNote, probing } from '@/composables/useDataSource'
 import { useAppStore } from '@/stores/app'
+import { getParamVersions, type ParamVersionInfo } from '@/data/mysql'
+import { onMounted, ref } from 'vue'
 import { SITES } from '@/data/sites'
 import stats from '@/data/statistics.json'
 import { useReveal } from '@/composables/useReveal'
 
 const store = useAppStore()
+const paramVersion = ref<ParamVersionInfo | null>(null)
+
+onMounted(async () => {
+  const list = await getParamVersions()
+  if (list && list.length) paramVersion.value = list[0]
+})
 const statistics: any[] = (stats as any).records ?? []
 
 const tagLegend = [
@@ -145,7 +153,14 @@ useReveal(".panel")
     <section class="panel">
       <div class="panel__head">
         <h2 class="panel__title"><FlaskConical :size="15" /> 仿真模型假设</h2>
-        <span class="panel__hint">生成于 {{ dataMeta.generatedAt }}</span>
+        <span class="panel__hint">
+          <template v-if="paramVersion">
+            参数 v{{ paramVersion.version }} ·
+            {{ paramVersion.observedCnt }} 实测 / {{ paramVersion.publicCnt }} 公开 /
+            {{ paramVersion.assumedCnt }} 假设
+          </template>
+          <template v-else>生成于 {{ dataMeta.generatedAt }}</template>
+        </span>
       </div>
       <div class="panel__body">
         <ul class="model">

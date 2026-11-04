@@ -33,6 +33,9 @@ java -jar target/campusflow-1.0.0.jar
 | http://127.0.0.1:8080/api/workorders/WO-001/events | **工单流转审计** |
 | http://127.0.0.1:8080/h2-console | H2 控制台（仅 dev profile；JDBC URL `jdbc:h2:file:./data/campusflow`，用户 sa，密码空） |
 
+**MySQL 形态下还能用五个新功能**：P1 取件码查询、承运商在架条；P3 历史运行下拉；
+P4 工单事件时间线；P5 参数版本徽标。后端不可达时自动回落本地数据。
+
 **MySQL 形态（Docker）**：`--spring.profiles.active=mysql` 启动后，站点/工单/场景/储位全部来自 MySQL（15 表 23,858 行），
 五个新功能接口只在 MySQL 形态下有意义（H2 形态下没有这些表）。
 

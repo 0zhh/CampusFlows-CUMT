@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { Siren, Clock, CheckCircle2, CircleDot, RotateCcw, ChevronRight, User, Bot } from 'lucide-vue-next'
 import { useAppStore } from '@/stores/app'
 import { useScenario } from '@/composables/useData'
@@ -8,6 +8,7 @@ import { generateIncidents, type Incident, type IncidentStatus } from '@/data/in
 import ScenarioPicker from '@/components/ScenarioPicker.vue'
 import { useReveal } from '@/composables/useReveal'
 import { fetchWorkOrders, patchWorkOrder, resetWorkOrders, toStatusMap } from '@/data/workOrders'
+import { getWorkOrderEvents, type WorkOrderEvent } from '@/data/mysql'
 
 const store = useAppStore()
 const scenario = useScenario(() => store.scenarioId)
@@ -35,9 +36,11 @@ const filtered = computed(() =>
 )
 
 const current = ref<string | null>(null)
-const currentIncident = computed(
-  () => incidents.value.find((i) => i.id === current.value) ?? filtered.value[0] ?? null
-)
+const currentIncident = computed(() => {
+  if (current.value) return incidents.value.find((i) => i.id === current.value) ?? null
+  // 默认落在第一张"还没闭环"的工单上，避免一进页面就选中已完成的那张
+  return filtered.value.find((i) => i.status !== 'closed') ?? filtered.value[0] ?? null
+})
 
 const counts = computed(() => ({
   all: incidents.value.length,
@@ -50,12 +53,38 @@ const counts = computed(() => ({
 const apiMode = computed(() => store.dataMode === 'api')
 
 onMounted(async () => {
-  if (!apiMode.value) return
   const remote = await fetchWorkOrders()
-  if (remote) overrides.value = { ...overrides.value, ...toStatusMap(remote) }
+  if (remote) {
+    overrides.value = { ...overrides.value, ...toStatusMap(remote) }
+    const map: Record<string, string> = {}
+    remote.forEach((w) => { if (!map[w.siteId] || w.status !== 'closed') map[w.siteId] = w.id })
+    siteToWo.value = map
+  }
 })
 
+/** 后端事件流：只在 mysql 形态下存在，取不到就回落到本地 actions */
+const remoteEvents = ref<WorkOrderEvent[]>([])
+/** 站点 → 后端工单号：本地工单号与库里不同源，按站点对齐才靠得住 */
+const siteToWo = ref<Record<string, string>>({})
+
+async function loadEvents(siteId: string | undefined) {
+  remoteEvents.value = []
+  if (!siteId) return
+  const woId = siteToWo.value[siteId]
+  if (!woId) return
+  const list = await getWorkOrderEvents(woId)
+  if (list && list.length) remoteEvents.value = list
+}
+
+watch(
+  () => [currentIncident.value?.siteId, apiMode.value, siteToWo.value[currentIncident.value?.siteId ?? '']],
+  () => void loadEvents(currentIncident.value?.siteId),
+  { immediate: true }
+)
+
 function setStatus(id: string, s: IncidentStatus) {
+  // 动作作用在谁身上就把选中钉在谁身上，否则状态一变列表会跳到别的工单
+  current.value = id
   overrides.value = { ...overrides.value, [id]: s }
   if (apiMode.value) void patchWorkOrder(id, s)
 }
@@ -173,7 +202,20 @@ useReveal(".stat, .wo, .panel")
 
           <div class="block">
             <h3>处理记录</h3>
-            <ol class="tl">
+            <ol v-if="remoteEvents.length" class="tl">
+              <li v-for="e in remoteEvents" :key="e.id">
+                <span class="tl__dot" />
+                <div class="tl__body">
+                  <b>{{ e.actor }}</b>
+                  <span class="tl__time">{{ String(e.atTime).slice(11, 16) }}</span>
+                  <p>
+                    状态 {{ e.fromStatus ?? '—' }} → <b>{{ e.toStatus }}</b>
+                    <em v-if="e.note">· {{ e.note }}</em>
+                  </p>
+                </div>
+              </li>
+            </ol>
+            <ol v-else class="tl">
               <li v-for="(a, idx) in currentIncident.actions" :key="idx">
                 <span class="tl__dot" />
                 <div class="tl__card">
