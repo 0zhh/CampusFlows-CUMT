@@ -28,6 +28,24 @@ java -jar target/campusflow-1.0.0.jar
 | http://127.0.0.1:8080/api/layouts/NH-TAOYUAN | 桃苑室内布局 |
 | http://127.0.0.1:8080/h2-console | H2 控制台（JDBC URL: `jdbc:h2:file:./data/campusflow`，用户 sa，密码空） |
 
+### 1b. 生产形态库：Docker MySQL（可选）
+
+```bash
+docker run -d --name campusflow-mysql --restart unless-stopped \
+  -p 127.0.0.1:3307:3306 \
+  -e MYSQL_ROOT_PASSWORD=__MYSQL_PASSWORD_REMOVED__ -e MYSQL_DATABASE=campusflow -e TZ=Asia/Shanghai \
+  -v campusflow-mysql-data:/var/lib/mysql \
+  mysql:8.4 --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
+
+# 用 MySQL 形态启动后端（默认仍是 H2）
+java -jar target/campusflow-1.0.0.jar --spring.profiles.active=mysql
+```
+
+容器已在本次跑起来：`campusflow-mysql`，MySQL 8.4.13，宿主端口 **3307**（刻意避开本机 Windows MySQL 的 3306）。
+设计文档见 `docs/db/` 四份：ER 图、关系设计表、接入实施规划、具体设计。
+
+> 注意：MySQL 形态的代码**尚未实现**——四份文档是准备件，等你确认后再动。
+
 ### 2. 前端（端口 5173）
 
 ```bash

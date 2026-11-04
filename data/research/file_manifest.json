@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 198,
-  "total_bytes": 27658790,
+  "count": 202,
+  "total_bytes": 27697613,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 41708,
-      "sha256": "52c9ed965ae2a83708b557dec883011b4c518ed9b11cfc5453d5bb553308fc5e"
+      "bytes": 45278,
+      "sha256": "17b9a0c463435050087098e3603a4f7b0d5a66093fcbd2f27d1a3008fafcd4cb"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -26,8 +26,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 5514,
-      "sha256": "e41d21450c2ccbc3355d50b8ef5b8bbd1d45de6209832cab6c2b0e5c67022b33"
+      "bytes": 6355,
+      "sha256": "e9d2c6b78fdab97b452dcf17da1fa708771721f84c12b329aaeaf636d27383d1"
+    },
+    {
+      "path": "verify.ps1",
+      "bytes": 1339,
+      "sha256": "128ad0a004270f0a40d814626c417a532c70204c726344115c894b5a0c07d439"
     },
     {
       "path": "backend/pom.xml",
@@ -351,8 +356,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 34327,
-      "sha256": "ab77a558b5083896b7aef7eefc74ddb85deb7c23299fd6cf431896c7dccba6ba"
+      "bytes": 35707,
+      "sha256": "a61f225774b8f5c3156834505557094298b0a604f8fb11d2fcd79270ef4007d2"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -608,6 +613,26 @@
       "path": "data/sources/yangzi_2023_cumt_sohu.txt",
       "bytes": 7642,
       "sha256": "95d8caf2dc3f1bea91e497a3685de2c8beec57b109cd2428c191c220a367ff81"
+    },
+    {
+      "path": "docs/db/01-ER图与实体关系.md",
+      "bytes": 8170,
+      "sha256": "024bb80473c543d8088baed535651aa4dad291a4c785f21b55d87582e1ce84a4"
+    },
+    {
+      "path": "docs/db/02-关系设计表.md",
+      "bytes": 8375,
+      "sha256": "0392b49bda0d206f6f5d912d042344314b78087d42f731410992b0b6b5ae61a7"
+    },
+    {
+      "path": "docs/db/03-MySQL接入实施规划.md",
+      "bytes": 7278,
+      "sha256": "52efc7cc5664bdafa5ade6b8bc8040b379332add2d569d11f42ec5518215a50e"
+    },
+    {
+      "path": "docs/db/04-MySQL具体设计.md",
+      "bytes": 8032,
+      "sha256": "30d3a1e7e6af648ba39f25c6f48de0bc3a3f63510a8aad775842237933bd3d6c"
     },
     {
       "path": "docs/screenshots/P1-运营总览-dark.png",
@@ -988,11 +1013,6 @@
       "path": "report/build_report.py",
       "bytes": 41646,
       "sha256": "1d78f052834b2abee73fad6ffb12f220a2ebca75f70177627e2d998823ffd378"
-    },
-    {
-      "path": "report/~$va语言及网络编程_课程报告_初版.docx",
-      "bytes": 162,
-      "sha256": "9fd4d0ea6615e9a8f114f7304494cea6cf06a940c8fdf0c5a68dc21141c85084"
     }
   ]
 }
