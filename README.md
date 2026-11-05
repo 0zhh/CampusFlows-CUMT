@@ -59,10 +59,18 @@ java -jar target/campusflow-1.0.0.jar --spring.profiles.active=mysql
 
 ### 1c. 一键启动/停止
 
+**最简单：双击** `启动服务.bat` / `停止服务.bat`（会自动用 PowerShell 执行，跑完窗口停住，能看到结果）。
+
+**或者命令行：**
+
 ```powershell
 .\start-all.ps1    # MySQL 容器 → 后端(mysql profile) → 前端
 .\stop-all.ps1     # 停后端与前端，MySQL 容器保留
 ```
+
+> `.ps1` 双击默认是用记事本打开（不是运行）。要运行：右键 →「使用 PowerShell 运行」，
+> 或先开 PowerShell 再执行 `.\start-all.ps1`。若提示"禁止运行脚本"，
+> 先跑一次 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`。
 
 ### 2. 前端（端口 5173）
 
