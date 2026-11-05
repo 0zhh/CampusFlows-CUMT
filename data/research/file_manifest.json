@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 259,
-  "total_bytes": 31273016,
+  "count": 262,
+  "total_bytes": 31921310,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 52571,
-      "sha256": "a3c92a02271f42336718d1e52d5a80eb31b100a15bfd1903692e61526bbfdc65"
+      "bytes": 53694,
+      "sha256": "4f1091834270be35aa5f943ae99fa2e8be525dc0e53afb7e6fd0bb1788f46975"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -26,8 +26,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7695,
-      "sha256": "60a5759d8b524b49405caccc9aed0a36cb3253b19d0a383b873c758405d28fb3"
+      "bytes": 8139,
+      "sha256": "f021ca0ba4c86dc15349d82c08d461863b16614c951457f0b0c2fde7d26f5019"
     },
     {
       "path": "start-all.ps1",
@@ -43,6 +43,16 @@
       "path": "verify.ps1",
       "bytes": 1339,
       "sha256": "128ad0a004270f0a40d814626c417a532c70204c726344115c894b5a0c07d439"
+    },
+    {
+      "path": "停止服务.bat",
+      "bytes": 196,
+      "sha256": "27849687d85d97948406c7236ffa364db0b25cd7a864aa9e2cf174a201edfd9a"
+    },
+    {
+      "path": "启动服务.bat",
+      "bytes": 331,
+      "sha256": "259caffc55e17a01c6bb9def06b529b665121afaa5de47bf37da119d040540e3"
     },
     {
       "path": "backend/pom.xml",
@@ -386,8 +396,8 @@
     },
     {
       "path": "data/geo/station_routes.json",
-      "bytes": 7062,
-      "sha256": "095d0a564c621851c12fb1db8aae8592ec4dc46dcf1e703105f2316761d3f8d5"
+      "bytes": 1108,
+      "sha256": "d24692dec21756f262a436a8e1667c6d724b8bc94700b61adfdf43ad2a80de30"
     },
     {
       "path": "data/maps/cumt_official_campus_traffic_2025.png",
@@ -547,7 +557,7 @@
     {
       "path": "data/research/file_manifest.json",
       "bytes": 47037,
-      "sha256": "2c59e938cc671f61f2c33b2df6c3849c65b9291aeb25546f036d68a23a76eb6a"
+      "sha256": "936f3eb08c957ffcc8281e6371d0556609ea04ebff4475a375c8b3b081de3798"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -965,6 +975,11 @@
       "sha256": "3eb19e73c077cb2da5b720ef47adf5c61ae4c958ec15386f143cc2989b400d02"
     },
     {
+      "path": "docs/screenshots/描线工具.png",
+      "bytes": 653582,
+      "sha256": "d04bb79c00ce89a2e6021f5ab45ebfb0b11ca74e15c2316b750b4e28db057ac8"
+    },
+    {
       "path": "docs/screenshots/桃苑室内布局-v6-六竖条.png",
       "bytes": 40182,
       "sha256": "ef077a71a4917295b7e37711811bf219f003ddb88a5e3045e619e5993cfdcaba"
@@ -1046,8 +1061,8 @@
     },
     {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 12886,
-      "sha256": "d7ca213f373b8d5e0f345a4f2222a9bf1390ec9b89a435b2857450acc6d203c1"
+      "bytes": 13063,
+      "sha256": "2118ee84c9e761ef3e84ae1a983d493438f84e419f8e47707e10df60fc00c53b"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",
@@ -1101,8 +1116,8 @@
     },
     {
       "path": "frontend/src/components/CampusMap.vue",
-      "bytes": 18837,
-      "sha256": "f0cdd92300b5a08532c0cf9f6d70bf2411cde952a2dc0785e79217d4f093008e"
+      "bytes": 19347,
+      "sha256": "63d1a7a126092e260ab5cb31efadac001cd3f8ca6eee75986d0ccdd3e4c75083"
     },
     {
       "path": "frontend/src/components/EChart.vue",
@@ -1116,8 +1131,8 @@
     },
     {
       "path": "frontend/src/components/MapExpand.vue",
-      "bytes": 8515,
-      "sha256": "ab2a6331eea83076ca4a1d9e812c8d25b0e3b0f0c4d08150353a5d82e634810b"
+      "bytes": 12354,
+      "sha256": "809545cb3f1e3cda2284838ee3a6f08ab5ef47391b647359a6b161e46bcd8335"
     },
     {
       "path": "frontend/src/components/PickupLookup.vue",
@@ -1216,8 +1231,8 @@
     },
     {
       "path": "frontend/src/data/station_routes.json",
-      "bytes": 7062,
-      "sha256": "095d0a564c621851c12fb1db8aae8592ec4dc46dcf1e703105f2316761d3f8d5"
+      "bytes": 1108,
+      "sha256": "d24692dec21756f262a436a8e1667c6d724b8bc94700b61adfdf43ad2a80de30"
     },
     {
       "path": "frontend/src/data/statistics.json",

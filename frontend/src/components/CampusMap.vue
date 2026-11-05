@@ -192,11 +192,26 @@ async function init() {
 }
 
 /** 描线预览：把已点的点连成虚线 */
+let traceMarkers: L.CircleMarker[] = []
 function drawTrace() {
   if (!map) return
   traceLayer?.remove()
   traceLayer = null
+  traceMarkers.forEach((m) => m.remove())
+  traceMarkers = []
+
   const pts = props.tracePoints ?? []
+  pts.forEach((p, i) => {
+    traceMarkers.push(
+      L.circleMarker([p.lat, p.lng], {
+        radius: i === pts.length - 1 ? 5 : 4,
+        color: '#b26b00', weight: 2,
+        fillColor: i === pts.length - 1 ? '#ffb037' : '#ffdba8',
+        fillOpacity: 1
+      }).addTo(map!)
+    )
+  })
+
   if (pts.length < 2) return
   traceLayer = L.polyline(pts.map((p) => [p.lat, p.lng] as [number, number]), {
     color: '#ffb037', weight: 4, opacity: 0.95, dashArray: '6 6'
@@ -310,27 +325,35 @@ function drawRoutes() {
   clearRoutes()
   routeGroup = L.layerGroup().addTo(map)
 
-  // 校门
+  // 校门：配送起点，始终标出来
   L.circleMarker([gate.lat, gate.lon], {
     radius: 7, color: '#ffffff', weight: 2, fillColor: '#2fa36b', fillOpacity: 1
   })
     .addTo(routeGroup)
     .bindTooltip(gate.name + '（校门 · 配送起点）', { direction: 'top', offset: [0, -8] })
 
-  const longest = Math.max(...routes.filter((r) => r.reachable).map((r) => r.minutes ?? 1))
-  routes.filter((r) => r.reachable).forEach((r) => {
-    const pts = (r.polyline ?? []).map(([lon, lat]) => [lat, lon] as [number, number])
+  // 只画已经有折线的线路；没描过的跳过，不拿假路线糊弄
+  const ready = routes.filter((r) => (r.polyline?.length ?? 0) >= 2)
+  ready.forEach((r) => {
+    const pts = r.polyline!.map(([lon, lat]) => [lat, lon] as [number, number])
     const color = SITES.find((s) => s.id === r.site_id)?.color ?? '#3f6fb5'
-    L.polyline(pts, { color, weight: 4, opacity: 0.85, dashArray: '1 0' })
+    L.polyline(pts, { color, weight: 4, opacity: 0.9 })
       .addTo(routeGroup!)
-      .bindTooltip(`${r.name} · ${r.length_m} m · 约 ${r.minutes} 分钟`, { sticky: true })
-    // 终点标签
+      .bindTooltip(`${r.name}${r.length_m ? ' · ' + r.length_m + ' m' : ''}`, { sticky: true })
     const end = pts[pts.length - 1]
     L.circleMarker(end, { radius: 5, color, weight: 2, fillColor: '#fff', fillOpacity: 1 }).addTo(routeGroup!)
   })
 
-  // 车辆：沿最长路线循环跑，速度按分钟数归一
-  const main = toPath(routes.filter((r) => r.reachable).sort((a, b) => (b.minutes ?? 0) - (a.minutes ?? 0))[0])
+  if (!ready.length) {
+    window.clearInterval(vehicleTimer)
+    vehicleTimer = undefined
+    vehicle?.remove()
+    vehicle = null
+    return
+  }
+
+  // 车辆：沿最长的一条循环跑
+  const main = toPath(ready.slice().sort((a, b) => (b.polyline!.length) - (a.polyline!.length))[0])
   vehicle = L.circleMarker(pointAt(main, 0), {
     radius: 6, color: '#1f2933', weight: 2, fillColor: '#ffd166', fillOpacity: 1
   }).addTo(map).bindTooltip('校内配送车（示意）', { direction: 'top', offset: [0, -8] })
@@ -341,7 +364,6 @@ function drawRoutes() {
     t = (t + 0.004) % 1
     vehicle?.setLatLng(pointAt(main, t))
   }, 120)
-  void longest
 }
 
 function clearRoutes() {

@@ -166,9 +166,11 @@ for (let i = 0; i < 20 && !(await ev("!!document.querySelector('.map-expand')"))
 await ev("document.querySelector('.map-expand').click()")
 await sleep(1600)
 check('地图放大视图打开', await ev(`!!document.querySelector('.mx')`))
-check('放大图里有配送路径', (await ev(`document.querySelectorAll('.mx .leaflet-overlay-pane path').length`)) >= 4,
+check('放大图有校门起点标记', (await ev(`document.querySelectorAll('.mx .leaflet-overlay-pane path').length`)) >= 1,
   String(await ev(`document.querySelectorAll('.mx .leaflet-overlay-pane path').length`)))
-check('线路一览 4 条', (await ev(`document.querySelectorAll('.mx__routes li').length`)) === 4)
+check('线路一览 4 条且待标注', (await ev(`document.querySelectorAll('.mx__routes li').length`)) === 4
+  && (await ev(`document.querySelectorAll('.mx__routes .mx__off').length`)) === 4,
+  String(await ev(`document.querySelectorAll('.mx__routes .mx__off').length`)))
 await ev(`document.querySelector('.mx__actions .btn').click()`)
 await sleep(500)
 check('重置驿站位置有反馈', String(await ev(`document.querySelector('.mx__toast')?.textContent`)).includes('已恢复'))
