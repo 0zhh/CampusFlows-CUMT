@@ -2,7 +2,7 @@
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
   "count": 259,
-  "total_bytes": 31271039,
+  "total_bytes": 31271901,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 52426,
-      "sha256": "b71d4ad98f6e28f9a07509cd03cbb64c3b82f9df0adadd1723201929267350c4"
+      "bytes": 52484,
+      "sha256": "eb65104e2966debb5c2f7e4f5b267fa29180467474f7a315d98e5327db86ebcc"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -26,8 +26,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7541,
-      "sha256": "b878d991203b3fcfcf91b59277db3f5070937f5bcb41c2e5746de2abbeb1eab8"
+      "bytes": 7648,
+      "sha256": "c1397a453c9d6a7931e3e3918b48e19ae737d1fb1418a6a082c1b6374f7b0ee6"
     },
     {
       "path": "start-all.ps1",
@@ -256,8 +256,8 @@
     },
     {
       "path": "backend/src/main/resources/data/scenarios.json",
-      "bytes": 121229,
-      "sha256": "a7100508172ab80c03186473ab3d24496cb715e5ab4515f1626aedd5cfd67da0"
+      "bytes": 121275,
+      "sha256": "d94de3567355e25dd9491f491cf80f35ae238b18a32d06c25646237791929342"
     },
     {
       "path": "backend/src/main/resources/data/station_layouts.json",
@@ -366,8 +366,8 @@
     },
     {
       "path": "data/demo/scenarios.json",
-      "bytes": 121229,
-      "sha256": "a7100508172ab80c03186473ab3d24496cb715e5ab4515f1626aedd5cfd67da0"
+      "bytes": 121275,
+      "sha256": "d94de3567355e25dd9491f491cf80f35ae238b18a32d06c25646237791929342"
     },
     {
       "path": "data/geo/cumt_nanhu_campus.geojson",
@@ -416,8 +416,8 @@
     },
     {
       "path": "data/params/param_registry.json",
-      "bytes": 19071,
-      "sha256": "97489a6e4f7fc1e0ef34f1f91b3314ad80d5cb3ef57411af03f06487b6a74b3d"
+      "bytes": 19263,
+      "sha256": "48fd2cfa76300af6cad6907a13c71db476ccb8f67e97f0d5247b990ab1ed8cf1"
     },
     {
       "path": "data/reference/cumt_2022_unmanned_station_photo.jpg",
@@ -536,8 +536,8 @@
     },
     {
       "path": "data/research/export_mysql_seed.py",
-      "bytes": 11553,
-      "sha256": "7c63424baf6a3641efc0f17015bd68af949defbbdfa628cf564e8d613fbdcdd2"
+      "bytes": 11536,
+      "sha256": "c3c99aa5f7444a4c2df08069146f73db4ff4e101369343f4333cf5f2da8a7591"
     },
     {
       "path": "data/research/extract_photo_evidence.py",
@@ -546,8 +546,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 46847,
-      "sha256": "58c27004da0679a3b3ecfbc7bb62b1feb495d1c1081aa4215a76e91bce01f51a"
+      "bytes": 47037,
+      "sha256": "b87db999bd32d4dac874086a4ba5f09b0ce1cd2243176b1f3921652bc3599bc4"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -592,7 +592,7 @@
     {
       "path": "data/research/generate_demo_scenarios.py",
       "bytes": 13925,
-      "sha256": "950cd1a074631c3f081ec0e0d375ad45e9a1db479987af98fcd48e14171788e2"
+      "sha256": "131d5f11f6890003cf99f72b6cfcee4d638963fac7477079ae2a4aded8fb7659"
     },
     {
       "path": "data/research/interior_downloads.json",
@@ -841,8 +841,8 @@
     },
     {
       "path": "db/migration/V2__seed_base.sql",
-      "bytes": 47367,
-      "sha256": "415bfe64ef2c5e46eaaa03e974fc18215d6154819f37dc6473522c88c4500fb0"
+      "bytes": 47561,
+      "sha256": "63e24ecb4464b4061e2abcd34588a1ff7139677d0a9a664137c6708ee33993b4"
     },
     {
       "path": "db/migration/V3__seed_volume.sql",
@@ -1191,8 +1191,8 @@
     },
     {
       "path": "frontend/src/data/scenarios.json",
-      "bytes": 121229,
-      "sha256": "a7100508172ab80c03186473ab3d24496cb715e5ab4515f1626aedd5cfd67da0"
+      "bytes": 121275,
+      "sha256": "d94de3567355e25dd9491f491cf80f35ae238b18a32d06c25646237791929342"
     },
     {
       "path": "frontend/src/data/site_geolocation.json",

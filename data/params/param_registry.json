@@ -641,27 +641,27 @@
     {
       "id": "P-RACK-COUNT-SONGYUAN",
       "label": "松苑货架总数",
-      "value": 31,
+      "value": 79,
       "unit": "架",
       "source": "assumed",
       "range": [
-        24,
-        40
+        55,
+        95
       ],
-      "rationale": "无照片，按驿站规模假设",
+      "rationale": "用户口径：松苑货架不比兰苑少。按到件份额同比推算 55 × 26/18 ≈ 79 架（兰苑 55 架为实测基准）",
       "value_kind": "count"
     },
     {
       "id": "P-RACK-COUNT-MEIYUAN",
       "label": "梅苑货架总数",
-      "value": 28,
+      "value": 67,
       "unit": "架",
       "source": "assumed",
       "range": [
-        20,
-        36
+        55,
+        85
       ],
-      "rationale": "无照片，按驿站规模假设",
+      "rationale": "用户口径：梅苑货架不比兰苑少。按到件份额同比推算 55 × 22/18 ≈ 67 架（兰苑 55 架为实测基准）",
       "value_kind": "count"
     },
     {
@@ -669,8 +669,8 @@
       "label": "各站物理储位",
       "value": {
         "NH-TAOYUAN": 24000,
-        "NH-SONGYUAN": 3100,
-        "NH-MEIYUAN": 2800,
+        "NH-SONGYUAN": 7900,
+        "NH-MEIYUAN": 6700,
         "NH-LANYUAN": 5500
       },
       "unit": "个",
