@@ -31,6 +31,9 @@ const emit = defineEmits<{
 
 type LayerKind = 'satellite' | 'manual'
 const layer = ref<LayerKind>('manual')
+/** 卫星瓦片状态：没网时给个明确提示，而不是留一块灰 */
+const satState = ref<'idle' | 'loading' | 'ok' | 'failed'>('idle')
+let satErrors = 0
 
 const el = ref<HTMLDivElement | null>(null)
 let map: L.Map | null = null
@@ -145,9 +148,22 @@ function applyLayer() {
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         { maxZoom: 19, attribution: '影像 © Esri, Maxar, Earthstar Geographics' }
       )
+      satLayer.on('loading', () => {
+        if (satState.value !== 'ok') satState.value = 'loading'
+      })
+      satLayer.on('load', () => {
+        if (satState.value !== 'failed') satState.value = 'ok'
+      })
+      satLayer.on('tileerror', () => {
+        satErrors += 1
+        if (satErrors >= 3) satState.value = 'failed'
+      })
     }
+    satState.value = 'loading'
     satLayer.addTo(map)
   } else {
+    satState.value = 'idle'
+    satErrors = 0
     if (satLayer) { satLayer.remove(); satLayer = null }
     if (!manualLayer) {
       manualLayer = L.imageOverlay('/maps/cumtlive_logistics_locations.png', manualBounds.value, {
@@ -157,6 +173,12 @@ function applyLayer() {
     }
     manualLayer.addTo(map)
   }
+}
+
+function retrySat() {
+  satErrors = 0
+  satState.value = 'loading'
+  satLayer?.redraw()
 }
 
 async function init() {
@@ -425,6 +447,15 @@ const layerOptions = [
       <span class="lg"><i class="lg__ring" />风险时段</span>
       <span v-if="showRoutes" class="lg"><i class="lg__line" />配送路径</span>
     </div>
+    <div v-if="layer === 'satellite' && satState === 'failed'" class="map__offline" role="status">
+      <b>卫星影像加载失败</b>
+      <span>这张底图来自 Esri 在线瓦片，需要联网。当前网络不可达。</span>
+      <div class="map__offline-actions">
+        <button class="btn btn--primary" @click="layer = 'manual'">切回手册原图</button>
+        <button class="btn" @click="retrySat">重试</button>
+      </div>
+    </div>
+
     <p v-else class="map__legend map__legend--plain">
       站点位置已在原图上用红点标出 · 点击可查看当前负荷
     </p>
@@ -436,6 +467,18 @@ const layerOptions = [
 </template>
 
 <style scoped>
+.map__offline {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  z-index: 600; display: grid; gap: 6px; justify-items: center; text-align: center;
+  padding: var(--sp-3) var(--sp-4); max-width: 320px;
+  background: color-mix(in srgb, var(--bg-1) 94%, transparent);
+  border: 1px solid var(--line-strong); border-radius: var(--r-md);
+  backdrop-filter: blur(8px);
+}
+.map__offline b { font-size: var(--fs-sm); color: var(--fg-0); }
+.map__offline span { font-size: var(--fs-xs); color: var(--fg-2); line-height: var(--lh-loose); }
+.map__offline-actions { display: flex; gap: var(--sp-2); }
+
 .site-hit__pad {
   display: block;
   width: 30px;
