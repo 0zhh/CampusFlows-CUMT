@@ -90,11 +90,12 @@ function siteIcon(site: (typeof SITES)[number]) {
   // 手册原图本来就把红点印在图上了，不再重复画彩色标记；
   // 但保留一个透明热区，点击照样能打开站点抽屉。
   if (layer.value === 'manual') {
+    const risk = riskSiteIds.value.has(site.id)
     return L.divIcon({
-      className: 'site-hit',
+      className: 'site-hit' + (risk ? ' site-hit--risk' : ''),
       iconSize: [30, 30],
       iconAnchor: [15, 15],
-      html: '<span class="site-hit__pad"></span>'
+      html: '<span class="site-hit__pad"></span>' + (risk ? '<span class="site-hit__ring"></span>' : '')
     })
   }
 
@@ -131,6 +132,15 @@ function buildMarkers() {
     })
       .addTo(map!)
       .on('click', () => emit('select', site.id))
+
+    // Leaflet 的标记能聚焦，但 Enter 不会触发 click；补上，键盘用户才能真正打开站点
+    const node = m.getElement()
+    node?.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        emit('select', site.id)
+      }
+    })
     m.bindTooltip(
       `<b>${site.name}</b><br/>${site.roleLabel} · ${site.locationText}<br/>${site.hours.open}—${site.hours.close}`,
       { direction: 'top', offset: [0, -14], className: 'site-tip' }
@@ -486,6 +496,23 @@ const layerOptions = [
   border-radius: 50%;
   cursor: pointer;
   transition: box-shadow 0.15s ease;
+}
+.site-hit__ring {
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 2px solid var(--danger);
+  opacity: 0.85;
+  animation: hitPulse 2.4s var(--ease) infinite;
+  pointer-events: none;
+}
+.site-hit { position: relative; }
+@keyframes hitPulse {
+  0%, 100% { transform: scale(0.92); opacity: 0.5; }
+  50% { transform: scale(1.08); opacity: 0.95; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-hit__ring { animation: none; }
 }
 .site-hit:hover .site-hit__pad {
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 55%, transparent);

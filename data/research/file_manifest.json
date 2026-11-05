@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 262,
-  "total_bytes": 31921310,
+  "count": 264,
+  "total_bytes": 32488879,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 53694,
-      "sha256": "4f1091834270be35aa5f943ae99fa2e8be525dc0e53afb7e6fd0bb1788f46975"
+      "bytes": 55205,
+      "sha256": "0dda2e804704a6de7ae7284c15f093f73ceee5df982d24855dd0fad84f793326"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -556,8 +556,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 47037,
-      "sha256": "936f3eb08c957ffcc8281e6371d0556609ea04ebff4475a375c8b3b081de3798"
+      "bytes": 47523,
+      "sha256": "45fb818d0b2b9dc5f1378c2b339e908d21ac140c19497437fcd1ace0ccd9eb17"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -950,6 +950,11 @@
       "sha256": "393e4ad95b270832402c1ee33e99f952cf7ca453c04f01c8cf21941385c41e3a"
     },
     {
+      "path": "docs/screenshots/卫星离线提示.png",
+      "bytes": 147473,
+      "sha256": "bd9d24b1ef8539a6caa3a0204d0b4a89e1ec468bbaaf16c318e1fd9d8a0cd75f"
+    },
+    {
       "path": "docs/screenshots/地图-卫星影像.png",
       "bytes": 740532,
       "sha256": "70245bb22eca905f2bda869c23d520441f34eaa5439c41d16e0c16e95dda1fad"
@@ -973,6 +978,11 @@
       "path": "docs/screenshots/总览-手册底图.png",
       "bytes": 412634,
       "sha256": "3eb19e73c077cb2da5b720ef47adf5c61ae4c958ec15386f143cc2989b400d02"
+    },
+    {
+      "path": "docs/screenshots/总览-改版.png",
+      "bytes": 422132,
+      "sha256": "b5c2d2c2ed5340d522212a8f27ded7ab46564ee3baf295975a6f463486e4065e"
     },
     {
       "path": "docs/screenshots/描线工具.png",
@@ -1061,13 +1071,13 @@
     },
     {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 13063,
-      "sha256": "2118ee84c9e761ef3e84ae1a983d493438f84e419f8e47707e10df60fc00c53b"
+      "bytes": 13064,
+      "sha256": "3c7e6dd59da25951b3647516f5c4bffff208e462ecff8427cac43915cfa68217"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",
-      "bytes": 6461,
-      "sha256": "48e96206d834c33ecce40f3714a7b283d04669e4c7a05f5cfd93ae298f8ffb3c"
+      "bytes": 6555,
+      "sha256": "1e652f9899aa24b7bea000fd6885937c2bbb9193d35e5a5d3afe452a618f0564"
     },
     {
       "path": "frontend/scripts/mapcheck.mjs",
@@ -1096,8 +1106,8 @@
     },
     {
       "path": "frontend/src/App.vue",
-      "bytes": 6675,
-      "sha256": "b58b48385fccc1986afbf313b87cc7db11fbd1f7902c02def3961c9b59caaedd"
+      "bytes": 6901,
+      "sha256": "860aa03bdb0feffdbaa5258d47e464f7e2b9046b461639c985cbf7cf1ba87ffd"
     },
     {
       "path": "frontend/src/env.d.ts",
@@ -1116,8 +1126,8 @@
     },
     {
       "path": "frontend/src/components/CampusMap.vue",
-      "bytes": 19347,
-      "sha256": "63d1a7a126092e260ab5cb31efadac001cd3f8ca6eee75986d0ccdd3e4c75083"
+      "bytes": 22011,
+      "sha256": "247bc2a75f6900dcfc37614db8dd9721f3fbd91b95850d7ad9d161acf4c8807c"
     },
     {
       "path": "frontend/src/components/EChart.vue",
@@ -1141,8 +1151,8 @@
     },
     {
       "path": "frontend/src/components/ScenarioPicker.vue",
-      "bytes": 2128,
-      "sha256": "16cdcb64a965bdd93977e5f18db34f3020fdbe1ce24ed8f334e57912d0942d07"
+      "bytes": 2237,
+      "sha256": "66ef6b9be11f57da74d483dce9c3a1e8b299b075454f3da5ad4caa1f5d4b7290"
     },
     {
       "path": "frontend/src/components/SiteDrawer.vue",
@@ -1271,8 +1281,8 @@
     },
     {
       "path": "frontend/src/views/AboutView.vue",
-      "bytes": 12385,
-      "sha256": "43f209133ca21c71ab9782d741fbe69e5f49f89c4f7a5a311d7f2d458d0fd1dd"
+      "bytes": 11564,
+      "sha256": "b40a4a0a12782cb96c9e440d45c3024eee8d4adf6e80416d61bc53803fe68e2e"
     },
     {
       "path": "frontend/src/views/IncidentsView.vue",
@@ -1281,8 +1291,8 @@
     },
     {
       "path": "frontend/src/views/OverviewView.vue",
-      "bytes": 20717,
-      "sha256": "dd17420aeadbb4e4512fb7bc2f8d8e9f145b31dcdf6258e84f95c42f7a5a78fa"
+      "bytes": 14411,
+      "sha256": "18a6b369dfef484d18dcf958d2de474a8485432792d3c1be72b618ffae5b8d0e"
     },
     {
       "path": "frontend/src/views/PeakView.vue",

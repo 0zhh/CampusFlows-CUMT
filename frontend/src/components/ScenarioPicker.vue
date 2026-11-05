@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useAppStore } from '@/stores/app'
 import { useScenarios } from '@/composables/useData'
 
+const props = withDefaults(defineProps<{ showNote?: boolean }>(), { showNote: false })
 const store = useAppStore()
 const scenarios = useScenarios()
 const current = computed(() => scenarios.find((s) => s.scenario_id === store.scenarioId) ?? scenarios[0])
@@ -24,7 +25,7 @@ const current = computed(() => scenarios.find((s) => s.scenario_id === store.sce
         <span class="picker__id">{{ s.scenario_id }}</span>
       </button>
     </div>
-    <p class="picker__note">
+    <p v-if="props.showNote" class="picker__note">
       <span class="tag tag--sim">模拟</span>
       {{ current.note }}
     </p>

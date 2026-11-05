@@ -99,15 +99,16 @@ await key('Enter', 'Enter', 13, '\r')
 await sleep(1600)
 check('Enter 激活导航', (await ev('location.pathname')) === '/sites', await ev('location.pathname'))
 
-// 5. 站点卡片可以用键盘打开抽屉
+// 5. 地图站点标记可以用键盘打开抽屉
 await S('Page.navigate', { url: 'http://127.0.0.1:5173/overview' })
-await sleep(2600)
+await sleep(2800)
 const focused = await ev(`(() => {
-  const b = document.querySelector('.site-row');
-  if (!b) return false; b.focus();
+  const b = document.querySelector('.site-hit');
+  if (!b) return false;
+  b.focus();
   return document.activeElement === b;
 })()`)
-check('站点行可获得焦点', focused === true)
+check('地图标记可获得焦点', focused === true, String(await ev("document.querySelector('.site-hit')?.getAttribute('tabindex')")))
 await key('Enter', 'Enter', 13, '\r')
 await sleep(1200)
 check('Enter 打开抽屉', (await ev('!!document.querySelector(".drawer")')) === true)

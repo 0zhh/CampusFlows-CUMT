@@ -190,25 +190,7 @@ useReveal(".panel")
       </div>
     </section>
 
-    <section class="panel">
-      <div class="panel__head">
-        <h2 class="panel__title">四站速查</h2>
-      </div>
-      <div class="panel__body">
-        <table class="tbl">
-          <thead><tr><th>站点</th><th>角色</th><th>位置</th><th>常态营业</th><th>近似经纬度</th></tr></thead>
-          <tbody>
-            <tr v-for="s in SITES" :key="s.id">
-              <td><i class="dot" :style="{ background: s.color }" />{{ s.name }}</td>
-              <td>{{ s.roleLabel }}</td>
-              <td>{{ s.locationText }}</td>
-              <td class="num">{{ s.hours.open }}—{{ s.hours.close }}</td>
-              <td class="num">{{ store.sitePos(s.id).lat.toFixed(4) }}, {{ store.sitePos(s.id).lng.toFixed(4) }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+
   </div>
 </template>
 

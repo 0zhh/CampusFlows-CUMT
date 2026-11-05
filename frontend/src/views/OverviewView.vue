@@ -91,33 +91,6 @@ const flowOption = computed(() => {
   }
 })
 
-// 四站负荷对比（峰值积压 vs 上限）
-const loadOption = computed(() => {
-  const names = scenario.value.summary.map((s) => SITES.find((x) => x.id === s.site_id)?.shortName ?? s.site_id)
-  const peakQ = scenario.value.summary.map((s) => s.peak_q)
-  const kapQ = scenario.value.summary.map((s) => scenario.value.sites.find((x) => x.site_id === s.site_id)!.params.kappa_q)
-  return {
-    grid: { left: 44, right: 16, top: 30, bottom: 26 },
-    tooltip: { trigger: 'axis', ...tooltip.value, axisPointer: { type: 'shadow' } },
-    legend: { top: 0, right: 0, icon: 'roundRect', itemWidth: 9, itemHeight: 9, textStyle: { color: t.value.text, fontSize: 11 } },
-    xAxis: { type: 'category', data: names, ...axisCommon.value, splitLine: { show: false } },
-    yAxis: { type: 'value', ...axisCommon.value, name: '件', nameTextStyle: { color: t.value.text, fontSize: 10 } },
-    series: [
-      {
-        name: '峰值积压', type: 'bar', data: peakQ, barWidth: '38%',
-        itemStyle: {
-          borderRadius: [4, 4, 0, 0],
-          color: (p: any) => (peakQ[p.dataIndex] > kapQ[p.dataIndex] ? '#e2605a' : '#3ec9a7')
-        }
-      },
-      {
-        name: '积压上限 κ_q', type: 'line', data: kapQ, symbol: 'none',
-        lineStyle: { width: 1.5, type: 'dashed', color: t.value.series[0] }
-      }
-    ]
-  }
-})
-
 const fmt = (n: number) => n.toLocaleString('zh-CN')
 
 /** 取某站的库容上限，用于算占用率 */
@@ -127,90 +100,6 @@ function siteKappaI(siteId: string) {
 function siteKappaQ(siteId: string) {
   return scenario.value.sites.find((s) => s.site_id === siteId)?.params.kappa_q ?? 1
 }
-
-/** 本期要点：完全由当前场景数据推导，不写死文案 */
-const brief = computed(() => {
-  const sc = scenario.value
-  const riskSites = sc.summary.filter((s) => s.risk_buckets > 0)
-  const worst = [...sc.summary].sort((a, b) => b.peak_q - a.peak_q)[0]
-  const worstSite = SITES.find((s) => s.id === worst.site_id)
-  const items: { title: string; text: string; tone: string }[] = []
-
-  if (riskSites.length === 0) {
-    items.push({
-      title: '全程无风险',
-      text: `四个站点在所有 ${sc.timeline.length} 个时段内，未处理积压与待取库存都未越过阈值。`,
-      tone: 'ok'
-    })
-  } else {
-    const first = riskSites
-      .map((s) => s.first_risk_bucket)
-      .filter(Boolean)
-      .sort()[0]
-    items.push({
-      title: `${riskSites.length} 个站点出现风险`,
-      text: `最早在 ${first} 越过阈值，合计 ${fmt(riskSites.reduce((a, s) => a + s.risk_buckets, 0))} 个风险时段。`,
-      tone: 'danger'
-    })
-  }
-
-  if (worst.peak_q > siteKappaQ(worst.site_id) * 0.05) {
-    // 第二名的峰值，用来说明"头部有多集中"
-    const ranked = [...sc.summary].sort((a, b) => b.peak_q - a.peak_q)
-    const second = ranked[1]
-    const lead = second && second.peak_q > 0
-      ? `，是第二名${SITES.find((s) => s.id === second.site_id)?.shortName ?? ''}（${fmt(second.peak_q)} 件）的 ${(worst.peak_q / second.peak_q).toFixed(1)} 倍`
-      : '，其余站点本场景基本无积压'
-    items.push({
-      title: `压力集中在${worstSite?.shortName ?? '—'}`,
-      text: `峰值积压 ${fmt(worst.peak_q)} 件${lead}；峰值待取 ${fmt(worst.peak_i)} 件。`,
-      tone: 'warn'
-    })
-  } else if (worst.peak_q > 0) {
-    // 有积压但远没到风险线：说明离阈值还有多远
-    const run = Math.round((1 - worst.peak_q / siteKappaQ(worst.site_id)) * 100)
-    items.push({
-      title: `${worstSite?.shortName ?? '—'}积压最重，但仍在阈值内`,
-      text: `峰值积压 ${fmt(worst.peak_q)} 件，距 ${fmt(siteKappaQ(worst.site_id))} 件的积压上限还有 ${run}% 余量。`,
-      tone: 'ok'
-    })
-  } else {
-    // 积压基本为零：不谈"压力集中"，改看谁最接近待取区上限
-    const tight = [...sc.summary].sort(
-      (a, b) => b.peak_i / siteKappaI(b.site_id) - a.peak_i / siteKappaI(a.site_id)
-    )[0]
-    const tightName = SITES.find((s) => s.id === tight.site_id)?.shortName ?? '—'
-    const used = Math.round((tight.peak_i / siteKappaI(tight.site_id)) * 100)
-    items.push({
-      title: '积压已压到接近于零',
-      text: `四站峰值积压合计不足阈值的 5%。最接近上限的是${tightName}的待取区：峰值 ${fmt(tight.peak_i)} 件，占用 ${used}%。`,
-      tone: used > 85 ? 'warn' : 'ok'
-    })
-  }
-
-  if (kpi.value.unmet > 0) {
-    items.push({
-      title: '存在未满足取件',
-      text: `全天 ${fmt(kpi.value.unmet)} 件取件需求超出现场可交付量，需引导错峰或延长服务。`,
-      tone: 'warn'
-    })
-  } else {
-    items.push({
-      title: '取件需求全部满足',
-      text: '各时段取件需求均未超过待取库存，无用户白跑一趟的情况。',
-      tone: 'ok'
-    })
-  }
-
-  return items
-})
-
-const siteRows = computed(() =>
-  SITES.map((s) => {
-    const sum = scenario.value.summary.find((x) => x.site_id === s.id)!
-    return { site: s, sum, open: openMap.value[s.id], risk: riskMap.value[s.id] }
-  })
-)
 
 const carriers = ref<CarrierStat[]>([])
 const maxCarrier = computed(() => Math.max(1, ...carriers.value.map((c) => c.onShelf)))
@@ -234,12 +123,6 @@ const weekRows = computed(() => {
   })
 })
 
-function levelText(l?: string) {
-  return l === 'overflow' ? '满仓' : l === 'limit' ? '限流' : l === 'watch' ? '预警' : '正常'
-}
-function levelTag(l?: string) {
-  return l === 'overflow' || l === 'limit' ? 'tag--danger' : l === 'watch' ? 'tag--warn' : 'tag--ok'
-}
 
 void simSeries
 
@@ -276,7 +159,7 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
         <div class="panel__head">
           <h2 class="panel__title">南湖校区站点分布</h2>
           <button class="btn btn--ghost map-expand" @click="mapBig = true">
-            <Maximize2 :size="13" /> 放大　　
+            <Maximize2 :size="13" /> 放大
           </button>
         </div>
         <CampusMap :scenario="scenario" :selected-id="selected" @select="pickSite" />
@@ -295,66 +178,32 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
           </div>
         </div>
 
-        <div class="panel ov__sites">
+        <div v-if="carriers.length" class="panel ov__carrier">
           <div class="panel__head">
-            <h2 class="panel__title">四站实时状态</h2>
-            <RouterLink to="/sites" class="panel__hint">全部站点 →</RouterLink>
-          </div>
-          <ul class="site-list">
-            <li v-for="r in siteRows" :key="r.site.id">
-              <button class="site-row" @click="pickSite(r.site.id)">
-                <span class="site-row__bar" :style="{ background: r.site.color }" />
-                <StatusDot :open="r.open" :risk="r.risk" />
-                <span class="site-row__name">
-                  {{ r.site.shortName }}
-                  <em>{{ r.site.roleLabel }}</em>
-                </span>
-                <span class="site-row__num num">{{ r.sum.peak_q }}</span>
-                <span class="site-row__unit">件</span>
-                <span class="tag" :class="levelTag(r.sum.level)">{{ levelText(r.sum.level) }}</span>
-              </button>
-            </li>
-          </ul>
-          <p class="site-list__note">
-            营业状态按常态时间实时计算；业务数值为演示假设，营业时间与位置来自公开资料。
-          </p>
-        </div>
-
-        <div class="panel ov__flow">
-          <div class="panel__head">
-            <h2 class="panel__title">全站流量曲线</h2>
-            <span class="panel__hint">30 分钟一桶</span>
+            <h2 class="panel__title">在架件按承运商</h2>
+            <span class="panel__hint">桃苑 · 当前在架</span>
           </div>
           <div class="panel__body">
-            <EChart :option="flowOption" :height="248" />
+            <ul class="carrier__list">
+              <li v-for="c in carriers" :key="c.carrierCode">
+                <i class="carrier__bar" :style="{ width: (c.onShelf / maxCarrier) * 100 + '%' }" />
+                <span class="carrier__name">{{ c.carrier }}</span>
+                <span class="carrier__num num">{{ c.onShelf }}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="ov__charts">
+    <section class="ov__flowrow">
       <div class="panel">
         <div class="panel__head">
-          <h2 class="panel__title">各站峰值积压 vs 上限</h2>
-          <span class="panel__hint">超过 κ_q 即为风险</span>
+          <h2 class="panel__title">全站流量曲线</h2>
+          <span class="panel__hint">30 分钟一桶 · 到件 / 已处理 / 已取走</span>
         </div>
         <div class="panel__body">
-          <EChart :option="loadOption" :height="260" />
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel__head">
-          <h2 class="panel__title">本期要点</h2>
-          <span class="panel__hint">随场景自动变化</span>
-        </div>
-        <div class="panel__body">
-          <ul class="brief">
-            <li v-for="(b, i) in brief" :key="i" :class="'brief--' + b.tone">
-              <b>{{ b.title }}</b>
-              <span>{{ b.text }}</span>
-            </li>
-          </ul>
+          <EChart :option="flowOption" :height="240" />
         </div>
       </div>
 
@@ -372,16 +221,6 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
               <span v-if="d.projected" class="week__proj">外推</span>
             </li>
           </ol>
-          <div v-if="carriers.length" class="carrier">
-            <span class="carrier__title">在架件按承运商</span>
-            <ul class="carrier__list">
-              <li v-for="c in carriers" :key="c.carrierCode">
-                <i class="carrier__bar" :style="{ width: (c.onShelf / maxCarrier) * 100 + '%' }" />
-                <span class="carrier__name">{{ c.carrier }}</span>
-                <span class="carrier__num num">{{ c.onShelf }}</span>
-              </li>
-            </ul>
-          </div>
 
           <p class="note">
             第 7 天收盘 {{ weekRows[6]?.pct }}%，仍在运营上限（物理储位的 85%）之下；
@@ -391,11 +230,45 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
       </div>
     </section>
 
+
+
     <SiteDrawer v-model:open="drawerOpen" :site-id="selected" :scenario="scenario" @go-sites="router.push('/sites')" />
   </div>
 </template>
 
 <style scoped>
+.ov__charts--single { grid-template-columns: minmax(0, 1fr); }
+/* 地图按 1.62:1 的原图比例给高度，避免上下大片黑边 */
+.ov__map :deep(.map) { min-height: 400px; height: clamp(360px, 34vw, 460px); }
+.ov__side { display: grid; gap: var(--sp-4); align-content: start; }
+.ov__flowrow {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+@media (max-width: 1100px) {
+  .ov__flowrow { grid-template-columns: minmax(0, 1fr); }
+}
+.ov__carrier .carrier__list { display: grid; gap: 6px; }
+.ov__carrier .carrier__list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr) 46px;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+}
+.ov__carrier .carrier__bar {
+  position: absolute;
+  left: 62px;
+  height: 12px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--brand) 42%, transparent);
+}
+.ov__carrier .carrier__name { grid-column: 1; color: var(--fg-2); }
+.ov__carrier .carrier__num { grid-column: 3; text-align: right; color: var(--fg-1); }
+
 .map-expand { margin-left: auto; font-size: var(--fs-xs); }
 /* 面板是 grid 且默认 stretch，行高会被右栏撑开；这里把表头钉死，剩下的都给地图 */
 .ov__map { grid-template-rows: auto minmax(0, 1fr); align-self: start; }
@@ -497,20 +370,6 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
   gap: var(--sp-5);
 }
 
-.brief { display: grid; gap: var(--sp-3); }
-.brief li {
-  display: grid;
-  gap: 2px;
-  padding: var(--sp-3) var(--sp-4);
-  border-radius: var(--r-md);
-  background: var(--bg-2);
-  border-left: 3px solid var(--line-strong);
-}
-.brief--ok { border-left-color: var(--ok) !important; }
-.brief--warn { border-left-color: var(--warn) !important; }
-.brief--danger { border-left-color: var(--danger) !important; }
-.brief b { font-size: var(--fs-sm); }
-.brief span { font-size: var(--fs-xs); color: var(--fg-1); line-height: var(--lh-loose); }
 
 @media (max-width: 1400px) {
   .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }

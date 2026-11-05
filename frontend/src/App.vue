@@ -19,6 +19,8 @@ const nav = [
   { to: '/about', label: '资料与说明', code: 'P5', icon: BookOpen }
 ]
 
+/** 这句数据说明只在"总览"和"资料"两页出现，其余页面顶栏已有数据源标记，不必重复 */
+const showNote = computed(() => ['overview', 'about'].includes(String(route.name ?? '')))
 const currentTitle = computed(() => (route.meta.title as string) ?? '')
 
 onMounted(() => store.setTheme(store.theme))
@@ -84,7 +86,7 @@ const calOpen = ref(false)
     <main id="main" class="main">
       <div class="main__head">
         <h1>{{ currentTitle }}</h1>
-        <p class="main__note">课程演示原型 · 数据分为「公开资料 / 演示假设 / 待核实」三类，页面内分别标注</p>
+        <p v-if="showNote" class="main__note">课程演示原型 · 数据分为「公开资料 / 演示假设 / 待核实」三类，页面内分别标注</p>
       </div>
       <RouterView />
     </main>
