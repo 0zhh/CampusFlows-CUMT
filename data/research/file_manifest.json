@@ -2,7 +2,7 @@
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
   "count": 259,
-  "total_bytes": 31271901,
+  "total_bytes": 31273016,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 52484,
-      "sha256": "eb65104e2966debb5c2f7e4f5b267fa29180467474f7a315d98e5327db86ebcc"
+      "bytes": 52571,
+      "sha256": "a3c92a02271f42336718d1e52d5a80eb31b100a15bfd1903692e61526bbfdc65"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -26,8 +26,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7648,
-      "sha256": "c1397a453c9d6a7931e3e3918b48e19ae737d1fb1418a6a082c1b6374f7b0ee6"
+      "bytes": 7695,
+      "sha256": "60a5759d8b524b49405caccc9aed0a36cb3253b19d0a383b873c758405d28fb3"
     },
     {
       "path": "start-all.ps1",
@@ -416,8 +416,8 @@
     },
     {
       "path": "data/params/param_registry.json",
-      "bytes": 19263,
-      "sha256": "48fd2cfa76300af6cad6907a13c71db476ccb8f67e97f0d5247b990ab1ed8cf1"
+      "bytes": 19688,
+      "sha256": "f9553cfdb8a1115657197aa9f19521133b31c9074d4170e5689c520df31fe39d"
     },
     {
       "path": "data/reference/cumt_2022_unmanned_station_photo.jpg",
@@ -547,7 +547,7 @@
     {
       "path": "data/research/file_manifest.json",
       "bytes": 47037,
-      "sha256": "b87db999bd32d4dac874086a4ba5f09b0ce1cd2243176b1f3921652bc3599bc4"
+      "sha256": "2c59e938cc671f61f2c33b2df6c3849c65b9291aeb25546f036d68a23a76eb6a"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -591,8 +591,8 @@
     },
     {
       "path": "data/research/generate_demo_scenarios.py",
-      "bytes": 13925,
-      "sha256": "131d5f11f6890003cf99f72b6cfcee4d638963fac7477079ae2a4aded8fb7659"
+      "bytes": 14481,
+      "sha256": "ab402fe332598643f7cd6a247a908dfe7bfc15bbf64eb7ed330a7e522bc0c3b4"
     },
     {
       "path": "data/research/interior_downloads.json",

@@ -54,6 +54,19 @@ SITES = [
      "physical_source": "observed", "aisle_m": 0.8, "counters": 1},
 ]
 
+# 约束（用户 2026-11-05）：辅站货架数比兰苑只多不少，但最多多 50%
+LANYUAN_RACKS = 55
+MAX_RACK_RATIO = 1.5
+SLOTS_PER_RACK = 5 * 20          # 物理储位 ÷ 货架数
+
+# 只约束三个无人辅站；桃苑是主站，不受这条限制
+for _s in SITES:
+    if _s['id'] == 'NH-TAOYUAN':
+        continue
+    _racks = _s['physical_slots'] / SLOTS_PER_RACK
+    assert _racks >= LANYUAN_RACKS, '%s 货架数少于兰苑' % _s['id']
+    assert _racks <= LANYUAN_RACKS * MAX_RACK_RATIO, '%s 货架数超过兰苑的 1.5 倍' % _s['id']
+
 SITE_SHARE = {"NH-TAOYUAN": 0.34, "NH-SONGYUAN": 0.26, "NH-MEIYUAN": 0.22, "NH-LANYUAN": 0.18}
 PICKUP_RATIO = 0.68
 # 第 7 天各站"设计占用率"：场景编排参数（不是实测），用来把当天的存量定在预定水位
