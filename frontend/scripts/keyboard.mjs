@@ -103,12 +103,12 @@ check('Enter 激活导航', (await ev('location.pathname')) === '/sites', await 
 await S('Page.navigate', { url: 'http://127.0.0.1:5173/overview' })
 await sleep(2800)
 const focused = await ev(`(() => {
-  const b = document.querySelector('.site-hit');
+  const b = document.querySelector('.site-marker, .site-hit');
   if (!b) return false;
   b.focus();
   return document.activeElement === b;
 })()`)
-check('地图标记可获得焦点', focused === true, String(await ev("document.querySelector('.site-hit')?.getAttribute('tabindex')")))
+check('地图标记可获得焦点', focused === true, String(await ev("(document.querySelector('.site-marker, .site-hit'))?.getAttribute('tabindex')")))
 await key('Enter', 'Enter', 13, '\r')
 await sleep(1200)
 check('Enter 打开抽屉', (await ev('!!document.querySelector(".drawer")')) === true)

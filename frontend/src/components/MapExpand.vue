@@ -208,7 +208,7 @@ function resetPositions() {
               :selected-id="selectedId"
               show-routes
               :trace="trace"
-              :trace-points="points"
+              :trace-points="trace ? points : []"
               :gate-id="gateId"
               :progress="progress"
               :active-site="activeSite"

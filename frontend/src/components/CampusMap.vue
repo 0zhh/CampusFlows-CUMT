@@ -37,7 +37,7 @@ const emit = defineEmits<{
 }>()
 
 type LayerKind = 'satellite' | 'manual'
-const layer = ref<LayerKind>('manual')
+const layer = ref<LayerKind>('satellite')
 /** 卫星瓦片状态：没网时给个明确提示，而不是留一块灰 */
 const satState = ref<'idle' | 'loading' | 'ok' | 'failed'>('idle')
 let satErrors = 0
@@ -500,8 +500,8 @@ defineExpose({
 })
 
 const layerOptions = [
-  { id: 'manual' as const, label: '手册原图', hint: '学生手册原图 · 离线可用' },
-  { id: 'satellite' as const, label: '卫星影像', hint: '本地缓存 · 离线可用' }
+  { id: 'satellite' as const, label: '实景地图', hint: '卫星影像 · 离线可用' },
+  { id: 'manual' as const, label: '手册原图', hint: '学生手册 · 离线可用' }
 ]
 </script>
 
@@ -541,7 +541,7 @@ const layerOptions = [
       </div>
     </div>
 
-    <p v-else class="map__legend map__legend--plain">
+    <p v-if="layer === 'manual'" class="map__legend map__legend--plain">
       站点位置已在原图上用红点标出 · 点击可查看当前负荷
     </p>
 

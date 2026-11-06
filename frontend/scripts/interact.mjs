@@ -124,13 +124,13 @@ check('场景选中态跟随', String(activeS1).includes('S1-NORMAL'), activeS1)
 // 切到 S2 再看风险
 await clickText('.picker__tab', 'S2-PEAK')
 await sleep(1600)
-const riskTags = await ev(`document.querySelectorAll('.site-hit--risk').length`)
+const riskTags = await ev("document.querySelectorAll('.sm--risk, .site-hit--risk').length")
 check('S2 下地图出现风险标记', riskTags >= 1, String(riskTags))
 
 // ---------- 3. 地图 → 抽屉 ----------
 await go('/overview')
-await waitFor('.site-hit__pad')
-await ev(`document.querySelector('.site-hit__pad').click()`)
+await waitFor('.sm, .site-hit__pad')
+await ev(`(document.querySelector('.sm') || document.querySelector('.site-hit__pad')).click()`)
 await sleep(1500)
 const drawerOpen = await ev(`!!document.querySelector('.drawer')`)
 check('点击地图站点打开抽屉', drawerOpen === true, String(drawerOpen))
@@ -140,8 +140,8 @@ await ev(`document.querySelector('.drawer__close')?.click()`)
 await sleep(700)
 check('抽屉可关闭', (await ev(`!!document.querySelector('.drawer')`)) === false)
 
-// 地图标记点击：手册底图不画彩色标记（原图自带红点），只剩透明热区
-await ev(`document.querySelectorAll('.site-hit__pad')[2]?.click()`)
+// 地图标记点击（卫星底图是彩色标记，手册底图是透明热区）
+await ev(`[...document.querySelectorAll('.sm, .site-hit__pad')][2]?.click()`)
 await sleep(1200)
 check('点击地图标记打开抽屉', (await ev(`!!document.querySelector('.drawer')`)) === true)
 
@@ -223,20 +223,21 @@ check('主题持久化到 localStorage', (await ev(`localStorage.getItem('campus
 await go('/overview')
 const layers = await ev(`[...document.querySelectorAll('.layer-btn')].map(b => b.textContent.replace(/\\s+/g,' ').trim())`)
 check('两种底图可选', layers.length === 2, JSON.stringify(layers))
-check('默认是手册原图', String(layers[0]).includes('手册'), String(layers[0]))
-check('第二种是卫星影像', String(layers[1]).includes('卫星'), String(layers[1]))
-// 手册原图默认就必须已经渲染出图片（离线可用，不依赖网络）
-const imgNow = await ev(`document.querySelectorAll('.leaflet-image-layer').length`)
-check('手册原图已渲染', imgNow >= 1, String(imgNow))
-// 切到卫星再切回来，图片层仍要在
-await ev(`document.querySelectorAll('.layer-btn')[1].click()`)
-await sleep(2200)
+check('默认是实景地图', String(layers[0]).includes('实景'), String(layers[0]))
+check('第二种是手册原图', String(layers[1]).includes('手册'), String(layers[1]))
+// 默认就是实景（卫星）底图，必须已经有瓦片
 const tiles = await ev(`document.querySelectorAll('.leaflet-tile').length`)
-check('卫星影像层有瓦片', tiles > 0, String(tiles))
-await ev(`document.querySelectorAll('.layer-btn')[0].click()`)
-await sleep(1200)
-const backToImg = await ev(`document.querySelectorAll('.leaflet-image-layer').length`)
-check('切回手册原图后图片仍在', backToImg >= 1, String(backToImg))
+check('实景地图默认加载瓦片', tiles > 0, String(tiles))
+// 切到手册原图，图片层要在
+await ev(`[...document.querySelectorAll('.layer-btn')].find(b => b.textContent.includes('手册')).click()`)
+await sleep(2200)
+const imgNow = await ev(`document.querySelectorAll('.leaflet-image-layer').length`)
+check('手册原图可切换且已渲染', imgNow >= 1, String(imgNow))
+// 再切回实景
+await ev(`[...document.querySelectorAll('.layer-btn')].find(b => b.textContent.includes('实景')).click()`)
+await sleep(2000)
+const backTiles = await ev(`document.querySelectorAll('.leaflet-tile').length`)
+check('切回实景地图仍有瓦片', backTiles > 0, String(backTiles))
 
 // ---------- 8. 站点页 ----------
 await go('/sites')

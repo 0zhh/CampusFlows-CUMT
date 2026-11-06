@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 1048,
-  "total_bytes": 49496947,
+  "count": 1049,
+  "total_bytes": 50271092,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 59502,
-      "sha256": "99e2d0f88952d8b7591fa6faac38cc454e831bf76f9e88b49dfdfecc897bf7c3"
+      "bytes": 60117,
+      "sha256": "7c7975a9525011d781e7e8391062aa3afb51d62fe3f5fd93ff3e915bfd5b0d8d"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -566,8 +566,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 193191,
-      "sha256": "be4d995eee8e4e36c0924e8928583fd6d389611708a5ebaa994969c34506940e"
+      "bytes": 193903,
+      "sha256": "81fe6ee43fc6e5e613afc12e62e00428e6c19bcdcb35c4ffaa9e0cf649465f6d"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -993,6 +993,11 @@
       "path": "docs/screenshots/地图校准面板.png",
       "bytes": 1132990,
       "sha256": "c77cf117e2b604878fefed9d816cce26a1a141a65abdd470ff9c76c19211424d"
+    },
+    {
+      "path": "docs/screenshots/总览-实景默认.png",
+      "bytes": 772628,
+      "sha256": "c20fba9241eae07f196f46ecb017f6333d56367c16a9744ae0dd258cd008735b"
     },
     {
       "path": "docs/screenshots/总览-手册底图.png",
@@ -4976,13 +4981,13 @@
     },
     {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 14089,
-      "sha256": "bf4090e2a8684110541fa002e1a4b82d8cb904912de855c3089338e53d9c13a6"
+      "bytes": 14220,
+      "sha256": "149a5afc59ef275b4aa01753479d2550b487a45e6e18ae240d9ade31593cafff"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",
-      "bytes": 6555,
-      "sha256": "1e652f9899aa24b7bea000fd6885937c2bbb9193d35e5a5d3afe452a618f0564"
+      "bytes": 6585,
+      "sha256": "1ebc4aa2a2b4a2fe21870dc4263808c124a801e280db7a2dafaade11db65a488"
     },
     {
       "path": "frontend/scripts/mapcheck.mjs",
@@ -5031,8 +5036,8 @@
     },
     {
       "path": "frontend/src/components/CampusMap.vue",
-      "bytes": 26119,
-      "sha256": "3e377db337b23c1c5885bc76c4e7d2b05c86ec96a4f84a65a3a9ad78523604a4"
+      "bytes": 26135,
+      "sha256": "ca3c1fe768e33a2dd47497bc761a461a9908a6252d148508eda872eadc578cd7"
     },
     {
       "path": "frontend/src/components/EChart.vue",
@@ -5046,8 +5051,8 @@
     },
     {
       "path": "frontend/src/components/MapExpand.vue",
-      "bytes": 17736,
-      "sha256": "35793c2f321ad482669acb53f2516044744fc46be0909ec9ab163dc5a4b71969"
+      "bytes": 17749,
+      "sha256": "89093dc5a97e54f9092e0f00cfcc95eb3fa42889e00008d56d0aaea7b6182b66"
     },
     {
       "path": "frontend/src/components/PickupLookup.vue",
