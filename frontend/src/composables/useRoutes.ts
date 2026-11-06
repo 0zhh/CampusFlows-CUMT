@@ -24,16 +24,8 @@ const DEFAULT_GATES: Gate[] = [
 
 type LineMap = Record<string, [number, number][]>
 
-function readStored(): { gates: Gate[]; lines: LineMap } {
-  try {
-    const raw = localStorage.getItem(KEY)
-    if (raw) {
-      const o = JSON.parse(raw)
-      if (o && Array.isArray(o.gates) && o.lines) return { gates: o.gates, lines: o.lines }
-    }
-  } catch {
-    /* 忽略 */
-  }
+/** 内置的八条线（仓库里的权威数据） */
+function bundledLines(): LineMap {
   const b = bundled as any
   const seeded: LineMap = {}
   for (const r of b?.routes ?? []) {
@@ -41,7 +33,26 @@ function readStored(): { gates: Gate[]; lines: LineMap } {
       seeded[r.gate_id + ':' + r.site_id] = r.polyline
     }
   }
-  return { gates: (b?.gates as Gate[]) ?? DEFAULT_GATES, lines: seeded }
+  return seeded
+}
+
+/**
+ * 本地描线只作为「覆盖层」：它有的键覆盖内置数据，没有的键继续用内置的。
+ * 早期版本是整份替换，导致浏览器里残留的旧描线把内置八条线全顶掉了。
+ */
+function readStored(): { gates: Gate[]; lines: LineMap } {
+  const base = bundledLines()
+  const b = bundled as any
+  const baseGates: Gate[] = (b?.gates as Gate[]) ?? DEFAULT_GATES
+  try {
+    const raw = localStorage.getItem(KEY)
+    if (!raw) return { gates: baseGates, lines: base }
+    const o = JSON.parse(raw)
+    const merged: LineMap = { ...base, ...(o?.lines ?? {}) }
+    return { gates: Array.isArray(o?.gates) && o.gates.length ? o.gates : baseGates, lines: merged }
+  } catch {
+    return { gates: baseGates, lines: base }
+  }
 }
 
 /** 旧版描线只存了"最后一条"，这里尽量救回来（默认算北门） */

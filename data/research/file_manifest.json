@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 1044,
-  "total_bytes": 47643099,
+  "count": 1048,
+  "total_bytes": 49496947,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 58397,
-      "sha256": "8ec9ac4b08444cbb9955df894894ee351e51f3b8d409bf70d15cc4ec4cc05edf"
+      "bytes": 59502,
+      "sha256": "99e2d0f88952d8b7591fa6faac38cc454e831bf76f9e88b49dfdfecc897bf7c3"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -545,6 +545,11 @@
       "sha256": "c3cb20f6aeb512278b39f7edaf04bc3a5ae55e142d6966c80f6c81aadd3672bd"
     },
     {
+      "path": "data/research/export_flows_json.py",
+      "bytes": 1203,
+      "sha256": "0e7ea5d10a98926bf62b2fc4be0e1b8521f9c645e8e793a148cfbe83a087f049"
+    },
+    {
       "path": "data/research/export_mysql_seed.py",
       "bytes": 11536,
       "sha256": "c3c99aa5f7444a4c2df08069146f73db4ff4e101369343f4333cf5f2da8a7591"
@@ -561,8 +566,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 192833,
-      "sha256": "43395fa24554e43fa2f61c67265aeeb8ca8c0137d5456ff49094d2cd265cfee7"
+      "bytes": 193191,
+      "sha256": "be4d995eee8e4e36c0924e8928583fd6d389611708a5ebaa994969c34506940e"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -1023,6 +1028,11 @@
       "path": "docs/screenshots/桃苑室内布局-v8-五层.png",
       "bytes": 49815,
       "sha256": "2ae9618323192eed5480b7d2792fe12a226c800b33c80a9e6298abad4d3c6a16"
+    },
+    {
+      "path": "docs/screenshots/配送-批次调度.png",
+      "bytes": 1806005,
+      "sha256": "347a098f87e7a2594d9752e2c1489682400fed6275f468eb14240bdc4c903e1d"
     },
     {
       "path": "docs/screenshots/配送线路-实景.png",
@@ -4966,8 +4976,8 @@
     },
     {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 13391,
-      "sha256": "d34bac34d5358ad91deff0b39b50ef517f4bd96d465bd84bc5acac0c7e1a1491"
+      "bytes": 14089,
+      "sha256": "bf4090e2a8684110541fa002e1a4b82d8cb904912de855c3089338e53d9c13a6"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",
@@ -5021,8 +5031,8 @@
     },
     {
       "path": "frontend/src/components/CampusMap.vue",
-      "bytes": 23087,
-      "sha256": "7651d218f120baf0258cf12e583d987f968f7d6852d0b1e5c70c20abd0bdb2cd"
+      "bytes": 26119,
+      "sha256": "3e377db337b23c1c5885bc76c4e7d2b05c86ec96a4f84a65a3a9ad78523604a4"
     },
     {
       "path": "frontend/src/components/EChart.vue",
@@ -5036,8 +5046,8 @@
     },
     {
       "path": "frontend/src/components/MapExpand.vue",
-      "bytes": 12318,
-      "sha256": "6d89078eb3fe5cedcfb230b77b3d57097917d998aea67aeedda83ef98312f8ae"
+      "bytes": 17736,
+      "sha256": "35793c2f321ad482669acb53f2516044744fc46be0909ec9ab163dc5a4b71969"
     },
     {
       "path": "frontend/src/components/PickupLookup.vue",
@@ -5090,14 +5100,19 @@
       "sha256": "64150576247f620d4efe4bcf9eb492b95b3bcf88502a0bc46c89c61a09807e79"
     },
     {
+      "path": "frontend/src/composables/useFlows.ts",
+      "bytes": 1095,
+      "sha256": "75668de58976fc7ff81c3e24b98dfc6ff8cbaa186adf8a46a12f74e2c6a7c3f8"
+    },
+    {
       "path": "frontend/src/composables/useReveal.ts",
       "bytes": 1053,
       "sha256": "67003627bad39c5a6b0ad557d68155af6ef4489119dff1acb3ca5b485e363b2e"
     },
     {
       "path": "frontend/src/composables/useRoutes.ts",
-      "bytes": 3981,
-      "sha256": "3643a9ac125854b4a4c689d11f3d4d466af9bef98e1c7e615830c6ccbd0102b4"
+      "bytes": 4491,
+      "sha256": "45130924390cd02e710638838d3bdc10f3f80e5dd5ff19ace0662c51a7636f29"
     },
     {
       "path": "frontend/src/data/api.ts",
@@ -5113,6 +5128,11 @@
       "path": "frontend/src/data/mysql.ts",
       "bytes": 2134,
       "sha256": "be90d48f12b2e75db88cd39c2df12dba657c984bd1b265e918b0a01719584f50"
+    },
+    {
+      "path": "frontend/src/data/nov_flows_10min.json",
+      "bytes": 34424,
+      "sha256": "c61beb4ad985ea760cbb8f60933e6d7ecdf98d4ec99b3b39ecb65c39c6b1c6e5"
     },
     {
       "path": "frontend/src/data/scenarios.json",

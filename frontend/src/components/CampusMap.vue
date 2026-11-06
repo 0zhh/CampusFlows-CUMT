@@ -22,11 +22,18 @@ const props = defineProps<{
   trace?: boolean
   /** 描线模式的点（经纬度） */
   tracePoints?: { lat: number; lng: number }[]
+  /** 只显示这个入口的线路；不传就全画 */
+  gateId?: string | null
+  /** 车辆在单条线路上的进度 0..1 */
+  progress?: number
+  /** 选中的车辆（站点 id） */
+  activeSite?: string | null
 }>()
 
 const emit = defineEmits<{
   (e: 'select', id: string): void
   (e: 'mapclick', p: { lat: number; lng: number }): void
+  (e: 'truck', siteId: string): void
 }>()
 
 type LayerKind = 'satellite' | 'manual'
@@ -41,6 +48,8 @@ let satLayer: L.TileLayer | null = null
 let manualLayer: L.ImageOverlay | null = null
 const markers = new Map<string, L.Marker>()
 let routeGroup: L.LayerGroup | null = null
+let truckGroup: L.LayerGroup | null = null
+const trucks = new Map<string, L.Marker>()
 let vehicle: L.CircleMarker | null = null
 let vehicleTimer: number | undefined
 let traceLayer: L.Polyline | null = null
@@ -314,6 +323,10 @@ watch(layer, () => {
 watch(riskSiteIds, () => buildMarkers())
 watch(() => store.siteOverride, () => buildMarkers(), { deep: true })
 watch(() => props.tracePoints, drawTrace, { deep: true })
+watch(() => props.progress, updateTruckPositions)
+watch(() => [props.gateId, props.activeSite] as const, () => {
+  if (props.showRoutes && layer.value === 'satellite') drawRoutes()
+})
 
 watch(manualBounds, (b) => {
   manualLayer?.setBounds(b)
@@ -380,7 +393,10 @@ function drawRoutes() {
       .bindTooltip(g.name + '（配送入口）', { direction: 'top', offset: [0, -10] })
   })
 
-  const ready = Object.entries(routeLines.value).filter(([, pts]) => pts.length >= 2)
+  const only = props.gateId ?? null
+  const ready = Object.entries(routeLines.value).filter(
+    ([key, pts]) => pts.length >= 2 && (!only || key.startsWith(only + ':'))
+  )
   ready.forEach(([key, pts]) => {
     const [gateId, siteId] = key.split(':')
     const color = SITE_COLOR[siteId] ?? '#3f6fb5'
@@ -402,9 +418,63 @@ function drawRoutes() {
         { sticky: true }
       )
   })
+
+  drawTrucks()
+}
+
+/** 每个站点一辆车，沿线路跑 */
+function drawTrucks() {
+  if (!map) return
+  trucks.forEach((m) => m.remove())
+  trucks.clear()
+  if (!truckGroup) truckGroup = L.layerGroup().addTo(map)
+  else truckGroup.clearLayers()
+
+  const only = props.gateId ?? null
+  Object.entries(routeLines.value)
+    .filter(([key, pts]) => pts.length >= 2 && (!only || key.startsWith(only + ':')))
+    .forEach(([key, pts]) => {
+      const [, siteId] = key.split(':')
+      const active = props.activeSite === siteId
+      const icon = L.divIcon({
+        className: 'truck-pin' + (active ? ' truck-pin--on' : ''),
+        iconSize: [34, 24],
+        iconAnchor: [17, 12],
+        html:
+          '<span class="truck-pin__body">' +
+          '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+          '<path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1"/>' +
+          '<circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span>'
+      })
+      const marker = L.marker([pts[0][1], pts[0][0]], { icon, keyboard: false, zIndexOffset: 800 })
+        .addTo(truckGroup!)
+        .on('click', () => emit('truck', siteId))
+      trucks.set(siteId, marker)
+    })
+  updateTruckPositions()
+}
+
+function updateTruckPositions() {
+  const only = props.gateId ?? null
+  const order = Object.keys(routeLines.value).sort()
+  Object.entries(routeLines.value).forEach(([key, pts]) => {
+    if (pts.length < 2 || (only && !key.startsWith(only + ':'))) return
+    const [, siteId] = key.split(':')
+    const marker = trucks.get(siteId)
+    if (!marker) return
+    const path = toPath(pts)
+    // 按顺序错开一点，四辆车不会挤在门口
+    const offset = (order.indexOf(key) % 4) * 0.07
+    const p = pointAt(path, ((props.progress ?? 0) + offset) % 1)
+    marker.setLatLng(p)
+  })
 }
 
 function clearRoutes() {
+  trucks.forEach((m) => m.remove())
+  trucks.clear()
+  truckGroup?.remove()
+  truckGroup = null
   routeGroup?.remove()
   routeGroup = null
 }
@@ -501,6 +571,16 @@ const layerOptions = [
   background: #2fa36b; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.5);
 }
 .lg__gate { width: 9px; height: 9px; border-radius: 50%; background: #2fa36b; display: inline-block; }
+.truck-pin__body {
+  display: grid; place-items: center;
+  width: 26px; height: 26px; margin: 0 auto;
+  background: #fff; border-radius: 50%;
+  color: #2f6fb5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .45);
+  border: 2px solid #2f6fb5;
+  transform: translateY(-6px);
+}
+.truck-pin--on .truck-pin__body { border-color: #ffb037; box-shadow: 0 0 0 4px rgba(255, 176, 55, .35); }
 
 .map__offline {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);

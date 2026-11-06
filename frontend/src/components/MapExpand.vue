@@ -8,6 +8,20 @@ import { X, RotateCcw, Truck, PencilLine, Copy, Eraser, Undo2, Download } from '
 import CampusMap from './CampusMap.vue'
 import { useAppStore, MANUAL_IMAGE } from '@/stores/app'
 import { gates, getLine, setLine, summary, exportJson, resetAll } from '@/composables/useRoutes'
+import { inboundAt, slotLabel, PEAK_DATE } from '@/composables/useFlows'
+import { SITES } from '@/data/sites'
+
+const SITE_LIST = SITES.map((s) => ({ id: s.id, name: s.shortName, color: s.color }))
+
+function lineMeters(pts: [number, number][]) {
+  let m = 0
+  for (let i = 1; i < pts.length; i++) {
+    const dy = (pts[i][1] - pts[i - 1][1]) * 110574
+    const dx = (pts[i][0] - pts[i - 1][0]) * 111320 * Math.cos((34.21 * Math.PI) / 180)
+    m += Math.hypot(dx, dy)
+  }
+  return m
+}
 import type { Scenario } from '@/data/types'
 
 
@@ -32,7 +46,52 @@ const resetHint = ref(false)
 
 /* ---------- 描线：选入口 + 选站点，点地图取点 ---------- */
 const trace = ref(false)
-const gateId = ref('north')
+/* ---------- 送货车：先选入口，再按 10 分钟批次跑 ---------- */
+const gateId = ref<string>('north')
+const slot = ref(78)                 // 13:00 前后，双十一当天午后
+const playing = ref(true)
+const progress = ref(0)              // 当前批次内车辆的行程比 0..1
+const activeSite = ref<string | null>(null)
+
+const SLOT_SECONDS = 6               // 演示：一个 10 分钟批次压缩成 6 秒
+let tick: number | undefined
+
+onMounted(() => {
+  tick = window.setInterval(() => {
+    if (!playing.value) return
+    progress.value += 0.02
+    if (progress.value >= 1) {
+      progress.value = 0
+      slot.value = (slot.value + 1) % 144
+    }
+  }, 120)
+})
+onUnmounted(() => window.clearInterval(tick))
+
+const batchTime = computed(() => slotLabel(slot.value))
+const nextTime = computed(() => slotLabel((slot.value + 1) % 144))
+
+const gateRoutes = computed(() =>
+  SITE_LIST.map((s) => {
+    const pts = getLine(gateId.value, s.id)
+    const meters = pts.length > 1 ? Math.round(lineMeters(pts)) : 0
+    const parcels = inboundAt(PEAK_DATE, s.id, slot.value)
+    return {
+      ...s,
+      meters,
+      parcels,
+      minutes: meters ? Math.round((meters / 1000) / 15 * 60) : 0,
+      ready: pts.length > 1
+    }
+  })
+)
+
+const batchTotal = computed(() => gateRoutes.value.reduce((a, r) => a + r.parcels, 0))
+
+function pickGate(id: string) {
+  gateId.value = id
+  activeSite.value = null
+}
 const target = ref('NH-TAOYUAN')
 const copied = ref(false)
 
@@ -113,7 +172,19 @@ function resetPositions() {
           <header class="mx__head">
             <div class="mx__title">
               <h2>南湖校区 · 配送地图</h2>
-              <p>两个入口 × 四个驿站，共 8 条线；描好后自动画线并跑车</p>
+              <p>先选入口，地图上同时显示该入口出发的四条线路与在途车辆</p>
+            </div>
+
+            <div class="gate-seg" role="tablist" aria-label="选择校园入口">
+              <button
+                v-for="g in gates" :key="g.id"
+                class="gate-seg__btn"
+                :class="{ 'gate-seg__btn--on': gateId === g.id }"
+                role="tab" :aria-selected="gateId === g.id"
+                @click="pickGate(g.id)"
+              >
+                {{ g.name }}
+              </button>
             </div>
             <div class="mx__actions">
               <button class="btn btn--ghost" @click="resetPositions" title="把四个驿站恢复成默认坐标">
@@ -138,20 +209,55 @@ function resetPositions() {
               show-routes
               :trace="trace"
               :trace-points="points"
+              :gate-id="gateId"
+              :progress="progress"
+              :active-site="activeSite"
               @select="emit('select', $event)"
               @mapclick="onMapClick"
+              @truck="activeSite = activeSite === $event ? null : $event"
             />
 
             <aside class="mx__side">
-              <h3 class="mx__sub"><Truck :size="14" /> 线路一览</h3>
+              <div class="batch">
+                <div class="batch__head">
+                  <span class="batch__time num">{{ batchTime }}</span>
+                  <button class="btn btn--ghost" @click="playing = !playing">
+                    {{ playing ? '暂停' : '播放' }}
+                  </button>
+                </div>
+                <p class="batch__sub">
+                  第 {{ slot + 1 }} / 144 批 · 10 分钟一批 · 下一批 {{ nextTime }}
+                </p>
+                <p class="batch__sum">
+                  本批共 <b class="num">{{ batchTotal }}</b> 件 · {{ gateRoutes.filter(r => r.parcels > 0).length }} 辆车在跑
+                </p>
+              </div>
+
+              <h3 class="mx__sub"><Truck :size="14" /> {{ gates.find(g => g.id === gateId)?.name }}发出</h3>
               <ul class="mx__routes">
-                <li v-for="s in summary" :key="s.gate.id + s.siteId" :class="{ 'is-off': s.count < 2 }">
-                  <span class="mx__dot" :class="'mx__dot--' + s.siteId.slice(3, 6).toLowerCase()" />
-                  <span class="mx__name">{{ s.gate.name }} → {{ s.siteName }}</span>
-                  <span v-if="s.count >= 2" class="mx__num num">{{ s.meters }} m</span>
-                  <span v-else class="mx__off">待标注</span>
+                <li
+                  v-for="r in gateRoutes" :key="r.id"
+                  :class="{ 'is-off': !r.ready, 'is-on': activeSite === r.id }"
+                  @click="activeSite = activeSite === r.id ? null : r.id"
+                >
+                  <span class="mx__dot" :style="{ background: r.color }" />
+                  <span class="mx__name">{{ r.name }}</span>
+                  <span class="mx__num num">{{ r.ready ? r.meters + ' m · ' + r.minutes + ' min' : '未标注' }}</span>
+                  <span class="mx__pkg num">{{ r.parcels }} 件</span>
                 </li>
               </ul>
+
+              <div v-if="activeSite" class="truck-card">
+                <h4>{{ gateRoutes.find(r => r.id === activeSite)?.name }} · 在途</h4>
+                <dl>
+                  <div><dt>入口</dt><dd>{{ gates.find(g => g.id === gateId)?.name }}</dd></div>
+                  <div><dt>批次</dt><dd>{{ batchTime }} 发出</dd></div>
+                  <div><dt>本批到件</dt><dd>{{ gateRoutes.find(r => r.id === activeSite)?.parcels }} 件</dd></div>
+                  <div><dt>里程</dt><dd>{{ gateRoutes.find(r => r.id === activeSite)?.meters }} m</dd></div>
+                  <div><dt>预计送达</dt><dd>{{ gateRoutes.find(r => r.id === activeSite)?.minutes }} 分钟后</dd></div>
+                </dl>
+              </div>
+
               <div v-if="trace" class="trace">
                 <div class="trace__row">
                   <label class="trace__label" for="trace-gate">入口</label>
@@ -216,6 +322,28 @@ function resetPositions() {
 </template>
 
 <style scoped>
+.gate-seg {
+  display: inline-flex; padding: 3px; gap: 2px;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-md);
+}
+.gate-seg__btn {
+  padding: 6px 18px; border-radius: var(--r-sm); font-size: var(--fs-sm); color: var(--fg-1);
+}
+.gate-seg__btn--on { background: var(--brand); color: #fff; }
+.batch { display: grid; gap: 4px; padding: var(--sp-2); background: var(--bg-2); border-radius: var(--r-md); }
+.batch__head { display: flex; align-items: center; justify-content: space-between; }
+.batch__time { font-size: var(--fs-lg); font-weight: 600; color: var(--fg-0); }
+.batch__sub, .batch__sum { font-size: var(--fs-xs); color: var(--fg-2); }
+.batch__sum b { color: var(--fg-0); }
+.mx__routes li.is-on { background: var(--bg-3); color: var(--fg-0); }
+.mx__pkg { color: var(--brand); font-size: 10px; }
+.truck-card { padding: var(--sp-2); border: 1px solid var(--line); border-radius: var(--r-md); font-size: var(--fs-xs); }
+.truck-card h4 { font-size: var(--fs-xs); color: var(--fg-1); margin-bottom: 4px; }
+.truck-card dl { display: grid; gap: 2px; }
+.truck-card div { display: flex; justify-content: space-between; }
+.truck-card dt { color: var(--fg-2); }
+.truck-card dd { color: var(--fg-0); }
+
 .trace { display: grid; gap: var(--sp-2); padding: var(--sp-2); border: 1px dashed var(--line-strong); border-radius: var(--r-md); }
 .trace__label { font-size: var(--fs-xs); color: var(--fg-2); }
 .trace__select { padding: 5px var(--sp-2); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--fg-0); font-size: var(--fs-xs); }
@@ -274,7 +402,7 @@ function resetPositions() {
 }
 .mx__sub { display: flex; align-items: center; gap: 6px; font-size: var(--fs-sm); font-weight: 600; color: var(--fg-0); }
 .mx__routes { display: grid; gap: 6px; font-size: var(--fs-xs); }
-.mx__routes li { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto; gap: var(--sp-2); align-items: center; }
+.mx__routes li { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto auto; gap: var(--sp-2); align-items: center; cursor: pointer; padding: 2px 4px; border-radius: var(--r-sm); }
 .mx__routes li.is-off { opacity: 0.55; }
 .mx__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--fg-2); }
 .mx__dot--tao { background: var(--tao); }

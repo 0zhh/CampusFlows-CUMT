@@ -171,10 +171,18 @@ await ev("[...document.querySelectorAll('.mx .layer-btn')].find(b => b.textConte
 await sleep(2600)
 check('放大图有 2 个入口标记', (await ev("document.querySelectorAll('.mx .gate-pin').length")) === 2,
   String(await ev("document.querySelectorAll('.mx .gate-pin').length")))
-check('卫星图上 8 条配送线', (await ev("document.querySelectorAll('.mx .flow-line').length")) === 8,
+check('选北门后地图上 4 条线', (await ev("document.querySelectorAll('.mx .flow-line').length")) === 4,
   String(await ev("document.querySelectorAll('.mx .flow-line').length")))
-check('线路一览 8 条带里程', (await ev("document.querySelectorAll('.mx__routes li').length")) === 8
-  && (await ev("document.querySelectorAll('.mx__routes .mx__num').length")) === 8,
+check('4 辆车在跑', (await ev("document.querySelectorAll('.mx .truck-pin').length")) === 4,
+  String(await ev("document.querySelectorAll('.mx .truck-pin').length")))
+check('批次面板有 10 分钟时间', /^\d{2}:\d{2}$/.test(String(await ev("document.querySelector('.batch__time')?.textContent"))),
+  String(await ev("document.querySelector('.batch__time')?.textContent")))
+await ev("[...document.querySelectorAll('.gate-seg__btn')].find(b => b.textContent.includes('东门')).click()")
+await sleep(1800)
+check('切到东门仍是 4 条线', (await ev("document.querySelectorAll('.mx .flow-line').length")) === 4,
+  String(await ev("document.querySelectorAll('.mx .flow-line').length")))
+check('线路一览 4 条带里程', (await ev("document.querySelectorAll('.mx__routes li').length")) === 4
+  && (await ev("document.querySelectorAll('.mx__routes .mx__num').length")) === 4,
   String(await ev("document.querySelectorAll('.mx__routes .mx__num').length")))
 await ev(`document.querySelector('.mx__actions .btn').click()`)
 await sleep(500)
