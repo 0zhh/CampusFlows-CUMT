@@ -4,7 +4,7 @@
  * 运输轨迹页（P6）并到这里，不再单独占一个导航项。
  */
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
-import { X, RotateCcw, Truck, PencilLine, Copy, Eraser, Undo2, Download } from 'lucide-vue-next'
+import { X, RotateCcw, Truck, PencilLine, Copy, Eraser, Undo2, Download, Play, Pause } from 'lucide-vue-next'
 import CampusMap from './CampusMap.vue'
 import { useAppStore, MANUAL_IMAGE } from '@/stores/app'
 import { gates, getLine, setLine, summary, exportJson, resetAll } from '@/composables/useRoutes'
@@ -52,6 +52,9 @@ const slot = ref(78)                 // 13:00 前后，双十一当天午后
 const playing = ref(true)
 const progress = ref(0)              // 当前批次内车辆的行程比 0..1
 const activeSite = ref<string | null>(null)
+/* 时间流速：1× = 一个 10 分钟批次跑 6 秒 */
+const SPEEDS = [0.5, 1, 2, 4]
+const speed = ref(1)
 
 const SLOT_SECONDS = 6               // 演示：一个 10 分钟批次压缩成 6 秒
 let tick: number | undefined
@@ -59,7 +62,7 @@ let tick: number | undefined
 onMounted(() => {
   tick = window.setInterval(() => {
     if (!playing.value) return
-    progress.value += 0.02
+    progress.value += 0.02 * speed.value
     if (progress.value >= 1) {
       progress.value = 0
       slot.value = (slot.value + 1) % 144
@@ -67,6 +70,13 @@ onMounted(() => {
   }, 120)
 })
 onUnmounted(() => window.clearInterval(tick))
+
+/** 拖动时间轴：直接跳到该批次，并把车头摆回起点 */
+function onSeek(e: Event) {
+  const v = Number((e.target as HTMLInputElement).value)
+  slot.value = Math.min(143, Math.max(0, Number.isFinite(v) ? v : 0))
+  progress.value = 0
+}
 
 const batchTime = computed(() => slotLabel(slot.value))
 const nextTime = computed(() => slotLabel((slot.value + 1) % 144))
@@ -313,6 +323,48 @@ function resetPositions() {
                 八条线来自你手绘的轨迹，已经过去重、抽稀和曲线平滑，只画在卫星底图上。
                 哪条不对就点「描线」重画那一条。
               </p>
+
+              <!-- 时间轴：停靠在右侧栏底部，拖动到一天中的任意时刻 + 流速调节 -->
+              <div class="timebar" role="group" aria-label="时间轴与播放速度">
+                <div class="timebar__row">
+                  <button
+                    class="timebar__play"
+                    :aria-label="playing ? '暂停' : '播放'"
+                    :title="playing ? '暂停' : '播放'"
+                    @click="playing = !playing"
+                  >
+                    <Pause v-if="playing" :size="15" />
+                    <Play v-else :size="15" />
+                  </button>
+
+                  <div class="timebar__now">
+                    <b class="num">{{ batchTime }}</b>
+                    <span>{{ batchTotal }} 件</span>
+                  </div>
+
+                  <div class="timebar__speed" role="group" aria-label="时间流速">
+                    <button
+                      v-for="s in SPEEDS" :key="s"
+                      :class="{ 'is-on': speed === s }"
+                      :title="`${s} 倍速`"
+                      @click="speed = s"
+                    >{{ s }}×</button>
+                  </div>
+                </div>
+
+                <input
+                  class="timebar__range"
+                  type="range"
+                  min="0" max="143" step="1"
+                  :value="slot"
+                  aria-label="一天中的时刻"
+                  @input="onSeek"
+                />
+
+                <div class="timebar__ticks" aria-hidden="true">
+                  <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>23:50</span>
+                </div>
+              </div>
             </aside>
           </div>
         </div>
@@ -394,10 +446,87 @@ function resetPositions() {
   border-radius: var(--r-sm); border: 1px solid var(--line); color: var(--fg-1);
 }
 .mx__body { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 0; }
+
+/* 时间轴停靠在右侧栏底部：不在地图上盖浮层 */
+.timebar {
+  flex: none;
+  margin-top: auto;
+  padding: 8px var(--sp-2) 6px;
+  display: grid;
+  gap: 4px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.timebar__row { display: flex; align-items: center; gap: var(--sp-2); }
+.timebar__play {
+  width: 28px; height: 28px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: filter .15s ease;
+}
+.timebar__play:hover { filter: brightness(1.1); }
+.timebar__now { display: grid; line-height: 1.2; min-width: 0; }
+.timebar__now b { font-size: var(--fs-md); font-weight: 600; color: var(--fg-0); font-variant-numeric: tabular-nums; }
+.timebar__now span { font-size: 10px; color: var(--fg-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.timebar__speed { display: flex; gap: 2px; margin-left: auto; flex: none; }
+.timebar__speed button {
+  padding: 3px 6px;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--bg-1);
+  color: var(--fg-1);
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.timebar__speed button:hover { background: var(--bg-3); }
+.timebar__speed button.is-on { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+.timebar__range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.timebar__range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--bg-3);
+}
+.timebar__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -5px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--brand);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .45);
+}
+.timebar__range::-moz-range-track { height: 4px; border-radius: 999px; background: var(--bg-3); }
+.timebar__range::-moz-range-thumb { width: 14px; height: 14px; border: 3px solid var(--brand); border-radius: 50%; background: #fff; }
+.timebar__range:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: var(--r-sm); }
+
+.timebar__ticks {
+  display: flex; justify-content: space-between;
+  font-size: 9px; color: var(--fg-2);
+  font-variant-numeric: tabular-nums;
+}
+
 .mx__side {
   border-left: 1px solid var(--line);
   padding: var(--sp-3);
-  display: grid; gap: var(--sp-2); align-content: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
   overflow: auto;
 }
 .mx__sub { display: flex; align-items: center; gap: 6px; font-size: var(--fs-sm); font-weight: 600; color: var(--fg-0); }

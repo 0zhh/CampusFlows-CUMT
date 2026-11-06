@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>驿链 · 液态玻璃方向稿</title>
+<style>
+  :root{
+    --bg:#0a0d12; --ink:#eef2f7; --ink-2:#9aa7b6; --amber:#e8a33d; --jade:#3ec9a7;
+    --glass: rgba(255,255,255,.06);
+    --hair: rgba(255,255,255,.14);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    background:
+      radial-gradient(1200px 700px at 12% -10%, #1b2a3a 0%, transparent 60%),
+      radial-gradient(900px 600px at 92% 0%, #2a2113 0%, transparent 55%),
+      radial-gradient(800px 800px at 60% 120%, #101a22 0%, transparent 60%),
+      #070a0e;
+    color:var(--ink);
+    font-family: system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    overflow:hidden;
+  }
+  /* 细颗粒，压掉纯色的“塑料感” */
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.5;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.16'/></svg>");
+    mix-blend-mode:overlay;
+  }
+
+  /* ========== 液态玻璃：折射层 + 高光边 ========== */
+  .glass{
+    position:relative;
+    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
+    border-radius:22px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.28) inset,
+      0 -1px 0 rgba(255,255,255,.06) inset,
+      0 24px 60px rgba(0,0,0,.55),
+      0 2px 8px rgba(0,0,0,.35);
+  }
+  /* 边缘高光（环形渐变 + mask，只在 1px 描边上出现） */
+  .glass::before{
+    content:""; position:absolute; inset:0; border-radius:inherit; padding:1px;
+    background:conic-gradient(from 140deg,
+      rgba(255,255,255,.85), rgba(255,255,255,.10) 22%,
+      rgba(232,163,61,.55) 38%, rgba(255,255,255,.08) 55%,
+      rgba(62,201,167,.45) 72%, rgba(255,255,255,.75) 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    pointer-events:none;
+  }
+  /* 折射：只给导航和悬浮层用，内容区不用 */
+  /* 结论：feDisplacementMap 会把文字一起扭曲，只能用在装饰层，不能挂在文字容器上。
+     生产做法 = 模糊 + 色调 + 高光边 + 内阴影，靠"光"而不是"变形"来表达玻璃。 */
+  .glass--lens{ }
+
+  /* ========== 顶栏 ========== */
+  header{
+    position:fixed; top:18px; left:24px; right:24px; height:60px; z-index:10;
+    display:flex; align-items:center; gap:18px; padding:0 20px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.4px}
+  .brand i{
+    width:26px;height:26px;border-radius:9px;display:block;
+    background:linear-gradient(145deg,#f6c877,#c9822a);
+    box-shadow:0 0 18px rgba(232,163,61,.55);
+  }
+  nav{display:flex; gap:4px; margin-left:22px}
+  nav a{
+    padding:8px 14px; border-radius:12px; color:var(--ink-2); font-size:13px;
+    text-decoration:none; transition:.18s;
+  }
+  nav a.on{ color:#12161c; background:linear-gradient(180deg,#f0bd6b,#d99a34);
+    box-shadow:0 6px 18px rgba(232,163,61,.35), 0 1px 0 rgba(255,255,255,.6) inset; font-weight:600 }
+  .spacer{flex:1}
+  .chip{
+    font-size:12px; padding:6px 12px; border-radius:999px; color:var(--jade);
+    border:1px solid rgba(62,201,167,.4); background:rgba(62,201,167,.10);
+  }
+  .icon{width:32px;height:32px;border-radius:10px;border:1px solid var(--hair);
+    background:rgba(255,255,255,.05); display:grid;place-items:center; color:var(--ink-2)}
+
+  /* ========== 主体 ========== */
+  main{position:fixed; inset:96px 24px 24px; display:grid; grid-template-columns: 1fr 340px; gap:18px}
+
+  /* 卡片：不是玻璃，是“磨砂石板”——有厚度、有一道上沿高光 */
+  .slab{
+    position:relative; border-radius:20px; padding:18px;
+    background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+    border:1px solid rgba(255,255,255,.075);
+    box-shadow: 0 1px 0 rgba(255,255,255,.16) inset, 0 18px 40px rgba(0,0,0,.45);
+  }
+  .slab h3{margin:0 0 2px; font-size:13px; font-weight:600; color:var(--ink)}
+  .slab .hint{font-size:11px; color:var(--ink-2)}
+
+  .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px}
+  .kpi{padding:16px 16px 14px}
+  .kpi .lab{font-size:11px; color:var(--ink-2); letter-spacing:.6px}
+  .kpi .val{font-size:30px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:-.5px; margin-top:6px}
+  .kpi .val small{font-size:12px; font-weight:500; color:var(--ink-2); margin-left:4px}
+  .kpi .bar{margin-top:10px;height:4px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden}
+  .kpi .bar i{display:block;height:100%;border-radius:2px}
+  .kpi.warn .val{color:var(--amber)}
+  .kpi.bad .val{color:#ef6a5f}
+
+  .map{
+    position:relative; height:100%; min-height:340px; border-radius:18px; overflow:hidden;
+    background:
+      radial-gradient(600px 300px at 30% 20%, rgba(62,201,167,.18), transparent 60%),
+      radial-gradient(500px 400px at 80% 70%, rgba(232,163,61,.18), transparent 60%),
+      linear-gradient(160deg,#0d1620,#0a1017);
+  }
+  .map::after{
+    content:""; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:46px 46px; opacity:.35;
+  }
+  .route{position:absolute; height:3px; border-radius:3px; filter:drop-shadow(0 0 6px currentColor)}
+  .pin{
+    position:absolute; width:14px;height:14px;border-radius:50%;
+    border:2px solid #fff; box-shadow:0 0 0 6px rgba(255,255,255,.10), 0 6px 16px rgba(0,0,0,.6);
+  }
+
+  /* 底部悬浮玻璃坞 —— 液态玻璃最该出现的地方 */
+  .dock{
+    position:fixed; left:50%; bottom:26px; transform:translateX(-50%);
+    display:flex; align-items:center; gap:6px; padding:8px 10px; z-index:12;
+    border-radius:999px;
+  }
+  .dock button{
+    border:0; background:transparent; color:var(--ink-2); font-size:12px;
+    padding:9px 16px; border-radius:999px; cursor:pointer; transition:.18s;
+  }
+  .dock button.on{ color:#12161c; background:linear-gradient(180deg,#f3c982,#dda038); font-weight:600 }
+  .dock .sep{width:1px;height:20px;background:var(--hair);margin:0 4px}
+
+  .truck{
+    position:absolute; width:26px;height:26px;border-radius:9px; display:grid;place-items:center;
+    background:linear-gradient(180deg,#fff,#dfe6ee); color:#1b2430;
+    box-shadow:0 6px 16px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.6) inset;
+    font-size:13px;
+  }
+  .legend{position:absolute; left:14px; bottom:14px; display:flex; gap:14px; font-size:11px; color:var(--ink-2)}
+  .legend b{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <filter id="liquid-lens" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise"/>
+    <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
+    <feDisplacementMap in="SourceGraphic" in2="soft" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header class="glass glass--lens">
+  <div class="brand"><i></i>驿链 CampusFlow</div>
+  <nav>
+    <a class="on" href="#">运营总览</a>
+    <a href="#">站点与服务</a>
+    <a href="#">高峰与方案</a>
+    <a href="#">异常协同</a>
+    <a href="#">资料与说明</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="chip">● 接口数据</span>
+  <div class="icon">☾</div>
+  <div class="icon">⌖</div>
+</header>
+
+<main>
+  <section>
+    <div class="kpis">
+      <div class="slab kpi"><div class="lab">当日到件</div><div class="val">17,050<small>件</small></div>
+        <div class="bar"><i style="width:86%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></div></div>
+      <div class="slab kpi"><div class="lab">当日取走</div><div class="val">11,625<small>件</small></div>
+        <div class="bar"><i style="width:68%;background:linear-gradient(90deg,#3fa97c,#63d3a8)"></i></div></div>
+      <div class="slab kpi warn"><div class="lab">最高占用率</div><div class="val">92.9<small>%</small></div>
+        <div class="bar"><i style="width:93%;background:linear-gradient(90deg,#e8735a,#f0a06b)"></i></div></div>
+      <div class="slab kpi"><div class="lab">高峰排队</div><div class="val">166.7<small>分钟</small></div>
+        <div class="bar"><i style="width:74%;background:linear-gradient(90deg,#5b9bd5,#7fc0f0)"></i></div></div>
+    </div>
+
+    <div class="slab" style="height:calc(100% - 150px); padding:16px; display:flex; flex-direction:column; gap:12px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <h3 style="font-size:15px">南湖校区 · 配送实况</h3>
+        <span class="hint">北门出发 4 条线 · 10 分钟一批</span>
+        <div style="flex:1"></div>
+        <span class="hint">13:10 · 第 80/144 批</span>
+      </div>
+
+      <div class="map">
+        <div class="route" style="left:18%;top:38%;width:26%;background:#e8a33d;transform:rotate(9deg);color:#e8a33d"></div>
+        <div class="route" style="left:18%;top:38%;width:34%;background:#3fa97c;transform:rotate(22deg);color:#3fa97c"></div>
+        <div class="route" style="left:36%;top:52%;width:22%;background:#c05c8e;transform:rotate(-14deg);color:#c05c8e"></div>
+        <div class="route" style="left:30%;top:60%;width:30%;background:#6e7fd4;transform:rotate(-4deg);color:#6e7fd4"></div>
+        <div class="pin" style="left:17%;top:34%;background:#e8735a"></div>
+        <div class="pin" style="left:31%;top:52%;background:#3fa97c"></div>
+        <div class="pin" style="left:35%;top:63%;background:#c05c8e"></div>
+        <div class="pin" style="left:29%;top:72%;background:#6e7fd4"></div>
+        <div class="truck" style="left:40%;top:44%">🚚</div>
+        <div class="truck" style="left:52%;top:58%">🚚</div>
+        <div class="legend">
+          <span><b style="background:#e8735a"></b>桃苑</span>
+          <span><b style="background:#3fa97c"></b>松苑</span>
+          <span><b style="background:#c05c8e"></b>梅苑</span>
+          <span><b style="background:#6e7fd4"></b>兰苑</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside style="display:grid; gap:16px; grid-template-rows:auto 1fr">
+    <div class="slab">
+      <h3>取件码查询</h3>
+      <p class="hint" style="margin:8px 0 12px">查位置与承运商</p>
+      <div style="display:flex;gap:8px">
+        <div style="flex:1;height:38px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--hair)"></div>
+        <div style="width:64px;height:38px;border-radius:12px;background:linear-gradient(180deg,#f0bd6b,#d99a34);color:#12161c;display:grid;place-items:center;font-size:12px;font-weight:600">查询</div>
+      </div>
+    </div>
+    <div class="slab">
+      <h3>在架件按承运商</h3>
+      <p class="hint" style="margin:8px 0 12px">桃苑 · 当前在架</p>
+      <div style="display:grid;gap:9px;font-size:12px">
+        <div style="display:grid;grid-template-columns:64px 1fr 34px;gap:8px;align-items:center">
+            <span style="color:var(--ink-2)">中通</span>
+            <span style="height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden"><i style="display:block;height:100%;width:100%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></span>
+            <span style="text-align:right;color:var(--ink)">379</span></div><div style="display:grid;grid-template-columns:64px 1fr 34px;gap:8px;align-items:center">
+            <span style="color:var(--ink-2)">圆通</span>
+            <span style="height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden"><i style="display:block;height:100%;width:75%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></span>
+            <span style="text-align:right;color:var(--ink)">285</span></div><div style="display:grid;grid-template-columns:64px 1fr 34px;gap:8px;align-items:center">
+            <span style="color:var(--ink-2)">韵达</span>
+            <span style="height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden"><i style="display:block;height:100%;width:71%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></span>
+            <span style="text-align:right;color:var(--ink)">268</span></div><div style="display:grid;grid-template-columns:64px 1fr 34px;gap:8px;align-items:center">
+            <span style="color:var(--ink-2)">其他</span>
+            <span style="height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden"><i style="display:block;height:100%;width:67%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></span>
+            <span style="text-align:right;color:var(--ink)">253</span></div><div style="display:grid;grid-template-columns:64px 1fr 34px;gap:8px;align-items:center">
+            <span style="color:var(--ink-2)">顺丰</span>
+            <span style="height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden"><i style="display:block;height:100%;width:64%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></span>
+            <span style="text-align:right;color:var(--ink)">241</span></div><div style="display:grid;grid-template-columns:64px 1fr 34px;gap:8px;align-items:center">
+            <span style="color:var(--ink-2)">申通</span>
+            <span style="height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden"><i style="display:block;height:100%;width:59%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></span>
+            <span style="text-align:right;color:var(--ink)">224</span></div><div style="display:grid;grid-template-columns:64px 1fr 34px;gap:8px;align-items:center">
+            <span style="color:var(--ink-2)">京东</span>
+            <span style="height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden"><i style="display:block;height:100%;width:57%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></span>
+            <span style="text-align:right;color:var(--ink)">215</span></div><div style="display:grid;grid-template-columns:64px 1fr 34px;gap:8px;align-items:center">
+            <span style="color:var(--ink-2)">邮政EMS</span>
+            <span style="height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden"><i style="display:block;height:100%;width:38%;background:linear-gradient(90deg,#e8a33d,#f6c877)"></i></span>
+            <span style="text-align:right;color:var(--ink)">144</span></div>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<div class="dock glass glass--lens">
+  <button class="on">北门</button>
+  <button>东门</button>
+  <span class="sep"></span>
+  <button>播放</button>
+  <button>批次 13:10</button>
+  <span class="sep"></span>
+  <button>重置位置</button>
+</div>
+
+</body>
+</html>

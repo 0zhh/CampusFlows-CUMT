@@ -252,7 +252,11 @@ useReveal(".stat, .wo, .panel")
                 @click="setStatus(currentIncident.id, 'closed')"
               >已闭环</button>
             </div>
-            <p class="actions__note">演示用：状态仅保存在浏览器内存，刷新页面即复位。接后端后写入数据库。</p>
+            <p class="actions__note">
+              {{ apiMode
+                ? '状态经 PATCH /api/workorders/{id} 写入 MySQL，同时追加一条流转事件，刷新后仍保留。'
+                : '演示数据模式：状态仅保存在浏览器内存，刷新页面即复位。' }}
+            </p>
           </div>
         </div>
       </div>

@@ -438,13 +438,17 @@ function drawTrucks() {
       const active = props.activeSite === siteId
       const icon = L.divIcon({
         className: 'truck-pin' + (active ? ' truck-pin--on' : ''),
-        iconSize: [34, 24],
-        iconAnchor: [17, 12],
+        iconSize: [40, 40],
+        iconAnchor: [20, 20],
         html:
+          '<span class="truck-pin__pulse"></span>' +
           '<span class="truck-pin__body">' +
-          '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-          '<path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1"/>' +
-          '<circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span>'
+          '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+          '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>' +
+          '<path d="M15 18H9"/>' +
+          '<path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>' +
+          '<circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>' +
+          '</svg></span>'
       })
       const marker = L.marker([pts[0][1], pts[0][0]], { icon, keyboard: false, zIndexOffset: 800 })
         .addTo(truckGroup!)
@@ -463,10 +467,20 @@ function updateTruckPositions() {
     const marker = trucks.get(siteId)
     if (!marker) return
     const path = toPath(pts)
-    // 按顺序错开一点，四辆车不会挤在门口
-    const offset = (order.indexOf(key) % 4) * 0.07
-    const p = pointAt(path, ((props.progress ?? 0) + offset) % 1)
+    // 按顺序错开，四辆车不会挤在门口（同一段路上前后拉开一段距离）
+    const offset = (order.indexOf(key) % 4) * 0.11
+    const t = ((props.progress ?? 0) + offset) % 1
+    const p = pointAt(path, t)
     marker.setLatLng(p)
+    // 车头朝向：取前方一小段的方向角，换算成屏幕旋转
+    const ahead = pointAt(path, Math.min(t + 0.006, 1))
+    const dLat = ahead.lat - p.lat
+    const dLng = (ahead.lng - p.lng) * Math.cos((p.lat * Math.PI) / 180)
+    if (Math.abs(dLat) > 1e-9 || Math.abs(dLng) > 1e-9) {
+      const bearing = (Math.atan2(dLng, dLat) * 180) / Math.PI
+      const el = marker.getElement()
+      if (el) el.style.setProperty('--bearing', `${Math.round(bearing) - 90}deg`)
+    }
   })
 }
 
@@ -571,16 +585,7 @@ const layerOptions = [
   background: #2fa36b; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.5);
 }
 .lg__gate { width: 9px; height: 9px; border-radius: 50%; background: #2fa36b; display: inline-block; }
-.truck-pin__body {
-  display: grid; place-items: center;
-  width: 26px; height: 26px; margin: 0 auto;
-  background: #fff; border-radius: 50%;
-  color: #2f6fb5;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .45);
-  border: 2px solid #2f6fb5;
-  transform: translateY(-6px);
-}
-.truck-pin--on .truck-pin__body { border-color: #ffb037; box-shadow: 0 0 0 4px rgba(255, 176, 55, .35); }
+
 
 .map__offline {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -812,5 +817,50 @@ const layerOptions = [
   background: rgb(8 11 16 / 0.7) !important;
   border-color: #35414f !important;
   color: #9aa7b6 !important;
+}
+
+/* ---------- 在途运输车（Leaflet 动态插入，必须放全局样式里） ---------- */
+.truck-pin { position: relative; display: grid; place-items: center; }
+
+/* 车周围一圈呼吸光晕，让它在卫星底图上更抓眼 */
+.truck-pin__pulse {
+  position: absolute;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: rgba(63, 134, 218, .45);
+  animation: truck-pulse 1.9s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes truck-pulse {
+  0%   { transform: scale(.7);   opacity: .7; }
+  70%  { transform: scale(2.05); opacity: 0; }
+  100% { transform: scale(2.05); opacity: 0; }
+}
+
+.truck-pin__body {
+  position: relative;
+  display: grid; place-items: center;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(180deg, #3f86da 0%, #1f5ca6 100%);
+  border: 2px solid #fff;
+  box-shadow: 0 3px 10px rgba(6, 16, 28, .55), 0 0 0 2px rgba(63, 134, 218, .28);
+  transition: background .18s ease, box-shadow .18s ease;
+}
+.truck-pin__body svg {
+  transform: rotate(var(--bearing, 90deg));
+  transition: transform .2s linear;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .35));
+}
+.truck-pin--on .truck-pin__body {
+  background: linear-gradient(180deg, #ffc45c 0%, #e0890f 100%);
+  box-shadow: 0 0 0 5px rgba(255, 176, 55, .32), 0 3px 12px rgba(6, 16, 28, .55);
+}
+.truck-pin--on .truck-pin__pulse { background: rgba(255, 176, 55, .5); }
+
+@media (prefers-reduced-motion: reduce) {
+  .truck-pin__pulse { animation: none; opacity: .35; }
+  .truck-pin__body svg { transition: none; }
 }
 </style>
