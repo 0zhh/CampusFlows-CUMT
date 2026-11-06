@@ -11,7 +11,7 @@ import 'leaflet/dist/leaflet.css'
 import { SITES, isOpenNow } from '@/data/sites'
 import { useAppStore, MANUAL_IMAGE } from '@/stores/app'
 import type { Scenario } from '@/data/types'
-import routesData from '@/data/station_routes.json'
+import { gates as gateList, lines as routeLines } from '@/composables/useRoutes'
 
 const props = defineProps<{
   scenario: Scenario
@@ -324,23 +324,14 @@ watch(
 )
 
 /* ---------- 校内运输路径（放大视图里显示） ---------- */
-interface RouteItem {
-  site_id: string
-  name: string
-  reachable: boolean
-  length_m?: number
-  minutes?: number
-  polyline?: [number, number][]
-}
-const routes = (routesData as unknown as { routes: RouteItem[] }).routes
-const gate = (routesData as unknown as { gate: { name: string; lon: number; lat: number } }).gate
+const SITE_COLOR: Record<string, string> = Object.fromEntries(SITES.map((s) => [s.id, s.color]))
 
 /** 把经纬度折线转成 Leaflet 坐标，并返回累计长度，供车辆插值 */
-function toPath(r: RouteItem) {
-  const pts = (r.polyline ?? []).map(([lon, lat]) => L.latLng(lat, lon))
+function toPath(pts: [number, number][]) {
+  const latlngs = pts.map(([lon, lat]) => L.latLng(lat, lon))
   const acc = [0]
-  for (let i = 1; i < pts.length; i++) acc.push(acc[i - 1] + pts[i].distanceTo(pts[i - 1]))
-  return { pts, acc, total: acc[acc.length - 1] || 1 }
+  for (let i = 1; i < latlngs.length; i++) acc.push(acc[i - 1] + latlngs[i].distanceTo(latlngs[i - 1]))
+  return { pts: latlngs, acc, total: acc[acc.length - 1] || 1 }
 }
 
 function pointAt(path: ReturnType<typeof toPath>, ratio: number) {
@@ -363,23 +354,35 @@ function drawRoutes() {
   clearRoutes()
   routeGroup = L.layerGroup().addTo(map)
 
-  // 校门：配送起点，始终标出来
-  L.circleMarker([gate.lat, gate.lon], {
-    radius: 7, color: '#ffffff', weight: 2, fillColor: '#2fa36b', fillOpacity: 1
-  })
-    .addTo(routeGroup)
-    .bindTooltip(gate.name + '（校门 · 配送起点）', { direction: 'top', offset: [0, -8] })
-
-  // 只画已经有折线的线路；没描过的跳过，不拿假路线糊弄
-  const ready = routes.filter((r) => (r.polyline?.length ?? 0) >= 2)
-  ready.forEach((r) => {
-    const pts = r.polyline!.map(([lon, lat]) => [lat, lon] as [number, number])
-    const color = SITES.find((s) => s.id === r.site_id)?.color ?? '#3f6fb5'
-    L.polyline(pts, { color, weight: 4, opacity: 0.9 })
+  // 两个入口
+  gateList.value.forEach((g) => {
+    const icon = L.divIcon({
+      className: 'gate-pin',
+      iconSize: [18, 18],
+      iconAnchor: [9, 9],
+      html: '<span class="gate-pin__dot"></span>'
+    })
+    L.marker([g.lat, g.lon], { icon, keyboard: false, interactive: true })
       .addTo(routeGroup!)
-      .bindTooltip(`${r.name}${r.length_m ? ' · ' + r.length_m + ' m' : ''}`, { sticky: true })
-    const end = pts[pts.length - 1]
-    L.circleMarker(end, { radius: 5, color, weight: 2, fillColor: '#fff', fillOpacity: 1 }).addTo(routeGroup!)
+      .bindTooltip(g.name + '（配送入口）', { direction: 'top', offset: [0, -10] })
+  })
+
+  const ready = Object.entries(routeLines.value).filter(([, pts]) => pts.length >= 2)
+  ready.forEach(([key, pts]) => {
+    const [gateId, siteId] = key.split(':')
+    const color = SITE_COLOR[siteId] ?? '#3f6fb5'
+    L.polyline(pts.map(([lon, lat]) => [lat, lon] as [number, number]), {
+      color,
+      weight: 4,
+      opacity: 0.9,
+      dashArray: gateId === 'east' ? '8 6' : undefined
+    })
+      .addTo(routeGroup!)
+      .bindTooltip(
+        (gateList.value.find((g) => g.id === gateId)?.name ?? gateId) +
+          ' → ' + (SITES.find((s) => s.id === siteId)?.shortName ?? siteId),
+        { sticky: true }
+      )
   })
 
   if (!ready.length) {
@@ -390,8 +393,8 @@ function drawRoutes() {
     return
   }
 
-  // 车辆：沿最长的一条循环跑
-  const main = toPath(ready.slice().sort((a, b) => (b.polyline!.length) - (a.polyline!.length))[0])
+  const longest = ready.slice().sort((a, b) => b[1].length - a[1].length)[0][1]
+  const main = toPath(longest)
   vehicle = L.circleMarker(pointAt(main, 0), {
     radius: 6, color: '#1f2933', weight: 2, fillColor: '#ffd166', fillOpacity: 1
   }).addTo(map).bindTooltip('校内配送车（示意）', { direction: 'top', offset: [0, -8] })
@@ -414,11 +417,11 @@ function clearRoutes() {
 }
 
 watch(
-  () => props.showRoutes,
-  (on) => {
-    if (!map) return
-    on ? drawRoutes() : clearRoutes()
-  }
+  () => [props.showRoutes, routeLines.value, gateList.value] as const,
+  () => {
+    if (props.showRoutes) drawRoutes()
+  },
+  { deep: true }
 )
 
 defineExpose({
@@ -462,6 +465,7 @@ const layerOptions = [
       <span class="lg"><i class="lg__dot" style="background: var(--lan)" />兰苑</span>
       <span class="lg"><i class="lg__ring" />风险时段</span>
       <span v-if="showRoutes" class="lg"><i class="lg__line" />配送路径</span>
+      <span v-if="showRoutes" class="lg"><i class="lg__gate" />配送入口</span>
     </div>
     <div v-if="layer === 'satellite' && satState === 'failed'" class="map__offline" role="status">
       <b>卫星瓦片加载失败</b>
@@ -483,6 +487,12 @@ const layerOptions = [
 </template>
 
 <style scoped>
+.gate-pin__dot {
+  display: block; width: 14px; height: 14px; margin: 2px; border-radius: 50%;
+  background: #2fa36b; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.5);
+}
+.lg__gate { width: 9px; height: 9px; border-radius: 50%; background: #2fa36b; display: inline-block; }
+
 .map__offline {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   z-index: 600; display: grid; gap: 6px; justify-items: center; text-align: center;

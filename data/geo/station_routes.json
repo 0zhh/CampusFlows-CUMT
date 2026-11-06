@@ -1,50 +1,21 @@
 {
-  "schema_version": "1.1",
-  "generated_at": "2026-11-05",
+  "schema_version": "2.0",
+  "generated_at": "2026-11-06",
   "status": "pending_annotation",
-  "note": "原有四条线路由 OSM 路网 Dijkstra 计算，与实际走法不符，已清空。等用户在地图上描线后回填 polyline。",
-  "gate": {
-    "name": "北门",
-    "lon": 117.1443,
-    "lat": 34.22119
-  },
-  "speed_kmh": 15,
-  "routes": [
+  "note": "两条入口各四条线路，等用户描线后回填。折线坐标 [lng, lat]。",
+  "gates": [
     {
-      "site_id": "NH-TAOYUAN",
-      "name": "桃苑主站",
-      "reachable": false,
-      "pending": true,
-      "length_m": null,
-      "minutes": null,
-      "polyline": []
+      "id": "north",
+      "name": "北门",
+      "lon": 117.144061,
+      "lat": 34.220985
     },
     {
-      "site_id": "NH-SONGYUAN",
-      "name": "松苑",
-      "reachable": false,
-      "pending": true,
-      "length_m": null,
-      "minutes": null,
-      "polyline": []
-    },
-    {
-      "site_id": "NH-MEIYUAN",
-      "name": "梅苑",
-      "reachable": false,
-      "pending": true,
-      "length_m": null,
-      "minutes": null,
-      "polyline": []
-    },
-    {
-      "site_id": "NH-LANYUAN",
-      "name": "兰苑",
-      "reachable": false,
-      "pending": true,
-      "length_m": null,
-      "minutes": null,
-      "polyline": []
+      "id": "east",
+      "name": "东门",
+      "lon": 117.1439,
+      "lat": 34.213488
     }
-  ]
+  ],
+  "routes": []
 }

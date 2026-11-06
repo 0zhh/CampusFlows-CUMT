@@ -7,8 +7,9 @@ import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { X, RotateCcw, Truck, PencilLine, Copy, Eraser, Undo2, Download } from 'lucide-vue-next'
 import CampusMap from './CampusMap.vue'
 import { useAppStore, MANUAL_IMAGE } from '@/stores/app'
+import { gates, getLine, setLine, summary, exportJson, resetAll } from '@/composables/useRoutes'
 import type { Scenario } from '@/data/types'
-import routesData from '@/data/station_routes.json'
+
 
 const props = defineProps<{ open: boolean; scenario: Scenario; selectedId?: string | null }>()
 const emit = defineEmits<{
@@ -19,15 +20,6 @@ const emit = defineEmits<{
 const store = useAppStore()
 const mapRef = ref<InstanceType<typeof CampusMap> | null>(null)
 
-function onKey(e: KeyboardEvent) {
-  if (e.key === 'Escape' && trace.value) {
-    e.stopPropagation()
-    trace.value = false
-  }
-}
-onMounted(() => window.addEventListener('keydown', onKey))
-onUnmounted(() => window.removeEventListener('keydown', onKey))
-
 watch(
   () => props.open,
   (on) => {
@@ -36,107 +28,50 @@ watch(
     nextTick(() => window.setTimeout(() => (mapRef.value as any)?.refresh?.(), 280))
   }
 )
-const routes = (routesData as any).routes as {
-  site_id: string
-  name: string
-  reachable: boolean
-  pending?: boolean
-  length_m?: number | null
-  minutes?: number | null
-  polyline?: [number, number][]
-}[]
 const resetHint = ref(false)
 
-/* ---------- 描线：点地图取点，导出坐标 ---------- */
-const TRACE_KEY = 'campusflow-trace-v1'
+/* ---------- 描线：选入口 + 选站点，点地图取点 ---------- */
 const trace = ref(false)
+const gateId = ref('north')
 const target = ref('NH-TAOYUAN')
 const copied = ref(false)
 
-type Pt = { lat: number; lng: number }
-function loadTrace(): Pt[] {
-  try {
-    const raw = localStorage.getItem(TRACE_KEY)
-    const o = raw ? JSON.parse(raw) : null
-    return Array.isArray(o?.points) ? o.points : []
-  } catch {
-    return []
-  }
-}
-const points = ref<Pt[]>(loadTrace())
-if (localStorage.getItem(TRACE_KEY)) {
-  try {
-    const o = JSON.parse(localStorage.getItem(TRACE_KEY) as string)
-    if (o?.target) target.value = o.target
-  } catch {
-    /* 忽略 */
-  }
-}
-
-watch(
-  points,
-  (list) => {
-    try {
-      localStorage.setItem(TRACE_KEY, JSON.stringify({ target: target.value, points: list }))
-    } catch {
-      /* 忽略 */
-    }
-  },
-  { deep: true }
-)
-watch(target, () => {
-  try {
-    localStorage.setItem(TRACE_KEY, JSON.stringify({ target: target.value, points: points.value }))
-  } catch {
-    /* 忽略 */
-  }
-})
+const currentLine = computed<[number, number][]>(() => getLine(gateId.value, target.value))
+const points = computed(() => currentLine.value.map(([lng, lat]) => ({ lat, lng })))
 
 const SITE_OPTIONS = [
-  { id: 'NH-TAOYUAN', label: '北门 → 桃苑主站' },
-  { id: 'NH-SONGYUAN', label: '北门 → 松苑' },
-  { id: 'NH-MEIYUAN', label: '北门 → 梅苑' },
-  { id: 'NH-LANYUAN', label: '北门 → 兰苑' }
+  { id: 'NH-TAOYUAN', label: '桃苑主站' },
+  { id: 'NH-SONGYUAN', label: '松苑' },
+  { id: 'NH-MEIYUAN', label: '梅苑' },
+  { id: 'NH-LANYUAN', label: '兰苑' }
 ]
 
-/** 折线同时给经纬度与原图像素坐标：像素是底图的稳定坐标系，反算不会漂 */
-const pixels = computed(() => {
-  const b = store.manualBounds
-  return points.value.map((p) => [
-    Math.round(((p.lng - b.west) / (b.east - b.west)) * MANUAL_IMAGE.width),
-    Math.round(((b.north - p.lat) / (b.north - b.south)) * MANUAL_IMAGE.height)
-  ])
-})
+const gateInfo = computed(() => gates.value.find((g) => g.id === gateId.value))
 
 const traceJson = computed(() =>
-  JSON.stringify({
-    site_id: target.value,
-    points: points.value.map((p) => [Number(p.lng.toFixed(6)), Number(p.lat.toFixed(6))]),
-    pixels: pixels.value
-  })
+  JSON.stringify({ gate_id: gateId.value, site_id: target.value, polyline: currentLine.value }, null, 0)
 )
-
-function undo() {
-  points.value = points.value.slice(0, -1)
-}
-
-function download() {
-  const blob = new Blob([JSON.stringify({ site_id: target.value, points: points.value.map((p) => [Number(p.lng.toFixed(6)), Number(p.lat.toFixed(6))]), pixels: pixels.value }, null, 2)], { type: 'application/json' })
-  const a = document.createElement('a')
-  a.href = URL.createObjectURL(blob)
-  a.download = 'route-' + target.value + '.json'
-  a.click()
-  URL.revokeObjectURL(a.href)
-}
 
 function onMapClick(p: { lat: number; lng: number }) {
   if (!trace.value) return
-  points.value = [...points.value, p]
+  const pts: [number, number][] = [
+    ...currentLine.value,
+    [Number(p.lng.toFixed(6)), Number(p.lat.toFixed(6))]
+  ]
+  setLine(gateId.value, target.value, pts)
+}
+
+function undo() {
+  setLine(gateId.value, target.value, currentLine.value.slice(0, -1))
+}
+
+function clearTrace() {
+  setLine(gateId.value, target.value, [])
 }
 
 async function copyTrace() {
   try {
-    await navigator.clipboard.writeText(traceJson.value)
+    await navigator.clipboard.writeText(exportJson())
     copied.value = true
     window.setTimeout(() => (copied.value = false), 1800)
   } catch {
@@ -144,9 +79,23 @@ async function copyTrace() {
   }
 }
 
-function clearTrace() {
-  points.value = []
+function download() {
+  const blob = new Blob([exportJson()], { type: 'application/json' })
+  const a = document.createElement('a')
+  a.href = URL.createObjectURL(blob)
+  a.download = 'campus-routes.json'
+  a.click()
+  URL.revokeObjectURL(a.href)
 }
+
+function onKey(e: KeyboardEvent) {
+  if (e.key === 'Escape' && trace.value) {
+    e.stopPropagation()
+    trace.value = false
+  }
+}
+onMounted(() => window.addEventListener('keydown', onKey))
+onUnmounted(() => window.removeEventListener('keydown', onKey))
 
 function resetPositions() {
   store.clearSiteOverride()
@@ -164,7 +113,7 @@ function resetPositions() {
           <header class="mx__head">
             <div class="mx__title">
               <h2>南湖校区 · 配送地图</h2>
-              <p>配送起点为北门；线路待标注，描好后会自动画出并跑车</p>
+              <p>两个入口 × 四个驿站，共 8 条线；描好后自动画线并跑车</p>
             </div>
             <div class="mx__actions">
               <button class="btn btn--ghost" @click="resetPositions" title="把四个驿站恢复成默认坐标">
@@ -196,47 +145,62 @@ function resetPositions() {
             <aside class="mx__side">
               <h3 class="mx__sub"><Truck :size="14" /> 线路一览</h3>
               <ul class="mx__routes">
-                <li v-for="r in routes" :key="r.site_id" :class="{ 'is-off': !r.polyline?.length }">
-                  <span class="mx__dot" :class="'mx__dot--' + r.site_id.slice(3, 6).toLowerCase()" />
-                  <span class="mx__name">{{ r.name }}</span>
-                  <span v-if="(r.polyline?.length ?? 0) >= 2" class="mx__num num">{{ r.length_m }} m · {{ r.minutes }} min</span>
+                <li v-for="s in summary" :key="s.gate.id + s.siteId" :class="{ 'is-off': s.count < 2 }">
+                  <span class="mx__dot" :class="'mx__dot--' + s.siteId.slice(3, 6).toLowerCase()" />
+                  <span class="mx__name">{{ s.gate.name }} → {{ s.siteName }}</span>
+                  <span v-if="s.count >= 2" class="mx__num num">{{ s.count }} 点</span>
                   <span v-else class="mx__off">待标注</span>
                 </li>
               </ul>
               <div v-if="trace" class="trace">
-                <label class="trace__label" for="trace-target">这条线去哪个站</label>
-                <select id="trace-target" v-model="target" class="trace__select">
-                  <option v-for="o in SITE_OPTIONS" :key="o.id" :value="o.id">{{ o.label }}</option>
-                </select>
+                <div class="trace__row">
+                  <label class="trace__label" for="trace-gate">入口</label>
+                  <select id="trace-gate" v-model="gateId" class="trace__select">
+                    <option v-for="g in gates" :key="g.id" :value="g.id">{{ g.name }}</option>
+                  </select>
+                  <span v-if="gateInfo" class="trace__coord num">{{ gateInfo.lat.toFixed(5) }}, {{ gateInfo.lon.toFixed(5) }}</span>
+                </div>
+
+                <div class="trace__row">
+                  <label class="trace__label" for="trace-target">去哪个站</label>
+                  <select id="trace-target" v-model="target" class="trace__select">
+                    <option v-for="o in SITE_OPTIONS" :key="o.id" :value="o.id">{{ o.label }}</option>
+                  </select>
+                </div>
 
                 <p class="trace__hint">
-                  从校门开始，沿路一个点一个点点下去（可以拖动地图再接着点）。点完复制或下载发我。
+                  从所选的入口开始，沿路一个点一个点点下去（可以拖地图再接着点）。每选一组入口+站点就是独立的一条线。
                 </p>
 
                 <p class="trace__count">
-                  已选 <b class="num">{{ points.length }}</b> 个点
-                  <span v-if="points.length" class="trace__last">
-                    · 最后一点 <span class="num">{{ pixels[points.length - 1][0] }}, {{ pixels[points.length - 1][1] }}</span> px
-                  </span>
+                  这条线已有 <b class="num">{{ points.length }}</b> 个点
                 </p>
 
                 <div class="trace__actions">
-                  <button class="btn btn--primary" :disabled="points.length < 2" @click="copyTrace">
-                    <Copy :size="13" /> {{ copied ? '已复制' : '复制' }}
-                  </button>
-                  <button class="btn" :disabled="points.length < 2" @click="download">
-                    <Download :size="13" /> 下载
-                  </button>
                   <button class="btn btn--ghost" :disabled="!points.length" @click="undo">
                     <Undo2 :size="13" /> 撤销
                   </button>
                   <button class="btn btn--ghost" :disabled="!points.length" @click="clearTrace">
-                    <Eraser :size="13" /> 清空
+                    <Eraser :size="13" /> 清空这条
                   </button>
                 </div>
 
-                <pre v-if="points.length" class="trace__json">{{ traceJson }}</pre>
-                <p class="trace__tip">描线时按 Esc 退出；点会存在本机，刷新不丢。</p>
+
+                <div class="trace__actions">
+                  <button class="btn btn--primary" @click="copyTrace">
+                    <Copy :size="13" /> {{ copied ? '已复制' : '复制全部' }}
+                  </button>
+                  <button class="btn" @click="download">
+                    <Download :size="13" /> 下载
+                  </button>
+                  <button class="btn btn--ghost" @click="resetAll(); copied = false">
+                    <Eraser :size="13" /> 全部清空
+                  </button>
+                </div>
+
+                <p class="trace__tip">
+                  描线时按 Esc 退出；点存在本机，刷新不丢。画完点「复制全部」发我，我写进项目数据。
+                </p>
               </div>
 
               <p class="mx__note">
@@ -256,7 +220,19 @@ function resetPositions() {
 .trace__label { font-size: var(--fs-xs); color: var(--fg-2); }
 .trace__select { padding: 5px var(--sp-2); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--fg-0); font-size: var(--fs-xs); }
 .trace__last { color: var(--fg-2); }
-.trace__tip { font-size: 10px; color: var(--fg-2); }
+.trace__tip { font-size: 10px; color: var(--fg-2); line-height: 1.5; }
+.trace__row { display: grid; grid-template-columns: 46px minmax(0, 1fr); align-items: center; gap: var(--sp-2); }
+.trace__coord { grid-column: 2; font-size: 10px; color: var(--fg-2); }
+.trace__sub { font-size: var(--fs-xs); color: var(--fg-2); margin-top: var(--sp-1); }
+.trace__list { display: grid; gap: 2px; }
+.trace__list li {
+  display: flex; justify-content: space-between; gap: var(--sp-2);
+  font-size: var(--fs-xs); color: var(--fg-2); cursor: pointer;
+  padding: 2px 4px; border-radius: var(--r-sm);
+}
+.trace__list li:hover { background: var(--bg-2); }
+.trace__list li.is-on { background: var(--bg-3); color: var(--fg-0); }
+.trace__done { color: var(--ok); }
 .trace__hint { font-size: var(--fs-xs); color: var(--fg-2); line-height: var(--lh-loose); }
 .trace__count { font-size: var(--fs-xs); color: var(--fg-1); }
 .trace__actions { display: flex; gap: var(--sp-2); }
