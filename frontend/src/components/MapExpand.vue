@@ -148,7 +148,7 @@ function resetPositions() {
                 <li v-for="s in summary" :key="s.gate.id + s.siteId" :class="{ 'is-off': s.count < 2 }">
                   <span class="mx__dot" :class="'mx__dot--' + s.siteId.slice(3, 6).toLowerCase()" />
                   <span class="mx__name">{{ s.gate.name }} → {{ s.siteName }}</span>
-                  <span v-if="s.count >= 2" class="mx__num num">{{ s.count }} 点</span>
+                  <span v-if="s.count >= 2" class="mx__num num">{{ s.meters }} m</span>
                   <span v-else class="mx__off">待标注</span>
                 </li>
               </ul>
@@ -169,7 +169,7 @@ function resetPositions() {
                 </div>
 
                 <p class="trace__hint">
-                  从所选的入口开始，沿路一个点一个点点下去（可以拖地图再接着点）。每选一组入口+站点就是独立的一条线。
+                  八条线已经标好，这里只用来微调或重画某一条。选入口和站点后，点地图即可覆盖那一条。
                 </p>
 
                 <p class="trace__count">
@@ -204,8 +204,8 @@ function resetPositions() {
               </div>
 
               <p class="mx__note">
-                原来那四条按 OSM 道路算出来的线路已清空（与实际走法不符）。
-                点「描线」在地图上手绘，复制或下载后发我即可落成正式路线。
+                八条线来自你手绘的轨迹，已经过去重、抽稀和曲线平滑，只画在卫星底图上。
+                哪条不对就点「描线」重画那一条。
               </p>
             </aside>
           </div>

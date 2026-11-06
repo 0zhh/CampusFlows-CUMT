@@ -1,8 +1,8 @@
 {
   "generated_by": "data/research/make_manifest.py",
   "root": ".",
-  "count": 1042,
-  "total_bytes": 45746738,
+  "count": 1044,
+  "total_bytes": 47643099,
   "files": [
     {
       "path": ".gitignore",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CampusFlow_总体开发计划与实施路线_v1.5_南湖校区全栈演示版.md",
-      "bytes": 57168,
-      "sha256": "21a068434c06cde5a46372fb4966f14189602888a69babf1d592f9ff936831c3"
+      "bytes": 58397,
+      "sha256": "8ec9ac4b08444cbb9955df894894ee351e51f3b8d409bf70d15cc4ec4cc05edf"
     },
     {
       "path": "CampusFlow_数据可信度与实体级仿真方案_v1.4.md",
@@ -386,8 +386,8 @@
     },
     {
       "path": "data/geo/site_geolocation.json",
-      "bytes": 3374,
-      "sha256": "5d23254f6bf2f6047275a029656a1c9494395bff8bbf8775588eed7d5d1e47f3"
+      "bytes": 3789,
+      "sha256": "4bc9a7a605b0fdf30a8505e24256b1477b95c17fd46026a3a9620ebbf5019305"
     },
     {
       "path": "data/geo/station_layouts.json",
@@ -396,8 +396,8 @@
     },
     {
       "path": "data/geo/station_routes.json",
-      "bytes": 434,
-      "sha256": "687523a04c66092a1066d19ccf0d60c54ae612398575afd67dc937db345819f6"
+      "bytes": 102158,
+      "sha256": "43ac8866edfe68524d5907bbc4b73f42a80717fdc0482731ca4b1dded3b4628b"
     },
     {
       "path": "data/maps/cumt_official_campus_traffic_2025.png",
@@ -561,8 +561,8 @@
     },
     {
       "path": "data/research/file_manifest.json",
-      "bytes": 192478,
-      "sha256": "604cfb1c3f0f8e499f96238172de0e9f22bdb35469c7488e351410879c972b8a"
+      "bytes": 192833,
+      "sha256": "43395fa24554e43fa2f61c67265aeeb8ca8c0137d5456ff49094d2cd265cfee7"
     },
     {
       "path": "data/research/fit_fft_georef.py",
@@ -623,6 +623,11 @@
       "path": "data/research/merge_photo_params.py",
       "bytes": 8263,
       "sha256": "37930af3267017fbf4c43180f8031d5c6766267d087e16b4f03b4af12fa2f7c4"
+    },
+    {
+      "path": "data/research/merge_routes.py",
+      "bytes": 4583,
+      "sha256": "44fd7bf70dc41bef71c1ba8275838d38f39136c82d2f7466c2ea99f6d75082ab"
     },
     {
       "path": "data/research/pivot_nov_flows.py",
@@ -1018,6 +1023,11 @@
       "path": "docs/screenshots/桃苑室内布局-v8-五层.png",
       "bytes": 49815,
       "sha256": "2ae9618323192eed5480b7d2792fe12a226c800b33c80a9e6298abad4d3c6a16"
+    },
+    {
+      "path": "docs/screenshots/配送线路-实景.png",
+      "bytes": 1684518,
+      "sha256": "0a18fda6b71492b83365f15b21c78d34088415dfa324606743100ede824ec835"
     },
     {
       "path": "frontend/README.md",
@@ -4956,8 +4966,8 @@
     },
     {
       "path": "frontend/scripts/interact.mjs",
-      "bytes": 13031,
-      "sha256": "59e00bca3b8fc01dd93f827a7effb9ab37bb312cf62ae1fb63fd6927556805a0"
+      "bytes": 13391,
+      "sha256": "d34bac34d5358ad91deff0b39b50ef517f4bd96d465bd84bc5acac0c7e1a1491"
     },
     {
       "path": "frontend/scripts/keyboard.mjs",
@@ -5011,8 +5021,8 @@
     },
     {
       "path": "frontend/src/components/CampusMap.vue",
-      "bytes": 22565,
-      "sha256": "2f1d1f1bf0d565ff22afb9b30361b9ff3a192310f725ada684153ad52b32b740"
+      "bytes": 23087,
+      "sha256": "7651d218f120baf0258cf12e583d987f968f7d6852d0b1e5c70c20abd0bdb2cd"
     },
     {
       "path": "frontend/src/components/EChart.vue",
@@ -5026,8 +5036,8 @@
     },
     {
       "path": "frontend/src/components/MapExpand.vue",
-      "bytes": 12364,
-      "sha256": "f8d736355499f286f6f534e005a0e9264496e45a04ff678aee4d82d3e1a625d5"
+      "bytes": 12318,
+      "sha256": "6d89078eb3fe5cedcfb230b77b3d57097917d998aea67aeedda83ef98312f8ae"
     },
     {
       "path": "frontend/src/components/PickupLookup.vue",
@@ -5086,8 +5096,8 @@
     },
     {
       "path": "frontend/src/composables/useRoutes.ts",
-      "bytes": 3419,
-      "sha256": "8e3c9f2c74c074c4dcd3db5c9c772251e0e597315f5faf732d5161aa7b37998c"
+      "bytes": 3981,
+      "sha256": "3643a9ac125854b4a4c689d11f3d4d466af9bef98e1c7e615830c6ccbd0102b4"
     },
     {
       "path": "frontend/src/data/api.ts",
@@ -5111,8 +5121,8 @@
     },
     {
       "path": "frontend/src/data/site_geolocation.json",
-      "bytes": 3374,
-      "sha256": "5d23254f6bf2f6047275a029656a1c9494395bff8bbf8775588eed7d5d1e47f3"
+      "bytes": 3789,
+      "sha256": "4bc9a7a605b0fdf30a8505e24256b1477b95c17fd46026a3a9620ebbf5019305"
     },
     {
       "path": "frontend/src/data/sites.json",
@@ -5131,8 +5141,8 @@
     },
     {
       "path": "frontend/src/data/station_routes.json",
-      "bytes": 434,
-      "sha256": "687523a04c66092a1066d19ccf0d60c54ae612398575afd67dc937db345819f6"
+      "bytes": 102158,
+      "sha256": "43ac8866edfe68524d5907bbc4b73f42a80717fdc0482731ca4b1dded3b4628b"
     },
     {
       "path": "frontend/src/data/statistics.json",

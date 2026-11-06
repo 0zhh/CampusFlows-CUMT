@@ -224,7 +224,7 @@ async function init() {
   // 视野对准整个校区，四站落在校区西侧（与真实情况一致）
   map.fitBounds(CAMPUS_BOUNDS, { padding: [16, 16] })
 
-  if (props.showRoutes) drawRoutes()
+  if (props.showRoutes && layer.value === 'satellite') drawRoutes()
   drawTrace()
   refit()
 }
@@ -258,8 +258,19 @@ function drawTrace() {
 
 function refit() {
   if (!map) return
-  if (layer.value === 'manual') map.fitBounds(manualBounds.value, { padding: [12, 12] })
-  else map.fitBounds(CAMPUS_BOUNDS, { padding: [16, 16] })
+  if (layer.value === 'manual') {
+    map.fitBounds(manualBounds.value, { padding: [12, 12] })
+    return
+  }
+  // 卫星层：有线路时框住线路本身，否则退回校区范围
+  const pts = Object.values(routeLines.value).flat()
+  if (props.showRoutes && pts.length > 1) {
+    const b = L.latLngBounds(pts.map(([lon, lat]) => [lat, lon] as [number, number]))
+    gateList.value.forEach((g) => b.extend([g.lat, g.lon]))
+    map.fitBounds(b, { padding: [40, 40], maxZoom: 17 })
+    return
+  }
+  map.fitBounds(CAMPUS_BOUNDS, { padding: [16, 16] })
 }
 
 let ro: ResizeObserver | null = null
@@ -297,6 +308,8 @@ watch(layer, () => {
   applyLayer()
   refit()
   buildMarkers()
+  if (props.showRoutes && layer.value === 'satellite') drawRoutes()
+  else clearRoutes()
 })
 watch(riskSiteIds, () => buildMarkers())
 watch(() => store.siteOverride, () => buildMarkers(), { deep: true })
@@ -362,7 +375,7 @@ function drawRoutes() {
       iconAnchor: [9, 9],
       html: '<span class="gate-pin__dot"></span>'
     })
-    L.marker([g.lat, g.lon], { icon, keyboard: false, interactive: true })
+    L.marker([g.lat, g.lon], { icon, keyboard: false })
       .addTo(routeGroup!)
       .bindTooltip(g.name + '（配送入口）', { direction: 'top', offset: [0, -10] })
   })
@@ -371,11 +384,16 @@ function drawRoutes() {
   ready.forEach(([key, pts]) => {
     const [gateId, siteId] = key.split(':')
     const color = SITE_COLOR[siteId] ?? '#3f6fb5'
-    L.polyline(pts.map(([lon, lat]) => [lat, lon] as [number, number]), {
+    const latlngs = pts.map(([lon, lat]) => [lat, lon] as [number, number])
+
+    // 底衬：深色宽线，保证在任何底色上都能看清
+    L.polyline(latlngs, { color: '#0b0f14', weight: 7, opacity: 0.22, interactive: false }).addTo(routeGroup!)
+
+    L.polyline(latlngs, {
       color,
-      weight: 4,
-      opacity: 0.9,
-      dashArray: gateId === 'east' ? '8 6' : undefined
+      weight: gateId === 'north' ? 4 : 3.5,
+      opacity: 0.95,
+      className: 'flow-line' + (gateId === 'east' ? ' flow-line--thin' : '')
     })
       .addTo(routeGroup!)
       .bindTooltip(
@@ -384,42 +402,18 @@ function drawRoutes() {
         { sticky: true }
       )
   })
-
-  if (!ready.length) {
-    window.clearInterval(vehicleTimer)
-    vehicleTimer = undefined
-    vehicle?.remove()
-    vehicle = null
-    return
-  }
-
-  const longest = ready.slice().sort((a, b) => b[1].length - a[1].length)[0][1]
-  const main = toPath(longest)
-  vehicle = L.circleMarker(pointAt(main, 0), {
-    radius: 6, color: '#1f2933', weight: 2, fillColor: '#ffd166', fillOpacity: 1
-  }).addTo(map).bindTooltip('校内配送车（示意）', { direction: 'top', offset: [0, -8] })
-
-  let t = 0
-  window.clearInterval(vehicleTimer)
-  vehicleTimer = window.setInterval(() => {
-    t = (t + 0.004) % 1
-    vehicle?.setLatLng(pointAt(main, t))
-  }, 120)
 }
 
 function clearRoutes() {
-  window.clearInterval(vehicleTimer)
-  vehicleTimer = undefined
-  vehicle?.remove()
-  vehicle = null
   routeGroup?.remove()
   routeGroup = null
 }
 
 watch(
-  () => [props.showRoutes, routeLines.value, gateList.value] as const,
+  () => [props.showRoutes, routeLines.value, gateList.value, layer.value] as const,
   () => {
-    if (props.showRoutes) drawRoutes()
+    if (props.showRoutes && layer.value === 'satellite') drawRoutes()
+    else clearRoutes()
   },
   { deep: true }
 )
@@ -430,7 +424,8 @@ defineExpose({
   refresh: () => {
     map?.invalidateSize()
     refit()
-    if (props.showRoutes) drawRoutes()
+    if (props.showRoutes && layer.value === 'satellite') drawRoutes()
+    else clearRoutes()
   }
 })
 
@@ -487,6 +482,20 @@ const layerOptions = [
 </template>
 
 <style scoped>
+/* 流动的配送线：虚线沿着路径跑 */
+:deep(.flow-line) {
+  stroke-dasharray: 22 16;
+  stroke-linecap: round;
+  animation: routeFlow 1.5s linear infinite;
+}
+:deep(.flow-line--thin) { stroke-dasharray: 16 18; animation-duration: 1.8s; }
+@keyframes routeFlow {
+  to { stroke-dashoffset: -38; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :deep(.flow-line) { animation: none; }
+}
+
 .gate-pin__dot {
   display: block; width: 14px; height: 14px; margin: 2px; border-radius: 50%;
   background: #2fa36b; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.5);

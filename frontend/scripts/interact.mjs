@@ -166,11 +166,16 @@ for (let i = 0; i < 20 && !(await ev("!!document.querySelector('.map-expand')"))
 await ev("document.querySelector('.map-expand').click()")
 await sleep(1600)
 check('地图放大视图打开', await ev(`!!document.querySelector('.mx')`))
+// 路线只画在卫星底图上，先切过去
+await ev("[...document.querySelectorAll('.mx .layer-btn')].find(b => b.textContent.includes('卫星')).click()")
+await sleep(2600)
 check('放大图有 2 个入口标记', (await ev("document.querySelectorAll('.mx .gate-pin').length")) === 2,
   String(await ev("document.querySelectorAll('.mx .gate-pin').length")))
-check('线路一览 8 条且待标注', (await ev("document.querySelectorAll('.mx__routes li').length")) === 8
-  && (await ev("document.querySelectorAll('.mx__routes .mx__off').length")) === 8,
-  String(await ev("document.querySelectorAll('.mx__routes .mx__off').length")))
+check('卫星图上 8 条配送线', (await ev("document.querySelectorAll('.mx .flow-line').length")) === 8,
+  String(await ev("document.querySelectorAll('.mx .flow-line').length")))
+check('线路一览 8 条带里程', (await ev("document.querySelectorAll('.mx__routes li').length")) === 8
+  && (await ev("document.querySelectorAll('.mx__routes .mx__num').length")) === 8,
+  String(await ev("document.querySelectorAll('.mx__routes .mx__num').length")))
 await ev(`document.querySelector('.mx__actions .btn').click()`)
 await sleep(500)
 check('重置驿站位置有反馈', String(await ev(`document.querySelector('.mx__toast')?.textContent`)).includes('已恢复'))

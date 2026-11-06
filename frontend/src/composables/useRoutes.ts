@@ -35,7 +35,13 @@ function readStored(): { gates: Gate[]; lines: LineMap } {
     /* 忽略 */
   }
   const b = bundled as any
-  return { gates: (b?.gates as Gate[]) ?? DEFAULT_GATES, lines: {} }
+  const seeded: LineMap = {}
+  for (const r of b?.routes ?? []) {
+    if (Array.isArray(r.polyline) && r.polyline.length >= 2) {
+      seeded[r.gate_id + ':' + r.site_id] = r.polyline
+    }
+  }
+  return { gates: (b?.gates as Gate[]) ?? DEFAULT_GATES, lines: seeded }
 }
 
 /** 旧版描线只存了"最后一条"，这里尽量救回来（默认算北门） */
@@ -96,11 +102,22 @@ export function resetAll() {
 }
 
 /** 已画线路一览，供面板列出来 */
+function lineLength(pts: [number, number][]) {
+  let m = 0
+  for (let i = 1; i < pts.length; i++) {
+    const dy = (pts[i][1] - pts[i - 1][1]) * 110574
+    const dx = (pts[i][0] - pts[i - 1][0]) * 111320 * Math.cos((34.21 * Math.PI) / 180)
+    m += Math.hypot(dx, dy)
+  }
+  return Math.round(m)
+}
+
 export const summary = computed(() => {
-  const out: { gate: Gate; siteName: string; siteId: string; count: number }[] = []
+  const out: { gate: Gate; siteName: string; siteId: string; count: number; meters: number }[] = []
   for (const g of gates.value) {
     for (const s of SITES) {
-      out.push({ gate: g, siteId: s.id, siteName: s.shortName, count: getLine(g.id, s.id).length })
+      const line = getLine(g.id, s.id)
+      out.push({ gate: g, siteId: s.id, siteName: s.shortName, count: line.length, meters: lineLength(line) })
     }
   }
   return out
