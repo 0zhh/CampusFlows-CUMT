@@ -85,6 +85,14 @@ npm run dev
 
 ---
 
+### 1d. 卫星影像离线可用
+
+卫星底图不再依赖网络：`frontend/public/tiles/sat/` 里缓存了 **773 张 Esri 瓦片**（z14–z18，**11.2 MB**），
+覆盖校园与周边约 3.3 × 3.5 km；z18 只覆盖四个驿站所在的核心区（约 2.6 × 2.4 km），放大能看清楼。
+
+重新下载：`python data/research/fetch_sat_tiles.py`（需要能访问 Esri）。
+影像版权归 Esri / Maxar / Earthstar Geographics，仅用于课程演示。
+
 ## 二、这一版做了什么
 
 ### 数据口径（v2，2026-11-03 重算）

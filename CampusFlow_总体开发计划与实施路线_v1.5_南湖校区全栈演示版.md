@@ -902,3 +902,22 @@ SELECT COUNT(*) FROM slot WHERE parcel_id IS NOT NULL;                  -- 2000 
 
 **顺带补的可达性**：手册底图把彩色标记去掉后，风险状态没有载体了——改成在原图红点外画一圈红色脉冲环；
 同时给地图标记补了 Enter/Space 触发，键盘用户按 Enter 能打开站点抽屉（之前只有鼠标能点）。
+
+### 13.12 卫星影像离线化（2026-11-06）
+
+卫星底图原来直接拉 Esri 在线瓦片，断网就是一片灰。现在改成**本地缓存瓦片包**：
+
+| 项 | 值 |
+|---|---|
+| 瓦片数 | 773 张 |
+| 体积 | **11.16 MB**（上限 20 MB） |
+| 层级 | z14–z18 |
+| 覆盖 | z14–z17 校园 + 周边 3.3 × 3.5 km；z18 核心区 2.6 × 2.4 km |
+| 来源 | Esri World Imagery，JPEG q≈80 |
+| 路径 | `frontend/public/tiles/sat/{z}/{x}/{y}.jpg` |
+| 重下 | `python data/research/fetch_sat_tiles.py` |
+
+Leaflet 侧换成本地瓦片地址，配 `maxNativeZoom: 18` 与 `bounds` 限制，
+图层按钮提示从「Esri 在线瓦片 · 需联网」改成「本地缓存 · 离线可用」。
+
+> 版权：影像 © Esri, Maxar, Earthstar Geographics。仅用于课程演示，不对外分发。

@@ -37,7 +37,7 @@ const sources = [
 
 const osmSources = [
   { name: '学生手册《校园物流服务点分布图》', url: '', use: '默认底图；四个红点即站点位置，离线可用' },
-  { name: 'Esri ArcGIS World Imagery', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer', use: '卫星影像底图（在线瓦片，仅演示用）' },
+  { name: 'Esri ArcGIS World Imagery', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer', use: '卫星影像底图；已缓存 773 张离线瓦片（z14–z18，11.2 MB），断网可用' },
   { name: 'OpenStreetMap（ODbL-1.0）', url: 'https://www.openstreetmap.org/copyright', use: '只用于核对站点方位与校区范围，不再作为底图渲染' }
 ]
 

@@ -186,8 +186,10 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
           <div class="panel__body">
             <ul class="carrier__list">
               <li v-for="c in carriers" :key="c.carrierCode">
-                <i class="carrier__bar" :style="{ width: (c.onShelf / maxCarrier) * 100 + '%' }" />
                 <span class="carrier__name">{{ c.carrier }}</span>
+                <span class="carrier__track">
+                  <i :style="{ width: (c.onShelf / maxCarrier) * 100 + '%' }" />
+                </span>
                 <span class="carrier__num num">{{ c.onShelf }}</span>
               </li>
             </ul>
@@ -252,22 +254,26 @@ useReveal(".kpis > *, .ov__main > *, .ov__charts > *")
 }
 .ov__carrier .carrier__list { display: grid; gap: 6px; }
 .ov__carrier .carrier__list li {
-  position: relative;
   display: grid;
   grid-template-columns: 62px minmax(0, 1fr) 46px;
   align-items: center;
   gap: var(--sp-2);
   font-size: var(--fs-xs);
 }
-.ov__carrier .carrier__bar {
-  position: absolute;
-  left: 62px;
+.ov__carrier .carrier__name { color: var(--fg-2); }
+.ov__carrier .carrier__track {
   height: 12px;
   border-radius: 2px;
-  background: color-mix(in oklab, var(--brand) 42%, transparent);
+  background: var(--bg-2);
+  overflow: hidden;
 }
-.ov__carrier .carrier__name { grid-column: 1; color: var(--fg-2); }
-.ov__carrier .carrier__num { grid-column: 3; text-align: right; color: var(--fg-1); }
+.ov__carrier .carrier__track i {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--brand) 55%, transparent);
+}
+.ov__carrier .carrier__num { text-align: right; color: var(--fg-1); }
 
 .map-expand { margin-left: auto; font-size: var(--fs-xs); }
 /* 面板是 grid 且默认 stretch，行高会被右栏撑开；这里把表头钉死，剩下的都给地图 */

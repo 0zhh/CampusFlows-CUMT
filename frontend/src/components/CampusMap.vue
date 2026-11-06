@@ -46,6 +46,9 @@ let vehicleTimer: number | undefined
 let traceLayer: L.Polyline | null = null
 const store = useAppStore()
 
+/** 离线卫星瓦片的覆盖范围（z14–z17 全区域，z18 核心区），与 data/research/fetch_sat_tiles.py 保持一致 */
+const SAT_BOUNDS = L.latLngBounds([34.2000, 117.1180], [34.2320, 117.1620])
+
 // 视野范围：OSM way 273639857 的外接矩形，取整后仅留极小外扩
 const CAMPUS_BOUNDS = L.latLngBounds(
   [34.2065, 117.1295],
@@ -154,10 +157,13 @@ function applyLayer() {
   if (layer.value === 'satellite') {
     if (manualLayer) { manualLayer.remove(); manualLayer = null }
     if (!satLayer) {
-      satLayer = L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        { maxZoom: 19, attribution: '影像 © Esri, Maxar, Earthstar Geographics' }
-      )
+      satLayer = L.tileLayer('/tiles/sat/{z}/{x}/{y}.jpg', {
+        minZoom: 14,
+        maxZoom: 19,
+        maxNativeZoom: 18,
+        bounds: SAT_BOUNDS,
+        attribution: '影像 © Esri, Maxar, Earthstar Geographics（本地缓存）'
+      })
       satLayer.on('loading', () => {
         if (satState.value !== 'ok') satState.value = 'loading'
       })
@@ -427,7 +433,7 @@ defineExpose({
 
 const layerOptions = [
   { id: 'manual' as const, label: '手册原图', hint: '学生手册原图 · 离线可用' },
-  { id: 'satellite' as const, label: '卫星影像', hint: 'Esri 在线瓦片 · 需联网' }
+  { id: 'satellite' as const, label: '卫星影像', hint: '本地缓存 · 离线可用' }
 ]
 </script>
 
@@ -458,8 +464,8 @@ const layerOptions = [
       <span v-if="showRoutes" class="lg"><i class="lg__line" />配送路径</span>
     </div>
     <div v-if="layer === 'satellite' && satState === 'failed'" class="map__offline" role="status">
-      <b>卫星影像加载失败</b>
-      <span>这张底图来自 Esri 在线瓦片，需要联网。当前网络不可达。</span>
+      <b>卫星瓦片加载失败</b>
+      <span>本地离线瓦片没读到。可能是文件缺失或未构建，可重试或切回手册原图。</span>
       <div class="map__offline-actions">
         <button class="btn btn--primary" @click="layer = 'manual'">切回手册原图</button>
         <button class="btn" @click="retrySat">重试</button>
