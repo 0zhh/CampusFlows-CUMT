@@ -86,7 +86,7 @@ git push
 三个提醒：
 
 1. **单文件都在 100 MB 以内**，可以正常推。但整体偏大，第一次 push 可能要等几分钟。
-2. **MySQL 密码是明文**：`backend/src/main/resources/application-mysql.yml` 里写的是 `__MYSQL_PASSWORD_REMOVED__`，
+2. **MySQL 密码是明文**：`backend/src/main/resources/application-mysql.yml` 里写的是 `<你的数据库密码>`，
    本地演示用的。公开仓库建议改成环境变量 `${MYSQL_PASSWORD}`，或者干脆换一个密码。
 3. **离线卫星瓦片 11 MB**（`frontend/public/tiles/`）已经在仓库里。想减小体积可以把它加进 `.gitignore`，
    让别人自己跑 `python data/research/fetch_sat_tiles.py` 下载。

@@ -18,14 +18,14 @@ if ($running -eq 'campusflow-mysql') {
   } else {
     docker run -d --name campusflow-mysql --restart unless-stopped `
       -p 127.0.0.1:3307:3306 `
-      -e MYSQL_ROOT_PASSWORD=__MYSQL_PASSWORD_REMOVED__ -e MYSQL_DATABASE=campusflow -e TZ=Asia/Shanghai `
+      -e MYSQL_ROOT_PASSWORD=$($env:MYSQL_PASSWORD) -e MYSQL_DATABASE=campusflow -e TZ=Asia/Shanghai `
       -v campusflow-mysql-data:/var/lib/mysql `
       mysql:8.4 --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci | Out-Null
   }
   Write-Output '      starting...'
   for ($i = 0; $i -lt 40; $i++) {
     Start-Sleep -Seconds 2
-    $ok = docker exec campusflow-mysql mysqladmin ping -uroot -p__MYSQL_PASSWORD_REMOVED__ 2>&1 | Select-String 'mysqld is alive'
+    $ok = docker exec campusflow-mysql mysqladmin ping -uroot -p$($env:MYSQL_PASSWORD) 2>&1 | Select-String 'mysqld is alive'
     if ($ok) { break }
   }
   Write-Output '      ready'

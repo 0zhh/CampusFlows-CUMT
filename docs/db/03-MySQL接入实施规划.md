@@ -14,7 +14,7 @@
 | 镜像 | `mysql:8.4`（实测版本 8.4.13） |
 | 宿主端口 | `127.0.0.1:3307` → 容器 3306（3306 已被本机 Windows MySQL 占用，刻意避开） |
 | 数据库 | `campusflow`（utf8mb4 / utf8mb4_0900_ai_ci） |
-| 账号 | `root` / `__MYSQL_PASSWORD_REMOVED__`（仅演示环境） |
+| 账号 | `root` / `<你的数据库密码>`（仅演示环境） |
 | 数据卷 | `campusflow-mysql-data`（命名卷，docker rm 不丢数据） |
 | 时区 | `Asia/Shanghai` |
 | 重启策略 | `unless-stopped` |
@@ -24,7 +24,7 @@
 ```bash
 docker run -d --name campusflow-mysql --restart unless-stopped \
   -p 127.0.0.1:3307:3306 \
-  -e MYSQL_ROOT_PASSWORD=__MYSQL_PASSWORD_REMOVED__ \
+  -e MYSQL_ROOT_PASSWORD=<你的数据库密码> \
   -e MYSQL_DATABASE=campusflow -e TZ=Asia/Shanghai \
   -v campusflow-mysql-data:/var/lib/mysql \
   mysql:8.4 --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
@@ -79,7 +79,7 @@ jdbc:mysql://127.0.0.1:3307/campusflow?useUnicode=true&characterEncoding=utf8&se
 执行方式（容器内）：
 
 ```bash
-docker exec -i campusflow-mysql mysql -uroot -p__MYSQL_PASSWORD_REMOVED__ campusflow < db/migration/V1__schema.sql
+docker exec -i campusflow-mysql mysql -uroot -p<你的数据库密码> campusflow < db/migration/V1__schema.sql
 ```
 
 ---

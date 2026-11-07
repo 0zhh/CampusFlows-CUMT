@@ -4,7 +4,8 @@ spring:
     url: jdbc:mysql://127.0.0.1:3307/campusflow?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: __MYSQL_PASSWORD_REMOVED__
+    # 密码不写进仓库：在仓库根目录的 .env.local 里设置 MYSQL_PASSWORD，启动脚本会注入
+    password: ${MYSQL_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:

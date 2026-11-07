@@ -29,3 +29,14 @@ Thumbs.db
 *.trace.db
 application-local.yml
 .env
+
+# 本地密钥（不进仓库）
+.env.local
+
+# 离线卫星瓦片：约 11 MB / 773 张，需要时跑 python data/research/fetch_sat_tiles.py 重新下载
+frontend/public/tiles/
+
+# 调研用的大图（含本人实拍），不随仓库分发
+data/reference/*.jpg
+data/reference/*.jpeg
+data/reference/*.png

@@ -7,6 +7,14 @@ Java 语言及网络编程课程结课作业。**前后端分离**：Vue 3 + Typ
 
 ---
 
+## 零、几个不随仓库分发的文件
+
+| 文件 / 目录 | 为什么不在仓库 | 怎么拿回来 |
+|---|---|---|
+| `.env.local` | 数据库密码 | 自己新建，写一行 `MYSQL_PASSWORD=你的密码` |
+| `frontend/public/tiles/` | 离线卫星瓦片 11 MB / 773 张 | `python data/research/fetch_sat_tiles.py` |
+| `data/reference/*.jpg|png` | 调研实拍与大图 | 自行准备，或只看 `实景素材索引.md` 里的来源说明 |
+
 ## 一、跑起来（两步）
 
 ### 1. 后端（端口 8080）
@@ -44,7 +52,7 @@ P4 工单事件时间线；P5 参数版本徽标。后端不可达时自动回�
 ```bash
 docker run -d --name campusflow-mysql --restart unless-stopped \
   -p 127.0.0.1:3307:3306 \
-  -e MYSQL_ROOT_PASSWORD=__MYSQL_PASSWORD_REMOVED__ -e MYSQL_DATABASE=campusflow -e TZ=Asia/Shanghai \
+  -e MYSQL_ROOT_PASSWORD=<你的数据库密码> -e MYSQL_DATABASE=campusflow -e TZ=Asia/Shanghai \
   -v campusflow-mysql-data:/var/lib/mysql \
   mysql:8.4 --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
 
